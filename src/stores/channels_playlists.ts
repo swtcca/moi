@@ -23,6 +23,7 @@ export const CHANNELS = [
     { id: 'UCMr_V1NOgeMForzMtE0-aVg', name: '不解探秘', title: '不解探秘', leagal: true }
   ] as IChannel[]
 export const PLAYLISTS = [
+    { id: 'UUH2BtkEp1kHY7o9TCIhYaFA', name: '萨沙环球', title: '萨莎-环球频道-shasa-Саша', leagal: true },
     { id: 'PLBsA1M_J2ICIvMjsj_U7lIdeq-E8AW-bM', name: '杨世光', title: '楊世光在金錢爆', leagal: true },
     { id: 'UURdpxiOm4HrwGI24Kv6MBKQ', name: 'David郑经纬', title: 'David郑经纬', leagal: true },
     { id: 'UURByPS00RZsAUe2DTCoHuFQ', name: '好奇大叔', title: '好奇大叔 Uncle Curious', leagal: true },
