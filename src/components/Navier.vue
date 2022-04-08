@@ -57,7 +57,7 @@ watch(show, (value, old_value) => {
       <UtilRelay />
     </button>
     <router-link to="/upload/">
-      <ph-upload />
+      <simple-icons-ipfs />
     </router-link>
     <router-link to="/wallets/">
       <ph-wallet />

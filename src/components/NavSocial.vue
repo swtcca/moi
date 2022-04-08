@@ -36,10 +36,10 @@ const color = useColor('light')
     ph-users
     .hidden.md_block {{ t('pages.users') }}
   router-link.link(to="/chats/")
-    ph-chats-teardrop
+    ph-chats-light
     .hidden.md_block {{ t('pages.chats') }}
   router-link.link(to="/rooms/")
-    ph-house
+    simple-icons-qzone 
     .hidden.md_block {{ t('pages.rooms') }}
   room-icon.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
 </template>

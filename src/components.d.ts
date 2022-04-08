@@ -141,6 +141,7 @@ declare module 'vue' {
     Settings: typeof import('./components/Settings.vue')['default']
     ShowInfo: typeof import('./components/ShowInfo.vue')['default']
     SimpleIconsIpfs: typeof import('~icons/simple-icons/ipfs')['default']
+    SimpleIconsQzone: typeof import('~icons/simple-icons/qzone')['default']
     Social: typeof import('./components/Social.vue')['default']
     SpaceArrow: typeof import('./gun-vue/components/space/Arrow.vue')['default']
     SpaceGuest: typeof import('./gun-vue/components/space/Guest.vue')['default']

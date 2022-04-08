@@ -42,7 +42,7 @@ export const usePrefersStore = defineStore('prefers', {
   },
   getters: {
     channels_playlists() {
-      return [ ...this.channels, ...this.playlists ].filter(c => c.leagal && c.id.length > 20)
+      return [ ...this.channels, ...this.playlists ].filter(c => c.id.length > 20)
     }
   },
   actions: {

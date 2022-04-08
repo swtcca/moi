@@ -17,7 +17,7 @@ export const CHANNELS = [
     { id: 'UCSgGqt-30oXBq0-n0K-t4Nw', name: '科技袁人', title: "Yuan's Multiverse科技袁人", leagal: true },
     { id: 'UCEjqTrvJdLG7Eo0KP1AzYJw', name: '大佬时空', title: '大佬时空' },
     { id: 'UCUBhobCkTLhgfUNRAgHSYmw', name: '科学声音', title: '科学声音', leagal: true },
-    { id: 'UCD_gy8DWV_DhjJ-bQXF5dGQ', name: '磊哥', title: '磊哥聊政经' },
+    { id: 'UCD_gy8DWV_DhjJ-bQXF5dGQ', name: '磊哥', title: '磊哥聊政经', leagal: true },
     { id: 'UCI-ECZ-pbvFL2fLtskq2GPA', name: '老伍', title: '老伍和他的朋友们', leagal: true },
     { id: 'UC9Q8KmHEHhDl_2LSiQNGLaQ', name: '大刘', title: '大刘说说', leagal: true },
     { id: 'UCMr_V1NOgeMForzMtE0-aVg', name: '不解探秘', title: '不解探秘', leagal: true }
