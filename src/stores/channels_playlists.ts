@@ -1,7 +1,7 @@
 import { IChannel } from "../types"
 export const CHANNELS = [ 
     { id: 'UC7Ky7FjJBI7ojx2Yqz2pkNQ', name: '萨沙', title: 'SHA SA 萨莎 Саша', leagal: true },
-    { id: 'UCH2BtkEp1kHY7o9TCIhYaFA', name: '萨沙环球', title: '萨莎-环球频道-shasa-Саша', leagal: true },
+    // { id: 'UCH2BtkEp1kHY7o9TCIhYaFA', name: '萨沙环球', title: '萨莎-环球频道-shasa-Саша', leagal: true },
     { id: 'UCd6lmxWKVkCBUubage0hmWA', name: '萨沙底层', title: 'SHA SA-萨莎-底层逻辑-саша', leagal: true },
     { id: 'UCwNGgFvBpxtU8JagZLzztzQ', name: '岩论', title: 'Yan Talk', leagal: true },
     { id: 'UCkZ9vSvx7lg9FvZifpbH2FA', name: '老兵', title: '民族阵线-老兵莱昂', leagal: true },
@@ -20,7 +20,9 @@ export const CHANNELS = [
     { id: 'UCD_gy8DWV_DhjJ-bQXF5dGQ', name: '磊哥', title: '磊哥聊政经', leagal: true },
     { id: 'UCI-ECZ-pbvFL2fLtskq2GPA', name: '老伍', title: '老伍和他的朋友们', leagal: true },
     { id: 'UC9Q8KmHEHhDl_2LSiQNGLaQ', name: '大刘', title: '大刘说说', leagal: true },
-    { id: 'UCMr_V1NOgeMForzMtE0-aVg', name: '不解探秘', title: '不解探秘', leagal: true }
+    { id: 'UCMr_V1NOgeMForzMtE0-aVg', name: '不解探秘', title: '不解探秘', leagal: true },
+    { id: 'UCp1nO1bgVwks9b5EhKQGVag', name: '幻海', title: '幻海航行', leagal: true },
+
   ] as IChannel[]
 export const PLAYLISTS = [
     { id: 'UUH2BtkEp1kHY7o9TCIhYaFA', name: '萨沙环球', title: '萨莎-环球频道-shasa-Саша', leagal: true },
