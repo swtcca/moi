@@ -48,7 +48,7 @@ const close = async() => {
 
 <template>
   <div v-if="offlineReady || needRefresh" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-600 z-500" role="alert">
-    <div class="mb-1">
+    <div class="mb-1 text-center">
       <span v-if="offlineReady">
         {{ t('pages.prompt_offline') }}
       </span>
@@ -64,7 +64,6 @@ const close = async() => {
         {{ t('button.close') }}
       </button>
     </div>
-    <div> <hr> </div>
   </div>
 </template>
 
