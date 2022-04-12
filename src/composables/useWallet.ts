@@ -52,8 +52,9 @@ export function useWallet(chain_name = default_chain_name.value) {
   if (!wallets.hasOwnProperty(chain_name)) {
     useWallets()
   }
-  return { wallet: wallets[chain_name] }
+  return wallets[chain_name]
 }
+
 globalThis.useWallets = useWallets
 
 //  balance: computed(() => {
