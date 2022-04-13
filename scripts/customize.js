@@ -83,6 +83,9 @@ const customize = {
   "./src/pages/chats.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]},
+  "./src/gun-vue/components/styles/index.css": { replaces: [
+    [`10px`, `0`],
+  ]},
   "./src/pages/my/chat/index.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]}
