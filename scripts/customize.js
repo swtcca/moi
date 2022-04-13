@@ -37,12 +37,7 @@ const customize = {
   "./src/gun-vue/components/post/Form.vue": { replaces: [
     [`text: false`, `ipfs: false,\n  text: false`],
     [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n    form-ipfs(v-model:cid="postData.ipfs")\n  ui-layer(:open="add.text"`],
-    [`la-youtube`, `la-youtube\n    .flex.flex-wrap
-      button.button.m-1(
-        @click="add.ipfs = !add.ipfs"
-        :class="{ active: postData.ipfs }"
-        )
-       simple-icons-ipfs`],
+    [`form-youtube\\(@update="postData.youtube = \\$event"\\)`, `form-youtube(@update="postData.youtube = $event")\n    form-ipfs(@update="postData.ipfs = $event")`],
   ]},
   "./src/gun-vue/components/post/Card.vue": { replaces: [
     [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n        mdi-text-long.mx-1`],

@@ -73,7 +73,7 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
   .flex.flex-col.gap-2.max-w-sm.bg-white.rounded-xl.shadow-lg
     Listbox(v-model="selectedChain")
       .relative.mt-1
-        ListboxButton(class="relative w-full py-2 pl-8 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus_outline-none focus-visible_ring-2 focus-visible_ring-opacity-75 focus-visible_ring-white focus-visible_ring-offset-orange-300 focus-visible_ring-offset-2 focus-visible_border-indigo-500 sm_text-sm")
+        ListboxButton(class="relative w-full py-2 pl-12 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus_outline-none focus-visible_ring-2 focus-visible_ring-opacity-75 focus-visible_ring-white focus-visible_ring-offset-orange-300 focus-visible_ring-offset-2 focus-visible_border-indigo-500 sm_text-sm")
           span.block.truncate {{ selectedChain.name }}
           span.absolute.inset-y-0.right-0.flex.items-center.pr-2.pointer-events-none
             SelectorIcon.w-5.h-5.text-gray-400(aria-hidden="true")
@@ -100,7 +100,7 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
       mdi-wallet.w-12.h-12
       p {{ wallet.algorithm }}
     .mx-auto(v-if="balances[chain]?.native?.value") {{ t('wallets.balance') }} {{ balances[chain]?.native?.value }} {{ balances[chain]?.native?.token }}
-    .font-mono.tracking-tight.mx-auto {{ wallet.address }}
+    .font-mono.tracking-tight.px-1.mx-auto {{ wallet.address }}
     .flex.flex-col.gap-2(v-if="user.wallets[chain]?.activated")
       .border-b
       div(v-if="Object.keys(balances[chain].tokens).length > 0")

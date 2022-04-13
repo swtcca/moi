@@ -115,7 +115,7 @@ gunvue:
   cred_link: Link
   cred_text: Text
   cred_json: JSON
-  form_link: Paste a link
+  form_link: Add a link
   form_link_url: Paste a URL
   form_ipfs: Add a ipfs video
   form_ipfs_video: Paste a ipfs video link

@@ -98,7 +98,7 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   cred_link: [false, false, "Link", "连接", "px-2 "],
   cred_text: [false, false, "Text", "文本", "px-2 "],
   cred_json: [false, false, "JSON", "文件", "px-2 "],
-  form_link: [false, false, "Paste a link", "粘贴链接", "text-lg "],
+  form_link: [false, false, "Add a link", "添加链接", "text-lg "],
   form_link_url: [false, true, "Paste a URL", "粘贴链接地址", `placeholder="`],
   form_ipfs: [false, false, "Add a ipfs video", "添加Ipfs视频", "font-bold "],
   form_ipfs_video: [false, true, "Paste a ipfs video link", "粘贴Ipfs视频链接", `placeholder="`],
