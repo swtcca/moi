@@ -50,7 +50,6 @@ const selectedChain = ref(chain_names.find(e => e.name === default_chain_name.va
 const wallet = ref(useWallet())
 const chain = ref(default_chain_name.value)
 watch(selectedChain, () => {
-  console.log(selectedChain.value)
   wallet.value = useWallet(selectedChain.value.name)
   chain.value = selectedChain.value.name
 })
@@ -69,17 +68,17 @@ const { t } = useI18n()
 </script>
 
 <template lang="pug">
-h1.pt-8.text-center.font-bold.text-2xl Wallets
-.grid.grid-col-1.place-content-center.gap-2.p-4.min-h-90vh
+h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
+.grid.grid-col-1.place-content-around.gap-2.p-4.min-h-60vh
   .flex.flex-col.gap-2.max-w-sm.bg-white.rounded-xl.shadow-lg
     Listbox(v-model="selectedChain")
       .relative.mt-1
-        ListboxButton.relative.w-full.py-2.pl-3.pr-10.text-left.bg-white.rounded-lg.shadow-md.cursor-default.focus_outline-none.focus-visible_ring-2.focus-visible_ring-opacity-75.focus-visible_ring-white.focus-visible_ring-offset-orange-300.focus-visible_ring-offset-2.focus-visible_border-indigo-500.sm_text-sm
+        ListboxButton(class="relative w-full py-2 pl-8 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus_outline-none focus-visible_ring-2 focus-visible_ring-opacity-75 focus-visible_ring-white focus-visible_ring-offset-orange-300 focus-visible_ring-offset-2 focus-visible_border-indigo-500 sm_text-sm")
           span.block.truncate {{ selectedChain.name }}
           span.absolute.inset-y-0.right-0.flex.items-center.pr-2.pointer-events-none
             SelectorIcon.w-5.h-5.text-gray-400(aria-hidden="true")
 
-        ListboxOptions(:class="['absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus_outline-none sm_text-sm']")
+        ListboxOptions(class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus_outline-none sm_text-sm")
           ListboxOption(
             v-slot="{ active, selected }"
             v-for="chain in chain_names"
@@ -88,19 +87,19 @@ h1.pt-8.text-center.font-bold.text-2xl Wallets
             as="template"
           )
             li.cursor-default.select-none.relative.py-2.pl-10.pr-4(
-              :class="{ 'text-cyan-900' : active, 'text-gray-900' : !active }"
+              :class="{ 'text-cyan-900' : active, 'bg-amber-100': active, 'text-gray-900' : !active }"
             )
               span.block.truncate(
                 :class="{ 'font-medium' : selected, 'font-normal': !selected }"
               ) {{ chain.name }}
               span.absolute.inset-y-0.left-0.flex.items-center.pl-3.text-amber-600(v-if="selected")
                 CheckIcon.w-5.h-5(aria-hidden="true")
-  .flex.flex-col.gap-2.max-w-sm.p-2.bg-white.rounded-xl.shadow-lg(v-if="user.is")
-    .flex.justify-center.items-center.gap-4.text-blue-600
+  .flex.flex-col.gap-2.max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="user.is")
+    .flex.justify-center.items-center.gap-4.text-blue-600.bg-cyan-400
       p {{ wallet.chain }}
       mdi-wallet.w-12.h-12
       p {{ wallet.algorithm }}
-    .mx-auto(v-if="balances[chain].native?.value") {{ t('wallets.balance') }} {{ balances[chain].native?.value }} {{ balances[chain].native?.token }}
+    .mx-auto(v-if="balances[chain]?.native?.value") {{ t('wallets.balance') }} {{ balances[chain]?.native?.value }} {{ balances[chain]?.native?.token }}
     .font-mono.tracking-tight.mx-auto {{ wallet.address }}
     .flex.flex-col.gap-2(v-if="user.wallets[chain]?.activated")
       .border-b
