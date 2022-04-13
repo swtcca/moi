@@ -8,7 +8,7 @@ const gun = useGun()
 const md = useMd()
 
 const props = defineProps({
-  tag: { type: String, default: 'posts' },
+  tag: { type: String, default: '' },
   hash: { type: String, default: '' },
 })
 
@@ -20,7 +20,6 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 const { post, download, downloading, } = usePost({ hash: props.hash })
 
 const { posts, backlinks } = usePosts(props.tag)
-
 
 </script>
 

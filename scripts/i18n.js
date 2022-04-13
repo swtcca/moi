@@ -31,7 +31,7 @@ const files = [
   "src/gun-vue/components/post/Form.vue",
   "src/gun-vue/components/post/List.vue",
   "src/gun-vue/components/post/Page.vue",
-  "src/gun-vue/components/post/feed/List.vue",
+  // "src/gun-vue/components/post/feed/List.vue",
   "src/gun-vue/components/form/Text.vue",
   "src/gun-vue/components/form/Youtube.vue",
   "src/gun-vue/components/form/Ipfs.vue",

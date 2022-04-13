@@ -4,7 +4,7 @@ import { reactive, ref, onMounted, watch, computed } from 'vue'
 import { addPost, useColor } from '@composables'
 
 const props = defineProps({
-  tag: { type: String, default: 'posts' }
+  tag: { type: String, default: ' ' }
 })
 
 const emit = defineEmits(['close'])
@@ -123,9 +123,11 @@ input,
 textarea {
   @apply p-2 rounded-xl m-1;
 }
+
 button:disabled {
   @apply opacity-40;
 }
+
 .active {
   background-color: v-bind(addColor);
 }
@@ -135,6 +137,7 @@ button:disabled {
   background-color: v-bind(addColor);
   filter: grayscale(50%) brightness(100%);
 }
+
 .plus:hover {
   filter: grayscale(0%) brightness(120%);
 }
