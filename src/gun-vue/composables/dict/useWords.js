@@ -11,6 +11,8 @@ export function renderWord({ text, stress } = {}) {
 
 export function useWords() {
   const gun = useGun()
+  const wordDb = gun.get('dict').get('#word')
+
   const search = ref('')
   const word = reactive({
     text: computed(() => {
@@ -22,16 +24,19 @@ export function useWords() {
 
   async function addWord() {
     const { hash, hashed } = await hashObj(word)
-    gun.get('#word').get(hash).put(hashed)
+    wordDb.get(hash).put(hashed)
     search.value = ''
     word.stress = null
   }
 
   const words = reactive({})
 
-  gun.get('#word').map().once((d, k) => {
-    words[k] = JSON.parse(d)
+  wordDb.map().once((d, k) => {
+    let w = JSON.parse(d)
+    if (d.includes(' ')) return
+    words[k] = w
   })
+
   return { search, words, word, addWord }
 }
 
@@ -40,7 +45,7 @@ export function useWord(hash) {
 
   const word = ref()
 
-  gun.get('#word').get(hash).once((d, k) => {
+  gun.get('dict').get('#word').get(hash).once((d, k) => {
     word.value = JSON.parse(d)
   })
   return { word }
