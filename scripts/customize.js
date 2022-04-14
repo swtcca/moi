@@ -69,6 +69,9 @@ const customize = {
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
     [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n  user.pulser = setInterval`]
   ]},
+  "./src/gun-vue/components/ui/layer.vue": { replaces: [
+    [`10vh`, `5vh`],
+  ]},
   "./src/pages/space.vue": { replaces: [
     [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" :pad="20" @enter=`],
   ]},
