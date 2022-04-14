@@ -35,9 +35,9 @@ const color = useColor('light')
   router-link.link(to="/users/")
     ph-users
     .hidden.md_block {{ t('pages.users') }}
-  router-link.link(to="/chats/")
-    ph-chats-light
-    .hidden.md_block {{ t('pages.chats') }}
+  router-link.link(to="/dict/")
+    ph-books
+    .hidden.md_block {{ t('pages.dicts') }}
   router-link.link(to="/rooms/")
     simple-icons-qzone 
     .hidden.md_block {{ t('pages.rooms') }}

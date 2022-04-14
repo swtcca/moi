@@ -37,7 +37,7 @@ const { t } = useI18n()
 <template lang='pug'>
 .flex.flex-col.z-10.items-start.justify-items-stretch
   .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-700.w-full(v-if="header")
-    .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ t(`tags.${tag}`) }} 
+    .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
     .flex-1
     .p-2.font-bold.mx-2 {{ countPosts }}
   .flex.flex-col.items-center.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full.gap-8
@@ -45,7 +45,6 @@ const { t } = useI18n()
       style="order:-2147483647; flex: 1000 100%"
       v-if="user.pub"
       )
-      slot
       util-share(v-if="header")
       .flex.flex-wrap.gap-2(
         v-if="user.pub"

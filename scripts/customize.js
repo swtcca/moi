@@ -32,11 +32,11 @@ const customize = {
   "./src/gun-vue/components/post/List.vue": { replaces: [
     [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
     [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
-    [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
+    // [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
   ]},
   "./src/gun-vue/components/post/Form.vue": { replaces: [
     [`text: false`, `ipfs: false,\n  text: false`],
-    [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n    form-ipfs(v-model:cid="postData.ipfs")\n  ui-layer(:open="add.text"`],
+    [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n  ui-layer(:open="add.text"`],
     [`form-youtube\\(@update="postData.youtube = \\$event"\\)`, `form-youtube(@update="postData.youtube = $event")\n    form-ipfs(@update="postData.ipfs = $event")`],
   ]},
   "./src/gun-vue/components/post/Card.vue": { replaces: [
@@ -75,9 +75,9 @@ const customize = {
   "./src/gun-vue/components/user/home.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]},
-  "./src/pages/chats.vue": { i18n: true, replaces: [
-    [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
-  ]},
+  // "./src/pages/chats.vue": { i18n: true, replaces: [
+  //   [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
+  // ]},
   "./src/gun-vue/components/styles/index.css": { replaces: [
     [`10px`, `0`],
   ]},

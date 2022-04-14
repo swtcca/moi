@@ -20,10 +20,12 @@ watch(link, lnk => {
 
 
 function ipfsLinkParser(url) {
-  var regExp = /^.*?(Qm.*)/;
-  var match = url.match(regExp);
+  let kind = "ipfs"
+  if (/ipns.Qm/.test(url)) { kind = "ipns" }
+  const regExp = /^.*?(Qm.*)/;
+  const match = url.match(regExp);
   if (match && match[1].length > 45) {
-    return match[1].trim();
+    return `${kind}/${match[1].trim()}`;
   } else {
     return null;
   }
