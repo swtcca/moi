@@ -60,6 +60,18 @@ export { default as ChatMessage } from "./chat/Message.vue";
 export { default as ChatPrivate } from "./chat/private/Index.vue";
 export { default as ChatPrivateCount } from "./chat/private/Count.vue";
 
+// DICTIONARY
+
+export { default as DictDefCard } from './dict/def/Card.vue'
+export { default as DictDefList } from './dict/def/List.vue'
+export { default as DictDefPage } from './dict/def/Page.vue'
+export { default as DictWordCard } from './dict/word/Card.vue'
+export { default as DictWordList } from './dict/word/List.vue'
+export { default as DictWordPage } from './dict/word/Page.vue'
+export { default as DictLinks } from './dict/Links.vue'
+export { default as DictPanel } from './dict/Panel.vue'
+
+
 // FORMS
 
 export { default as FormLink } from "./form/Link.vue";
@@ -77,6 +89,7 @@ export { default as QrLoad } from "./qr/Load.vue";
 export { default as EmbedYoutube } from "./embed/Youtube.vue";
 
 export { default as UiModal } from "./ui/Modal.vue";
+export { default as UiLayer } from "./ui/Layer.vue";
 
 export { default as UtilPulse } from "./util/Pulse.vue";
 export { default as UtilGraph } from "./util/Graph.vue";
