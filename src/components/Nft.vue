@@ -20,7 +20,7 @@ const load_more = async () => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.gap-2.sm_max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="contract.total_supply > 0")
+.flex.flex-col.gap-2.max-w-full.sm_max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="contract.total_supply > 0")
   .flex.justify-center.items-center.gap-4.text-blue-600.bg-cyan-400
     p {{ standard }}
     p {{ chain }}
