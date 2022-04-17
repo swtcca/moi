@@ -70,7 +70,7 @@ const { t } = useI18n()
 <template lang="pug">
 h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
 .grid.grid-col-1.place-content-around.gap-2.p-4.min-h-60vh
-  .flex.flex-col.gap-2.max-w-sm.bg-white.rounded-xl.shadow-lg
+  .flex.flex-col.gap-2.sm_max-w-sm.bg-white.rounded-xl.shadow-lg
     Listbox(v-model="selectedChain")
       .relative.mt-1
         ListboxButton(class="relative w-full py-2 pl-12 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus_outline-none focus-visible_ring-2 focus-visible_ring-opacity-75 focus-visible_ring-white focus-visible_ring-offset-orange-300 focus-visible_ring-offset-2 focus-visible_border-indigo-500 sm_text-sm")
@@ -94,7 +94,7 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
               ) {{ chain.name }}
               span.absolute.inset-y-0.left-0.flex.items-center.pl-3.text-amber-600(v-if="selected")
                 CheckIcon.w-5.h-5(aria-hidden="true")
-  .flex.flex-col.gap-2.max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="user.is")
+  .flex.flex-col.gap-2.sm_max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="user.is")
     .flex.justify-center.items-center.gap-4.text-blue-600.bg-cyan-400
       p {{ wallet.chain }}
       mdi-wallet.w-12.h-12
@@ -117,6 +117,6 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
         button.button.text-green-800(@click="wallet.chainobj.update_balance(wallet)")
           ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
           carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
-  .flex.flex-col.gap-2.max-w-sm.p-2.bg-white.rounded-xl.shadow-lg(v-else)
+  .flex.flex-col.gap-2.sm_max-w-sm.p-2.bg-white.rounded-xl.shadow-lg(v-else)
     p {{ t('wallets.login_first') }}
 </template>
