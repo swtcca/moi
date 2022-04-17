@@ -62,6 +62,9 @@ watch(show, (value, old_value) => {
     <router-link to="/wallets/">
       <ph-wallet />
     </router-link>
+    <router-link to="/nfts/">
+      NFT
+    </router-link>
   </nav>
   <UiLayer :open="show.graph" @close="show.graph=false">
     <UtilGraph />

@@ -77,10 +77,11 @@ export const chains = reactive({
           console.log(e)
         }
       }
-      await wallet.chainobj.wallet_init(wallet)
+      // await wallet.chainobj.wallet_init(wallet)
       if (user.is) wallet.balance_raw = JSON.parse(user.wallets[wallet.chain]?.balance || "{}")
     },
     wallet_init: async (wallet = {} as any) => {
+      await wallet.chainobj.load_library(wallet)
       console.log(`wallet init`)
       if (!wallet.initiated) {
         try {
