@@ -8,14 +8,9 @@ const props = defineProps({
   index: { type: Number, default: 1 },
   list_tokens: { type: Boolean, default: false}
 })
-const contract = reactive({tokens: {}})
-let sync_contract
-onMounted(async () => {
-  await useContracts()
-  const r_use = await useContract(props.address, props.standard, props.chain)
-  Object.assign(contract, r_use.contract)
-  r_use.read_contract(contract)
-  sync_contract = r_use.sync_contract
+const {contract, sync_contract, read_contract} = useContract(props.address, props.standard, props.chain)
+useContracts().then(async () => {
+  read_contract(contract)
 })
 
 const load_more = async () => {

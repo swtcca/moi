@@ -58,7 +58,7 @@ watch(selectedChain, () => {
 onBeforeMount(() => {
   Object.keys(wallets).forEach(key => {
     const wallet = wallets[key]
-    wallet.chainobj.load_library(wallet)
+    wallet.chainobj.load_library(wallet).then(() => {wallet.chainobj.wallet_init(wallet)})
   })
   if (!user.is) {
     user.auth = true

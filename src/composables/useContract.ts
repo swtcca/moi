@@ -70,9 +70,10 @@ async function init_contracts() {
 //    obj: null,
 //  })
 
-export async function useContract(address, standard="erc721", chain="polygon") {
+export function useContract(address, standard="erc721", chain="polygon") {
   const chainobj = chains[chain]
   if (!chainobj) { throw new Error(`unknown chain ${chain}`) }
+  if (isEmpty(contracts[chain])) contracts[chain] = {}
   if (isEmpty(contracts[chain][address])) {
     contracts[chain][address] = {
       address,
@@ -97,7 +98,7 @@ export async function useContract(address, standard="erc721", chain="polygon") {
   contract.tokens = contract.tokens || {}
   contract.api = contract.api || null
   contract.obj = contract.obj || null
-  await init_contract(contract)
+  init_contract(contract)
   return {
     contract,
     init_contract,
@@ -127,7 +128,7 @@ async function sync_contract(contract, quantity=100) {
   let running = 0
   if (contract.obj) {
     for (let index = 1; index <= contract.total_supply; index++) {
-      if (running <= quantity && isEmpty(contract.tokens[index])) {
+      if (running < quantity && isEmpty(contract.tokens[index])) {
         contract.tokens[index] = {}
         running += 1
       }
