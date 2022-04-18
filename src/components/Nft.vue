@@ -21,8 +21,8 @@ const load_more = async () => {
 
 <template lang='pug'>
 .container.overflow-x-hidden
-  .flex.flex-col.gap-2.max-w-full.sm_max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="contract.total_supply > 0")
-    .flex.justify-center.items-center.gap-4.text-blue-600.bg-cyan-400
+  .flex.flex-col.gap-2.max-w-full.sm_max-w-sm.bg-white.shadow-lg.mx-auto(v-if="contract.total_supply > 0")
+    .flex.justify-center.items-center.gap-4.text-blue-600.bg-gray-200.mx-auto
       p {{ standard }}
       p {{ chain }}
       p {{ contract.name }}
