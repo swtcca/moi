@@ -22,8 +22,10 @@ if (!db.data.prefers.hasOwnProperty("youtubeAppKey")) db.data.prefers.youtubeApp
 if (!db.data.prefers.hasOwnProperty("youtubeAccess")) db.data.prefers.youtubeAccess = prefers_initial.youtubeAccess
 if (!db.data.prefers.hasOwnProperty("playbackRate")) db.data.prefers.playbackRate = prefers_initial.playbackRate
 if (!db.data.prefers.hasOwnProperty("maxResults")) db.data.prefers.maxResults = prefers_initial.maxResults
-if (!db.data.prefers.hasOwnProperty("channels")) db.data.prefers.channels = prefers_initial.channels
-if (!db.data.prefers.hasOwnProperty("playlists")) db.data.prefers.playlists = prefers_initial.playlists
+// if (!db.data.prefers.hasOwnProperty("channels")) db.data.prefers.channels = prefers_initial.channels
+// if (!db.data.prefers.hasOwnProperty("playlists")) db.data.prefers.playlists = prefers_initial.playlists
+db.data.prefers.channels = prefers_initial.channels
+db.data.prefers.playlists = prefers_initial.playlists
 db.data.prefers.version = pkg.version
 prefers_initial.channels.forEach(channel => {
   if (db.data.prefers.channels.filter(c => c.id === channel.id).length === 0) {
