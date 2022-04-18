@@ -6,21 +6,22 @@ import { prefers, videos } from "~/stores"
 import AsyncForEach from "async-await-foreach"
 const gun = useGun()
 const { user } = useUser()
+const pvideos = reactive({})
 const gvideos = reactive({})
 const gchannels = reactive({})
 // const vref = gun.user(globalState.sa.pub).get("youtube").get("videos")
 // const cref = gun.user(globalState.sa.pub).get("youtube").get("channels")
+const pref = gun.get("bcapps").get("moi").get("youtube").get("published")
 const vref = gun.get("bcapps").get("moi").get("youtube").get("videos")
 const cref = gun.get("bcapps").get("moi").get("youtube").get("channels")
 let listening = false
 
-watch(gvideos, (value, old_value) => {
+watch(pvideos, (value, old_value) => {
   console.log(`watched videos change ${Object.keys(value).length}`)
   Object.values(value).forEach((gvideo: IVideo) => {
     const video = { ...gvideo }
     if (gchannels.hasOwnProperty(gvideo.channelId)) {
-      const channel = gchannels[gvideo.channelId]
-      video.channel = channel
+      video.channel = gchannels[gvideo.channelId]
       videos.add(video) // direct store operation
     }
   })
@@ -47,18 +48,33 @@ export async function initChannels() {
       await put_channel({id: c.id, name: c.name, title: c.title})
     }
   })
-  return { gvideos, vref, gchannels, cref }
+  return { gvideos, vref, gchannels, cref, pvideos, pref }
 }
 
 export async function initVideos() {
-  vref.map().once((d,k) => {
+  // vref.map().once((d,k) => {
+  //   if (d && d._) {
+  //     delete d._
+  //     if (gvideos.hasOwnProperty(k)) {
+  //       Object.assign(gvideos[k], d)
+  //     } else {
+  //       if (d.videoId) {
+  //         gvideos[k] = d
+  //       } else {
+  //         console.log(`incomplete video ${k}`)
+  //         console.log(d)
+  //       }
+  //     }
+  //   }
+  // })
+  pref.map().once((d,k) => {
     if (d && d._) {
       delete d._
-      if (gvideos.hasOwnProperty(k)) {
-        Object.assign(gvideos[k], d)
+      if (pvideos.hasOwnProperty(k)) {
+        Object.assign(pvideos[k], d)
       } else {
-        if (d.videoId) {
-          gvideos[k] = d
+        if (d.videoId && d.videoPublishedAt) {
+          pvideos[k] = d
         } else {
           console.log(`incomplete video ${k}`)
           console.log(d)
@@ -71,14 +87,30 @@ export async function initVideos() {
 export async function useVideos() {
   if (!listening) {
     listening = true
-    vref.map().on((d, k) => {
+    // vref.map().on((d, k) => {
+    //   if (d && d._) {
+    //     delete d._
+    //     if (gvideos.hasOwnProperty(k)) {
+    //       Object.assign(gvideos[k], d)
+    //     } else {
+    //       if (d.videoId) {
+    //         gvideos[k] = d
+    //       } else {
+    //         console.log(`video ${k} ${d.videoId}`)
+    //         console.log(d)
+    //       }
+    //     }
+    //   }
+    // // })
+    // }, true)  // delta value
+    pref.map().on((d, k) => {
       if (d && d._) {
         delete d._
-        if (gvideos.hasOwnProperty(k)) {
-          Object.assign(gvideos[k], d)
+        if (pvideos.hasOwnProperty(k)) {
+          Object.assign(pvideos[k], d)
         } else {
-          if (d.videoId) {
-            gvideos[k] = d
+          if (d.videoId && d.videoPublishedAt) {
+            pvideos[k] = d
           } else {
             console.log(`video ${k} ${d.videoId}`)
             console.log(d)
@@ -138,5 +170,29 @@ export async function put_video(video_object) {
       vref.get(video.videoId).put(video)
     } else {}
     gvideos[video.videoId] = video
+  }
+}
+
+export async function put_video_published(video_object) {
+  if (pvideos[video_object.videoPublishedAt] && pvideos[video_object.videoPublishedAt].videoPublishedAt) return
+  if (video_object.videoId && video_object.videoPublishedAt && video_object.channel) {
+    const video: IVideo = {
+      videoId: video_object.videoId,
+      videoPublishedAt: video_object.videoPublishedAt,
+      channelId: video_object.channel.id
+    }
+    if (video_object.ipfs) { video.ipfs = video_object.ipfs }
+    if (!gchannels.hasOwnProperty(video.channelId)) {
+      await put_channel(video_object.channel)
+    }
+    const node = await pref.get(video.videoPublishedAt).then()
+    if (!node) {
+      // pref.get(video.videoId).put(video, null, {opt: {cert: globalState.cert}})
+      pref.get(video.videoPublishedAt).put(video)
+    } else if (!node.videoId && video.videoPublishedAt) {
+      console.log(video)
+      pref.get(video.videoPublished).put(video)
+    } else {}
+    pvideos[video.videoPublishedAt] = video
   }
 }

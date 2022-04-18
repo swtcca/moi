@@ -2,7 +2,7 @@ import axios from 'axios'
 import { IVideo, IChannel } from "../types"
 import AsyncForEach from "async-await-foreach"
 import { videos, prefers } from "../stores"
-import { put_video, initVideos, useVideos } from "~/composables/useVideos"
+import { put_video, put_video_published, initVideos, useVideos } from "~/composables/useVideos"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 let inited = false
@@ -57,7 +57,8 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         video.channel = channel
         const delta = new Date().valueOf() - new Date(video.videoPublishedAt).valueOf()
         if (delta < 5 * 24 * 60 * 60 * 1000) { // 2 day
-          await put_video(video) // put to gun
+          // await put_video(video) // put to gun
+          await put_video_published(video) // put to gun for lex
         }
       })
     } catch (e) {

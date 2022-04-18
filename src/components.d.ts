@@ -84,6 +84,7 @@ declare module 'vue' {
     LaYoutube: typeof import('~icons/la/youtube')['default']
     LogTree: typeof import('./gun-vue/components/log/tree.vue')['default']
     MdiGraphOutline: typeof import('~icons/mdi/graph-outline')['default']
+    MdiShuffle: typeof import('~icons/mdi/shuffle')['default']
     MdiTextLong: typeof import('~icons/mdi/text-long')['default']
     Modal: typeof import('./components/Modal.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
