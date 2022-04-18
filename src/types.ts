@@ -14,11 +14,17 @@ export interface IVideo {
   channel?: IChannel
 }
 
+export interface IContract {
+  address: string
+  chain: string
+  standard: string
+}
+
 export interface INftToken {
   name: string
   image: string
-  uri?: string
   index?: number
+  uri?: string
 }
 
 export interface AppContext<HasRouter extends boolean = true> {

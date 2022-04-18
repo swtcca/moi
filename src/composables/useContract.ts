@@ -142,8 +142,8 @@ async function sync_contract(contract, quantity=100) {
         const uri = await contract.obj.methods.tokenURI(index).call()
         const response = await axios.get(uri)
         const {name, image} = response.data
-        contract.tokens[index] = { index, name, image }
-        gun.get(top).get("token").get(contract.chain).get(contract.address).get(index).put({index, name, image})
+        contract.tokens[index] = { index, name, image, uri }
+        gun.get(top).get("token").get(contract.chain).get(contract.address).get(index).put({index, name, image, uri})
         running += 1
       } catch (e) {
         console.log(e)
