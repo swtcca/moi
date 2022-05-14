@@ -19,10 +19,13 @@ let listening = false
 watch(pvideos, (value, old_value) => {
   console.log(`watched videos change ${Object.keys(value).length}`)
   Object.values(value).forEach((gvideo: IVideo) => {
-    const video = { ...gvideo }
-    if (gchannels.hasOwnProperty(gvideo.channelId)) {
-      video.channel = gchannels[gvideo.channelId]
-      videos.add(video) // direct store operation
+    if (gvideo.videoPublishedAt > `${new Date().getFullYear()}-${new Date().getMonth().toString().padStart(2, "0")}`) {
+      // only count the last two months
+      const video = { ...gvideo }
+      if (gchannels.hasOwnProperty(gvideo.channelId)) {
+        video.channel = gchannels[gvideo.channelId]
+        videos.add(video) // direct store operation
+      }
     }
   })
 })

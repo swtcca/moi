@@ -11,7 +11,8 @@ export default function useVideoSearch() {
       filtered = filtered.filter(video => video.channel.name.includes(filtering.keyword))
     } else {}
     filtered = prefers.youtubeAccess ? filtered : filtered.filter(video => video.ipfs)
-    return filtered.filter(e => e.videoPublishedAt > `${new Date().getFullYear()}-${new Date().getMonth().toString().padStart(2, "0")}`).sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1).slice(0, searchQuery.value.limit)
+    return filtered.sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1).slice(0, searchQuery.value.limit)
+    // return filtered.filter(e => e.videoPublishedAt > `${new Date().getFullYear()}-${new Date().getMonth().toString().padStart(2, "0")}`).sort((x, y) => x.videoPublishedAt > y.videoPublishedAt ? -1 : 1).slice(0, searchQuery.value.limit)
   })
     // videos.videos.filter(video => JSON.stringify(video).includes(searchQuery.value.keyword))
     // videos.videos
