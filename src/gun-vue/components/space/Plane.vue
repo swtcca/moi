@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from 'vue'
-import { useSpace, useUser, useColor, useRoom, selectedUser } from '@composables'
+import { useSpace, useUser, useColor, useRoom, selectedUser, drawingEnabled } from '@composables'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
@@ -35,6 +35,14 @@ const { t } = useI18n()
     @click="join()"
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
+  button.fixed.bottom-2.right-2.text-xl.z-1000(
+    @click="drawingEnabled = !drawingEnabled"
+    :class="{ active: drawingEnabled }"
+    v-tooltip.top="'Draw on the screen'"
+    )
+    carbon-pen
+  draw-controls.z-2000
+  draw-layer
   svg.h-96vh.w-98vw(
     ref="plane"
     style="cursor:none;"

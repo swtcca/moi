@@ -6,6 +6,7 @@ git checkout src/gun-vue/components/embed/Ipfs.vue
 git checkout src/gun-vue/components/form/Ipfs.vue
 
 cat << ENDF >> src/gun-vue/components/index.js
+
 export { default as FormIpfs } from "./form/Ipfs.vue";
 export { default as EmbedIpfs } from "./embed/Ipfs.vue";
 ENDF

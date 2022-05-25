@@ -101,6 +101,9 @@ export default defineConfig({
       include: [path.resolve(__dirname, 'locales/**')],
     }),
     VitePWA({
+      workbox: {
+        maximumFileSizeToCacheInBytes: 9000000
+      },
       mode: 'development',
       base: '/',
       includeAssets: ['favicon.svg'],
