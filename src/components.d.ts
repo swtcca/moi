@@ -48,6 +48,7 @@ declare module '@vue/runtime-core' {
     DictWordPage: typeof import('./gun-vue/components/dict/word/Page.vue')['default']
     DrawControls: typeof import('./gun-vue/components/draw/Controls.vue')['default']
     DrawLayer: typeof import('./gun-vue/components/draw/Layer.vue')['default']
+    DrawPaper: typeof import('./gun-vue/components/draw/Paper.vue')['default']
     EmbedIpfs: typeof import('./gun-vue/components/embed/Ipfs.vue')['default']
     EmbedYoutube: typeof import('./gun-vue/components/embed/youtube.vue')['default']
     FadRandom1dice: typeof import('~icons/fad/random1dice')['default']

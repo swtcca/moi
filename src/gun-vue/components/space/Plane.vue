@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from 'vue'
-import { useSpace, useUser, useColor, useRoom, selectedUser, drawingEnabled } from '@composables'
+import { useSpace, useUser, useColor, useRoom, selectedUser, draw } from '@composables'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
@@ -36,14 +36,15 @@ const { t } = useI18n()
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
   button.fixed.bottom-2.right-2.text-xl.z-1000(
-    @click="drawingEnabled = !drawingEnabled"
-    :class="{ active: drawingEnabled }"
+    @click="draw.enabled = !draw.enabled"
+    :class="{ active: draw.enabled }"
     v-tooltip.top="'Draw on the screen'"
     )
     carbon-pen
   draw-controls.z-2000
-  draw-layer
-  svg.h-96vh.w-98vw(
+  draw-paper
+
+  svg.h-96vh.w-98vw.z-200(
     ref="plane"
     style="cursor:none;"
     @click="place(); !user.is ? user.auth = true : null"
@@ -106,5 +107,5 @@ const { t } = useI18n()
         @click="selectedUser.pub = guest.pub"
         :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"
       )
-        
+  draw-layer.opacity-40(v-for="guest in guests" :key="guest" :content="guest.draw")
 </template>

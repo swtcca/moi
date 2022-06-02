@@ -125,7 +125,6 @@ export { default as UtilRelay } from "./util/Relay.vue";
 
 export * from "@composables";
 
-export { default as FloatingVue } from 'floating-vue';
-
+export { default as FloatingVue } from 'floating-vue'
 export { default as FormIpfs } from "./form/Ipfs.vue";
 export { default as EmbedIpfs } from "./embed/Ipfs.vue";
