@@ -8,16 +8,22 @@ const gun = useGun()
 const { user } = useUser()
 const pvideos = reactive({})
 const gvideos = reactive({})
+const tvideos = reactive({})
 const gchannels = reactive({})
 // const vref = gun.user(globalState.sa.pub).get("youtube").get("videos")
 // const cref = gun.user(globalState.sa.pub).get("youtube").get("channels")
 const pref = gun.get("bcapps").get("moi").get("youtube").get("published")
 const vref = gun.get("bcapps").get("moi").get("youtube").get("videos")
 const cref = gun.get("bcapps").get("moi").get("youtube").get("channels")
+const tref = gun.get("bcapps").get("moi").get("youtube").get("test")
+// structure tests
+// /channels
+// /channels/channel
+// /channels/channel/videos/video
 let listening = false
 
-watch(pvideos, (value, old_value) => {
-  console.log(`watched videos change ${Object.keys(value).length}`)
+watch(tvideos, (value, old_value) => {
+  console.log(`watched test videos change ${Object.keys(value).length}`)
   Object.values(value).forEach((gvideo: IVideo) => {
     if (gvideo.videoPublishedAt > `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}`) {
       // only count the last two months
@@ -29,6 +35,19 @@ watch(pvideos, (value, old_value) => {
     }
   })
 })
+// watch(pvideos, (value, old_value) => {
+//   console.log(`watched videos change ${Object.keys(value).length}`)
+//   Object.values(value).forEach((gvideo: IVideo) => {
+//     if (gvideo.videoPublishedAt > `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, "0")}`) {
+//       // only count the last two months
+//       const video = { ...gvideo }
+//       if (gchannels.hasOwnProperty(gvideo.channelId)) {
+//         video.channel = gchannels[gvideo.channelId]
+//         videos.add(video) // direct store operation
+//       }
+//     }
+//   })
+// })
 watch(gchannels, (value, old_value) => {
   console.log(`watched channels change ${Object.keys(value).length}`)
 })
@@ -51,7 +70,7 @@ export async function initChannels() {
       await put_channel({id: c.id, name: c.name, title: c.title})
     }
   })
-  return { gvideos, vref, gchannels, cref, pvideos, pref }
+  return { gvideos, vref, gchannels, cref, pvideos, pref, tref }
 }
 
 export async function initVideos() {
@@ -70,14 +89,29 @@ export async function initVideos() {
   //     }
   //   }
   // })
-  pref.map().once((d,k) => {
+  // pref.map().once((d,k) => {
+  //   if (d && d._) {
+  //     delete d._
+  //     if (pvideos.hasOwnProperty(k)) {
+  //       Object.assign(pvideos[k], d)
+  //     } else {
+  //       if (d.videoId && d.videoPublishedAt) {
+  //         pvideos[k] = d
+  //       } else {
+  //         console.log(`incomplete video ${k}`)
+  //         console.log(d)
+  //       }
+  //     }
+  //   }
+  // })
+  tref.map().map().once((d,k) => {
     if (d && d._) {
       delete d._
-      if (pvideos.hasOwnProperty(k)) {
-        Object.assign(pvideos[k], d)
+      if (tvideos.hasOwnProperty(k)) {
+        Object.assign(tvideos[k], d)
       } else {
         if (d.videoId && d.videoPublishedAt) {
-          pvideos[k] = d
+          tvideos[k] = d
         } else {
           console.log(`incomplete video ${k}`)
           console.log(d)
@@ -106,14 +140,30 @@ export async function useVideos() {
     //   }
     // // })
     // }, true)  // delta value
-    pref.map().on((d, k) => {
+    // pref.map().on((d, k) => {
+    //   if (d && d._) {
+    //     delete d._
+    //     if (pvideos.hasOwnProperty(k)) {
+    //       Object.assign(pvideos[k], d)
+    //     } else {
+    //       if (d.videoId && d.videoPublishedAt) {
+    //         pvideos[k] = d
+    //       } else {
+    //         console.log(`video ${k} ${d.videoId}`)
+    //         console.log(d)
+    //       }
+    //     }
+    //   }
+    // // })
+    // }, true)  // delta value
+    tref.map().map().on((d, k) => {
       if (d && d._) {
         delete d._
-        if (pvideos.hasOwnProperty(k)) {
-          Object.assign(pvideos[k], d)
+        if (tvideos.hasOwnProperty(k)) {
+          Object.assign(tvideos[k], d)
         } else {
           if (d.videoId && d.videoPublishedAt) {
-            pvideos[k] = d
+            tvideos[k] = d
           } else {
             console.log(`video ${k} ${d.videoId}`)
             console.log(d)
@@ -197,5 +247,28 @@ export async function put_video_published(video_object) {
       pref.get(video.videoPublished).put(video)
     } else {}
     pvideos[video.videoPublishedAt] = video
+  }
+}
+
+export async function put_video_test(video_object) {
+  if (tvideos[video_object.videoId] && tvideos[video_object.videoId].videoId) return
+  if (video_object.videoId && video_object.videoPublishedAt && video_object.channel) {
+    const video: IVideo = {
+      videoId: video_object.videoId,
+      videoPublishedAt: video_object.videoPublishedAt,
+      channelId: video_object.channel.id
+    }
+    if (video_object.ipfs) { video.ipfs = video_object.ipfs }
+    if (!gchannels.hasOwnProperty(video.channelId)) {
+      await put_channel(video_object.channel)
+    }
+    const node = await pref.get(video.channelId).get(video.videoId).then()
+    if (!node) {
+      tref.get(video.channelId).get(video.videoId).put(video)
+    } else if (!node.videoId && video.videoId) {
+      console.log(video)
+      tref.get(video.channelId).get(video.videoId).put(video)
+    } else {}
+    tvideos[video.videoId] = video
   }
 }

@@ -9,13 +9,14 @@ globalThis.gun = GunComposable.useGun()
 globalThis.GunComposable = GunComposable
 
 onBeforeMount(async () => {
-  const {vref, cref, gvideos, gchannels, pref, pvideos} = await initChannels()
+  const {vref, cref, gvideos, gchannels, pref, pvideos, tref} = await initChannels()
   globalThis.pvideos = pvideos
   globalThis.pref = pref
   globalThis.gvideos = gvideos
   globalThis.vref = vref
   globalThis.gchannels = gchannels
   globalThis.cref = cref
+  globalThis.tref = tref
 })
 const { t } = useI18n()
 </script>
