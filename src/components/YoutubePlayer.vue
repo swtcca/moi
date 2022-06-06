@@ -3,9 +3,6 @@ import { IVideo } from "../types"
 import { ref, onMounted, watch } from "vue"
 import YID from "get-youtube-id"
 import Youtube from './Youtube.vue'
-// import useYoutubeVideos from "../composables/useYoutubeVideos"
-// const { videos, getYoutubeVideos  } = useYoutubeVideos([])
-//    <vue3-youtube :videoid="video.videoId" />
 import { playing, playingInList, playlist, featured, prefers } from "../stores"
 const youtube = ref(null)
 const playingVideo = ref(null)

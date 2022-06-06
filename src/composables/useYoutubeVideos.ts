@@ -3,8 +3,8 @@ import { prefers } from '../stores'
 import { watch } from 'vue'
 
 export default function useYoutubeVideos() {
-  const getYoutubeVideos = async () => {
-    await fetchYoutubeVideos(prefers.channels_playlists)
+  const getYoutubeVideos = () => {
+    fetchYoutubeVideos(prefers.channels_playlists)
   }
 
   // onMounted(getYoutubeVideos)

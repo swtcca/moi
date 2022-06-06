@@ -6,9 +6,7 @@ import useVideoSearch from "../composables/useVideoSearch"
 const { getYoutubeVideos  } = useYoutubeVideos()
 const { videosMatchingSearchQuery  } = useVideoSearch()
 setInterval(() => getYoutubeVideos(), 1000 * 60 * 60)
-onMounted(async () => {
-  await getYoutubeVideos()
-})
+getYoutubeVideos()
 // import { videos } from "../stores/useStore"
 // <div v-for="video in videos.videos" :key="video.videoId" class="mx-auto">
 </script>

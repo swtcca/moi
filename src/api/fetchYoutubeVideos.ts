@@ -2,7 +2,7 @@ import axios from 'axios'
 import { IVideo, IChannel } from "../types"
 import AsyncForEach from "async-await-foreach"
 import { videos, prefers } from "../stores"
-import { put_video, put_video_published, put_video_test, initVideos, useVideos } from "../composables/useVideos"
+import { put_video, put_video_published, put_video_test, initChannels, initVideos, useVideos } from "../composables/useVideos"
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 let inited = false
@@ -17,17 +17,21 @@ function makeParams(options = {}) {
   }
 }
 
-export async function fetchYoutubeVideos (channels: IChannel[] = []) {
+export function fetchYoutubeVideos (channels: IChannel[] = []) {
   if (!inited) {
+    initChannels()
+    console.log('... init channels')
     inited = true
-    initVideos().then(() => {console.log('init videos')}).catch(() => {})
-    useVideos().then(() => {console.log('use videos')}).catch(() => {})
+    initVideos()
+    console.log('... init videos')
+    useVideos()
+    console.log('... use videos')
   }
   if (!prefers.youtubeAccess || !prefers.youtubeAppKey) {
     console.log(`... bypass fetching videos no api key`)
     return videos.videos
   }
-  await AsyncForEach(channels, async (channel) => {
+  setTimeout(async () => await AsyncForEach(channels, async (channel) => {
     console.log(`... handle channel playlist`)
     const is_channel = channel.id.startsWith('UC')
     let playlistId = channel.id
@@ -66,6 +70,6 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
     } catch (e) {
       console.log(e)
     }
-  })
+  }), 300)
   return videos.videos
 }

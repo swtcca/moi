@@ -8,8 +8,8 @@ import { initChannels } from "../composables/useVideos"
 globalThis.gun = GunComposable.useGun()
 globalThis.GunComposable = GunComposable
 
-onBeforeMount(async () => {
-  const {vref, cref, gvideos, gchannels, pref, pvideos, tref} = await initChannels()
+onBeforeMount(() => {
+  const {vref, cref, gvideos, gchannels, pref, pvideos, tref} = initChannels()
   globalThis.pvideos = pvideos
   globalThis.pref = pref
   globalThis.gvideos = gvideos

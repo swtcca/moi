@@ -1,9 +1,8 @@
 // import { computed, reactive, ref } from "vue";
-import { useGun, useUser } from "@composables";
-import { globalState } from "~/stores/globalState"
-import { IVideo, IChannel } from "~/types"
-import { prefers, videos } from "~/stores"
-import AsyncForEach from "async-await-foreach"
+import { useGun, useUser } from "../gun-vue/composables";
+import { globalState } from "../stores/globalState"
+import { IVideo, IChannel } from "../types"
+import { prefers, videos } from "../stores"
 const gun = useGun()
 const { user } = useUser()
 const pvideos = reactive({})
@@ -52,7 +51,7 @@ watch(gchannels, (value, old_value) => {
   console.log(`watched channels change ${Object.keys(value).length}`)
 })
 
-export async function initChannels() {
+export function initChannels() {
   console.log(`init channels`)
   cref.map().once((d,k) => {
     if (d && d._) {
@@ -65,15 +64,15 @@ export async function initChannels() {
       }
     }
   })
-  await AsyncForEach(prefers.channels_playlists, async (c) => {
+  setTimeout(() => prefers.channels_playlists.forEach(async (c) => {
     if (!gchannels[c.id]) {
       await put_channel({id: c.id, name: c.name, title: c.title})
     }
-  })
+  }), 500)
   return { gvideos, vref, gchannels, cref, pvideos, pref, tref }
 }
 
-export async function initVideos() {
+export function initVideos() {
   // vref.map().once((d,k) => {
   //   if (d && d._) {
   //     delete d._
@@ -121,7 +120,7 @@ export async function initVideos() {
   })
 }
 
-export async function useVideos() {
+export function useVideos() {
   if (!listening) {
     listening = true
     // vref.map().on((d, k) => {
