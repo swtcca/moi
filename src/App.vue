@@ -57,7 +57,6 @@ html {
 }
 body {
   @apply bg-light-600 dark_bg-dark-200;
-  overscroll-behavior-y: none;
   touch-action: pan-x pan-y;
 }
 #app {
