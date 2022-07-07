@@ -7,6 +7,7 @@
         <router-link to="/chats">Chats</router-link>
         <router-link to="/rooms">Rooms</router-link>
         <router-link to="/users">Users</router-link>
+        <router-link to="/gifts">Gifts</router-link>
       </div>
     </PopoverPanel>
     <PopoverButton>Social</PopoverButton>

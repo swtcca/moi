@@ -83,6 +83,7 @@ declare module '@vue/runtime-core' {
     LaFileCode: typeof import('~icons/la/file-code')['default']
     LaFileDownload: typeof import('~icons/la/file-download')['default']
     LaFileUpload: typeof import('~icons/la/file-upload')['default']
+    LaGift: typeof import('~icons/la/gift')['default']
     LaImage: typeof import('~icons/la/image')['default']
     LaInfoCircle: typeof import('~icons/la/info-circle')['default']
     LaKey: typeof import('~icons/la/key')['default']

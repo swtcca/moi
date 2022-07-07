@@ -38,6 +38,9 @@ const color = useColor('light')
   router-link.link(to="/dict/")
     ph-books
     .hidden.md_block {{ t('pages.dicts') }}
+  router-link.link(to="/gifts/")
+    la-gift
+    .hidden.md_block {{ t('pages.gifts') }}
   router-link.link(to="/rooms/")
     simple-icons-qzone 
     .hidden.md_block {{ t('pages.rooms') }}

@@ -48,6 +48,7 @@ pages:
   rooms_description: 开放数据集
   chats: 聊天
   dicts: 字典
+  gifts: 礼物
   users: 用户
   youtube_access: 能访问Youtube
   youtube_per_query: API查询返回数目
