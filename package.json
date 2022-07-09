@@ -4,7 +4,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "dependencies": {
     "@qrcode/svg": "^1.0.0-beta.2",
@@ -56,6 +59,7 @@
     "events": "^3.3.0",
     "execa": "^6.1.0",
     "get-youtube-id": "^1.0.1",
+    "histoire": "^0.7.9",
     "ip": "^1.1.5",
     "it-to-stream": "^1.0.0",
     "js-yaml": "^4.1.0",

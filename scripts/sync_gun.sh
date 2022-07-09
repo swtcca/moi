@@ -23,3 +23,7 @@ cp -av /Users/xcliu/tests/gun-vue/app/src/main.js src/main.ts
 cp -av /Users/xcliu/tests/gun-vue/app/src/app.vue src/App.vue
 # sed -iback 's|virtual:windi.css|./index.css|' src/main.ts
 # rm -fv src/main.tsback
+cp -av /Users/xcliu/tests/gun-vue/components/histoire.config.js .
+sed -i "" 's|./app/public|/public|' histoire.config.js
+cp -av /Users/xcliu/tests/gun-vue/components/histoire.setup.js .
+sed -i "" 's|src/styles|src/gun-vue/components/styles|' histoire.setup.js
