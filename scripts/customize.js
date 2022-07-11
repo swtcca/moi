@@ -13,51 +13,51 @@ const customize = {
     [`function genLink\\(text = ""\\)`,`function genLink(text = "", auth_url="#/auth/")`], // params
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ]},
-  "./src/gun-vue/components/space/Plane.vue": { replaces: [
+  "./src/gun-vue/components/space/SpacePlane.vue": { replaces: [
     [`svg.max-h-78vh.w-98vw`, `svg.h-96vh.w-98vw`]
   ]},
-  "./src/gun-vue/components/chat/Input.vue": { replaces: [
+  "./src/gun-vue/components/chat/ChatInput.vue": { replaces: [
     [`textarea.p-2.rounded-xl.bg-light-200`, `textarea.px-2.rounded-xl.bg-light-200`],
     [`p-4.flex.flex-col.items-center`, `p-2.flex.flex-col.items-center`],
   ]},
-  "./src/gun-vue/components/chat/Messages.vue": { replaces: [
+  "./src/gun-vue/components/chat/ChatMessages.vue": { replaces: [
     [`flex.flex-col.bg-opacity-80.p-4.gap-2`, `flex.flex-col.bg-opacity-80.p-2.gap-1`],
   ]},
-  "./src/gun-vue/components/chat/Room.vue": { replaces: [
+  "./src/gun-vue/components/chat/ChatRoom.vue": { replaces: [
     [`flex.flex-col.overflow-y-scroll.*`, `flex.flex-col.w-full.h-full`],
     [`p-4.bg-dark-50.bg-opacity-80`, `p-1.bg-dark-50.bg-opacity-80`],
     [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
     [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click`]
   ]},
-  "./src/gun-vue/components/post/List.vue": { replaces: [
+  "./src/gun-vue/components/post/PostList.vue": { replaces: [
     [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
     [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
     // [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
   ]},
-  "./src/gun-vue/components/post/Form.vue": { replaces: [
+  "./src/gun-vue/components/post/PostForm.vue": { replaces: [
     [`text: false`, `ipfs: false,\n  text: false`],
     [`ui-layer\\(:open="add.text"`, `ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")\n  ui-layer(:open="add.text"`],
     [`form-youtube\\(@update="postData.youtube = \\$event"\\)`, `form-youtube(@update="postData.youtube = $event")\n    form-ipfs(@update="postData.ipfs = $event")`],
   ]},
-  "./src/gun-vue/components/post/Card.vue": { replaces: [
+  "./src/gun-vue/components/post/PostCard.vue": { replaces: [
     [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n        mdi-text-long.mx-1`],
   ]},
-  "./src/gun-vue/components/post/Line.vue": { replaces: [
+  "./src/gun-vue/components/post/PostLine.vue": { replaces: [
     [`mdi-text-long`, `simple-icons-ipfs(v-if="post?.ipfs")\n          mdi-text-long`],
   ]},
-  "./src/gun-vue/components/post/Page.vue": { replaces: [
+  "./src/gun-vue/components/post/PostPage.vue": { replaces: [
     [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],
     [`v-if="post\\?.cover \\|\\| post\\?.youtube`, `v-if="post?.cover || post?.youtube || post?.ipfs`],
     [`embed-youtube.mb-6`, `embed-ipfs.mb-6.shadow-xl.flex-1(\n        v-if="post?.ipfs"\n        :video="post?.ipfs"\n        )\n      embed-youtube.mb-6`],
   ]},
-  "./src/gun-vue/components/user/Avatar.vue": { replaces: [
+  "./src/gun-vue/components/user/UserAvatar.vue": { replaces: [
     // [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
     [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="user.wallets.jingtum?.activated"`],
   ]},
-  "./src/gun-vue/components/room/Page.vue": { replaces: [
+  "./src/gun-vue/components/room/RoomPage.vue": { replaces: [
     [`pt-32.px-2`, `pt-12.px-2`],
   ]},
-  "./src/gun-vue/components/user/auth.vue": { replaces: [
+  "./src/gun-vue/components/user/UserAuth.vue": { replaces: [
     [`  console.log\\(p\\)`, `// console.log(p)`],
   ]},
   "./src/gun-vue/composables/user/useAccount.js": { replaces: [
@@ -69,13 +69,13 @@ const customize = {
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
     [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n  user.pulser = setInterval`]
   ]},
-  "./src/gun-vue/components/ui/layer.vue": { replaces: [
+  "./src/gun-vue/components/ui/Uilayer.vue": { replaces: [
     [`10vh`, `5vh`],
   ]},
   "./src/pages/space.vue": { replaces: [
     [`:key="currentRoom.pub" @enter=`, `:key="currentRoom.pub" :pad="20" @enter=`],
   ]},
-  "./src/gun-vue/components/user/home.vue": { i18n: true, replaces: [
+  "./src/gun-vue/components/user/UserHome.vue": { i18n: true, replaces: [
     [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   ]},
   // "./src/pages/chats.vue": { i18n: true, replaces: [

@@ -67,7 +67,7 @@ export default defineConfig({
       // allow auto load markdown components under `./src/components/`
       dirs: ["src/components", "src/gun-vue/components"],
       // dirs: ["src/components"],
-      directoryAsNamespace: true,
+      directoryAsNamespace: false,
       globalNamespaces: ["global"],
       extensions: ['vue'],
       // allow auto import and register components used in markdown
