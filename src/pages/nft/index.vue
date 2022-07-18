@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { gun } from '@composables';
-
 </script>
 
 <template lang='pug'>
