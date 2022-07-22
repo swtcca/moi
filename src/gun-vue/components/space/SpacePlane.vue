@@ -53,19 +53,13 @@ const { t } = useI18n()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative
+.flex.flex-col.items-center
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     @click="join()"
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
-  button.fixed.bottom-4.right-4.text-xl.z-1000(
-    @click="draw.enabled = !draw.enabled"
-    :class="{ active: draw.enabled }"
-    v-tooltip.top="'Draw on the screen'"
-    )
-    carbon-pen
-  draw-controls.z-2000
+  space-draw.z-2000
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer(
     ref="plane"
     @dblclick="place({ x: 0, y: 0 })"

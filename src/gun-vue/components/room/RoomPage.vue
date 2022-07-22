@@ -64,8 +64,9 @@ const { t } = useI18n()
             ion-exit-outline
             .ml-2 {{ t('gunvue.leave') }}
   .flex.flex-col.items-center.bg-light-300
+    room-features.my-4(:features="room.features" @browse="$emit('browse', $event)")
     .max-w-200.relative
-      room-features.my-4(:features="room.features" @browse="$emit('browse', $event)")
+
       .flex.items-center(v-if="edit.text === false" ) 
         .p-8.markdown-body(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(@click="edit.text = room.profile?.text || ''" v-if="room.hosts?.[user.pub]")

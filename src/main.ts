@@ -17,7 +17,7 @@ if (!globalThis.hasOwnProperty("Buffer")) globalThis.Buffer = Buffer
 if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTimeout
 // polyfill end
 
-import { FloatingVue } from './gun-vue/components'
+import { GunVuePlugin } from './gun-vue/components'
 import { peer } from "./gun-vue/composables/gun/useRelay"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
 import { currentRoom } from './gun-vue/composables';
@@ -42,7 +42,7 @@ const router = createRouter({
 const app = createApp(App);
 app.use(pinia)
 app.use(router)
-app.use(FloatingVue)
+app.use(GunVuePlugin)
 // install all modules under `modules/`
 Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes: routes_layouts }))
 

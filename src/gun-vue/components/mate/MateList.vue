@@ -14,13 +14,12 @@ const mates = useMates(props.pub)
 
 const open = ref(true)
 
-const { t } = useI18n()
 </script>
 
 <template lang='pug'>
 .flex.flex-col(v-if="Object.keys(mates).length > 0")
   .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover_shadow-md.transition(@click="open = !open")
-    .text-lg.font-bold {{ pub == user.pub ? t('gunvue.my_mates') : t('gunvue.mates') }}
+    .text-lg.font-bold {{ pub == user.pub ? 'My mates' : "Mates" }}
     .flex-1
     .mr-2.font-bold {{ Object.keys(mates).length }}
     la-angle-down(v-if="!open")
@@ -28,7 +27,7 @@ const { t } = useI18n()
   transition(name="fade")
     .flex.flex-wrap.bg-light-500.rounded-xl.p-2(v-if="open")
       transition-group(name="fade")
-        account-mate-link(
+        mate-link(
           v-for="(link, linkPub) in mates" 
           :key="linkPub" 
           :emoji="link.emoji"

@@ -15,7 +15,7 @@ const files = [
   "src/gun-vue/components/user/UserHome.vue",
   "src/gun-vue/components/user/UserProfile.vue",
   "src/gun-vue/components/user/UserRooms.vue",
-  "src/gun-vue/components/account/mate/AccountMateList.vue",
+  // "src/gun-vue/components/account/mate/AccountMateList.vue",
   "src/gun-vue/components/account/AccountReactions.vue",
   "src/gun-vue/components/account/AccountStars.vue",
   "src/gun-vue/components/chat/ChatInput.vue",
