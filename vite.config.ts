@@ -46,20 +46,7 @@ export default defineConfig({
       // web3: path.resolve(dirname, "./node_modules/web3/dist/web3.min.js"),
     },
   },
-  build: {
-    rollupOptions: {
-      manualChunks: (id) => {
-        if (id.includes("node_modules")) {
-          return "vendor";
-        }
-        // return path.parse(id).name;
-      },
-    }
-  },  
-
   plugins: [
-    moduleExclude("vue-demi"),
-    moduleExclude("text-encoding"),
     vue(),
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
@@ -170,6 +157,10 @@ export default defineConfig({
       'gun/lib/store',
       'gun/lib/rindexed',
       // 'interactjs',
-    ]
+    ],
+    exclude: [
+      'vue-demi',
+      moduleExclude('text-encoding')
+    ],
   },
 })

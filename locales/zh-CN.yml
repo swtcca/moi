@@ -49,6 +49,7 @@ pages:
   chats: 聊天
   dicts: 字典
   gifts: 礼物
+  projects: 项目
   users: 用户
   youtube_access: 能访问Youtube
   youtube_per_query: API查询返回数目

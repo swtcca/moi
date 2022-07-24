@@ -49,6 +49,7 @@ pages:
   chats: Chats
   dicts: Dictionary
   gifts: Gifts
+  projects: Projects
   users: Users
   youtube_access: Have Youtube access
   youtube_per_query: Records return per API query

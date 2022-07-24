@@ -8,10 +8,13 @@ onMounted(() => {
 
 const routes = {
   "/space/": "Space",
-  "/chats/": "Chats",
+  "/topics/": "Topics",
   "/posts/": "Posts",
   "/users/": "Users",
   "/rooms/": "Rooms",
+  "/projects/": "Projects",
+  '/gifts/': "Gifts",
+  '/dict/': "Dictionary",
   "/upload/": "VUpload",
 };
 
@@ -35,6 +38,9 @@ const color = useColor('light')
   router-link.link(to="/users/")
     ph-users
     .hidden.md_block {{ t('pages.users') }}
+  router-link.link(to="/projects/")
+    la-toolbox
+    .hidden.md_block {{ t('pages.projects') }}
   router-link.link(to="/dict/")
     ph-books
     .hidden.md_block {{ t('pages.dicts') }}
