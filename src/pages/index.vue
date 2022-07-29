@@ -23,6 +23,6 @@ const { t } = useI18n()
 
 <template lang="pug">
 .flex.flex-col
-  room-page(@browse="$router.push(`/${$event}/`)")
+  room-page(@browse="$router.push(`/${$event}/`)" :key="GunComposable.currentRoom.pub")
 
 </template>

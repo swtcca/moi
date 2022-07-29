@@ -22,8 +22,8 @@ cp -av /Users/xcliu/tests/gun-vue/app/src/pages/*  src/pages/
 # cp -av /Users/xcliu/tests/gun-vue/app/public/*  public/
 git checkout src/pages/videos.vue src/pages/wallets.vue src/pages/upload.vue src/pages/nft src/pages/nfts.vue
 
-cp -av /Users/xcliu/tests/gun-vue/app/src/main.js src/main.ts
-cp -av /Users/xcliu/tests/gun-vue/app/src/app.vue src/App.vue
+# cp -av /Users/xcliu/tests/gun-vue/app/src/main.js src/main.ts
+# cp -av /Users/xcliu/tests/gun-vue/app/src/app.vue src/App.vue
 # sed -iback 's|virtual:windi.css|./index.css|' src/main.ts
 # rm -fv src/main.tsback
 cp -av /Users/xcliu/tests/gun-vue/components/histoire.config.js .
