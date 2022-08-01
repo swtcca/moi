@@ -1,6 +1,6 @@
 {
   "name": "moi",
-  "version": "0.5.3",
+  "version": "0.6.3",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -36,6 +36,7 @@
     "url-regex": "^5.0.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.0",
+    "vue3-virtual-scroll-list": "^0.2.0",
     "yaml": "^2.1.1"
   },
   "devDependencies": {

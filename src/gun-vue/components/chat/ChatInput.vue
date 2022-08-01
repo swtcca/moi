@@ -13,6 +13,7 @@ function send() {
   message.value = ''
 }
 
+
 const { t } = useI18n()
 </script>
 
