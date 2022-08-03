@@ -7,7 +7,7 @@
     </div>
     <router-view />
     <div ref="navbar" class="fixed left-0 bottom-0 z-400 inset-x-0 opacity-99">
-      <NavBar />
+      <NavBottom />
     </div>
   </main>
 </template>

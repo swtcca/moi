@@ -1,36 +1,54 @@
-<script setup lang="ts">
-import { globalState } from "../stores/globalState"
-import { currentRoom, useBackground, useColor } from '../gun-vue/composables';
-const { t } = useI18n()
-onMounted(() => {
-  // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)
-  // globalState.language = { x, y, top, right, bottom, left, width, height }
-})
+<script setup>
+import { currentRoom, useBackground, useColor } from '#composables';
+import { computed } from 'vue'
+
+import routes from '../pages/routes'
+
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
+
 const color = useColor('light')
 
 </script>
 
 <template lang="pug">
-.min-h-4vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-lg.z-30.text-xl.w-full
-  router-link.link(to="/")
-    .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-  button.text-2xl(:title="t('button.social')" @click="globalState.show_social=!globalState.show_social")
-    la-times(v-if="globalState.show_social")
-    ph-users(v-else)
-  router-link.text-2xl.link(to="/videos/")
-    ph-video-camera
-    .hidden.md_block {{ t('pages.videos') }}
-  button.text-2xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
-    la-times(v-if="globalState.show_tools")
-    ph-gear(v-else)
-  user-icon(
-    :size="32"
-    @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
-    @post="$router.push(`/posts/${$event}`)"
-    @chat="$router.push(`/my/chat/${$event}`)"
+.flex.flex-col.z-400#titlebar()
+  a.fixed.top-0.left-0.z-1000(href="/#")
+    img.w-24.transition-all.duration-500.ease-in-out(src="/gun-vue-logo.svg")
+  .flex.items-center.z-40.gap-2.p-2.bg-light-900.shadow-xl.sticky.w-full.bg-cover.top-0(
+    data-tauri-drag-region="true"
+    :style="{ ...bg }"
     )
+
+    .flex-1
+    util-tools
+    room-button(
+      @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
+      :key="currentRoom.pub"
+      )
+
+    user-icon(
+      :size="40"
+      @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
+      @post="$router.push(`/posts/${$event}`)"
+      @chat="$router.push(`/my/chat/${$event}`)"
+      )
+
+
+.flex.items-center.gap-2.p-2.items-center.bg-light-900.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible(:style="{ backgroundColor: color.hex(currentRoom.pub) }" style="flex: 0 0 50px")
+  router-link.link(
+    v-for="(link, l) in routes" :key="link" 
+    :to="l" ) 
+    ph-house-simple(v-if="link == 'Home'")
+    ph-hands-clapping(v-if="link == 'Space'")
+    ph-newspaper(v-if="link == 'Posts'")
+    ph-house(v-if="link == 'Rooms'")
+    la-broadcast-tower(v-if="link == 'Topics'")
+    ph-users(v-if="link == 'Users'")
+    ph-books(v-if="link == 'Dictionary'")
+    la-sun(v-if="link == 'Gifts'")
+    la-toolbox(v-if="link == 'Projects'")
+    .ml-2.hidden.sm_block.text-sm {{ link }}
 </template>
 
 <style lang="postcss" scoped>
@@ -39,7 +57,7 @@ const color = useColor('light')
 }
 
 .link {
-  @apply rounded-xl cursor-pointer flex items-center;
+  @apply p-2 text-xl rounded-xl cursor-pointer flex items-center;
 }
 </style>
 
