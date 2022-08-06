@@ -75,6 +75,7 @@ declare module '@vue/runtime-core' {
     GiftList: typeof import('./gun-vue/components/gift/GiftList.vue')['default']
     'GiftList.story': typeof import('./gun-vue/components/gift/GiftList.story.vue')['default']
     GiftStatus: typeof import('./gun-vue/components/gift/GiftStatus.vue')['default']
+    GiftWallet: typeof import('./gun-vue/components/gift/GiftWallet.vue')['default']
     GiftWallets: typeof import('./gun-vue/components/gift/GiftWallets.vue')['default']
     IonEnterOutline: typeof import('~icons/ion/enter-outline')['default']
     IonExitOutline: typeof import('~icons/ion/exit-outline')['default']

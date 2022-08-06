@@ -1,22 +1,25 @@
 <script setup>
 import { watch } from 'vue'
-import { useSpace, useUser, useColor, useRoom, selectedUser } from '#composables'
+import { useSpace, useUser, useColor, useRoom } from '#composables'
 import { useDrag, usePinch } from '@vueuse/gesture'
 import { useDraw } from '#composables'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
+import { useDebounceFn, useThrottleFn } from '@vueuse/core'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
+  coord: { type: String, default: '' }
 })
-const emit = defineEmits(['user', 'enter', 'leave'])
+const emit = defineEmits(['user', 'enter', 'leave', 'chat', 'update:coord'])
 
 const { user } = useUser()
 
 const colorDeep = useColor('deep')
 
-const { space, plane, position: pos, links, width, height, guests, guestCount, area, join, place } = useSpace({
+const { space, plane, pos, zoom, links, width, height, guests, guestCount, area, join, place } = useSpace({
   TIMEOUT: 10000,
 })
+
 
 watch(guestCount, (next, prev) => {
 
@@ -27,11 +30,18 @@ watch(guestCount, (next, prev) => {
   }
 })
 
+const debouncedCoord = useDebounceFn((pos) => {
+  place({ x: pos[0], y: pos[1] })
+  emit('update:coord', `${pos[0]},${pos[1]}`)
+}, 200)
+
 useDrag(e => {
+  if (!(e.delta[0] && e.delta[1])) return
   if (draw.ing) return
   const [x, y] = e.delta
   pos[0] -= x
   pos[1] -= y
+  debouncedCoord(pos)
 }, {
   domTarget: plane,
 })
@@ -49,6 +59,12 @@ onBeforeUnmount(() => {
   drauu.unmount()
 })
 
+const selectedUser = reactive({
+  pub: ''
+})
+
+
+
 const { t } = useI18n()
 </script>
 
@@ -56,17 +72,17 @@ const { t } = useI18n()
 .flex.flex-col.items-center
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
-    @click="join()"
+    @click="join();"
     :style="{ borderColor: user.color }"
     ) {{ t('gunvue.space_enter') }}
+
   space-draw.z-2000
-  svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer(
+  svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer.touch-none(
     ref="plane"
-    @dblclick="place({ x: 0, y: 0 })"
-    @click="place({ x: pos[0], y: pos[1] }); !user.is ? user.auth = true : null"
+    @click="!user.is ? user.auth = true : null; "
     version="1.1",
     baseProfile="full",
-    :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`",
+    :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}`",
     xmlns="http://www.w3.org/2000/svg",
     font-family="Commissioner , sans-serif"
     text-anchor="middle",
@@ -81,8 +97,12 @@ const { t } = useI18n()
 
     text.text-xs(text-anchor="end" :transform="`translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`") {{ pos }}
 
-    g.opacity-40(v-for="guest in guests" :key="guest" v-html="guest.draw")
-    svg(ref="paper" :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
+    g.opacity-90(v-for="guest in guests" :key="guest.draw" v-html="guest.draw")
+    svg.opacity-70(
+      :x="pos[0] - width / 2 - pad"
+      :y="pos[1] - height / 2 - pad"
+      :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`",
+      ref="paper" :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
 
     rect(
       ref="area"
@@ -124,5 +144,16 @@ const { t } = useI18n()
         @click="selectedUser.pub = guest.pub"
         :style="{ transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }"
         )
-
+  ui-layer.z-4000(
+    :open="selectedUser.pub" 
+    @close="selectedUser.pub = null"
+    )
+    account-home.max-w-600px(
+      :pub="selectedUser.pub" 
+      @user="$emit('user', $event)" 
+      @post="$emit('post', safeHash($event))"
+      @chat="$emit('chat', selectedUser.pub)"
+      @close="selectedUser.pub = null"
+      :key="selectedUser.pub"
+      )
 </template>

@@ -10,6 +10,7 @@
     "story:preview": "histoire preview"
   },
   "dependencies": {
+    "@coders-tm/vue-number-format": "^3.1.2",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@vueuse/core": "8.9.4",
     "@vueuse/gesture": "^2.0.0-beta.1",
@@ -36,6 +37,7 @@
     "url-regex": "^5.0.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.0",
+    "vue-select": "^4.0.0-beta.3",
     "vue3-virtual-scroll-list": "^0.2.0",
     "yaml": "^2.1.1"
   },

@@ -5,7 +5,7 @@
 
 import { useGun } from "..";
 import { useSvgMouse } from "../ui";
-import { user } from "../user";
+import { useUser } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
 import { getArrow } from "curved-arrows";
@@ -41,10 +41,11 @@ export function useSpace({
   const { area, mouse } = useSvgMouse(plane);
 
   const { width, height } = useElementBounding(plane);
-  const position = reactive([0, 0])
+  const pos = reactive([0, 0])
   const zoom = useClamp(1, 0.5, 2)
 
   const gun = useGun();
+  const { user } = useUser()
 
   const space = reactive({
     title: "space",
@@ -64,12 +65,25 @@ export function useSpace({
   function place({ x = mouse.x, y = mouse.y } = {}) {
     if (!user.pub) return;
     if (!space.joined) join();
-    position[0] = x
-    position[1] = y
+    pos[0] = x
+    pos[1] = y
     space.db.get(user.pub).get('pos').put(JSON.stringify({ x, y }), null, {
       opt: { cert: currentRoom.features?.space },
     });
   }
+
+  // function placePoint() {
+  //   const pointPos = [pos[0] + space.my.mouse.x, pos[1] + space.my.mouse.y].map(Math.round)
+  //   console.log(pointPos)
+  //   space.db.get(user.pub).set({
+  //     title: 'point',
+  //     x: pointPos[0],
+  //     y: pointPos[1],
+  //     url: 'https://gun-vue.js.org'
+  //   }, null, {
+  //     opt: { cert: currentRoom.features?.space },
+  //   });
+  // }
 
   const allGuests = reactive({});
   const mates = reactive({});
@@ -87,16 +101,13 @@ export function useSpace({
 
   const guestCount = computed(() => Object.keys(guests.value).length);
 
-  space.db.get(user.pub).on((pos) => {
-    space.my.pos = typeof pos == "string" ? JSON.parse(pos) : pos;
-  });
-
-  space.db.map().once(async (pos, pub) => {
+  gun.user(currentRoom.pub).get("space").map().once(async (pos, pub) => {
     if (pub == user.pub) {
       space.joined = true;
     }
     allGuests[pub] = {
       pub: pub,
+      draw: '',
       blink: false,
       pulse: 0,
       hasPos: false,
@@ -106,10 +117,16 @@ export function useSpace({
       }
     };
 
-    space.db.get(pub).get('pos').on((d, k) => {
+
+
+    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d, k) => {
       allGuests[pub].hasPos = true;
       allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
     });
+
+    gun.user(currentRoom.pub).get("space").get(pub).get('draw').on(d => {
+      allGuests[pub].draw = d
+    })
 
     gun
       .user(pub)
@@ -126,10 +143,7 @@ export function useSpace({
         mates[pub][k] = d;
       });
 
-    space.db.get(pub).get('draw').on(d => {
-      if (!d) return
-      allGuests[pub].draw = d
-    })
+
   });
 
   const seeds = {}; //random seeds to scatter the arrows a little - depends on the `randomness` option
@@ -176,11 +190,11 @@ export function useSpace({
     plane,
     width,
     height,
-    position,
+    pos,
     zoom,
     area,
     join,
-    place,
+    place
   };
 }
 
