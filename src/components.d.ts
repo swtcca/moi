@@ -197,6 +197,8 @@ declare module '@vue/runtime-core' {
     RoomButton: typeof import('./gun-vue/components/room/RoomButton.vue')['default']
     'RoomButton.story': typeof import('./gun-vue/components/room/RoomButton.story.vue')['default']
     RoomCard: typeof import('./gun-vue/components/room/RoomCard.vue')['default']
+    RoomFeature: typeof import('./gun-vue/components/room/RoomFeature.vue')['default']
+    RoomFeatureIcon: typeof import('./gun-vue/components/room/RoomFeatureIcon.vue')['default']
     RoomFeatures: typeof import('./gun-vue/components/room/RoomFeatures.vue')['default']
     RoomForm: typeof import('./gun-vue/components/room/RoomForm.vue')['default']
     RoomList: typeof import('./gun-vue/components/room/RoomList.vue')['default']
