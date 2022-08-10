@@ -25,7 +25,7 @@
     "force-graph": "^1.42.9",
     "fuse.js": "^6.6.2",
     "grapheme-breaker-mjs": "^1.0.4",
-    "gun-avatar": "1.6.2",
+    "gun-avatar": "^1.6.2",
     "gun-util": "^0.0.18",
     "jsqr": "^1.4.0",
     "jszip": "^3.10.0",
