@@ -20,7 +20,7 @@ const files = [
   "src/gun-vue/components/account/AccountStars.vue",
   "src/gun-vue/components/chat/ChatInput.vue",
   "src/gun-vue/components/chat/ChatRoom.vue",
-  "src/gun-vue/components/room/RoomFeatures.vue",
+  "src/gun-vue/components/room/RoomFeature.vue",
   "src/gun-vue/components/room/RoomForm.vue",
   "src/gun-vue/components/room/RoomButton.vue",
   "src/gun-vue/components/room/RoomPage.vue",
