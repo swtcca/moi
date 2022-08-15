@@ -44,6 +44,7 @@
   "devDependencies": {
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
+    "@histoire/plugin-vue": "^0.10.2",
     "@iconify/json": "^2.1.79",
     "@intlify/vite-plugin-vue-i18n": "^5.0.0",
     "@nibbstack/erc721": "^2.6.1",
@@ -61,7 +62,7 @@
     "events": "^3.3.0",
     "execa": "^6.1.0",
     "get-youtube-id": "^1.0.1",
-    "histoire": "^0.8.1",
+    "histoire": "^0.10.2",
     "ink-mde": "^0.10.0",
     "ip": "^1.1.5",
     "it-to-stream": "^1.0.0",

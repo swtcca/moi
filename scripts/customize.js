@@ -13,6 +13,9 @@ const customize = {
     [`function genLink\\(text = ""\\)`,`function genLink(text = "", auth_url="#/auth/")`], // params
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ]},
+  "./src/gun-vue/components/space/SpaceDraw.vue": { replaces: [
+    [`z-10.absolute`, `z-500.absolute`]
+  ]},
   "./src/gun-vue/components/space/SpacePlane.vue": { replaces: [
     [`svg.max-h-78vh.w-98vw`, `svg.h-96vh.w-98vw`]
   ]},
