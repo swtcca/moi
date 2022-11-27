@@ -50,7 +50,7 @@ const color = useColor('light')
   router-link.link(to="/rooms/")
     simple-icons-qzone 
     .hidden.md_block {{ t('pages.rooms') }}
-  room-button.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
+  room-button.hidden.lg_block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)" @browse="$router.push(`/${$event}/`)")
 </template>
 
 <style lang="postcss" scoped>

@@ -10,13 +10,13 @@ import "gun/lib/radisk";
 import "gun/lib/store";
 import "gun/lib/rindexed";
 import "gun/lib/webrtc";
-import "gun/nts";
 
 
-// polyfiils for Gun 0.2020.1236
-import { Buffer } from 'buffer'
-window.Buffer = Buffer
-window.setImmediate = setTimeout
+// // // polyfiils for Gun 0.2020.1236
+// import { Buffer } from 'buffer'
+// window.Buffer = Buffer
+// window.setImmediate = setTimeout
+// window.global = {}
 
 import { peer } from './useRelay'
 

@@ -1,29 +1,109 @@
----
-title: Composables
-icon: la:book
-group: docs
----
+<template>
+  <Story
+    title="Composables"
+    docs-only
+    icon="la:book-open"
+    group="docs"
+  />
+</template>
 
-![](/composables.svg)
+<docs lang="md">
 
-## @gun-vue/composables
+# Gun DB + Vue UI composables collection
 
-GunVue Composables is a collection of utility functions based on [Vue 3 Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html). We assume you are already familiar with the basic ideas of Composition API and [script setup](https://learnvue.co/2021/05/explaining-the-new-script-setup-type-in-vue-3-major-takeaways-from-the-rfc/#using-script-setup-with-a-normal-script) before you continue.
+A Composition API &#x60;use&#x60; functions set for Gun.js and Vue 3 reactivity system
 
-### How to install?
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/docs/public/media/svg/composables.svg)
 
-```shell
-pnpm i @gun-vue/composables
-```
+[gun-vue.js.org](https://gun-vue.js.org)
 
-### How to use?
+It&#x27;s just the beginning and not all the functions are reliably implemented yet. So you&#x27;re welcome to collaborate on existing and new features of the library.
 
-```js
-import { useUser } from "@gun-vue/composables";
+- **User** - the &#x60;gun.user()&#x60; system management
+- **Account** - user profile interface
+- **Color** - the &#x60;color-hash&#x60; interface to generate colors for hashes and pubs
+- **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
+- **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
+- **File** - some bindings to manage file uploads and downloads
+- **Hash** - everything you need to hash data and work with the hashes in a reliable way (i.e. URL-safe conversion)
+- **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
+- **Password** - some elaborations on reimagining password system in a p2p graph environment
+- **Relay** - Gun relay peer connection monitoring
+- **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
+- **Space** - a simple demo of showing working with private user data in a shared space
+- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
+- **Chat** - basic public chat
+- **Rooms** - cryptographic data collections
+- **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
 
-const user = useUser();
-```
+... and more!
 
+**And there&#x27;s more!**
+
+[READ FULL DOCUMENTATION ONLINE](https://gun-vue.js.org/docs)
+
+## How to use
+
+1. Install the library:
+
+&#x60;&#x60;&#x60;shell
+npm i @gun-vue/composables
+&#x60;&#x60;&#x60;
+
+2. Import any of the functions you need:
+
+&#x60;&#x60;&#x60;js
+import { useAccount } from &quot;@gun-vue/composables&quot;;
+&#x60;&#x60;&#x60;
+
+3. Instantiate the function inside your Vue SFC
+
+&#x60;&#x60;&#x60;js
+const { account, auth, leave } &#x3D; useAccount();
+&#x60;&#x60;&#x60;
+
+4. Use the reactive state in your template to drive the component:
+
+&#x60;&#x60;&#x60;html
+&lt;div v-for&#x3D;&quot;(data,field) in account.profile&quot; :key&#x3D;&quot;field&quot;&gt;
+	{{ field }} - {{ data }}
+&lt;/div&gt;
+&#x60;&#x60;&#x60;
+
+#### SSG environment notice (Nuxt, Vitepress etc.)
+
+Gun-Vue is client-side only and it may throw errors being executed during the SSG/SSR build process. One way to deal with it is to make the your GUN-enabled components asynchronous.
+
+### 1. Make your component async
+
+&#x60;&#x60;&#x60;vue
+&lt;script setup async&gt;
+	const { useAccount } &#x3D; await import(&quot;@gun-vue/composables&quot;);
+
+	const { account } &#x3D; useAccount();
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;div&gt;{{ account.profile?.name }}&lt;/div&gt;
+&lt;/template&gt;
+&#x60;&#x60;&#x60;
+
+### 2. Put it to load only on client side.
+
+&#x60;&#x60;&#x60;html
+&lt;ClientOnly&gt;
+	&lt;Suspense&gt;
+		&lt;YourComponent /&gt;
+	&lt;/Suspense&gt;
+&lt;/ClientOnly&gt;
+&#x60;&#x60;&#x60;
+
+This should prevent any Gun-Vue related code from running during build stage.
+
+- [ ] Refactor the code to be more useable and tree-shakeable in SSG environment. Help needed!
+
+
+~~~~~~~~~~
 
 
 ## Modules
@@ -87,11 +167,6 @@ const user = useUser();
 <tr>
     <td><a href="#userelays" >useRelays</a></td>
     <td><p>Loads the <a href="https://github.com/amark/gun/wiki/volunteer.dht">list of active volunteer DHT gun nodes</a>  and benchmarks ping for them</p>
-</td>
-    </tr>
-<tr>
-    <td><a href="#uselog" >useLog</a></td>
-    <td><p>Reactive version of <code>gun-util</code> Date tree</p>
 </td>
     </tr>
 <tr>
@@ -661,13 +736,6 @@ const { relays, errors, loadRelays } = useRelays()
 | hostname | <code>String</code> | 
 | url | <code>String</code> | 
 | ping | <code>Number</code> | 
-
-<hr />
-
-<a name="module_useLog"></a>
-
-## useLog
-Reactive version of `gun-util` Date tree
 
 <hr />
 
@@ -1337,3 +1405,16 @@ updateProfile( 'city', 'Moscow' )
 
 <hr />
 
+</docs>
+
+<style scoped>
+  hr {
+    height: 1px;
+    background-color: #3333;
+    margin: 2em 0 8em 0;
+  }
+
+  h3 {
+    margin-top: 3em;
+  }
+</style>

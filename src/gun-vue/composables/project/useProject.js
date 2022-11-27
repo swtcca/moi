@@ -1,27 +1,31 @@
 import { reactive, ref, computed, onBeforeUnmount } from 'vue'
-import { gun, useGun2, useGun } from '../gun'
+import { gun, useGun2, useGun, genUUID } from '../gun'
 import { currentRoom } from '../room'
 import { useUser } from '../user'
 import { projectsPath } from '.'
 import { SEA } from 'gun'
+import { hashText, isHash } from '../crypto'
 
 
 export const newProject = reactive({
   title: '',
   public: true,
-  funding: false
+  funding: false,
+  room: currentRoom.pub,
+  author: ''
 })
 
-export async function updateProject({ publish = true } = {}) {
+export async function addProject({ publish = true } = {}) {
   const gun = useGun()
   const { user } = useUser()
-  const link = gun.user().get(projectsPath).get(newProject.title).put(newProject, () => {
+  const id = genUUID()
+  const link = gun.user().get(projectsPath).get(id).put(newProject, () => {
     if (!publish) return
 
     gun
       .user(currentRoom.pub)
       .get(projectsPath)
-      .get(newProject.title + '@' + user.pub)
+      .get(id + '@' + user.pub)
       .put(
         link,
         null,
@@ -33,8 +37,6 @@ export async function updateProject({ publish = true } = {}) {
     newProject.title = null
   })
 
-
-
 }
 
 export function updateProjectField(title, field, value) {
@@ -44,18 +46,61 @@ export function updateProjectField(title, field, value) {
   })
 }
 
-
-export function useProject(path = ref()) {
-  path = ref(path)
+export function useProject(path) {
   const gun = useGun()
+
+  const project = reactive({})
+
+  gun.user(currentRoom.pub).get(projectsPath).get(path).map().on(async (d, k) => {
+    if (k == 'cover' && isHash(d)) {
+      project[k] = await gun.get('#cover').get(d).then()
+    } else {
+      project[k] = d
+    }
+  })
+
+
+  function updateField(field, value) {
+    updateProjectField(path.slice(0, -88), field, value)
+  }
+
+  async function updateCover(image) {
+    console.log(image)
+    const hash = await hashText(image)
+    gun.get('#cover').get(hash).put(image)
+    updateField('cover', hash)
+  }
+
+  return { project, updateField, updateCover }
+}
+
+export function useComputedProject(path = ref()) {
+  const gun = useGun()
+
   const project = computed(() => {
     const proj = reactive({})
-    gun.user(currentRoom.pub).get(projectsPath).get(path.value).map().on((d, k) => {
-      proj[k] = d
+    gun.user(currentRoom.pub).get(projectsPath).get(path.value).map().on(async (d, k) => {
+      if (k == 'cover' && isHash(d)) {
+        proj[k] = await gun.get('#cover').get(d).then()
+      } else {
+        proj[k] = d
+      }
     })
     return proj
   })
-  return { project }
+
+  function updateField(field, value) {
+    updateProjectField(path.value.slice(0, -88), field, value)
+  }
+
+  async function updateCover(image) {
+    console.log(image)
+    const hash = await hashText(image)
+    gun.get('#cover').get(hash).put(image)
+    updateField('cover', hash)
+  }
+
+  return { project, updateField, updateCover }
 }
 
 
@@ -78,7 +123,7 @@ export async function removeProject(path) {
     })
 
   }
-
+  console.error("Can't delete the project")
 
 }
 

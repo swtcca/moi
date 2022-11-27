@@ -67,10 +67,9 @@ const { t } = useI18n()
               account-badge( :pub="host" :selectable="true")
 
           room-actions(:pub="roomPub")
+
   slot
   .flex.flex-col.items-center.bg-light-300
-
-
 
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
@@ -80,8 +79,8 @@ const { t } = useI18n()
         :title="title"
         :pub="pub || currentRoom.pub"
         :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'topics' && room.features.chat)"
-          @click="$emit('browse', c)" 
-          )
+        @click="$emit('browse', c)" 
+        )
 
     .max-w-200.relative
       .flex.items-center(v-if="edit.text === false" ) 

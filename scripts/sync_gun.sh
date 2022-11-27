@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -fr src/gun-vue/*
 cp -av /Users/xcliu/tests/gun-vue/composables/src src/gun-vue/composables
 git checkout src/gun-vue/composables/room/rootRoom.js
