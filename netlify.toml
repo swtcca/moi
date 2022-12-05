@@ -3,7 +3,7 @@
 
 [build]
   publish = "dist"
-  command = "npm install --strict-peer-deps=false --legacy-peer-deps; node_modules/.bin/vite build"
+  command = "npm install; node_modules/.bin/vite build"
 
 [[redirects]]
   from = "/*"
