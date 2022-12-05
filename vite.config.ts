@@ -47,6 +47,8 @@ export default defineConfig({
     },
   },
   plugins: [
+    moduleExclude("text-encoding"),
+    // moduleExclude('vue-demi'),
     vue(),
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
@@ -100,38 +102,39 @@ export default defineConfig({
       compositionOnly: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
-    VitePWA({
-      workbox: {
-        maximumFileSizeToCacheInBytes: 9000000
-      },
-      mode: 'development',
-      base: '/',
-      includeAssets: ['favicon.svg'],
-      manifest: {
-        name: 'MOI',
-        short_name: 'MOI',
-        display: "standalone",
-        theme_color: '#ccebff',
-        icons: [
-          {
-            src: 'pwa-192x192.png', // <== don't add slash, for testing
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/pwa-512x512.png', // <== don't remove slash, for testing
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: 'pwa-512x512.png', // <== don't add slash, for testing
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-        ],
-      },
-    }),
+    VitePWA(),
+    // VitePWA({
+    //   workbox: {
+    //     maximumFileSizeToCacheInBytes: 9000000
+    //   },
+    //   mode: 'development',
+    //   base: '/',
+    //   includeAssets: ['favicon.svg'],
+    //   manifest: {
+    //     name: 'MOI',
+    //     short_name: 'MOI',
+    //     display: "standalone",
+    //     theme_color: '#ccebff',
+    //     icons: [
+    //       {
+    //         src: 'pwa-192x192.png', // <== don't add slash, for testing
+    //         sizes: '192x192',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: '/pwa-512x512.png', // <== don't remove slash, for testing
+    //         sizes: '512x512',
+    //         type: 'image/png',
+    //       },
+    //       {
+    //         src: 'pwa-512x512.png', // <== don't add slash, for testing
+    //         sizes: '512x512',
+    //         type: 'image/png',
+    //         purpose: 'any maskable',
+    //       },
+    //     ],
+    //   },
+    // }),
     replace({
       __DATE__: new Date().toISOString(),
     }),
@@ -157,10 +160,6 @@ export default defineConfig({
       'gun/lib/store',
       'gun/lib/rindexed',
       // 'interactjs',
-    ],
-    exclude: [
-      'vue-demi',
-      moduleExclude('text-encoding')
-    ],
+    ]
   },
 })

@@ -13,7 +13,7 @@ export const CHANNELS = [
     // { id: 'UCC22zTYPmf9p20E_abhp-uw', name: '残月', title: '残月两家之言' },
     // { id: 'UCJncdiH3BQUBgCroBmhsUhQ', name: '观察网', title: '观察者网' },
     // { id: 'UCXkOTZJ743JgVhJWmNV8F3Q', name: '寒国人', title: '寒國人' },
-    { id: 'UCEjqTrvJdLG7Eo0KP1AzYJw', name: '大佬时空', title: '大佬时空', leagal: true },
+    // { id: 'UCEjqTrvJdLG7Eo0KP1AzYJw', name: '大佬时空', title: '大佬时空', leagal: true },
     { id: 'UCSgGqt-30oXBq0-n0K-t4Nw', name: '科技袁人', title: "Yuan's Multiverse科技袁人", leagal: true },
     { id: 'UCUBhobCkTLhgfUNRAgHSYmw', name: '科学声音', title: '科学声音', leagal: true },
     { id: 'UCD_gy8DWV_DhjJ-bQXF5dGQ', name: '磊哥', title: '磊哥聊政经', leagal: true },
