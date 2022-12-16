@@ -8,11 +8,11 @@ import IconsResolver from 'unplugin-icons/resolver'
 import { VitePWA } from 'vite-plugin-pwa'
 import WindiCSS from "vite-plugin-windicss";
 import replace from '@rollup/plugin-replace'
-import Layouts from 'vite-plugin-vue-layouts'
+import Layouts from 'vite4-plugin-vue-layouts'
 
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Pages from 'vite-plugin-pages'
 
 const moduleExclude = match => {
