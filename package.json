@@ -3,7 +3,7 @@
   "version": "0.6.3",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "sed -e 's/axe/sea/' node_modules/gun/lib/server.js > /tmp/server.js; diff node_modules/gun/lib/server.js /tmp/server.js; vite build",
     "serve": "vite preview",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
