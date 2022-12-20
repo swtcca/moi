@@ -8,7 +8,7 @@ import { computed, reactive, watch } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
 
-export const defaultPeer = "https://relay.129.153.59.37.nip.io/gun";
+export const defaultPeer = "https://gun.defucc.me/gun";
 export const peer = useStorage("peer", defaultPeer);
 
 /**
@@ -61,7 +61,7 @@ watch(
 function setPeer(url) {
   peer.value = url
   window.location.reload()
-};
+}
 
 function resetPeer() {
   peer.value = defaultPeer

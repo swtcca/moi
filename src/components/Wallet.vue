@@ -8,7 +8,7 @@ import {
   ListboxOptions,
   ListboxOption,
 } from '@headlessui/vue'
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 const { user } = useUser()
 // const { wallet } = useWallet()
 const { wallets, chains } = useWallets()
@@ -77,7 +77,7 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark_text-gray-200 Wallets
           ListboxButton(class="relative w-full py-2 pl-12 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus_outline-none focus-visible_ring-2 focus-visible_ring-opacity-75 focus-visible_ring-white focus-visible_ring-offset-orange-300 focus-visible_ring-offset-2 focus-visible_border-indigo-500 sm_text-sm")
             span.block.truncate {{ selectedChain.name }}
             span.absolute.inset-y-0.right-0.flex.items-center.pr-2.pointer-events-none
-              SelectorIcon.w-5.h-5.text-gray-400(aria-hidden="true")
+              ChevronUpDownIcon.w-5.h-5.text-gray-400(aria-hidden="true")
   
           ListboxOptions(class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus_outline-none sm_text-sm")
             ListboxOption(
