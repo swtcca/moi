@@ -1,12 +1,10 @@
 <script setup lang="ts">
-// import { useGun, currentRoom } from './gun-vue/composables'
-// const gun = useGun()
-// globalThis.gun = gun
-import * as GunComposable from '../gun-vue/composables'
+import { useGun, currentRoom, rootRoom } from '../gun-vue/composables'
 import { initChannels } from "../composables/useVideos"
 
-globalThis.gun = GunComposable.useGun()
-globalThis.GunComposable = GunComposable
+// globalThis.gun = useGun()
+// import * as GunComposable from '../gun-vue/composables'
+// globalThis.GunComposable = GunComposable
 
 onBeforeMount(() => {
   const {vref, cref, gvideos, gchannels, pref, pvideos, tref} = initChannels()
@@ -25,7 +23,7 @@ const { t } = useI18n()
 .flex.flex-col
   room-page(
     @browse="$router.push(`/${$event}/`)" 
-    :key="GunComposable.currentRoom.pub"
+    :key="currentRoom.pub"
     )
 
 </template>
