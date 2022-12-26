@@ -1,6 +1,6 @@
 {
   "name": "moi",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "scripts": {
     "postinstall": "sed -e 's/axe/sea/' node_modules/gun/lib/server.js > /tmp/server.js; diff node_modules/gun/lib/server.js /tmp/server.js; echo cp /tmp/server.js node_modules/gun/lib/",
     "dev": "vite",
@@ -77,12 +77,12 @@
     "unplugin-icons": "^0.14.15",
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.2",
-    "vite-node": "^0.25.8",
+    "vite-node": "^0.26.2",
     "vite-plugin-pages": "^0.28.0",
     "vite-plugin-pages-sitemap": "^1.4.5",
     "vite-plugin-pwa": "^0.14.0",
-    "vite4-plugin-vue-layouts": "^0.7.0",
     "vite-plugin-windicss": "^1.8.10",
+    "vite4-plugin-vue-layouts": "^0.7.0",
     "vue-i18n": "^9.2.2",
     "vue-plyr": "^7.0.0"
   }

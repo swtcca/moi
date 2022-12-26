@@ -2,7 +2,7 @@
 import { useGun, currentRoom, rootRoom } from '../gun-vue/composables'
 import { initChannels } from "../composables/useVideos"
 
-// globalThis.gun = useGun()
+globalThis.gun = useGun()
 // import * as GunComposable from '../gun-vue/composables'
 // globalThis.GunComposable = GunComposable
 
