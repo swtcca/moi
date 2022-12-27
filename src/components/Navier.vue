@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isDark, toggleDark } from '../logic'
+import { isDark, toggleDark, preferredDark } from '../composables/dark'
 import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
 const language = ref(null)
@@ -37,7 +37,7 @@ watch(show, (value, old_value) => {
 
 <template>
   <nav class="flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
-    <button :title="t('button.toggle_dark')" @click="toggleDark">
+    <button :title="t('button.toggle_dark')" @click="() => toggleDark()">
       <ph-sun v-if="isDark" />
       <ph-moon v-else />
     </button>
@@ -47,7 +47,7 @@ watch(show, (value, old_value) => {
     <button :title="t('button.settings')" @click="show.settings = !show.settings">
       <ph-gear />
     </button>
-    <button v-if="route_videos" :title="t('button.playlist')" @click="togglePlayList">
+    <button v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
       <ph-playlist />
     </button>
     <button v-if="false" :title="t('button.graph')" @click="show.graph = !show.graph">

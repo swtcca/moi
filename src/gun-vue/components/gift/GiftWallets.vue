@@ -55,6 +55,7 @@ function removeWallet(key) {
 
 
 
+const { t } = useI18n()
 </script>
 
 <template lang='pug'>
@@ -68,7 +69,7 @@ function removeWallet(key) {
       )
       la-trash-alt.opacity-40.hover_opacity-90(v-if="user.pub == pub" @click="removeWallet(key)")
 
-  button.button(@click="open = true" v-if="user.pub == pub") Add a wallet
+  button.button(@click="open = true" v-if="user.pub == pub") {{ t('gunvue.add_wallet') }}
 ui-layer(:open="open" @close="open = false")
   .p-2
     .text-xl Add a new wallet

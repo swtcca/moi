@@ -36,6 +36,7 @@ const files = [
   "src/gun-vue/components/form/FormYoutube.vue",
   "src/gun-vue/components/form/FormIpfs.vue",
   "src/gun-vue/components/form/FormLink.vue",
+  "src/gun-vue/components/gift/GiftWallets.vue",
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
   user_users_list: [false, false, "Users list", "用户列表", `ml-1 `],
@@ -118,6 +119,8 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   my_mates: [true, false, `'My mates'`, "我的好友", "","", " :"],
   encrypted: [true, false, `'Encrypted'`, "密文", "", "", " :"],
   plaintext: [true, false, `'Plain Text'`, "明文", ": "],
+  my_wallets: [false, false, "My wallets", "钱包"],
+  add_wallet: [false, false, "Add a wallet", "添加"],
 }
 
 Promise.resolve().then(async () => {

@@ -138,3 +138,5 @@ gunvue:
   my_mates: 我的好友
   encrypted: 密文
   plaintext: 明文
+  my_wallets: 钱包
+  add_wallet: 添加
