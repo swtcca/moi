@@ -6,7 +6,7 @@ const { t } = useI18n()
 
 <template>
   <div class="grid grid-col place-content-center p-8">
-      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
+      <div class="grid grid-cols-1 gap-6 text-gray-700 dark-text-gray-500">
         <label class="block">
           <input type="checkbox" v-model="prefers.youtubeAccess" class="mt-1 mr-4" />
           <span> {{ t('pages.youtube_access') }}? {{ prefers.youtubeAccess }}</span>

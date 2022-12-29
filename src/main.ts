@@ -2,7 +2,7 @@ import { createApp, ref } from "vue";
 import { pinia } from "./stores"
 import { globalState } from "./stores/globalState"
 
-import "virtual:windi.css";
+import "#components/styles/index.css"; // use '@gun-vue/components/styles/index.css' in your apps
 import "./gun-vue/components/styles/index.css";
 import "./styles/styles.scss";
 

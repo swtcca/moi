@@ -7,7 +7,7 @@ const show = reactive({
 })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.justify-end.relative.gap-3.items-center
   //- util-share
   //- button.button.m-2(@click="show.log = !show.log")
@@ -21,7 +21,9 @@ const show = reactive({
 
   //- ui-layer(:open="show.log" @close="show.log = false")
   //-   log-tree
-  ui-layer(:open="show.graph" @close="show.graph = false")
+  ui-layer(
+    :open="show.graph" 
+    @close="show.graph = false")
     util-graph
 
 </template>

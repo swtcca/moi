@@ -1,10 +1,22 @@
 <script setup>
-import { reactive, ref, onMounted, watch, computed } from 'vue'
+import {
+  reactive,
+  ref,
+  onMounted,
+  watch,
+  computed
+} from 'vue'
 
-import { addPost, useColor } from '#composables'
+import {
+  addPost,
+  useColor
+} from '#composables'
 
 const props = defineProps({
-  tag: { type: String, default: ' ' }
+  tag: {
+    type: String,
+    default: ' '
+  }
 })
 
 const emit = defineEmits(['close'])
@@ -18,7 +30,7 @@ const addColor = computed(() => {
 const titleInput = ref()
 
 onMounted(() => {
-  titleInput?.value?.focus()
+  titleInput.value.focus()
 })
 
 const postData = ref({})
@@ -34,10 +46,11 @@ const hasContent = computed(() => {
   return postData.value.title || postData.value.statement || postData.value.text || postData.value.cover
 })
 
-
 function submit() {
   if (!hasContent.value) return
-  const contents = { ...postData.value }
+  const contents = {
+    ...postData.value
+  }
   addPost(props.tag, contents)
   reset()
 }
@@ -47,18 +60,17 @@ function reset() {
   postData.value = {}
   emit('close')
 }
-
 const { t } = useI18n()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(0);")
   input.font-bold.text-xl(
+    v-if="add.title" 
+    ref="titleInput" 
     v-model="postData.title" 
-    :placeholder="t('gunvue.post_title')" 
-    autofocus 
-    v-if="add.title"
-    ref="titleInput"
+    :placeholder="t('gunvue.post_title')"
+    autofocus
     )
   textarea.text-1rem.leading-relaxed(
     v-model="postData.statement" 
@@ -67,15 +79,15 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
     )
   .flex.flex-wrap.z-100
     button.button.m-1(
-      @click="add.title = !add.title" 
-      :class="{ active: postData.title }"
+      :class="{ active: postData.title }" 
       :title="t('gunvue.post_title_add')"
+      @click="add.title = !add.title"
       ) H1
 
     form-picture(
-      @update="postData.icon = $event" 
       field="icon" 
-      :options="{ picSize: 400, preserveRatio: false }"
+      :options="{ picSize: 400, preserveRatio: false }" 
+      @update="postData.icon = $event"
       )
       la-info-circle
     form-picture(@update="postData.cover = $event")
@@ -83,8 +95,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
     form-youtube(@update="postData.youtube = $event")
     form-ipfs(@update="postData.ipfs = $event")
     button.m-1.button(
-      @click="add.text = true" 
-      :class="{ active: postData.text }"
+      :class="{ active: postData.text }" 
+      @click="add.text = true"
       )
       mdi-text-long
     .flex-1
@@ -98,12 +110,21 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
         .font-bold.ml-2 {{ t('gunvue.submit') }}
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
-  ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
+  ui-layer(
+    :open="add.youtube" 
+    :offset="'22vh'" 
+    @close="add.youtube = false"
+    )
 
-  ui-layer(:open="add.ipfs" @close="add.ipfs = false" :offset="'22vh'")
-  ui-layer(:open="add.text" @close="add.text = false" :offset="'22vh'")
-    form-text(v-model:text="postData.text" @close="add.text = false")
-  
+  ui-layer(
+    :open="add.text" 
+    :offset="'22vh'" 
+    @close="add.text = false"
+    )
+    form-text(
+      v-model:text="postData.text" 
+      @close="add.text = false"
+      )
 </template>
 
 <style lang="postcss" scoped>

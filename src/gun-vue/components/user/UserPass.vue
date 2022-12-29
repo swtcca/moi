@@ -5,7 +5,7 @@ const { pass } = usePass();
 const { t } = useI18n()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.mt-4.bg-light-700.p-4.m-2.shadow-lg.rounded-xl
   .flex.items-center.mb-4
     .mx-2
@@ -21,12 +21,15 @@ const { t } = useI18n()
       :placeholder="`Your passphrase of ${pass.minLength} or more letters`"
     )
     button.button.items-center(
-      @click="pass.set()",
-      v-if="pass.input.length >= pass.minLength"
+      v-if="pass.input.length >= pass.minLength",
+      @click="pass.set()"
     ) 
       la-check
       .ml-2 {{ t('gunvue.set_enc_pass') }}
-    button.button.items-center(v-if="pass?.safe?.enc" @click="pass.show = !pass.show")
+    button.button.items-center(
+      v-if="pass?.safe?.enc" 
+      @click="pass.show = !pass.show"
+      )
       la-eye
       .ml-2 {{ t('gunvue.show_enc_pass') }}
 </template>

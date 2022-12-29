@@ -3,15 +3,15 @@ import { useGuests, } from '#composables'
 
 const { guests, count } = useGuests()
 
-const emit = defineEmits(['update:pub'])
+defineEmits(['update:pub'])
 
-const props = defineProps({
-  pub: { type: String, default: '' }
+defineProps({
+  pub: { type: String, default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk' }
 })
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .p-4
   .flex.items-center(v-if="pub")
     account-badge(:pub="pub" )
@@ -25,5 +25,9 @@ const props = defineProps({
 
     .flex.flex-wrap.gap-3
       transition-group(name="fade")
-        account-badge(v-for="guest of guests" :key="guest" @click="$emit('update:pub', guest.pub)" :pub="guest.pub")
+        account-badge(
+          v-for="guest of guests" 
+          :key="guest" 
+          :pub="guest.pub" 
+          @click="$emit('update:pub', guest.pub)")
 </template>

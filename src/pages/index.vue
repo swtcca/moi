@@ -22,8 +22,8 @@ const { t } = useI18n()
 <template lang="pug">
 .flex.flex-col
   room-page(
+    :key="currentRoom.pub" 
     @browse="$router.push(`/${$event}/`)" 
-    :key="currentRoom.pub"
     )
 
 </template>

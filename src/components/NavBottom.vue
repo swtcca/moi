@@ -21,7 +21,7 @@ const color = useColor('light')
     ph-users(v-else)
   router-link.text-2xl.link(to="/videos/")
     ph-video-camera
-    .hidden.md_block {{ t('pages.videos') }}
+    .hidden.md-block {{ t('pages.videos') }}
   button.text-2xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
     la-times(v-if="globalState.show_tools")
     ph-gear(v-else)

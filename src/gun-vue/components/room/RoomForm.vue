@@ -33,13 +33,27 @@ const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
 const { t } = useI18n()
 </script>
 
-<template lang='pug'>
-.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.justify-center(v-if="user.pub" :style="{ ...bg }")
+<template lang="pug">
+.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.justify-center(
+  v-if="user.pub" 
+  :style="{ ...bg }"
+  )
   .flex
     button.button.m-2.flex-1(@click="genPair()" ) {{ t('gunvue.room_generate') }}
-    button.button.m-2(@click="reset()" v-if="create.pair" ) {{ t('gunvue.reset') }}
-  input.p-2.m-2.rounded-xl(type="text" v-if="create.pair" v-model="create.name" :placeholder="t('gunvue.room_new_name')")
+    button.button.m-2(
+      v-if="create.pair" 
+      @click="reset()" 
+      ) {{ t('gunvue.reset') }}
+  input.p-2.m-2.rounded-xl(
+    v-if="create.pair" 
+    v-model="create.name" 
+    type="text" 
+    :placeholder="t('gunvue.room_new_name')"
+    )
   transition(name="fade")
-    button.button.m-2.flex-1(@click="createIt()" v-if="create.pair && create.name" ) {{ t('gunvue.room_add') }}
+    button.button.m-2.flex-1(
+      v-if="create.pair && create.name" 
+      @click="createIt()" 
+      ) {{ t('gunvue.room_add') }}
 
 </template> 

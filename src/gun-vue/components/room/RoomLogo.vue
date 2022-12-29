@@ -19,7 +19,7 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.relative.items-center.justify-center
   img(:src="logo || '/gun-vue-logo.svg'")
 
@@ -30,5 +30,8 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
     )
     .text-2xl
       la-camera(v-if="!logo")
-      la-trash-alt(v-else @click.stop.prevent="removeLogo()")
+      la-trash-alt(
+        v-else 
+      @click.stop.prevent="removeLogo()"
+      )
 </template>

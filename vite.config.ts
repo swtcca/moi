@@ -5,8 +5,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import Unocss from 'unocss/vite'
+import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import extractorPug from '@unocss/extractor-pug'
+
 import { VitePWA } from 'vite-plugin-pwa'
-import WindiCSS from "vite-plugin-windicss";
 import replace from '@rollup/plugin-replace'
 import Layouts from 'vite4-plugin-vue-layouts'
 
@@ -56,14 +59,6 @@ export default defineConfig({
     }),
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
-    WindiCSS({
-      scan: {
-        dirs: ["src"],
-        include: ["index.md"],
-        exclude: ["**/examples/**/*", "/node_modules/"],
-        fileExtensions: ["vue", "ts", "md"],
-      },
-    }),
     // https://github.com/antfu/unplugin-vue-components
     Components({
       // allow auto load markdown components under `./src/components/`
@@ -74,6 +69,7 @@ export default defineConfig({
       extensions: ['vue'],
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      exclude: [/node_modules/, /\.git/],
       resolvers: [
         IconsResolver({
           componentPrefix: '',
@@ -81,6 +77,25 @@ export default defineConfig({
         }),
       ],
       dts: 'src/components.d.ts',
+    }),
+    // Unocss(),
+    Unocss({
+      presets: [
+        presetIcons({
+          extraProperties: {
+            'display': 'inline-block',
+            'vertical-align': 'middle',
+          },
+        }),
+        presetUno()
+      ],
+      transformers: [
+        transformerDirectives(),
+      ],
+      extractors: [
+        extractorPug(),
+        extractorSplit,
+      ],
     }),
     // https://github.com/antfu/unplugin-icons
     Icons({
@@ -139,12 +154,32 @@ export default defineConfig({
       __DATE__: new Date().toISOString(),
     }),
   ],
+  base: '/',
+  build: {
+    target: "esnext",
+    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+    sourcemap: !!process.env.TAURI_DEBUG,
+    brotliSize: true,
+    assetsInlineLimit: 100000000,
+    chunkSizeWarningLimit: 100000000,
+    cssCodeSplit: false,
+    external: ["vue"],
+    rollupOptions: {
+      output: {
+        minifyInternalExports: false,
+        inlineDynamicImports: true,
+        globals: {
+          vue: "Vue",
+        },
+      }
+    }
+  },
   optimizeDeps: {
     include: [
       'vue',
       'vue-router',
       '@vueuse/core',
-      '@vueuse/head',
+      // '@vueuse/head',
       'gun',
       'gun/gun',
       'gun/sea',

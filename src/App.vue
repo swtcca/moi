@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
-import { currentRoom, rootRoom, useBackground } from "#composables";
+import { currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
 
 
 const router = useRouter()
@@ -57,7 +57,7 @@ html {
   hyphens: auto;
 }
 body {
-  @apply bg-light-600 dark_bg-dark-200;
+  @apply bg-light-600 dark-bg-dark-200;
   touch-action: pan-x pan-y;
 }
 #app {

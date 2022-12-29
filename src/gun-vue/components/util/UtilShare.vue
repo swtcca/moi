@@ -13,12 +13,14 @@ const address = computed(() => {
 const { t } = useI18n()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex
   button.button.p-4.transition.bg-light-800.shadow-lg.flex.items-center.justify-center(@click="open = !open")
     ion-share-outline
     slot
-  ui-layer.text-center(:open="open" @close="open = false")
+  ui-layer.text-center(
+    :open="open" 
+    @close="open = false")
     qr-show.max-w-full(:data="address")
     .flex.flex-col.items-center.mb-4.-mt-8
       .text-md.mx-4.my-2.break-all.max-w-420px {{ address }}

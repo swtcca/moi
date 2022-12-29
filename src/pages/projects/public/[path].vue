@@ -1,15 +1,15 @@
 <script setup>
 
 const props = defineProps({
-  path: { type: String }
+  path: { type: String, default: '' }
 })
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 project-page(
-  :path="path" 
-  :key="path"
+  :key="path" 
+  :path="path"
   @gift="$router.push(`/gifts/${$event}`)"
   @user="$router.push(`/users/${$event}`)"
 )

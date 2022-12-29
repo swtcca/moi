@@ -3,10 +3,10 @@ import { currentRoom, useGun } from '#composables';
 import { ref, reactive, computed } from 'vue'
 const props = defineProps({
   cert: { type: String, default: '' },
-  open: { default: false },
+  open: { type: [Boolean, String], default: false },
   title: { type: String, default: '' },
   type: { type: String, default: '' },
-  pub: { type: String, default: '' },
+  pub: { type: String, default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk' },
 })
 
 defineEmits(['browse'])
@@ -23,8 +23,8 @@ const count = computed(() => {
 
 </script>
 
-<template lang='pug'>
-.cursor-pointer.flex-1.flex.flex-col.items-center.p-4.relative.bg-light-700.rounded-lg.shadow-sm.transition.hover_shadow-lg(:title="cert")
+<template lang="pug">
+.cursor-pointer.flex-1.flex.flex-col.items-center.p-4.relative.bg-light-700.rounded-lg.shadow-sm.transition.hover-shadow-lg(:title="cert")
   .text-4xl 
     room-feature-icon(:icon="type")
   .px-1.font-bold() {{ title }}

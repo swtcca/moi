@@ -40,9 +40,12 @@ function removeAvatar() {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.relative.items-center.justify-center
-  account-avatar(:pub="user.pub" :size="size" )
+  account-avatar(
+    :pub="user.pub" 
+    :size="size" 
+    )
 
   form-picture.absolute(
     v-if="user.wallets.jingtum?.activated"
@@ -51,5 +54,8 @@ function removeAvatar() {
     )
     .text-2xl
       la-camera(v-if="!avatar")
-      la-trash-alt(v-else @click.stop.prevent="removeAvatar()")
+      la-trash-alt(
+        v-else 
+        @click.stop.prevent="removeAvatar()"
+        )
 </template>

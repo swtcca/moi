@@ -32,7 +32,7 @@ const encPair = computed(() => {
 const { t } = useI18n()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 {{ t('gunvue.save_keys') }}
@@ -45,15 +45,26 @@ const { t } = useI18n()
       .text-sm {{ safePair ? t('gunvue.encrypted') : t('gunvue.plaintext') }}
       .text-m {{ t('gunvue.cred_keypair') }}
     .flex.flex-wrap
-      button.m-2.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
+      button.m-2.button.items-center(
+        v-if="canShare" 
+        :class="{ active: current == 'pass' }" 
+        @click="share({ title: 'Your key pair', text: encPair })"
+        )
         la-share
         .px-1 {{ t('gunvue.cred_share') }}
-      button.m-2.button.items-center(v-if="canCopy" @click="copy(encPair)")
+      button.m-2.button.items-center(
+        v-if="canCopy" 
+        @click="copy(encPair)"
+        )
         la-copy
         transition(name="fade")
           .px-2(v-if="copied") {{ t('gunvue.util_copied') }}!
           .px-2(v-else) {{ t('gunvue.util_copy') }}
-      a.m-2.button.items-center(@click="show('links')" target="_blank" :href="safePair ? pass.links.pass : pass.links.pair" )
+      a.m-2.button.items-center(
+        :href="safePair ? pass.links.pass : pass.links.pair" 
+        target="_blank" 
+        @click="show('links')" 
+        )
         la-link
         .px-2 {{ t('gunvue.cred_link') }}
       button.m-2.button.items-center(@click="show('qr')")
@@ -68,16 +79,21 @@ const { t } = useI18n()
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
       textarea.p-4.text-sm.flex-1.rounded-xl(
-        rows="9",
         v-if="current == 'key'",
-        :value="encPair",
-        key="text"
+        key="text",
+        rows="9",
+        :value="encPair"
       )
-      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="safePair ? pass.links.pass : pass.links.pair")
+      qr-show.max-w-600px(
+        v-if="current == 'qr'" 
+        key="qr" 
+        :data="safePair ? pass.links.pass : pass.links.pair"
+        )
   button.button.mx-8.justify-center(@click="$emit('close')")
     la-check
     .ml-2 {{ t('gunvue.cred_saved') }}
 </template>
 
 <style scoped>
+
 </style>

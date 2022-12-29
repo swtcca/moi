@@ -2,7 +2,7 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.bg-dark-50.bg-opacity-70
   .text-xl.text-center.mt-2.font-bold.flex.items-center.justify-center.gap-2
     a.underline(href="https://gun.eco" target="_blank") Gun
@@ -41,7 +41,7 @@
 
 <style lang="postcss" scoped>
 .btn {
-  @apply flex gap-2 items-center transition bg-light-100/70 py-1 px-2 rounded-lg hover_bg-light-100;
+  @apply flex gap-2 items-center transition bg-light-100/70 py-1 px-2 rounded-lg hover-bg-light-100;
 }
 
 .title {

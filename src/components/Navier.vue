@@ -36,7 +36,7 @@ watch(show, (value, old_value) => {
 </script>
 
 <template>
-  <nav class="flex justify-around sm_px-8 md_px-16 lg_px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
+  <nav class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
     <button :title="t('button.toggle_dark')" @click="() => toggleDark()">
       <ph-sun v-if="isDark" />
       <ph-moon v-else />
@@ -74,7 +74,7 @@ watch(show, (value, old_value) => {
   </UiLayer>
   <div class="grid grid-col place-content-center" v-if="flag_playlist">
     <div class="mt-8 max-w-lg">
-      <div class="grid grid-cols-1 gap-6 text-gray-700 dark_text-gray-500">
+      <div class="grid grid-cols-1 gap-6 text-gray-700 dark-text-gray-500">
         <ol class="list-decimal">
           <li v-for="video of playlist.playlist" :key="video.videoId">
             {{ video.videoId }} {{ video?.channel?.name }}

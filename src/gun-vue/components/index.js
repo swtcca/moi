@@ -1,4 +1,5 @@
-import "virtual:windi.css";
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
 import "./styles/index.css";
 import "./styles/transitions.css";
 import 'floating-vue/dist/style.css'

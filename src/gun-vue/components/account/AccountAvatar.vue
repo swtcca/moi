@@ -1,9 +1,9 @@
-<script setup >
-import { useGun, useUser, gunAvatar, useColor } from '#composables'
-import { computed, ref, watch } from 'vue'
+<script setup>
+import { useGun, gunAvatar, useColor } from '#composables'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
-  pub: { type: String, default: '' },
+  pub: { type: String, default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk' },
   size: { type: Number, default: 42, },
   border: { type: Number, default: 2, },
 });
@@ -14,7 +14,7 @@ const gun = useGun()
 
 const avatar = ref()
 
-watch(() => props.pub, () => {
+watch(() => props.pub, (p) => {
   avatar.value = gunAvatar({ pub: props.pub, size: props.size * 4 })
 }, { immediate: true })
 
@@ -30,7 +30,7 @@ gun.user(props.pub).get('avatar').on(hash => {
 
 const blink = ref()
 
-gun.user(props.pub).get('pulse').on(d => {
+gun.user(props.pub).get('pulse').on(() => {
   blink.value = !blink.value
 })
 
@@ -39,13 +39,16 @@ gun.user(props.pub).get('pulse').on(d => {
 <template lang="pug">
 .flex.flex-col
   img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
-    :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }"
-    v-if="pub",
+    v-if="pub"
+    :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }",
     :width="size"
     :height="size"
     :src="avatar"
   )
-  .p-2(v-else :style="{ fontSize: size + 'px' }")
+  .p-2(
+    v-else
+    :style="{ fontSize: size + 'px' }"
+  )
     la-user
   
 </template>

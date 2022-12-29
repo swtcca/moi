@@ -28,27 +28,34 @@ function createUser() {
 const { t } = useI18n()
 </script>
 
-<template>
-  <div
-    class="flex flex-col items-center flex-1 p-2 bg-light-700 rounded-3xl shadow-lg text-center p-4 transition duration-300ms ease-in"
-    v-if="!user.is" :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }">
-    <div class="text-xl font-bold">{{ t('gunvue.create_account') }}</div>
-    <div class="mb-4 mt-2">{{ t('gunvue.refresh_keys') }}</div>
-    <account-avatar class="cursor-pointer rounded-full shadow-xl border-8" v-if="newPair" :pub="newPair.pub" :size="200"
-      @click="generatePair()" :style="{ borderColor: colorDeep.hex(newPair.pub) }"></account-avatar>
-    <div class="flex flex-col">
-      <div class="flex justify-center my-4">
-        <button class="m-2 button items-center" v-if="history.length > 2" @click="undo()">
-          <la-undo class="text-2xl"></la-undo>
-        </button>
-        <button class="m-2 button items-center" @click="generatePair()">
-          <fad-random-1dice class="text-3xl"></fad-random-1dice>
-        </button>
-      </div>
-      <input class="p-4 rounded-2xl my-2" v-model="name" :placeholder="t('gunvue.enter_alias')" />
-      <button class="button w-full flex justify-center items-center" @click="createUser()"
-        v-if="newPair && !user.is && name"
-        :style="{ backgroundColor: colorLight.hex(newPair.pub) }">{{ t('gunvue.authenticate') }}</button>
-    </div>
-  </div>
+<template lang="pug">
+.flex.flex-col.items-center.flex-1.p-2.bg-light-700.rounded-3xl.shadow-lg.text-center.p-4.transition.duration-300ms.ease-in(
+  v-if="!user.is" 
+  :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }"
+  )
+  .text-xl.font-bold {{ t('gunvue.create_account') }}
+  .mb-4.mt-2 {{ t('gunvue.refresh_keys') }}
+  account-avatar.cursor-pointer.rounded-full.shadow-xl.border-8(
+    v-if="newPair" 
+    :pub="newPair.pub" 
+    :size="200" 
+    :style="{ borderColor: colorDeep.hex(newPair.pub) }" 
+    @click="generatePair()"
+    )
+  .flex.flex-col
+    .flex.justify-center.my-4
+      button.m-2.button.items-center(v-if="history.length > 2" @click="undo()")
+        la-undo.text-2xl
+      button.m-2.button.items-center(@click="generatePair()")
+        fad-random-1dice.text-3xl
+    input.p-4.rounded-2xl.my-2(
+      v-model="name" 
+      :placeholder="t('gunvue.enter_alias')"
+      )
+    button.button.w-full.flex.justify-center.items-center(
+      v-if="newPair && !user.is && name" 
+      :style="{ backgroundColor: colorLight.hex(newPair.pub) }" 
+      @click="createUser()"
+      )
+      | {{ t('gunvue.authenticate') }}
 </template> 

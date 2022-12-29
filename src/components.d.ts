@@ -62,7 +62,6 @@ declare module '@vue/runtime-core' {
     FadRandom1dice: typeof import('~icons/fad/random1dice')['default']
     FormIpfs: typeof import('./gun-vue/components/form/FormIpfs.vue')['default']
     FormLink: typeof import('./gun-vue/components/form/FormLink.vue')['default']
-    FormMd: typeof import('./gun-vue/components/form/FormMd.vue')['default']
     FormPicture: typeof import('./gun-vue/components/form/FormPicture.vue')['default']
     FormText: typeof import('./gun-vue/components/form/FormText.vue')['default']
     FormTitle: typeof import('./gun-vue/components/form/FormTitle.vue')['default']
