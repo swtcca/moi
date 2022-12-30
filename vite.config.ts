@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import { presetForms } from '@julr/unocss-preset-forms'
 import extractorPug from '@unocss/extractor-pug'
 
 import { VitePWA } from 'vite-plugin-pwa'
@@ -79,7 +80,8 @@ export default defineConfig({
             'vertical-align': 'middle',
           },
         }),
-        presetUno()
+        presetUno(),
+        presetForms()
       ],
       transformers: [
         transformerDirectives(),
