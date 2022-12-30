@@ -9,12 +9,12 @@ const { t } = useI18n()
 .flex.flex-col.mt-4.bg-light-700.p-4.m-2.shadow-lg.rounded-xl
   .flex.items-center.mb-4
     .mx-2
-      la-asterisk
+      .i-la-asterisk
     .px-1 {{ t('gunvue.enter_enc_pass') }}
   .flex.items-center.px-4
     .ml-1.flex.flex-col.items-center
 
-      la-check.text-green-600.m-1(v-if="pass.safe?.enc")
+      .i-la-check.text-green-600.m-1(v-if="pass.safe?.enc")
     input.p-2.mx-4.rounded-xl.w-full(
       v-model="pass.input",
       :type="pass.show ? 'text' : 'password'"
@@ -24,12 +24,12 @@ const { t } = useI18n()
       v-if="pass.input.length >= pass.minLength",
       @click="pass.set()"
     ) 
-      la-check
+      .i-la-check
       .ml-2 {{ t('gunvue.set_enc_pass') }}
     button.button.items-center(
       v-if="pass?.safe?.enc" 
       @click="pass.show = !pass.show"
       )
-      la-eye
+      .i-la-eye
       .ml-2 {{ t('gunvue.show_enc_pass') }}
 </template>

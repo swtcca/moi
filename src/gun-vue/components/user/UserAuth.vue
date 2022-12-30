@@ -46,13 +46,13 @@ const { t } = useI18n()
   .text-md {{ t('gunvue.login_saved_key') }}
   .flex
     button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')")
-      la-key.text-xl
+      .i-la-key.text-xl
       .p-1.ml-1.font-bold {{ t('gunvue.login_paste') }}
     label.button.m-2.cursor-pointer.flex.items-center(for="qr-input")
-      la-qrcode.text-xl
+      .i-la-qrcode.text-xl
       .p-1.ml-1.font-bold {{ t('gunvue.login_qr') }}
     label.button.m-2.cursor-pointer.flex.items-center(for="json-input")
-      la-file-code.text-xl
+      .i-la-file-code.text-xl
       .p-1.ml-1.font-bold {{ t('gunvue.login_json') }}
   form.flex(v-if="passphrase !== null")
     input.py-1.px-4.m-1.rounded-xl(
@@ -65,7 +65,7 @@ const { t } = useI18n()
       type="submit" 
       @click="decode()"
       )
-      la-sign-in-alt
+      .i-la-sign-in-alt
   .hidden
     qr-load(@loaded="pair = $event")
     input#json-input(

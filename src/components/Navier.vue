@@ -37,30 +37,22 @@ watch(show, (value, old_value) => {
 
 <template>
   <nav class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
-    <button :title="t('button.toggle_dark')" @click="() => toggleDark()">
-      <ph-sun v-if="isDark" />
-      <ph-moon v-else />
+    <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
     </button>
-    <button ref="language" :title="t('button.toggle_langs')" @click="toggleLocales">
-      <ph-translate />
+    <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
     </button>
-    <button :title="t('button.settings')" @click="show.settings = !show.settings">
-      <ph-gear />
+    <button class="i-ph-gear" :title="t('button.settings')" @click="show.settings = !show.settings">
     </button>
-    <button v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
-      <ph-playlist />
+    <button class="i-ph-playlist" v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
     </button>
-    <button v-if="false" :title="t('button.graph')" @click="show.graph = !show.graph">
-      <mdi-graph-outline />
+    <button class="i-mdi-graph-outline" v-if="false" :title="t('button.graph')" @click="show.graph = !show.graph">
     </button>
     <button v-if="!/3000/.test(location_origin)" :title="t('button.relays')">
       <UtilRelay />
     </button>
-    <router-link to="/upload/">
-      <simple-icons-ipfs />
+    <router-link to="/upload/" class="i-simple-icons-ipfs">
     </router-link>
-    <router-link to="/wallets/">
-      <ph-wallet />
+    <router-link to="/wallets/" class="i-ph-wallet">
     </router-link>
     <router-link to="/nfts/">
       NFT

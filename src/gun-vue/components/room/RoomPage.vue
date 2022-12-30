@@ -99,7 +99,7 @@ const { t } = useI18n()
           v-if="room.hosts?.[user.pub]" 
           @click="edit.text = room.profile?.text || ''"
           )
-          la-pen
+          .i-la-pen
       form-text(
         v-else 
         v-model:text="edit.text" 

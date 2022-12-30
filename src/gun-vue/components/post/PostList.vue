@@ -76,26 +76,26 @@ const { t } = useI18n()
             name="fade" 
             mode="out-in"
             )
-            la-plus(v-if="!add")
-            la-times(v-else)
+            .i-la-plus(v-if="!add")
+            .i-la-times(v-else)
           .ml-2.mr-1 {{ t('gunvue.add2') }}
         label.button(
           title="Upload feed" 
           for="import-feed"
           )
-          la-file-upload
+          .i-la-file-upload
           .ml-2.mr-1 {{ t('gunvue.upload') }}
         button.button(@click="showHidden = !showHidden")
-          la-eye(v-if="showHidden")
-          la-eye-slash(v-else)
+          .i-la-eye(v-if="showHidden")
+          .i-la-eye-slash(v-else)
           .ml-2 {{ t('gunvue.visibility') }}
         button.button(
           v-if="countPosts < -1" 
           title="Download feed" 
           @click="downloadPosts()"
           )
-          la-file-download(v-if="!downloading")
-          la-redo-alt.animate-spin(v-else)
+          .i-la-file-download(v-if="!downloading")
+          .i-la-redo-alt.animate-spin(v-else)
           .ml-2.mr-1 {{ t('gunvue.download') }}
         slot
       input#import-feed.hidden(

@@ -46,7 +46,9 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 <template lang="pug">
 .p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
   router-view(v-slot="{ Component }")
-    transition(name="fade" mode="out-in")
+    transition(
+      name="fade"
+      mode="out-in")
       keep-alive
         component.flex-auto.overflow-y-scroll(:is="Component")
 </template>

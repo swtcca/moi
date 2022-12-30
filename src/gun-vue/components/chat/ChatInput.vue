@@ -27,7 +27,7 @@ const { t } = useI18n()
     v-if="user.pub" 
     @click="send()"
     )
-    la-comment-dots.mx-2
+    .i-la-comment-dots.mx-2
 .p-2.flex.flex-col.items-center(v-else)
   button.button(@click="user.auth = true")
     | {{ t('gunvue.login_for_message') }}

@@ -29,8 +29,8 @@ const { t } = useI18n()
     .text-lg.font-bold {{ t('gunvue.my_rooms') }}
     .flex-1 
     .text-md.font-bold.mr-2 {{ Object.keys(rooms).length }}
-    la-angle-down(v-if="!open")
-    la-angle-up(v-else)
+    .i-la-angle-down(v-if="!open")
+    .i-la-angle-up(v-else)
   transition(
     name="fade" 
     mode="out-in")
@@ -43,12 +43,12 @@ const { t } = useI18n()
         )
           .p-4.flex.flex-wrap.gap-1
             button.button(@click="$emit('browse', room)")
-              la-eye
+              .i-la-eye
               .ml-2 {{ t('gunvue.view') }}
             button.button(@click="enterRoom(room)")
-              ion-enter-outline
+              .i-ion-enter-outline
               .ml-2 {{ t('gunvue.enter') }}
             button.button(@click="recreateRoom(enc)")
-              la-tools
+              .i-la-tools
               .ml-2 {{ t('gunvue.renew') }}
 </template>

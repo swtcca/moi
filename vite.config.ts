@@ -3,8 +3,6 @@ const dirname = __dirname
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'
@@ -70,12 +68,6 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       exclude: [/node_modules/, /\.git/],
-      resolvers: [
-        IconsResolver({
-          componentPrefix: '',
-          // enabledCollections: ['mdi', "ri", "ph"]
-        }),
-      ],
       dts: 'src/components.d.ts',
     }),
     // Unocss(),
@@ -96,11 +88,6 @@ export default defineConfig({
         extractorPug(),
         extractorSplit,
       ],
-    }),
-    // https://github.com/antfu/unplugin-icons
-    Icons({
-      compiler: "vue3",
-      autoInstall: true,
     }),
     AutoImport({
       imports: [

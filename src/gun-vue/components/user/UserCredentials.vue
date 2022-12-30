@@ -40,8 +40,8 @@ const { t } = useI18n()
   .flex.p-4.items-center.bg-dark-100.bg-opacity-20.mt-2.shadow-inset(v-if="encPair")
     .flex.flex-col.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
       button.m-2.button.text-2xl(@click="safePair = !safePair")
-        la-lock(v-if="safePair")
-        la-unlock(v-else)
+        .i-la-lock(v-if="safePair")
+        .i-la-unlock(v-else)
       .text-sm {{ safePair ? t('gunvue.encrypted') : t('gunvue.plaintext') }}
       .text-m {{ t('gunvue.cred_keypair') }}
     .flex.flex-wrap
@@ -50,13 +50,13 @@ const { t } = useI18n()
         :class="{ active: current == 'pass' }" 
         @click="share({ title: 'Your key pair', text: encPair })"
         )
-        la-share
+        .i-la-share
         .px-1 {{ t('gunvue.cred_share') }}
       button.m-2.button.items-center(
         v-if="canCopy" 
         @click="copy(encPair)"
         )
-        la-copy
+        .i-la-copy
         transition(name="fade")
           .px-2(v-if="copied") {{ t('gunvue.util_copied') }}!
           .px-2(v-else) {{ t('gunvue.util_copy') }}
@@ -65,16 +65,16 @@ const { t } = useI18n()
         target="_blank" 
         @click="show('links')" 
         )
-        la-link
+        .i-la-link
         .px-2 {{ t('gunvue.cred_link') }}
       button.m-2.button.items-center(@click="show('qr')")
-        la-qrcode
+        .i-la-qrcode
         .px-2 {{ t('gunvue.cred_qr') }}
       button.m-2.button.items-center(@click="show('key')")
-        la-envelope-open-text
+        .i-la-envelope-open-text
         .px-2 {{ t('gunvue.cred_text') }}
       button.m-2.button.items-center(@click="downloadFile(encPair, 'text/json', (user.name || 'account') + '.json', false); current = null")
-        la-file-code
+        .i-la-file-code
         .px-2 {{ t('gunvue.cred_json') }}
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
@@ -90,7 +90,7 @@ const { t } = useI18n()
         :data="safePair ? pass.links.pass : pass.links.pair"
         )
   button.button.mx-8.justify-center(@click="$emit('close')")
-    la-check
+    .i-la-check
     .ml-2 {{ t('gunvue.cred_saved') }}
 </template>
 

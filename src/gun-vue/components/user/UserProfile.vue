@@ -25,6 +25,6 @@ const { t } = useI18n()
         :placeholder="t('gunvue.create_profile_field')" 
         @keydown.enter="addProfileField(newField)")
       button.m-2.button.items-center(@click="addProfileField(newField)")
-        la-plus
+        .i-la-plus
         .p-1.text-sm {{ t('gunvue.add') }}
 </template>

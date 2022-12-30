@@ -2,7 +2,6 @@ const fsp = require("fs/promises")
 const fs = require("fs")
 const AsyncForEach = require("async-await-foreach")
 const chalk = require("chalk")
-const { htmlTags } = require("vite-plugin-windicss")
 
 const customize = {
   "./src/gun-vue/composables/user/usePass.js": { replaces: [

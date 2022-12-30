@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { IVideo } from "../types"
-import IconPlay from '~icons/heroicons-outline/play'
-import IconPlaylist from '~icons/ic/outline-playlist-add-check-circle'
+import IconPlay from '@heroicons/vue/24/outline/PlayCircleIcon'
+import IconPlaylist from '@heroicons/vue/24/outline/QueueListIcon'
 import { playing, playingInList, playlist, videos, filtering } from "../stores"
 import { useTimeAgo } from '@vueuse/core'
 const props = defineProps<{

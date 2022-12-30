@@ -20,14 +20,14 @@
             </div>
             <div class="item-action">
               <a v-if="!!item.shorten" title="Open Shorten Link" target="_blank" :href="generateLink(item, true)" rel="noopener">
-                <ri-link-unlink-m class="icon-color" />
+                <i-ri-link-unlink-m class="icon-color" />
               </a>
               <a v-else title="Generate Shorten Link" @click="shortenLink(item)">
-                <ri-link-m class="icon-color" />
+                <i-ri-link-m class="icon-color" />
               </a>
 
               <a title="Open Link" target="_blank" :href="generateLink(item)" rel="noopener">
-                <ri-external-link-fill class="icon-color" />
+                <i-ri-external-link-fill class="icon-color" />
               </a>
             </div>
           </div>
@@ -37,7 +37,7 @@
             </label>
 
             <a title="Copy to clipboard" @click="copyFileLink(item)">
-              <ri-clipboard-line class="icon-color" />
+              <i-ri-clipboard-line class="icon-color" />
             </a>
           </div>
         </div>

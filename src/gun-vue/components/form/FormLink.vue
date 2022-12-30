@@ -30,19 +30,19 @@ const { t } = useI18n()
     :class="{ active: link }" 
     @click="add = !add"
     )
-    la-link
+    .i-la-link
   ui-layer.mt-20(
     :open="add" 
     @close="add = false"
     )
     .p-4.max-w-600px
       .flex.items-center.gap-4
-        la-link.text-2xl
+        .i-la-link.text-2xl
         .text-lg {{ t('gunvue.form_link') }}
         button.button.text-xl
-          la-check(@click="add = false")
+          .i-la-check(@click="add = false")
         button.button.text-xl
-          la-trash-alt(@click="url = null; add = false")
+          .i-la-trash-alt(@click="url = null; add = false")
       input.text-sm.p-4.my-4(
         ref="input" 
         v-model="url" 

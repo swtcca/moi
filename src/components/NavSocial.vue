@@ -27,28 +27,28 @@ const color = useColor('light')
 <template lang="pug">
 .flex.justify-around.sm-px-8.md-px-16.lg-px-32.items-center.text-center.bg-cyan-300.text-xl.py-1.mx-auto
   router-link.link(to="/space/")
-    ph-hands-clapping
+    .i-ph-hands-clapping
     .hidden.md-block {{ t('pages.space') }}
   router-link.link(to="/topics/")
-    la-broadcast-tower
+    .i-la-broadcast-tower
     .hidden.md-block {{ t('pages.topics') }}
   router-link.link(to="/posts/")
-    ph-newspaper
+    .i-ph-newspaper
     .hidden.md-block {{ t('pages.posts') }}
   router-link.link(to="/users/")
-    ph-users
+    .i-ph-users
     .hidden.md-block {{ t('pages.users') }}
   router-link.link(to="/projects/")
-    la-toolbox
+    .i-la-toolbox
     .hidden.md-block {{ t('pages.projects') }}
   router-link.link(to="/dict/")
-    ph-books
+    .i-ph-books
     .hidden.md-block {{ t('pages.dicts') }}
   router-link.link(to="/gifts/")
-    la-gift
+    .i-la-gift
     .hidden.md-block {{ t('pages.gifts') }}
   router-link.link(to="/rooms/")
-    simple-icons-qzone 
+    .i-simple-icons-qzone 
     .hidden.md-block {{ t('pages.rooms') }}
   room-button.hidden.lg-block(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)" @browse="$router.push(`/${$event}/`)")
 </template>

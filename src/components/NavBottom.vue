@@ -16,15 +16,15 @@ const color = useColor('light')
 .min-h-4vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-lg.z-30.text-xl.w-full
   router-link.link(to="/")
     .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-  button.text-2xl(:title="t('button.social')" @click="globalState.show_social=!globalState.show_social")
-    la-times(v-if="globalState.show_social")
-    ph-users(v-else)
+  button.button.text-2xl(:title="t('button.social')" @click="globalState.show_social=!globalState.show_social")
+    .i-la-times(v-if="globalState.show_social")
+    .i-ph-users(v-else)
   router-link.text-2xl.link(to="/videos/")
-    ph-video-camera
+    .i-ph-video-camera
     .hidden.md-block {{ t('pages.videos') }}
   button.text-2xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
-    la-times(v-if="globalState.show_tools")
-    ph-gear(v-else)
+    .i-la-times(v-if="globalState.show_tools")
+    .i-ph-gear(v-else)
   user-icon(
     :size="32"
     @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
