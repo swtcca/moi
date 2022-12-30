@@ -4,7 +4,7 @@ const dirname = __dirname
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
-import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import { presetUno, presetIcons, presetAttributify, presetTagify, presetTypography, transformerDirectives, extractorSplit } from "unocss";
 import { presetForms } from '@julr/unocss-preset-forms'
 import extractorPug from '@unocss/extractor-pug'
 
@@ -80,7 +80,10 @@ export default defineConfig({
             'vertical-align': 'middle',
           },
         }),
+        presetTagify(),
+        presetAttributify(),
         presetUno(),
+        presetTypography(),
         presetForms()
       ],
       transformers: [

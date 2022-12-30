@@ -9,15 +9,15 @@ const timeAgo = useTimeAgo(date)
 
 <template>
   <div>
-    <div v-if="prefers.youtubeAccess" class="bg-black min-w-xs md:px-12 lg:px-24 xl:px-48">
+    <div v-if="prefers.youtubeAccess" px="0 md:12 lg:24 xl:48" bg-black min-w-xs>
       <YoutubePlayer />
     </div>
-    <div v-else class="bg-black min-w-xs md:px-12 lg:px-24 xl:px-48">
+    <div v-else bg-black min-w-xs px="0 md:12 lg:24 xl:48">
       <IpfsPlayer />
     </div>
-    <div class="bg-white dark:bg-gray-800 grid grid-col grid-cols-1 gap-2 min-w-xs place-content-center sm:px-2 sm:gap-4 md:px-4 md:gap-6 md:grid-cols-2 lg:gap-8 lg:grid-cols-3 xl:grid-cols-4 text-center text-gray-700 dark:text-gray-200">
+    <div bg="white dark:gray-800" text="center gray-700 dark:gray-200" grid="~ col cols-1 md:cols-2 lg:cols-3 xl:cols-4" gap="2 sm:4 md:6 lg:8" px="0 sm:2 md:4" min-w-xs place-content-center>
       <YoutubeVideos />
     </div>
-    <div class="text-center text-blue-500">Built {{ timeAgo }}</div>
+    <div text="center blue-500 dark:gray-300">Built {{ timeAgo }}</div>
   </div>
 </template>
