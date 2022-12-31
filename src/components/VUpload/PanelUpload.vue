@@ -5,8 +5,8 @@
         <input type="file" multiple ref="fileRef" @change="onFileChangedHandler" />
 
         <div class="dropzone-label" @click="openSelectFile">
-          <i-mdi-timer-sand v-if="(fileCount > 0)" class="icon-color" />
-          <i-mdi-upload v-else class="icon-color" />
+          <div v-if="(fileCount > 0)" class="i-mdi-timer-sand icon-color" />
+          <div v-else class="i-mdi-upload icon-color" />
 
           <span>{{ t('vupload.prompt') }}</span>
           

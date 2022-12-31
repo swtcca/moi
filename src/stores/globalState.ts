@@ -1,7 +1,7 @@
 import platform from 'platform-detect'
 import pkg from "../../package.json"
 const { load: load_swtc } = useScriptTag(
-  "https://unpkg.com/@swtc/rpc@1.1.1/dist/swtc-rpc.js",
+  "https://unpkg.com/@swtc/rpc@1.1.3/dist/swtc-rpc.js",
   () => {},
   { manual: true },
 )

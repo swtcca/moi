@@ -98,7 +98,7 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark-text-gray-200 Wallets
     .flex.flex-col.gap-2.max-w-full.sm-max-w-sm.bg-white.rounded-xl.shadow-lg(v-if="user.is")
       .flex.justify-center.items-center.gap-4.text-blue-600.bg-cyan-400
         p {{ wallet.chain }}
-        i-mdi-wallet.w-12.h-12
+        .i-mdi-wallet.w-12.h-12
         p {{ wallet.algorithm }}
       .mx-auto(v-if="balances[chain]?.native?.value") {{ t('wallets.balance') }} {{ balances[chain]?.native?.value }} {{ balances[chain]?.native?.token }}
       .font-mono.tracking-tight.px-1.mx-auto {{ wallet.address }}
@@ -110,14 +110,14 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark-text-gray-200 Wallets
             li {{ value.value }} {{ token }}
         .flex.place-content-around
           button.button.text-green-800
-            i-ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
-            i-carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
+            .i-ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
+            .i-carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
       div(v-else)
         .flex.place-content-around
           p {{ t('wallets.not_activated') }}
           button.button.text-green-800(@click="wallet.chainobj.update_balance(wallet)")
-            i-ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
-            i-carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
+            .i-ph-spinner-bold.text-yellow-500(v-if="wallet.querying" @click="noop()")
+            .i-carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
     .flex.flex-col.gap-2.max-w-full.sm-max-w-sm.p-2.bg-white.rounded-xl.shadow-lg(v-else)
       p {{ t('wallets.login_first') }}
 </template>

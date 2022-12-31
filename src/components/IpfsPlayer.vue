@@ -27,7 +27,7 @@ onMounted(async () => {
   <IpfsVideo v-else :video="video" />
   <div class="flex justify-center">
     <button class="text-center rounded-sm bg-cyan-500" @click="playing.play(featured.playing())">
-      <MdiShuffle class="h-8 w-8 text-center" />
+      <div class="i-mdi-shuffle h-8 w-8 text-center" />
     </button>
   </div>
 </template>

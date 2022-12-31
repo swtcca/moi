@@ -11,23 +11,21 @@
 
         <div class="content-file--item" v-for="(item, index) in files" :key="index">
           <div class="item-content">
-            <div class="item-icon">
-              <ri-file-list-3-line class="icon-color" />
-            </div>
+            <div class="item-icon i-ri-file-list-3-line icon-color" />
             <div class="item-detail">
               <span class="item-detail--title" :title="item.file.name">{{ item.file.name }}</span>
               <span class="item-detail--subtitle">{{ fileSize(item.file.size) }} • {{ item.file.type }}</span>
             </div>
             <div class="item-action">
               <a v-if="!!item.shorten" title="Open Shorten Link" target="_blank" :href="generateLink(item, true)" rel="noopener">
-                <i-ri-link-unlink-m class="icon-color" />
+                <div class="i-ri-link-unlink-m icon-color" />
               </a>
               <a v-else title="Generate Shorten Link" @click="shortenLink(item)">
-                <i-ri-link-m class="icon-color" />
+                <div class="i-ri-link-m icon-color" />
               </a>
 
               <a title="Open Link" target="_blank" :href="generateLink(item)" rel="noopener">
-                <i-ri-external-link-fill class="icon-color" />
+                <div class="i-ri-external-link-fill icon-color" />
               </a>
             </div>
           </div>
@@ -37,7 +35,7 @@
             </label>
 
             <a title="Copy to clipboard" @click="copyFileLink(item)">
-              <i-ri-clipboard-line class="icon-color" />
+              <div class="i-ri-clipboard-line icon-color" />
             </a>
           </div>
         </div>
