@@ -14,7 +14,7 @@ const gchannels = reactive({})
 const pref = gun.get("bcapps").get("moi").get("youtube").get("published")
 const vref = gun.get("bcapps").get("moi").get("youtube").get("videos")
 const cref = gun.get("bcapps").get("moi").get("youtube").get("channels")
-const tref = gun.get("bcapps").get("moi").get("youtube").get("test")
+const tref = gun.get("bcapps").get("moi").get("youtube").get("videos").get(`${new Date().toJSON().substring(0,7)}`)
 // structure tests
 // /channels
 // /channels/channel

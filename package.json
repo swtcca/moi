@@ -1,6 +1,6 @@
 {
   "name": "moi",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "scripts": {
     "postinstall": "sed -e 's/axe/sea/' node_modules/gun/lib/server.js > /tmp/server.js; diff node_modules/gun/lib/server.js /tmp/server.js; echo cp /tmp/server.js node_modules/gun/lib/",
     "dev": "vite",
