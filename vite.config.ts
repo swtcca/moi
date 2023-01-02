@@ -32,6 +32,13 @@ const moduleExclude = match => {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  clearScreen: false,
+  server: {
+    port: 3142,
+    strictPort: true,
+  },
+  envPrefix: ['VITE_', 'TAURI_'],
+  publicDir: "public",
   resolve: {
     alias: {
       '~/': `${path.resolve(dirname, 'src')}/`,

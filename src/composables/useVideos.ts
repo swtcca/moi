@@ -69,7 +69,7 @@ export function initChannels() {
       await put_channel({id: c.id, name: c.name, title: c.title})
     }
   }), 500)
-  return { gvideos, vref, gchannels, cref, pvideos, pref, tref }
+  return { gvideos, vref, gchannels, cref, pvideos, pref, tvideos, tref }
 }
 
 export function initVideos() {
