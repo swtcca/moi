@@ -35,7 +35,7 @@ const { post } = usePost({ hash: props.hash })
           .font-bold.my-2(v-if="post?.title || post?.statement") {{ post.title || post.statement.slice(0, 64) }}
           .i-la-youtube(v-if="post?.youtube")
           .i-simple-icons-ipfs(v-if="post?.ipfs")
-          mdi-text-long(v-if="post?.text")
+          .i-mdi-text-long(v-if="post?.text")
           .i-la-link(
             v-if="post?.link" 
             :url="post?.link"

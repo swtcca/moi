@@ -48,7 +48,7 @@ const { post } = usePost({ hash: props.hash })
       .flex.items-center.flex-wrap.items-center.mt-2.gap-2
         .i-la-youtube.mx-1(v-if="post?.youtube")
         .i-simple-icons-ipfs.mx-1(v-if="post?.ipfs")
-        mdi-text-long.mx-1(v-if="post?.text")
+        .i-mdi-text-long.mx-1(v-if="post?.text")
         ui-link(
           v-if="post?.link" 
           :url="post?.link"

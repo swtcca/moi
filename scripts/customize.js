@@ -13,7 +13,7 @@ const customize = {
     [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
   ]},
   "./src/gun-vue/components/space/SpaceDraw.vue": { replaces: [
-    [`z-10.absolute`, `z-500.absolute`]
+    // [`z-10.absolute`, `z-500.absolute`]
   ]},
   "./src/gun-vue/components/space/SpacePlane.vue": { replaces: [
     [`svg.max-h-78vh.w-98vw`, `svg.h-96vh.w-98vw`]
@@ -42,10 +42,10 @@ const customize = {
     [`form-youtube\\(@update="postData.youtube = \\$event"\\)`, `form-youtube(@update="postData.youtube = $event")\n    form-ipfs(@update="postData.ipfs = $event")`],
   ]},
   "./src/gun-vue/components/post/PostCard.vue": { replaces: [
-    [`mdi-text-long.mx-1`, `simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n        mdi-text-long.mx-1`],
+    [`.i-mdi-text-long.mx-1`, `.i-simple-icons-ipfs.mx-1(v-if="post?.ipfs")\n        .i-mdi-text-long.mx-1`],
   ]},
   "./src/gun-vue/components/post/PostLine.vue": { replaces: [
-    [`mdi-text-long`, `simple-icons-ipfs(v-if="post?.ipfs")\n          mdi-text-long`],
+    [`.i-mdi-text-long`, `.i-simple-icons-ipfs(v-if="post?.ipfs")\n          .i-mdi-text-long`],
   ]},
   "./src/gun-vue/components/post/PostPage.vue": { replaces: [
     [`button.button.flex.items-center\\(@click`, `button.button.flex.items-center(v-if="false" @click`],
@@ -67,9 +67,9 @@ const customize = {
   //   [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
   // ]},
   "./src/gun-vue/composables/user/useUser.js": { replaces: [
-    [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n  gun.user().leave();`],
-    [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n  pair() {`],
-    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n  user.pulser = setInterval`]
+    [`gun.user\\(\\).leave\\(\\);`, `  user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n   gun.user().leave();`],
+    [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\npair() {`],
+    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n user.pulser = setInterval`]
   ]},
   "./src/gun-vue/components/ui/Uilayer.vue": { replaces: [
     [`10vh`, `5vh`],

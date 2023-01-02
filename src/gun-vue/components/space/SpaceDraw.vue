@@ -17,7 +17,7 @@ function setBrushColor(color) {
 </script>
 
 <template lang="pug">
-.z-500.absolute.top-4.left-4.right-4
+.z-10.absolute.top-4.left-4.right-4
   button.text-6xl.absolute(
     :class="{ active: draw.enabled }"
     :style="{ opacity: draw.enabled ? 0.2 : 1 }"

@@ -44,10 +44,13 @@ const { t } = useI18n()
     )
   .flex.flex-col
     .flex.justify-center.my-4
-      button.m-2.button.items-center(v-if="history.length > 2" @click="undo()")
+      button.m-2.button.items-center(
+        v-if="history.length > 2" 
+        @click="undo()"
+        )
         .i-la-undo.text-2xl
       button.m-2.button.items-center(@click="generatePair()")
-        fad-random-1dice.text-3xl
+        .i-fad-random-1dice.text-3xl
     input.p-4.rounded-2xl.my-2(
       v-model="name" 
       :placeholder="t('gunvue.enter_alias')"
