@@ -3,10 +3,30 @@
  * @module useAccount
  * */
 
-import { useGun, useUser, SEA } from "..";
-import { useColor } from "../ui";
-import { computed, reactive, ref } from "vue";
+export interface Profile {
+  name?: string
+  first_name?: string
+  last_name?: string
+  birth_day?: string
+  [key: string]: string | undefined
+}
+
+export interface Account {
+  pub: string | Ref
+  color: ComputedRef
+  pulse: number
+  blink: boolean
+  profile: Profile
+  petname?: string
+  db?: object
+  [key: string]: string | ComputedRef | number | Profile | boolean | Ref | object
+}
+
+import { useGun, useUser, SEA } from "../index.js";
+import { useColor } from "../ui/index.js";
+import { computed, ComputedRef, reactive, Ref, ref } from "vue";
 import ms from "ms";
+
 
 const colorDeep = useColor("deep");
 
@@ -24,7 +44,7 @@ const colorDeep = useColor("deep");
 
 /**
  * Load and handle user's account by a public key
- * @param {ref(string) | string} pub - The public key of a user as a string or a ref
+ * @param (Ref | string} pub - The public key of a user as a string or a ref
  * @returns {account}
  * @example
  * import { ref } from 'vue'
@@ -41,21 +61,23 @@ const colorDeep = useColor("deep");
  * generatePair()
  */
 
+
+
 export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   const gun = useGun();
   pub = ref(pub);
   const { user } = useUser()
   const account = computed(() => {
 
-    const obj = reactive({
-      pub,
+    const acc: Account = reactive({
+      pub: pub.value,
       color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
       profile: {
         name: "",
       },
       pulse: 0,
       lastSeen: computed(() => {
-        let time = Date.now() - obj.pulse;
+        const time = Date.now() - acc.pulse;
         if (time > TIMEOUT) {
           return ms(time);
         } else {
@@ -67,8 +89,8 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
     });
 
     if (user.is) {
-      gun.user().get('petnames').get(pub.value).on(async d => {
-        obj.petname = await SEA.decrypt(d, user.pair())
+      gun.user().get('petnames').get(pub.value).on(async (d: string) => {
+        acc.petname = await SEA.decrypt(d, user.pair())
       })
     }
 
@@ -78,23 +100,23 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
       .user(pub.value)
       .get("pulse")
       .on((d) => {
-        obj.blink = !obj.blink;
-        obj.pulse = d;
+        acc.blink = !acc.blink;
+        acc.pulse = d;
       })
       .back()
       .get("profile")
       .map()
-      .on((data, key) => {
-        obj.profile[key] = data;
+      .on((data: string, key: string) => {
+        acc.profile[key] = data;
       });
-    return obj;
+    return acc;
   });
 
   return { account, setPetname };
 }
 
 
-export async function setPetname(pub, name) {
+export async function setPetname(pub: string, name: string) {
   const { user } = useUser()
   if (!user.is) return
   const gun = useGun();

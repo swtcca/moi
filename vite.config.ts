@@ -153,7 +153,7 @@ export default defineConfig({
       __DATE__: new Date().toISOString(),
     }),
   ],
-  base: '/',
+  base: './',
   build: {
     target: "esnext",
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,

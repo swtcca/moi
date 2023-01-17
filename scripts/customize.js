@@ -4,7 +4,7 @@ const AsyncForEach = require("async-await-foreach")
 const chalk = require("chalk")
 
 const customize = {
-  "./src/gun-vue/composables/user/usePass.js": { replaces: [
+  "./src/gun-vue/composables/user/usePass.ts": { replaces: [
     [`if \\(pass.show `, `if (pass?.show `], // less strict
     [` "#\\/auth\\/" `, ` auth_url `], // history mode
     [`indexOf\\("#\\/auth\\/"`, `indexOf(auth_url`], // history mode
@@ -66,7 +66,7 @@ const customize = {
   //   [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n      db: gun.user`],
   //   [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
   // ]},
-  "./src/gun-vue/composables/user/useUser.js": { replaces: [
+  "./src/gun-vue/composables/user/useUser.ts": { replaces: [
     [`gun.user\\(\\).leave\\(\\);`, `  user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n   gun.user().leave();`],
     [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\npair() {`],
     [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n user.pulser = setInterval`]

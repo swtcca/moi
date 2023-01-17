@@ -2,6 +2,7 @@
  * Gun DB initialization and basic methods
  * @module useGun
  */
+import type { GunOptions, IGunInstance } from 'gun'
 
 import Gun from "gun/gun";
 import "gun/lib/then";
@@ -19,43 +20,47 @@ import "gun/lib/webrtc";
 // window.global = {}
 
 import { peer } from './useRelay'
+import { shallowReactive } from 'vue';
 
 
 // https://github.com/amark/gun/wiki/volunteer.dht
 // https://github.com/draeder/gun-relays
 
 /** The main Gun instance for database operations */
-export let gun;
+export let gun: IGunInstance;
 
 /** Secondary Gun instance for key management */
-export let gun2;
+export let gun2: IGunInstance;
+
+export const gunInstances = shallowReactive([])
 
 /**
  * Instantiate a Gun instance for DB manipulations
- * @param {Object} options - options fot this gun instance, like { localstorage:true }
- * @returns {Gun}
  * @example
  * import { useGun } from '@gun-vue/composables'
- *
  * const gun = useGun()
  */
 
-export function useGun(opts = { localStorage: false }) {
+export function useGun(options: GunOptions = { localStorage: false }): IGunInstance {
   if (!gun) {
-    gun = Gun({ peers: [peer.value], ...opts });
+    const opts = { peers: [peer.value] }
+    if (typeof options === 'object') {
+      Object.assign(opts, options)
+    }
+    gun = Gun(opts);
+    gunInstances.push(gun)
   }
   return gun;
 }
 
 /**
  * get a secondary Gun instance for certificate management
- * @param {object} options - options fot this gun instance, like { localstorage:true }
- * @returns {Gun}
  */
 
-export function useGun2(opts = { localStorage: false }) {
+export function useGun2(options: object = { localStorage: false }): IGunInstance {
   if (!gun2) {
-    gun2 = Gun({ peers: [peer.value], ...opts });
+    gun2 = Gun({ peers: [peer.value], ...options });
+    gunInstances.push(gun2)
   }
   return gun2;
 }
@@ -71,6 +76,8 @@ export { default as SEA } from "gun/sea.js";
  * A wrapper for `Gun.node.soul`
  * @function soul
  */
+
+// @ts-ignore: Incorrect GUN types
 export const soul = Gun?.node?.soul;
 
 /**
@@ -78,6 +85,8 @@ export const soul = Gun?.node?.soul;
  * A wrapper for `Gun.text.random`
  * @function genUUID
  */
-export const genUUID = Gun?.text?.random;
+
+// @ts-ignore: Incorrect Gun types
+export const genUUID: (num: number) => string = Gun?.text?.random;
 
 

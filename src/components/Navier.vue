@@ -45,9 +45,9 @@ watch(show, (value, old_value) => {
     </button>
     <button class="i-ph-playlist" v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
     </button>
-    <button class="i-mdi-graph-outline" v-if="/5173/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
+    <button class="i-mdi-graph-outline" v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
     </button>
-    <button v-if="/5173/.test(location_origin)" :title="t('button.relays')">
+    <button v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.relays')">
       <UtilRelay />
     </button>
     <router-link to="/upload/" class="i-simple-icons-ipfs">

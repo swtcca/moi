@@ -22,6 +22,7 @@ export const CHANNELS = [
     { id: 'UCMr_V1NOgeMForzMtE0-aVg', name: '不解探秘', title: '不解探秘', leagal: true },
     { id: 'UCp1nO1bgVwks9b5EhKQGVag', name: '幻海', title: '幻海航行', leagal: true },
     { id: 'UC6DHkJto-brj1xXQ0cxsqJA', name: '强国', title: '强国防务', leagal: true },
+    // { id: 'UC0Fshntq8GBl7ZtiAoOGuEA', name: '雷倩', title: '雷倩', leagal: true },
 
   ] as IChannel[]
 export const PLAYLISTS = [
@@ -36,5 +37,6 @@ export const PLAYLISTS = [
     // { id: 'UU5uh3zVGmvyQoks_LxBJ-5Q', name: '郑国成', title: '中国青年郑国成' },
     { id: 'UUOo6xtjQu3LuRzMTfFkGrSA', name: '迷彩虎', title: '迷彩虎', leagal: true },
     { id: 'UUnyPxKrdrXDjlBBucRAIuuA', name: '圆脸波士顿', title: '波士顿自干五-圆脸传媒', leagal: true },
-    { id: 'UUgo_-fjJxnLwwwq5dSY72rg', name: '自话总裁', title: '自说自话的总裁', leagal: true }
+    { id: 'UUgo_-fjJxnLwwwq5dSY72rg', name: '自话总裁', title: '自说自话的总裁', leagal: true },
+    { id: 'UULF0Fshntq8GBl7ZtiAoOGuEA', name: '雷倩', title: '雷倩', leagal: true },
   ] as IChannel[]
