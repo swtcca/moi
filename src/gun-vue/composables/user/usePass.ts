@@ -15,7 +15,7 @@ import { ISEAPair } from "gun";
  * @property {Object} dec
  */
 
-interface Pass {
+export interface Pass {
 	input: string
 	show: boolean
 	safePair: boolean
@@ -76,7 +76,7 @@ let initiated = false;
  * @returns {usePass}
  */
 
-interface UsePass {
+export interface UsePass {
 	pass: Pass
 	setPass: (text: string) => Promise<void>
 	logWithPass: (pub: string, passphrase: string) => Promise<void>

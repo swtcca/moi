@@ -40,8 +40,8 @@ export const selectedUser = reactive({
  */
 
 /**
- * @typedef {Object} User - An interface to the current gun user
- * @property {Boolean} initiated - `true` if useUser has been run at least once
+ * @interface User - An interface to the current gun user
+ * @property {boolean} initiated - `true` if useUser has been run at least once
  * @property {Object} is - Reactive `gun.user().is`
  * @property {String} pub - Current user public key
  * @property {String} color - a HEX color for the given pub
@@ -74,21 +74,22 @@ export const selectedUser = reactive({
  * }
 
  */
-interface User {
-	initiated: boolean;
-	auth: boolean; is: any;
-	name: string;
-	pub: string;
-	color: string;
-	pulse: number;
-	pulser: any;
-	blink: boolean;
+export interface User {
+	initiated: boolean
+	auth: boolean
+	is: any
+	name: string
+	pub: string
+	color: string
+	pulse: number
+	pulser: any
+	blink: boolean
 	safe: {
-		saved: any;
-		password: any;
+		saved: any
+		password: any
 	};
 	db?: IGunUserInstance
-	pair(): any;
+	pair(): ISEAPair;
 }
 
 export const user: User = reactive({
@@ -121,7 +122,7 @@ export const user: User = reactive({
  * const { user, auth, leave } = useUser()
  */
 
-interface UseUser {
+export interface UseUser {
 	user: User
 	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
 	leave: () => void
@@ -263,7 +264,7 @@ export function addProfileField(title: string) {
  * @example
  * import { updateProfile } from '@gun-vue/composables'
  *
- * updateProfile( 'city', 'Moscow' )
+ * updateProfile( 'city', 'Bangkok' )
  */
 
 export function updateProfile(field: string, data: string) {
