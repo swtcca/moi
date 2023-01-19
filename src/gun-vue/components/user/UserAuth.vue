@@ -73,7 +73,7 @@ const { t } = useI18n()
       tabindex="-1" 
       type="file" 
       accept="application/json" 
-      @change="uploadText($event, file => pair = file)"
+      @change="uploadText($event.target?.files, file => pair = file)"
       )
   .flex.flex-wrap
     transition(name="fade")
