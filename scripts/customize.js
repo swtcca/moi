@@ -29,7 +29,7 @@ const customize = {
     [`flex.flex-col.overflow-y-scroll.*`, `flex.flex-col.w-full.h-full`],
     [`p-4.bg-dark-50.bg-opacity-80`, `p-1.bg-dark-50.bg-opacity-80`],
     [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
-    [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets.jingtum?.activated" @click`]
+    [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets?.jingtum?.activated" @click`]
   ]},
   "./src/gun-vue/components/post/PostList.vue": { replaces: [
     [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
@@ -54,7 +54,7 @@ const customize = {
   ]},
   "./src/gun-vue/components/user/UserAvatar.vue": { replaces: [
     // [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
-    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="user.wallets.jingtum?.activated"`],
+    [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="user.wallets?.jingtum?.activated"`],
   ]},
   "./src/gun-vue/components/room/RoomPage.vue": { replaces: [
     [`pt-32.px-2`, `pt-12.px-2`],
