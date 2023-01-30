@@ -16,7 +16,17 @@ const customize = {
     [`pair\\(\\): ISEAPair {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\tpair(): ISEAPair {`],
     [`user.pulser = setInterval`, `gun.user()\n\t\t.get("wallets")\n\t\t.get("defaults")\n\t\t.map()\n\t\t.on((d, k) => {\n\t\t\tif (d) {\n\t\t\t\tdelete d._\n\t\t\t\tdelete d["#"]\n\t\t\t\tdelete d[">"]\n\t\t\t\tuser.wallets[k] = d;\n\t\t\t}\n\t\t});\n\tuser.pulser = setInterval`]
   ]},
+  "./src/gun-vue/components/post/action/PostActionReact.vue": { replaces: [
+    [`v-if="list.length < 4`, `v-if="4 > list.length`],
+  ]},
+  "./src/gun-vue/components/post/PostList.vue": { replaces: [
+    [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
+    [`v-if="countPosts < -1"`, `v-if="-1 > countPosts"`],
+    // [`v-if="countPosts > 0"`, `v-if="-1 > countPosts"`],
+    // [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
+  ]},
   "./src/gun-vue/components/space/SpaceDraw.vue": { replaces: [
+    [`<.i-carbon-erase />`, `<div class="i-carbon-erase" />`],
     // [`z-10.absolute`, `z-500.absolute`]
   ]},
   "./src/gun-vue/components/space/SpacePlane.vue": { replaces: [
@@ -34,11 +44,6 @@ const customize = {
     [`p-4.bg-dark-50.bg-opacity-80`, `p-1.bg-dark-50.bg-opacity-80`],
     [`import { useChat, useUser, useBackground, currentRoom }`, `import { useChat, useUser, useBackground, currentRoom, rootRoom }`],
     [`cursor-pointer.self-center.text-2xl.p-2\\(@click`, `cursor-pointer.self-center.text-2xl.p-2(v-if="currentRoom.pub !== rootRoom.pub || user.wallets?.jingtum?.activated" @click`]
-  ]},
-  "./src/gun-vue/components/post/PostList.vue": { replaces: [
-    [`\\(title="Upload feed"`, `(v-if="1 > 2" title="Upload feed"`],
-    [`v-if="countPosts > 0"`, `v-if="countPosts < -1"`],
-    // [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
   ]},
   "./src/gun-vue/components/post/PostForm.vue": { replaces: [
     [`text: false`, `ipfs: false,\n  text: false`],
