@@ -5,12 +5,16 @@ const chalk = require("chalk")
 
 const customize = {
   "./src/gun-vue/composables/user/usePass.ts": { replaces: [
-    [`if \\(pass.show `, `if (pass?.show `], // less strict
     [` "#\\/auth\\/" `, ` auth_url `], // history mode
     [`indexOf\\("#\\/auth\\/"`, `indexOf(auth_url`], // history mode
     [`link.substr\\(index \\+ 7\\)`,`link.substr(index + auth_url.length)`], // paramize
-    [`function genLink\\(text = ""\\)`,`function genLink(text = "", auth_url="#/auth/")`], // params
-    [`function parseLink\\(link\\)`,`function parseLink(link, auth_url="#/auth/")`], // params
+    [`function genLink\\(text = ""\\)`,`function genLink(text = "", auth_url = "#/auth/")`], // params
+    [`function parseLink\\(link: string\\)`,`function parseLink(link: string, auth_url = "#/auth/")`], // params
+  ]},
+  "./src/gun-vue/composables/user/useUser.ts": { replaces: [
+    [`gun.user\\(\\).leave\\(\\);`, `user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n\tgun.user().leave();`],
+    [`pair\\(\\): ISEAPair {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\tpair(): ISEAPair {`],
+    [`user.pulser = setInterval`, `gun.user()\n\t\t.get("wallets")\n\t\t.get("defaults")\n\t\t.map()\n\t\t.on((d, k) => {\n\t\t\tif (d) {\n\t\t\t\tdelete d._\n\t\t\t\tdelete d["#"]\n\t\t\t\tdelete d[">"]\n\t\t\t\tuser.wallets[k] = d;\n\t\t\t}\n\t\t});\n\tuser.pulser = setInterval`]
   ]},
   "./src/gun-vue/components/space/SpaceDraw.vue": { replaces: [
     // [`z-10.absolute`, `z-500.absolute`]
@@ -66,11 +70,6 @@ const customize = {
   //   [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n      db: gun.user`],
   //   [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]
   // ]},
-  "./src/gun-vue/composables/user/useUser.ts": { replaces: [
-    [`gun.user\\(\\).leave\\(\\);`, `  user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n   gun.user().leave();`],
-    [`pair\\(\\) {`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\npair() {`],
-    [`user.pulser = setInterval`, `gun.user()\n    .get("wallets")\n    .get("defaults")\n    .map()\n    .on((d, k) => {\n      if (d) {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        user.wallets[k] = d;\n      }\n    });\n user.pulser = setInterval`]
-  ]},
   "./src/gun-vue/components/ui/Uilayer.vue": { replaces: [
     [`10vh`, `5vh`],
   ]},
