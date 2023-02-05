@@ -1,29 +1,22 @@
 /**
  * Read and write zip files
- * @module useZip
+ * @module Zip
+ * @group Files
  * @see https://github.com/Stuk/jszip
  * */
 
 import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
-import { genUUID } from "../gun/";
+import { genUUID } from "../gun";
 import { createMd } from "./useMd";
+import type { MdContent } from "./useMd";
 import { loadFromHash } from "../posts";
 
-/**
- * @typedef useZip
- * @property {JSZip} zip - a JSZip instance
- * @property {Function} zipPost - treats a post with md contents and cover and icon images and adds them to the zip
- * @property {Function} addMd - add a MD file to the zip
- * @property {Function} addFile - add a binary file to the zip
- * @property {Function} downloadZip - initiate the download of the zip file
- */
 
 /**
  * Zip file creation toolbox
- * @returns {useZip}
  * @example
- * import {useZip} from '@gun-vue/composables'
+ * import { useZip } from '@gun-vue/composables'
  * const { zip, zipPost, addMd, addFile, downloadZip } = useZip()
  */
 
@@ -33,8 +26,6 @@ export function useZip() {
   /**
    * Add a binary file to the zip
    * @async
-   * @param {Object} options
-   * @returns {String} the resulting filename
    * @example
    *  if (post.cover) { // a base64 encoded picture
    *   const fileName = await addFile({
@@ -45,18 +36,24 @@ export function useZip() {
    *   post.cover = fileName;
    * }
    */
-
-  async function addFile({ title, file, folder = "." } = {}) {
+  async function addFile({ title, file, folder = "." }: {
+    title: string
+    file: string
+    folder?: string
+  }) {
     const fileType = base64FileType(file);
     const extension = base64Extension(file);
     const blob = await fetch(file).then((res) => res.blob());
     const fileName = `${title}.${extension}`;
-    zip.file(`${folder}/${fileName}`, blob, fileType);
+    zip.file(`${folder}/${fileName}`, blob);
     return fileName;
   }
 
-  function addMd({ md, title } = {}) {
-    zip.file(`${title}/index.md`, createMd(md), "text/markdown");
+  function addMd({ md, title }: {
+    md: MdContent
+    title: string
+  }) {
+    zip.file(`${title}/index.md`, createMd(md));
   }
 
   /**
@@ -65,11 +62,17 @@ export function useZip() {
    * @async
    */
 
-  async function zipPost(post = {}) {
-    let { text, title, statement } = post;
+  async function zipPost(post: {
+    text?: string
+    title?: string
+    statement?: string
+    content?: string
+  }) {
+    let { text, title, statement, content } = post;
     delete post?.text;
+    delete post?.content
     if (!title) {
-      title = statement ? statement.split(0, 12) : genUUID();
+      title = statement ? statement.slice(0, 12) : genUUID();
     }
 
     const files = ["cover", "icon"];
@@ -93,7 +96,7 @@ export function useZip() {
       title,
       md: {
         frontmatter: post,
-        text,
+        content: text || content,
       },
     });
   }

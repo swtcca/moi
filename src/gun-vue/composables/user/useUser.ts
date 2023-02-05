@@ -1,7 +1,7 @@
 /**
- * Basic user management
- * @module useUser
- * */
+ * @module User
+ * @group Users
+ */
 
 import { gun, useGun } from "..";
 import { useColor } from "../ui";
@@ -16,41 +16,6 @@ export const selectedUser = reactive({
 });
 
 /**
- * @typedef {Object} Account - the user account interface
- * @property {ref} pub - The pub key used to build the account
- * @property {computed} color - The user account color derived from the pub key
- * @property {Object} profile - An object with all the `gun.user().get('profile')` data
- * @property {Number} pulse - latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds.
- * @property {Boolean} blink - A boolean that toggles on every timestamp received
- * @property {Sting} lastSeen - Shows 'online' if recent pulse is less then 10s ago or a human readable time string
- * @property {gun} db - `gun.user(pub)` ref to query any additional user data
- * @example
- * {
- * "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
- * "color": "#f55c3d",
- * "profile": {
- *    "name": "Accord",
- *    "Message": "Use your imagination!",
- *    "Money": "$ 20000000000"
- * },
- * "pulse": 1642077216809,
- * "lastSeen": "online",
- * "blink": true
- * }
- */
-
-/**
- * @interface User - An interface to the current gun user
- * @property {boolean} initiated - `true` if useUser has been run at least once
- * @property {Object} is - Reactive `gun.user().is`
- * @property {String} pub - Current user public key
- * @property {String} color - a HEX color for the given pub
- * @property {Number} pulse - Last received pulse timestamp
- * @property {Number} pulser - An id for pulse `setInterval`
- * @property {Boolean} blink - Toggles with every pulse received
- * @property {Object} db - `gun.user()` reference
- * @property {Object} safe - safe account indicators
- * @property {Function} pair - use `user.pair()` to get curent user key pair
  * @example
  * { 
  *  "initiated": true, 
@@ -72,12 +37,15 @@ export const selectedUser = reactive({
  *  "pass": "SEA{\"ct\":\"8wNClMx/ebfou+gGWdf+bbx0TAgc9RU=\",\"iv\":\"NPgHkI+Ke+i/mw+3chlr\",\"s\":\"3VzGv06Y4fQ+\"}" 
  *  } 
  * }
-
  */
 export interface User {
 	initiated: boolean
 	auth: boolean
-	is: any
+	is: {
+		pub?: string,
+		epub?: string,
+		alias?: ISEAPair | string
+	}
 	name: string
 	pub: string
 	color: string
@@ -85,7 +53,10 @@ export interface User {
 	pulser: any
 	blink: boolean
 	safe: {
-		[key: string]: string | undefined
+		saved: boolean
+		password: string
+		enc: string
+		pass: string
 	};
 	db?: IGunUserInstance
 	pair(): ISEAPair;
@@ -102,8 +73,10 @@ export const user: User = reactive({
 	pulser: null,
 	blink: false,
 	safe: {
-		saved: '',
+		saved: false,
 		password: '',
+		enc: '',
+		pass: ''
 	},
 	db: undefined,
 	wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
@@ -113,23 +86,17 @@ export const user: User = reactive({
 	},
 });
 
+
+
 /**
  * Get access to current logged in user
- * @returns {useUser}
  * @example
  * import { useUser } from '@gun-vue/composables'
  *
  * const { user, auth, leave } = useUser()
  */
 
-export interface UseUser {
-	user: User
-	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
-	leave: () => void
-}
-
-export function useUser(): UseUser {
-
+export function useUser() {
 	if (!user.initiated) {
 		const gun = useGun();
 		user.db = gun.user();
@@ -196,7 +163,6 @@ function init() {
 
 /**
  * Authenticate with a SEA key pair
- * @param {Object} pair
  * @example
  * import { auth, SEA } from '@gun-vue/composables'
  *
@@ -208,7 +174,6 @@ function init() {
 
 export async function auth(pair: ISEAPair, cb = (pair: ISEAPair) => { }) {
 	if (!isPair(pair)) {
-		// pair = await SEA.pair();
 		console.log("incorrect pair", pair);
 		return;
 	}
@@ -248,7 +213,6 @@ export function isMine(soul: string) {
 
 /**
  * Add a field to the User profile
- * @param {String} title
  * @example import { addProfileField } from '@gun-vue/composables'
 
 addProfileField( 'city' )
@@ -259,8 +223,6 @@ export function addProfileField(title: string) {
 
 /**
  * Update a profile field
- * @param {String} field
- * @param {Any} data
  * @example
  * import { updateProfile } from '@gun-vue/composables'
  *
@@ -275,8 +237,6 @@ export function updateProfile(field: string, data: string) {
 
 /**
  * Check if the object is a proper SEA pair
- * @param {Object} pair - an object to check
- * @returns {Boolean}
  */
 
 export function isPair(pair: ISEAPair): boolean {

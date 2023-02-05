@@ -2,10 +2,11 @@
 
 rm -fr src/gun-vue/*
 cp -av /Users/xcliu/tests/gun-vue/composables/src src/gun-vue/composables
-git checkout src/gun-vue/composables/room/rootRoom.js
+git checkout src/gun-vue/composables/room/rootRoom.json
 cp -av /Users/xcliu/tests/gun-vue/components/src src/gun-vue/components
 git checkout src/gun-vue/components/embed/EmbedIpfs.vue
 git checkout src/gun-vue/components/form/FormIpfs.vue
+# git checkout src/gun-vue/components/index.ts
 
 cat << ENDF >> src/gun-vue/components/form/index.js
 

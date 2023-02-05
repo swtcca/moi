@@ -1,8 +1,12 @@
 /**
  * Basic user management
- * @module useAccount
+ * @module Account
+ * @group Users
  * */
 
+/**
+ * @group Account
+ */
 export interface Profile {
   name?: string
   first_name?: string
@@ -11,6 +15,9 @@ export interface Profile {
   [key: string]: string | undefined
 }
 
+/**
+ * @group Account
+ */
 export interface Account {
   pub: string | Ref
   color: string
@@ -25,26 +32,15 @@ import { useGun, useUser, SEA } from "../index.js";
 import { useColor } from "../ui/index.js";
 import { computed, ComputedRef, reactive, Ref, ref } from "vue";
 import ms from "ms";
+import { MaybeRef } from "@vueuse/core"
 
 
 const colorDeep = useColor("deep");
-
-/**
- * @typedef {computed(object)} account 
- * Reactive account data
- * @property {string} pub   the pub key
- * @property {string} color the color hash of the pub key
- * @property {object} profile all the profile fields of the account
- * @property {number} pulse the recent presence timestamp
- * @property {boolean} blink on/off switching pulse
- * @property {'online' | string} lastSeen a human readable last seen status ('online' if less than TIMEOUT)
- */
-
+const TIMEOUT = 10000
 
 /**
  * Load and handle user's account by a public key
- * @param {Ref | string} pub - The public key of a user as a string or a ref
- * @returns {account}
+ * @group Account
  * @example
  * import { ref } from 'vue'
  * import { useAccount, SEA } from '@gun-vue/composables'
@@ -59,12 +55,12 @@ const colorDeep = useColor("deep");
  * 
  * generatePair()
  */
-
-
-
-export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
+export function useAccount(pubKey: MaybeRef<string>): {
+  account: ComputedRef<Account>
+  setPetname: Function
+} {
   const gun = useGun();
-  pub = ref(pub);
+  const pub = ref(pubKey);
   const { user } = useUser()
   const account = computed(() => {
 
@@ -93,8 +89,6 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
       })
     }
 
-
-
     gun
       .user(pub.value)
       .get("pulse")
@@ -114,7 +108,9 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   return { account, setPetname };
 }
 
-
+/**
+ * @group Account
+ */
 export async function setPetname(pub: string, name: string) {
   const { user } = useUser()
   if (!user.is) return

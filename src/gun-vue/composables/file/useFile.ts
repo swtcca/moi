@@ -1,6 +1,7 @@
 /**
  * File handling functions
- * @module useFile
+ * @module File
+ * @group Files
  * */
 
 import { reactive } from "vue";
@@ -13,7 +14,7 @@ import { reactive } from "vue";
  * @param isBlob 
  */
 
-export function downloadFile(text: string, fileType: string, fileName: string, isBlob = true) {
+export function downloadFile(text: string | Blob, fileType: string, fileName: string, isBlob = true) {
   const a = document.createElement("a");
   a.download = fileName;
 
@@ -39,7 +40,6 @@ interface HTMLInputEvent extends Event {
 
 /**
  * Upload and parse JSON keypair
- * @param file - `$event.target.files[0]` from the `@change` handler of the input type="file"
  * @param {Function} callback - a function to handle the loaded file from the reader
  */
 

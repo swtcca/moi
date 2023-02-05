@@ -12,7 +12,10 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "baseUrl": "./",
-    "lib": ["esnext", "dom", "dom.iterable"]
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "paths": {
+      "#composables": ["./gun-vue/composables"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

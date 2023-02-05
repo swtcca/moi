@@ -1,3 +1,8 @@
+/**
+ * @module Draw
+ * @group Space
+ */
+
 import { computed, markRaw, nextTick, reactive, ref, onMounted } from 'vue'
 import { createDrauu, Drauu, Options } from 'drauu'
 import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'
@@ -62,7 +67,7 @@ export function loadCanvas() {
   if (draw.content != null)
     drauu.load(draw.content)
   else
-    drauu.clear()
+    drauu?.clear()
   disableDump = false
 }
 
@@ -93,11 +98,12 @@ export function useDraw() {
         let content = drauu.dump()
         draw.content = content
 
-        gun.user(currentRoom.pub).get('space').get(user.pub).get('draw').put(content, null, { opt: { cert: currentRoom.features?.space } })
+        gun.user(currentRoom.pub).get('space').get(user.pub).get('draw').put(content, undefined, { opt: { cert: currentRoom.features?.space } })
       }
     }, 200)
 
     drauu.on('changed', debouncedDraw)
+
     onMounted(() => {
       nextTick(() => {
         loadCanvas()
@@ -111,7 +117,7 @@ export function useDraw() {
     draw.clear = () => {
       drauu.clear()
       draw.content = ''
-      drawing.put('', null, { opt: { cert: currentRoom.features?.space } })
+      drawing.put('', undefined, { opt: { cert: currentRoom.features?.space } })
     }
 
     const brushColors = []

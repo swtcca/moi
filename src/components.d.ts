@@ -126,6 +126,7 @@ declare module '@vue/runtime-core' {
     SpaceGuest: typeof import('./gun-vue/components/space/SpaceGuest.vue')['default']
     SpacePlane: typeof import('./gun-vue/components/space/SpacePlane.vue')['default']
     'SpacePlane.story': typeof import('./gun-vue/components/space/SpacePlane.story.vue')['default']
+    TheFooter: typeof import('./components/TheFooter.vue')['default']
     UiButton: typeof import('./gun-vue/components/ui/UiButton.vue')['default']
     UiLayer: typeof import('./gun-vue/components/ui/UiLayer.vue')['default']
     UiLink: typeof import('./gun-vue/components/ui/UiLink.vue')['default']

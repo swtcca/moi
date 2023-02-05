@@ -1,6 +1,9 @@
 /**
- * @module useDictionary
+ * @module Dict
+ * @group Dictionary
  */
+
+export * from './langs'
 
 import Fuse from "fuse.js";
 import { ref, reactive, computed, watch, type Ref, ComputedRef } from 'vue'

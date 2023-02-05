@@ -1,6 +1,7 @@
 /**
  * A 2D-space
- * @module useSpace
+ * @module Space
+ * @group Space
  */
 
 import { useGun } from "..";
@@ -8,11 +9,9 @@ import { useSvgMouse } from "../ui";
 import { useUser } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
-import { ArrowDescriptor, getArrow } from "curved-arrows";
+import { getArrow } from "curved-arrows";
 import { useElementBounding } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
-
-
 
 export interface Guest {
   pub: string

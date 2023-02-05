@@ -2,6 +2,7 @@
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
+// import TheFooter from "./components/TheFooter.vue"
 
 
 const router = useRouter()
@@ -44,13 +45,10 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
-  router-view(v-slot="{ Component }")
-    transition(
-      name="fade"
-      mode="out-in")
-      keep-alive
-        component.flex-auto.overflow-y-scroll(:is="Component")
+.app-container
+  .grid.Main.overflow-y-scroll.max-h-full
+    router-view(v-slot="{ Component }")
+      component(:is="Component")
 </template>
 
 <style lang="postcss">
@@ -63,16 +61,15 @@ body {
   touch-action: pan-x pan-y;
 }
 #app {
-  @apply h-full w-full flex;
+  @apply w-full h-full flex;
 }
-
 
 .app-container {
   display: grid;
   width: 100%;
   height: 100vh;
   grid-template-columns: fit-content(20%) auto auto;
-  grid-template-rows: 0.1fr auto auto;
+  grid-template-rows: 0.1fr auto fit-content(15%);
   gap: 0px 0px;
   grid-template-areas:
     "Side Top Top"

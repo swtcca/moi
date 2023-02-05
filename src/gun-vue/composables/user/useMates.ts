@@ -1,6 +1,7 @@
 /**
  * Connections between accounts
- * @module useMates
+ * @module Mates
+ * @group Users
  */
 
 import { reactive, Ref, ref } from "vue";

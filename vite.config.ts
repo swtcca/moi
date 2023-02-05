@@ -74,7 +74,8 @@ export default defineConfig({
       globalNamespaces: ["global"],
       extensions: ['vue'],
       // allow auto import and register components used in markdown
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      // include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      include: [/\.vue$/, /\.vue\?vue/],
       exclude: [/node_modules/, /\.git/],
       dts: 'src/components.d.ts',
     }),

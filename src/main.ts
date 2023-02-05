@@ -2,9 +2,10 @@ import { createApp, ref } from "vue";
 import { pinia } from "./stores"
 import { globalState } from "./stores/globalState"
 
-import "#components/styles/index.css"; // use '@gun-vue/components/styles/index.css' in your apps
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
 import "./gun-vue/components/styles/index.css";
-import "./styles/styles.scss";
+// import "./styles/styles.scss";
 
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
@@ -24,12 +25,13 @@ import { currentRoom } from './gun-vue/composables';
 
 import App from "./App.vue"
 
-const routes_layouts = setupLayouts(generatedRoutes)
+const routes = setupLayouts(generatedRoutes)
+// import routes from "~pages"
+console.dir(routes)
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...routes_layouts],
-  // routes: [...routes],
+  routes: [...routes],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
@@ -44,7 +46,7 @@ app.use(pinia)
 app.use(router)
 app.use(GunVuePlugin)
 // install all modules under `modules/`
-Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes: routes_layouts }))
+Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes }))
 
 router.isReady().then(async () => {
   app.mount("#app");

@@ -1,15 +1,29 @@
+/**
+ * @module Cast
+ * @group Files
+ */
+
 import { useTimestamp } from '@vueuse/core'
 import { useDevicesList, useEventListener, useStorage } from '@vueuse/core'
 import { ref, reactive, computed, watch, shallowRef, nextTick } from 'vue'
 import type { Ref } from 'vue'
 import type { Options } from 'recordrtc'
 
+
 export const currentCamera: Ref<string> = useStorage('cast-camera', 'default')
+
+
 export const currentMic: Ref<string> = useStorage('cast-mic', 'default')
 
+
 export const recordingName = ref('')
+
+
 export const recordCamera = ref(true)
+
+
 export const mimeType: Ref<string> = useStorage('slidev-record-mimetype', 'video/webm')
+
 
 export const mimeExtMap = {
   'video/webm': 'webm',
@@ -17,7 +31,9 @@ export const mimeExtMap = {
   'video/x-matroska;codecs=avc1': 'mkv',
 }
 
+
 export type MimeTypes = 'video/webm' | 'video/webm;codecs=h264' | 'video/x-matroska;codecs=avc1' | undefined
+
 
 export function getFilename(media: string, mimeType: MimeTypes) {
   const d = new Date()
@@ -31,6 +47,7 @@ export function getFilename(media: string, mimeType: MimeTypes) {
   return `${[date, media, recordingName.value].filter(el => !!el).join('-')}.${ext}`
 }
 
+
 export function getSupportedMimeTypes() {
   if (MediaRecorder && typeof MediaRecorder?.isTypeSupported === 'function') {
     return Object.keys(mimeExtMap).filter(mime => MediaRecorder.isTypeSupported(mime))
@@ -38,10 +55,12 @@ export function getSupportedMimeTypes() {
   return []
 }
 
+
 export const fileNames = reactive({
   screen: computed(() => getFilename('screen', mimeType.value as MimeTypes)),
   camera: computed(() => getFilename('camera', mimeType.value as MimeTypes)),
 })
+
 
 export const {
   devices,
@@ -61,6 +80,7 @@ export const {
   },
 })
 
+
 export function download(name: string, url: string) {
   const a = document.createElement('a')
   a.setAttribute('href', url)
@@ -69,6 +89,7 @@ export function download(name: string, url: string) {
   a.click()
   document.body.removeChild(a)
 }
+
 
 export function useRecording() {
   const recording = ref(false)
@@ -263,5 +284,6 @@ export function useRecording() {
     streamSlides,
   }
 }
+
 
 export const cast = useRecording()

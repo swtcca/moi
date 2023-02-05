@@ -1,5 +1,6 @@
 /**
- * @module useRoom
+ * @module Room
+ * @group Rooms
  */
 
 import {
@@ -9,12 +10,33 @@ import {
   generateCerts,
   useUser,
   user,
-  hashText
+  hashText,
+  downloadFile
 } from "..";
-import { rootRoom } from "./rootRoom";
+import rootRoom from "./rootRoom.json";
 import { reactive, computed, ref, watchEffect } from "vue";
+import { ISEAPair } from "gun";
 
-export const currentRoom = reactive({
+export interface CurrentRoom {
+  pub: string
+  isRoot: boolean
+  hosts?: {
+    [key: string]: {
+      enc?: string
+      features?: string
+      profile?: string
+      hosts?: string
+    }
+  }
+  features?: {
+    [key: string]: string
+  }
+  profile?: {
+    [key: string]: string
+  }
+}
+
+export const currentRoom: CurrentRoom = reactive({
   pub: rootRoom.pub,
   isRoot: computed(() => currentRoom.pub == rootRoom.pub),
   hosts: {},
@@ -53,20 +75,20 @@ watchEffect(() => {
 
 /**
  * Reactive room controls
- * @returns {useRoom}
  */
 
 export function useRoom(pub = currentRoom.pub) {
 
-  const room = reactive({
-    pub,
-    isRoot: pub != rootRoom.pub,
+  const room: CurrentRoom = reactive({
+    pub: pub,
+    isRoot: computed(() => pub == rootRoom.pub),
     hosts: {},
     features: {},
     profile: {},
   });
 
   const gun = useGun();
+
   gun
     .user(pub)
     .get("profile")
@@ -113,7 +135,7 @@ export function useRoomLogo(pub = currentRoom.pub) {
     })
   })
 
-  async function uploadLogo(file) {
+  async function uploadLogo(file: string) {
     if (file) {
       const hash = await hashText(file)
       gun.get('#logos').get(hash).put(file)
@@ -140,7 +162,7 @@ export function useRooms() {
   return { rooms, createRoom };
 }
 
-export function listPersonal(tag, pub = currentRoom.pub) {
+export function listPersonal(tag: string, pub = currentRoom.pub) {
   const gun = useGun();
   const records = reactive({});
   gun
@@ -161,7 +183,7 @@ export function listPersonal(tag, pub = currentRoom.pub) {
  * @param {String} content
  */
 
-export function updateRoomProfile(field, content) {
+export function updateRoomProfile(field: string, content: any) {
   const gun = useGun();
   const { user } = useUser();
   let certificate = currentRoom.hosts?.[user.pub]?.profile;
@@ -176,10 +198,11 @@ export function updateRoomProfile(field, content) {
  * Create a new room inside the current room
  */
 
-export async function createRoom({ pair, name } = {}) {
+export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string }) {
   const { user } = useUser();
   // if (!pair) pair = await SEA.pair();
   if (!pair) return;
+  const roomPub = pair.pub
 
   const certs = await generateCerts({
     pair,
@@ -205,28 +228,23 @@ export async function createRoom({ pair, name } = {}) {
   const enc = await SEA.encrypt(pair, user.pair());
   const dec = await SEA.decrypt(enc, user.pair());
 
+  const forRoot = {
+    pub: dec.pub,
+    hosts: { [user.pub]: { enc, ...certs } },
+    features,
+  }
+
   console.log(
     "COPY THIS ROOM INFO TO USE IT AS A ROOT",
-    {
-      pub: dec.pub,
-      hosts: { [user.pub]: { enc, ...certs } },
-      features,
-    },
+    forRoot,
     "STORE THIS KEY PAIR IN A SAFE PLACE",
     dec
   );
 
   const gun = useGun();
-  gun.user().get("safe").get("rooms").get(dec.pub).put(enc);
+  await gun.user().get("safe").get("rooms").get(roomPub).put(enc).then();
 
-  gun
-    .user(currentRoom.pub)
-    .get("rooms")
-    .get(`${dec.pub}@${user.pub}`)
-    .put(true, null, { opt: { cert: currentRoom?.features?.rooms } });
-
-  const roomDb = gun.user(dec.pub);
-  roomDb
+  await gun.user(roomPub)
     .get("hosts")
     .get(user.pub)
     .put(
@@ -236,24 +254,33 @@ export async function createRoom({ pair, name } = {}) {
       },
       null,
       { opt: { cert: certs.hosts } }
-    );
-  roomDb.get("features").put(features, null, { opt: { cert: certs.features } });
+    ).then();
+
+  await gun.user(roomPub).get("features").put(features, null, { opt: { cert: certs.features } }).then();
 
   if (name) {
-    roomDb.get("profile").put({ name }, null, { opt: { cert: certs.profile } });
+    await gun.user(roomPub).get("profile").put({ name }, null, { opt: { cert: certs.profile } }).then();
   }
 
+  await gun
+    .user(currentRoom.pub)
+    .get("rooms")
+    .get(`${roomPub}@${user.pub}`)
+    .put(true, null, { opt: { cert: currentRoom?.features?.rooms } }).then();
+
+  downloadFile(JSON.stringify(forRoot), 'application/json', 'rootRoom.json')
+  downloadFile(JSON.stringify(dec), 'application/json', name + '-room.json')
   // enterRoom(pair.pub);
 }
 
-export async function recreateRoom(enc) {
-  const dec = await SEA.decrypt(enc, user.pair());
+export async function recreateRoom(enc: string) {
+  const dec: ISEAPair = await SEA.decrypt(enc, user.pair());
   createRoom({
     pair: dec,
   });
 }
 
-export async function submitRoom(pub) {
+export async function submitRoom(pub: string) {
   const gun = useGun();
   const already = await gun
     .user(currentRoom.pub)
@@ -284,7 +311,7 @@ export function joinRoom() {
  * @param {String} pub
  */
 
-export function enterRoom(pub) {
+export function enterRoom(pub: string): void {
   currentRoom.pub = pub;
 }
 
@@ -302,7 +329,13 @@ export async function addPersonal({
   text,
   pub = currentRoom.pub,
   cert,
-} = {}) {
+}: {
+  tag: string
+  key: string
+  text: string
+  pub: string
+  cert: string
+}) {
   if (!cert) cert = await gun.user(pub).get("features").get(tag).then();
   if (!cert) {
     cert = currentRoom.features?.[`${tag}`];

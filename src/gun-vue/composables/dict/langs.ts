@@ -1,3 +1,9 @@
+/**
+ * @module DictLangs
+ * @group Dictionary
+ */
+
+
 export const langParts = {
   noun: {
     en: 'noun',

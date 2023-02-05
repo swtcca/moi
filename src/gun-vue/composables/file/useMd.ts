@@ -1,35 +1,41 @@
 /**
  * Handle Markdown files
- * @module useMd
+ * @module Md
+ * @group Files
  * */
 
-import yaml from "yaml";
+import yamlify from "yamlify-object";
 import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
+import { parse } from 'ultramatter'
+
 
 export interface MdContent {
-  frontmatter?: object;
+  frontmatter?: {
+    title?: string
+    icon?: string
+    cover?: string
+  };
   content?: string;
 }
 
 /**
- *  Join markdown with frontmatter object and render to a string
+ *  Merge markdown content with a frontmatter object and render to a string
  */
 export function createMd({
   frontmatter = null,
-  text = "",
-}: {
-  frontmatter?: object;
-  text?: string;
-}) {
+  content = "",
+}: MdContent) {
   let front = "";
-  if (typeof frontmatter == "object") {
-    let yml = yaml.stringify(frontmatter);
-    front = `---
-${yml}---
- `;
-    return front + text;
+  if (frontmatter && typeof frontmatter == "object" && Object.keys(frontmatter).length > 0) {
+    front = yamlify(frontmatter, {
+      indent: '',
+      prefix: '---\n',
+      postfix: '\n---\n'
+    });
   }
+  return front + content;
+
 }
 
 /**
@@ -38,22 +44,7 @@ ${yml}---
  * @returns An object with md frontmatter and content
  */
 export function parseMd(file: string): MdContent {
-  const yamlBlockPattern = /^(?:---)(.*?)(?:---|\.\.\.)(?:\n*\s*)(.*)/s;
-
-  const md: MdContent = {
-    frontmatter: {},
-    content: "",
-  };
-  const yml = yamlBlockPattern.exec(file.trim());
-
-  if (yml) {
-    let frontmatter = yml[1];
-    md.content = yml?.[2];
-    try {
-      md.frontmatter = yaml.parse(frontmatter);
-    } catch { }
-  }
-  return md;
+  return parse(file)
 }
 
 

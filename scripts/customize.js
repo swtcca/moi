@@ -32,6 +32,12 @@ const customize = {
   "./src/gun-vue/components/space/SpacePlane.vue": { replaces: [
     [`svg.max-h-78vh.w-98vw`, `svg.h-96vh.w-98vw`]
   ]},
+  "./src/gun-vue/components/room/RoomPage.vue": { replaces: [
+    [`pt-32.px-2`, `pt-12.px-2`],
+  ]},
+  "./src/pages/space.vue": { replaces: [
+    [`space-plane.h-90vh`, `space-plane.h-95vh`],
+  ]},
   "./src/gun-vue/components/chat/ChatInput.vue": { replaces: [
     [`textarea.p-2.rounded-xl.bg-light-200`, `textarea.px-2.rounded-xl.bg-light-200`],
     [`p-4.flex.flex-col.items-center`, `p-2.flex.flex-col.items-center`],
@@ -64,9 +70,6 @@ const customize = {
   "./src/gun-vue/components/user/UserAvatar.vue": { replaces: [
     // [`form-picture.absolute\\(\n    :options`, `form-picture.absolute(\n    v-if="false"\n    :options`],
     [`form-picture.absolute\\(`, `form-picture.absolute(\n    v-if="user.wallets?.jingtum?.activated"`],
-  ]},
-  "./src/gun-vue/components/room/RoomPage.vue": { replaces: [
-    [`pt-32.px-2`, `pt-12.px-2`],
   ]},
   "./src/gun-vue/components/user/UserAuth.vue": { replaces: [
     [`  console.log\\(p\\)`, `// console.log(p)`],
