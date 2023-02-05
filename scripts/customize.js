@@ -4,6 +4,10 @@ const AsyncForEach = require("async-await-foreach")
 const chalk = require("chalk")
 
 const customize = {
+  "./src/gun-vue/components/user/UserIcon.vue": { replaces: [
+    [`size: { type: Number, default: 42 }`, `showName: { type: Boolean, default: true },\n  size: { type: Number, default: 42 }`],
+    [`:size="size"`, `:size="size"\n    :showName="showName"`]
+  ]},
   "./src/gun-vue/composables/user/usePass.ts": { replaces: [
     [` "#\\/auth\\/" `, ` auth_url `], // history mode
     [`indexOf\\("#\\/auth\\/"`, `indexOf(auth_url`], // history mode
