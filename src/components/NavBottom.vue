@@ -27,6 +27,7 @@ const color = useColor('light')
     .i-ph-gear(v-else)
   user-icon(
     :size="32"
+    :showName="false"
     @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
     @post="$router.push(`/posts/${$event}`)"
     @chat="$router.push(`/my/chat/${$event}`)"
