@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { globalState } from "../stores/globalState"
-import { currentRoom, useBackground, useColor } from '../gun-vue/composables';
+import { currentRoom, useBackground, useColor } from '../gun-vue/composables/src';
 const { t } = useI18n()
 onMounted(() => {
   // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)

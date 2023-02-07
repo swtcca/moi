@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGun, currentRoom, rootRoom } from '../gun-vue/composables'
+import { useGun, currentRoom } from '#composables'
 import { initChannels } from "../composables/useVideos"
 
 globalThis.gun = useGun()

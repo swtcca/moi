@@ -1,6 +1,6 @@
 {
   "name": "moi",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "scripts": {
     "postinstall": "sed -e 's/axe/sea/' node_modules/gun/lib/server.js > /tmp/server.js; diff node_modules/gun/lib/server.js /tmp/server.js; echo cp /tmp/server.js node_modules/gun/lib/",
     "tauri": "tauri",
@@ -48,7 +48,6 @@
     "@heroicons/vue": "^2.0.13",
     "@iconify/json": "^2.1.154",
     "@intlify/unplugin-vue-i18n": "^0.8.1",
-    "@volar/vue-language-plugin-pug": "^1.0.16",
     "@julr/unocss-preset-forms": "^0.0.2",
     "@nibbstack/erc721": "^2.6.1",
     "@swtc/rpc": "^1.1.3",
