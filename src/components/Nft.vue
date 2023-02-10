@@ -33,5 +33,5 @@ const load_more = async () => {
     div(v-for="(token,index) in contract.tokens" :key="index")
       NftToken(:token="token" :contract="{address, chain, standard}")
   .text-xl.mx-auto
-    button.button(@click="load_more()" v-if="Object.keys(contract.tokens).length < contract.total_supply") load more
+    button.button(@click="load_more()" v-if="contract.total_supply > Object.keys(contract.tokens).length") load more
 </template>

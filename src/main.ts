@@ -4,7 +4,7 @@ import { globalState } from "./stores/globalState"
 
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
-import "./gun-vue/components/src/styles/index.css";
+import "./gun-vue/styles/index.css";
 // import "./styles/styles.scss";
 
 import { createRouter, createWebHashHistory } from "vue-router"
@@ -19,7 +19,7 @@ if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTim
 // polyfill end
 
 import { GunVuePlugin } from '#components'
-import { peer } from "#composables/gun/useRelay"
+import { peer } from "#composables"
 peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
 import { currentRoom } from '#composables';
 

@@ -44,8 +44,8 @@ export default defineConfig({
       '~/': `${path.resolve(dirname, 'src')}/`,
       '@/': `${path.resolve(dirname, 'src')}/`,
       '@src': `${path.resolve(dirname, 'src')}`,
-      '#composables': path.resolve(dirname, 'src/gun-vue/composables/src'),
-      '#components': path.resolve(dirname, 'src/gun-vue/components/src'),
+      '#composables': path.resolve(dirname, 'src/gun-vue/composables'),
+      '#components': path.resolve(dirname, 'src/gun-vue/components'),
       // '#composables': '@gun-vue/composables',
       // '@components': '@gun-vue/components',
       // process: "process/browser",
@@ -68,7 +68,7 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-vue-components
     Components({
       // allow auto load markdown components under `./src/components/`
-      dirs: ["src/components", "src/gun-vue/components"],
+      dirs: ["src/components", "src/gun-vue"],
       // dirs: ["src/components"],
       directoryAsNamespace: false,
       globalNamespaces: ["global"],
