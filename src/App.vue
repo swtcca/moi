@@ -1,12 +1,32 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
-import { currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
+import { useGun, currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
+import { initChannels } from "./composables/useVideos"
 // import TheFooter from "./components/TheFooter.vue"
 
 
 const router = useRouter()
 const route = useRoute();
+const location_origin = ref(location.origin)
+
+// import * as GunComposable from '../gun-vue/composables'
+// globalThis.GunComposable = GunComposable
+
+globalThis.gun = useGun()
+onBeforeMount(() => {
+  if (/localhost|127.0.0.1/.test(location_origin.value)) {
+    const {vref, cref, gvideos, gchannels, pref, pvideos, tvideos, tref} = initChannels()
+    globalThis.pvideos = pvideos
+    globalThis.pref = pref
+    globalThis.gvideos = gvideos
+    globalThis.vref = vref
+    globalThis.gchannels = gchannels
+    globalThis.cref = cref
+    globalThis.tvideos = tvideos
+    globalThis.tref = tref
+  }
+})
 onMounted(() => {
   console.log(`on app mount`)
   const languages = usePreferredLanguages()
