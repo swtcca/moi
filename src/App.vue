@@ -3,15 +3,10 @@ import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { useGun, currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
-// import TheFooter from "./components/TheFooter.vue"
-
 
 const router = useRouter()
 const route = useRoute();
 const location_origin = ref(location.origin)
-
-// import * as GunComposable from '../gun-vue/composables'
-// globalThis.GunComposable = GunComposable
 
 globalThis.gun = useGun()
 onBeforeMount(() => {
@@ -56,19 +51,16 @@ watch(() => currentRoom.pub, (pub) => {
 //  nav-bar
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
 
-// .flex.flex-col.items-end.fixed.bottom-2.left-2.z-10000
-//   util-tools
-//  overscroll-behavior-y: contain;
-//  overscroll-behavior-y: contain;
-// .flex.flex-col.items-end.fixed.top-2.left-2.z-10000
-//   util-tools
 </script>
 
 <template lang="pug">
-.app-container
-  .grid.Main.overflow-y-scroll.max-h-full
-    router-view(v-slot="{ Component }")
-      component(:is="Component")
+.p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
+  router-view(v-slot="{ Component }")
+    transition(
+      name="fade"
+      mode="out-in")
+      keep-alive
+        component.flex-auto.overflow-y-scroll(:is="Component")
 </template>
 
 <style lang="postcss">
@@ -81,15 +73,16 @@ body {
   touch-action: pan-x pan-y;
 }
 #app {
-  @apply w-full h-full flex;
+  @apply h-full w-full flex;
 }
+
 
 .app-container {
   display: grid;
   width: 100%;
   height: 100vh;
   grid-template-columns: fit-content(20%) auto auto;
-  grid-template-rows: 0.1fr auto fit-content(15%);
+  grid-template-rows: 0.1fr auto auto;
   gap: 0px 0px;
   grid-template-areas:
     "Side Top Top"

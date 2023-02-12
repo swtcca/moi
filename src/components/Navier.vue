@@ -33,6 +33,8 @@ watch(show, (value, old_value) => {
 //  <UiLayer :open="show.info" @close="show.info=false">
 //    <ShowInfo />
 //  </UiLayer>
+//    <button class="i-ph-playlist" v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
+//    </button>
 </script>
 
 <template>
@@ -45,8 +47,6 @@ watch(show, (value, old_value) => {
     </button>
     <router-link to="/videos/" class="i-ph-video-camera">
     </router-link>
-    <button class="i-ph-playlist" v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
-    </button>
     <button class="i-mdi-graph-outline" v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
     </button>
     <button v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.relays')">
