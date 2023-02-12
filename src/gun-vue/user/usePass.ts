@@ -69,7 +69,7 @@ function genLink(text = "", auth_url = "#/auth/"): string {
 
 export function parseLink(link: string, auth_url = "#/auth/"): string {
 	let index = link.indexOf(auth_url);
-	let base = link.substring(index + 7);
+	let base = link.substring(index + auth_url.length);
 	return base32.decode(base);
 }
 
