@@ -15,10 +15,10 @@ const color = useColor('light')
 <template lang="pug">
 .min-h-4vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-lg.z-30.text-xl.w-full
   router-link.link(to="/")
-    .bg-transparent.font-bold.py-2.text-4xl.text-left.write-vertical-right.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
-  button.text-2xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
-    .text-2xl.i-la-times(v-if="globalState.show_tools")
-    .text-2xl.i-ph-list(v-else)
+    .bg-transparent.font-bold.py-2.text-left.write-vertical-right.text-4xl.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
+  button.text-4xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")
+    .i-la-times(v-if="globalState.show_tools")
+    .i-ph-list(v-else)
   user-icon(
     :size="32"
     :showName="false"
