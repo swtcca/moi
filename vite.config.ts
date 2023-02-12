@@ -89,7 +89,7 @@ export default defineConfig({
           },
         }),
         presetTagify(),
-        presetAttributify(),
+        // presetAttributify(),
         presetUno(),
         presetTypography(),
         presetForms()
