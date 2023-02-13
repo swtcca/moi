@@ -86,6 +86,7 @@ gunvue:
   renew: Renew
   leave: Leave
   submit: Submit
+  keys: Keys
   load: Load
   reset: Reset
   reset2: Reset

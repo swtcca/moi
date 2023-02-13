@@ -73,7 +73,7 @@ function setBrushColor(color: string) {
     //  TODO: not sure why it's not working! 
     //
       <button class="icon-btn" :class="{ shallow: draw.mode != 'eraseLine' }" @click="setDrawingMode('eraseLine')">
-        <div class="i-carbon-erase" />
+        <div class="i-carbon-erase"></div>
         </button> 
 
     .is-group.flex.flex-wrap

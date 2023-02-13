@@ -16,22 +16,17 @@ const customize = {
       ['user.pulser = setInterval', 'gun.user()\n\t\t.get("wallets")\n\t\t.get("defaults")\n\t\t.map()\n\t\t.on((d, k) => {\n\t\t\tif (d) {\n\t\t\t\tdelete d._\n\t\t\t\tdelete d["#"]\n\t\t\t\tdelete d[">"]\n\t\t\t\tuser.wallets[k] = d;\n\t\t\t}\n\t\t});\n\tuser.pulser = setInterval'],
     ],
   },
-  './src/gun-vue/post/action/PostActionReact.vue': {
-    replaces: [
-      ['v-if="list.length < 4', 'v-if="4 > list.length'],
-    ],
-  },
   './src/gun-vue/post/PostList.vue': {
     replaces: [
       ['\\(title="Upload feed"', '(v-if="1 > 2" title="Upload feed"'],
-      ['v-if="countPosts < -1"', 'v-if="-1 > countPosts"'],
+      ['v-if="0<countPosts"', 'v-if="countPosts > 0"'],
     // [`v-if="countPosts > 0"`, `v-if="-1 > countPosts"`],
     // [`{{ tag }}`, "{{ t(`tags.${tag}`) }}"]
     ],
   },
   './src/gun-vue/space/SpaceDraw.vue': {
     replaces: [
-      ['<.i-carbon-erase />', '<div class="i-carbon-erase" />'],
+      ['<.i-carbon-erase />', '<div class="i-carbon-erase"></div>'],
     // [`z-10.absolute`, `z-500.absolute`]
     ],
   },

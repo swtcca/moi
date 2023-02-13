@@ -24,6 +24,7 @@ async function download(enc) {
   downloadFile(JSON.stringify(dec), 'application/json', `room-${room.profile?.name}.json`)
 }
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
@@ -33,24 +34,24 @@ async function download(enc) {
     @click="recreateRoom(room.hosts?.[user.pub]?.enc)"
     )
     .i-la-tools
-    .ml-2 Renew
+    .ml-2 {{ t('gunvue.renew') }}
   button.button(
     v-if="room.hosts?.[user.pub]" 
     @click="download(room.hosts?.[user.pub]?.enc)"
     )
     .i-la-download
-    .ml-2 Keys
+    .ml-2 {{ t('gunvue.keys') }}
   .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
     button.button(
       v-if="currentRoom.pub !== roomPub" 
       @click="enterRoom(roomPub)"
       )
       .i-ion-enter-outline
-      .ml-2 Enter
+      .ml-2 {{ t('gunvue.enter') }}
     button.button(
       v-else 
       @click="leaveRoom()"
       )
       .i-ion-exit-outline
-      .ml-2 Leave
+      .ml-2 {{ t('gunvue.leave') }}
 </template>
