@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { isDark, toggleDark, preferredDark } from '../composables/dark'
 import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
-const language = ref(null)
 const route = useRoute()
 const location_origin = ref(location.origin)
-const { t, availableLocales, locale } = useI18n()
-const toggleLocales = () => {
-  const locales = availableLocales
-  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-}
+const { t } = useI18n()
 const flag_playlist = ref(false)
 const togglePlayList = useToggle(flag_playlist)
 const route_videos = computed(() => /videos/.test(route.path))
@@ -35,14 +29,15 @@ watch(show, (value, old_value) => {
 //  </UiLayer>
 //    <button class="i-ph-playlist" v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
 //    </button>
+
+//    <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
+//    </button>
+//    <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
+//    </button>
 </script>
 
 <template>
   <nav class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
-    <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
-    </button>
-    <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
-    </button>
     <button class="i-ph-gear" :title="t('button.settings')" @click="show.settings = !show.settings">
     </button>
     <router-link to="/videos/" class="i-ph-video-camera">
@@ -81,7 +76,7 @@ watch(show, (value, old_value) => {
 
 <style lang="postcss" scoped>
 .router-link-active {
-  @apply bg-light-300;
+  @apply text-2xl
 }
 
 .link {
