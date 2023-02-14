@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser, downloadFile, usePass } from '#composables'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
@@ -29,13 +29,15 @@ const encPair = computed(() => {
   return safePair.value ? pass?.safe?.enc : JSON.stringify(user.pair())
 });
 
+const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
+
 const { t } = useI18n()
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is && !user.safe?.saved")
-  slot
-    .mt-4.mx-6 {{ t('gunvue.save_keys') }}
+.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is")
+
+  .mt-4.mx-6 {{ t('gunvue.save_keys') }}
   user-pass
   .flex.p-4.items-center.bg-dark-100.bg-opacity-20.mt-2.shadow-inset(v-if="encPair")
     .flex.flex-col.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
@@ -61,7 +63,7 @@ const { t } = useI18n()
           .px-2(v-if="copied") {{ t('gunvue.util_copied') }}!
           .px-2(v-else) {{ t('gunvue.util_copy') }}
       a.m-2.button.items-center(
-        :href="safePair ? pass.links.pass : pass.links.pair" 
+        :href="href" 
         target="_blank" 
         @click="show('links')" 
         )
@@ -89,9 +91,7 @@ const { t } = useI18n()
         key="qr" 
         :data="safePair ? pass.links.pass : pass.links.pair"
         )
-  button.button.mx-8.justify-center(@click="$emit('close')")
-    .i-la-check
-    .ml-2 {{ t('gunvue.cred_saved') }}
+  slot
 </template>
 
 <style scoped>

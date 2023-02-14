@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser } from '#composables';
 
 const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
@@ -19,8 +19,10 @@ const { t } = useI18n()
     close-button 
     @close="isSafe()"
     )
-    user-credentials(@close="isSafe()")
-
+    user-credentials(v-if="!user.safe?.saved")
+      button.button.mx-8.justify-center(@click="isSafe()")
+        .i-la-check
+        .ml-2 {{ t('gunvue.cred_saved') }}
   user-login(v-if="!user.is")
   .flex.flex-col(v-else)
     user-panel(
@@ -28,13 +30,6 @@ const { t } = useI18n()
       )
     .p-4.flex.flex-col.items-start
       user-profile
-      chat-private-list(:title="t('customize.chat_title')" @chat="$emit('chat', $event)")
-      mate-list(
-        :pub="user.pub"  
-      @browse="$emit('user', $event)"
-      )
-      .text-xl.p-4 {{ t('gunvue.my_wallets') }}
-        gift-wallets(:pub="user.pub")
       UserRooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       :style="{ backgroundColor: user.color }"

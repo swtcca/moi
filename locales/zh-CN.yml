@@ -30,6 +30,14 @@ vupload:
   prompt: 拖拽文件或者点击选择文件
 customize:
   chat_title: 私聊
+  room_space: '空间'
+  room_topics: '聊天'
+  room_posts: '文章'
+  room_projects: '项目'
+  room_gifts: '礼物'
+  room_dict: '字典'
+  room_users: '用户'
+  room_rooms: '地盘'
 wallets:
   not_activated: 未激活
   balance: 余额

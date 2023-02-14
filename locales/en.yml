@@ -30,6 +30,14 @@ vupload:
   prompt: Drop files here or click to select files
 customize:
   chat_title: Private Chats
+  room_space: 'space'
+  room_topics: 'topics'
+  room_posts: 'posts'
+  room_projects: 'projects'
+  room_gifts: 'gifts'
+  room_dict: 'dictionary'
+  room_users: 'users'
+  room_rooms: 'rooms'
 wallets:
   not_activated: Not Activated
   balance: Balance

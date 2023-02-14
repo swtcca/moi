@@ -38,8 +38,20 @@ const customize = {
   './src/gun-vue/room/RoomPage.vue': {
     replaces: [
       ['pt-32.px-2', 'pt-12.px-2'],
+      [`:title="title"`, `:title="t('customize.room_' + c)"`]
     ],
   },
+  './src/gun-vue/room/RoomFeatureIcon.vue': {
+    replaces: [
+      ['icon.includes', 'icon.toLowerCase().includes'],
+    ],
+  },
+  // './src/gun-vue/room/RoomFeature.vue': {
+  //   i18n: true,
+  //   replaces: [
+  //     ['title }}', 't(\'customize.room_\' + title.toLowerCase()) }}'],
+  //   ],
+  // },
   './src/pages/space.vue': {
     replaces: [
       ['space-plane.h-90vh', 'space-plane.h-95vh'],
@@ -132,6 +144,11 @@ const customize = {
   './src/gun-vue/styles/index.css': {
     replaces: [
       ['10px', '0'],
+    ],
+  },
+  './src/pages/my.vue': {
+    replaces: [
+      [`import { useUser } from.*`, `import { useUser } from '#composables';`],
     ],
   },
   './src/pages/my/chat/index.vue': {

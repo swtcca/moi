@@ -86,7 +86,7 @@ const { t } = useI18n()
         :key="c"
         :cert="room.features[c]"
         :type="c"
-        :title="title"
+        :title="t('customize.room_' + c)"
         :pub="pub || currentRoom.pub"
         :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'topics' && room.features.chat)"
         @click="$emit('browse', c)" 
