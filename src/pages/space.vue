@@ -33,7 +33,7 @@ function leave() {
 
 <template lang="pug">
 .flex.flex-col.items-centerl.w-full.items-stretch.relative
-  space-plane.h-90vh(
+  space-plane.h-96vh(
     :key="currentRoom.pub"
     :coord="coord" 
     @user="$router.push('/users/' + $event)" 

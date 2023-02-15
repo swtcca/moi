@@ -104,6 +104,11 @@ const customize = {
       ['form-picture.absolute\\(', 'form-picture.absolute(\n    v-if="user.wallets?.jingtum?.activated"'],
     ],
   },
+  './src/gun-vue/user/UserGraph.vue': {
+    replaces: [
+      ['w-full.max-w-90vw.max-h-90vh', 'w-full.max-h-96vh'],
+    ],
+  },
   './src/gun-vue/user/UserAuth.vue': {
     replaces: [
       ['  console.log\\(p\\)', '// console.log(p)'],
@@ -129,6 +134,7 @@ const customize = {
   },
   './src/pages/space.vue': {
     replaces: [
+      [`space-plane.h-90vh`, `space-plane.h-96vh`],
       [':key="currentRoom.pub" @enter=', ':key="currentRoom.pub" :pad="20" @enter='],
     ],
   },

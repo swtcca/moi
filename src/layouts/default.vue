@@ -1,13 +1,15 @@
 <template>
-  <main class="h-screen" :style="style">
+  <main class="h-screen">
     <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-95">
-      <NavSocial v-if="globalState.show_social" />
+      <NavBottom v-if="globalState.show_top" />
       <Navier v-if="globalState.show_tools" />
       <ReloadPrompt />
     </div>
-    <router-view />
-    <div ref="navbar" class="fixed left-0 bottom-0 z-400 inset-x-0 opacity-99">
-      <NavBottom />
+    <div class="h-screen" :class="globalState.nav_classes">
+      <router-view />
+    </div>
+    <div ref="navbar" class="fixed left-0 bottom-0 z-400 inset-x-0 opacity-95">
+      <NavBottom v-if="!globalState.show_top" />
     </div>
   </main>
 </template>
@@ -17,7 +19,12 @@ import { globalState } from '../stores/globalState'
 const { top } = useScreenSafeArea()
 const navbar = ref(null)
 const navier = ref(null)
-const { height } = useElementSize(navbar)
-const { height: heightNavier } = useElementSize(navier)
-const style = computed(() => `padding-top: ${Math.floor(heightNavier.value) + parseInt(top.value.replace(/px/,""))}px; padding-bottom: ${Math.floor(height.value)}px;`)
+const { height: heightwindow } = useWindowSize()
+const { height: heightNavBottom } = useElementSize(navbar)
+const { height: heightNavTop } = useElementSize(navier)
+globalState.nav_styles = computed(() => `padding-top: ${Math.floor(heightNavTop.value || 0) + parseInt(top.value.replace(/px/,""))}px; padding-bottom: ${Math.floor(heightNavBottom.value)}px;`)
+globalState.nav_classes = computed(() => `mt-${Math.floor(heightNavTop.value || 0) + parseInt(top.value.replace(/px/,""))}px mb-${Math.floor(heightNavBottom.value)}px`)
+globalState.nav_top = computed(() => `${Math.floor(heightNavTop.value || 0) + parseInt(top.value.replace(/px/,""))}px`)
+globalState.nav_bottom = computed(() => `${Math.floor(heightNavBottom.value)}px`)
+globalState.nav_router = computed(() => `h-${heightwindow.value - Math.floor(heightNavBottom.value) - Math.floor(heightNavTop.value || 0) - parseInt(top.value.replace(/px/,""))}px`)
 </script>

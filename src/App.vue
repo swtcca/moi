@@ -54,13 +54,12 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
-  router-view(v-slot="{ Component }")
-    transition(
-      name="fade"
-      mode="out-in")
-      keep-alive
-        component.flex-auto.overflow-y-scroll(:is="Component")
+router-view(v-slot="{ Component }")
+  transition(
+    name="fade"
+    mode="out-in")
+    keep-alive
+      component(:is="Component")
 </template>
 
 <style lang="postcss">
@@ -73,36 +72,6 @@ body {
   touch-action: pan-x pan-y;
 }
 #app {
-  @apply h-full w-full flex;
-}
-
-
-.app-container {
-  display: grid;
-  width: 100%;
-  height: 100vh;
-  grid-template-columns: fit-content(20%) auto auto;
-  grid-template-rows: 0.1fr auto auto;
-  gap: 0px 0px;
-  grid-template-areas:
-    "Side Top Top"
-    "Side Main Main"
-    "Side Footer Footer";
-}
-
-.Main {
-  grid-area: Main;
-}
-
-.Footer {
-  grid-area: Footer;
-}
-
-.Side {
-  grid-area: Side;
-}
-
-.Top {
-  grid-area: Top;
+  @apply h-full w-full;
 }
 </style>
