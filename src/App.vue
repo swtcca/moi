@@ -62,13 +62,12 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.w-screen.h-screen.flex.flex-col
-  router-view(v-slot="{ Component }")
-    transition(
-      name="fade"
-      mode="out-in")
-      keep-alive
-        component(:is="Component")
+router-view(v-slot="{ Component }")
+  transition(
+    name="fade"
+    mode="out-in")
+    keep-alive
+      component(:is="Component")
 </template>
 
 <style lang="postcss">
