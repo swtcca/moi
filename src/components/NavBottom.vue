@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { globalState } from '../stores/globalState'
 import { currentRoom, useBackground, useColor } from '../gun-vue/composables';
+// import { useFullscreen, onLongPress } from '@vueuse/core'
+// const { toggle } = useFullscreen(document.body)
+// onLongPress(
+//   navbottom,
+//   () => toggle(),
+//   { delay: 1000, modifiers: { prevent: true } }
+// )
+const navbottom = ref(null)
 const { t } = useI18n()
 onMounted(() => {
   // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)
@@ -13,7 +21,7 @@ const color = useColor('light')
 </script>
 
 <template lang="pug">
-.min-h-2vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-lg.z-30.text-xl.w-full
+.min-h-2vh.justify-around.flex.flex-wrap.items-center.bg-light-900.shadow-lg.z-30.text-xl.w-full(ref="navbottom")
   router-link.link(to="/")
     .bg-transparent.font-bold.py-2.text-left.write-vertical-right.text-4xl.text-green-700.text-opacity-10.text-stroke-sm.text-stroke-blue-700 M
   button.text-4xl(:title="t('button.tools')" @click="globalState.show_tools=!globalState.show_tools")

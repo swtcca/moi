@@ -3,18 +3,11 @@ import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { useGun, currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
-import { useFullscreen, onLongPress } from '@vueuse/core'
 
-const { toggle } = useFullscreen(document.body)
 const router = useRouter()
 const route = useRoute();
 const location_origin = ref(location.origin)
 
-onLongPress(
-  document.body,
-  () => toggle(),
-  { delay: 1000, modifiers: { prevent: true } }
-)
 globalThis.gun = useGun()
 onBeforeMount(() => {
   if (/localhost|127.0.0.1/.test(location_origin.value)) {

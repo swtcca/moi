@@ -40,8 +40,8 @@ watch(show, (value, old_value) => {
   <nav class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
     <button class="i-ph-gear" :title="t('button.settings')" @click="show.settings = !show.settings">
     </button>
-    <router-link to="/videos/" class="i-ph-video-camera">
-    </router-link>
+    <router-link to="/videos/" class="i-ph-video-camera"></router-link>
+    <router-link to="/openai/" class="i-logos-openai-icon"></router-link>
     <button class="i-mdi-graph-outline" v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
     </button>
     <button v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.relays')">
