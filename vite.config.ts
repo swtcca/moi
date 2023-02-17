@@ -89,10 +89,10 @@ export default defineConfig({
           },
         }),
         presetTagify(),
-        // presetAttributify(),
         presetUno(),
         presetTypography(),
-        presetForms()
+        presetForms(),
+        // presetAttributify(),
       ],
       transformers: [
         transformerDirectives(),

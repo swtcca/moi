@@ -3,11 +3,18 @@ import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { useGun, currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
+import { useFullscreen, onLongPress } from '@vueuse/core'
 
+const { toggle } = useFullscreen(document.body)
 const router = useRouter()
 const route = useRoute();
 const location_origin = ref(location.origin)
 
+onLongPress(
+  document.body,
+  () => toggle(),
+  { delay: 1000, modifiers: { prevent: true } }
+)
 globalThis.gun = useGun()
 onBeforeMount(() => {
   if (/localhost|127.0.0.1/.test(location_origin.value)) {
@@ -33,6 +40,7 @@ onMounted(() => {
   } else {}
   console.log(`app mounted`)
 })
+
 watchEffect(() => {
   if (route.query?.room) {
     currentRoom.pub = route.query.room
@@ -54,12 +62,13 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-router-view(v-slot="{ Component }")
-  transition(
-    name="fade"
-    mode="out-in")
-    keep-alive
-      component(:is="Component")
+.w-screen.h-screen.flex.flex-col
+  router-view(v-slot="{ Component }")
+    transition(
+      name="fade"
+      mode="out-in")
+      keep-alive
+        component(:is="Component")
 </template>
 
 <style lang="postcss">
