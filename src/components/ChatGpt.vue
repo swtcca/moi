@@ -28,6 +28,9 @@ const openai_draw = async () => {
     show_draw.value = true
   } catch (e) {}
 }
+//      <svg v-else width="500" height="210" class="absolute">
+//        <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:red;stroke:red;stroke-width:5;fill-rule:nonzero;" />
+//      </svg>
 </script>
 
 <template>
@@ -47,10 +50,7 @@ const openai_draw = async () => {
     </div>
     <div v-if="show_draw">
       <img v-if="image" class="mx-auto ring-1 absolute z-200" :src="image" />
-
-      <svg v-else width="500" height="210" class="absolute">
-        <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:red;stroke:red;stroke-width:5;fill-rule:nonzero;" />
-      </svg>
+      <div v-else>openai images will show here</div>
     </div>
   </div>
 </template>
