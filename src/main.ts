@@ -59,3 +59,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
+// router.afterEach((to, from, failure) => {
+//   console.dir(from.query)
+// })

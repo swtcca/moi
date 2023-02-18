@@ -1,20 +1,31 @@
 <script setup>
 import { ref } from "vue"
 import { apiKey, openai_create_completion, openai_create_image } from "../composables/openai"
+import { useTextareaAutosize } from '@vueuse/core'
+import { currentRoom } from "#composables" // current room
 
-const ask = ref('tell me something about amoxicillian')
-const answer = ref('openai answered')
-const draw = ref('https://images.dog.ceo/breeds/ridgeback-rhodesian/n02087394_1722.jpg')
+const { textarea: textarea_ask, input: ask } = useTextareaAutosize()
+const { textarea: textarea_answer, input: answer } = useTextareaAutosize()
+ask.value = 'tell me something about amoxicillian'
+answer.value = 'openai answers will show here'
+const show_chat = ref(true)
+const show_draw = ref(true)
+const image = ref('')
+// const image = ref('https://images.dog.ceo/breeds/ridgeback-rhodesian/n02087394_1722.jpg')
 const openai_chat = async () => {
   try {
     const completion = await openai_create_completion(ask.value)
     answer.value = completion.data.choices[0].text
+    show_chat.value = true
+    show_draw.value = false
   } catch (e) {}
 }
 const openai_draw = async () => {
   try {
     const response = await openai_create_image(ask.value)
-    draw.value = response.data.data[0].url
+    image.value = response.data.data[0].url
+    show_chat.value = false
+    show_draw.value = true
   } catch (e) {}
 }
 </script>
@@ -25,17 +36,21 @@ const openai_draw = async () => {
       <input placeholder="openai token here, required" class="w-full ring-1" type="password" v-model="apiKey" />
     </div>
     <div>
-      <textarea class="w-full ring-1" v-model="ask"></textarea>
+      <textarea ref="textarea_ask" class="w-full ring-1" v-model="ask"></textarea>
     </div>
     <div class="flex items-between">
       <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_chat">chat</button>
       <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_draw">draw</button>
     </div>
-    <div>
-      <textarea class="w-full ring-1" v-model="answer"></textarea>
+    <div v-if="show_chat">
+      <textarea rows="10" class="w-full ring-1" v-model="answer"></textarea>
     </div>
-    <div>
-      <img class="mx-auto ring-1" :src="draw" />
+    <div v-if="show_draw" class="relative">
+      <img class="mx-auto ring-1 absolute z-200" :src="image" />
+
+      <svg width="500" height="210" class="absolute">
+        <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:red;stroke:red;stroke-width:5;fill-rule:nonzero;" />
+      </svg>
     </div>
   </div>
 </template>
