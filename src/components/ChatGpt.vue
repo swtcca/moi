@@ -35,7 +35,7 @@ const openai_draw = async () => {
       <textarea class="w-full ring-1" v-model="answer"></textarea>
     </div>
     <div>
-      <img class="mx-auto ring-1 w-512px h-512px" :src="draw" />
+      <img class="mx-auto ring-1" :src="draw" />
     </div>
   </div>
 </template>

@@ -3,12 +3,12 @@ import { globalState } from '../stores/globalState'
 import { currentRoom, useBackground, useColor } from '../gun-vue/composables';
 // import { useFullscreen, onLongPress } from '@vueuse/core'
 // const { toggle } = useFullscreen(document.body)
+const navbottom = ref(null)
 // onLongPress(
 //   navbottom,
 //   () => toggle(),
 //   { delay: 1000, modifiers: { prevent: true } }
 // )
-const navbottom = ref(null)
 const { t } = useI18n()
 onMounted(() => {
   // const { x, y, top, right, bottom, left, width, height } = useElementBounding(language)
