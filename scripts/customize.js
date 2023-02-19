@@ -32,7 +32,7 @@ const customize = {
   },
   './src/gun-vue/space/SpacePlane.vue': {
     replaces: [
-      ['svg.max-h-78vh.w-98vw', 'svg.h-96vh.w-98vw'],
+      ['svg.max-h-78vh.w-98vw', 'svg.h-99vh.w-99vw'],
     ],
   },
   './src/gun-vue/room/RoomPage.vue': {
@@ -52,14 +52,9 @@ const customize = {
   //     ['title }}', 't(\'customize.room_\' + title.toLowerCase()) }}'],
   //   ],
   // },
-  './src/pages/space.vue': {
-    replaces: [
-      ['space-plane.h-90vh', 'space-plane.h-95vh'],
-    ],
-  },
   './src/gun-vue/chat/ChatInput.vue': {
     replaces: [
-      ['textarea.p-2.rounded-xl.bg-light-200', 'textarea.px-2.rounded-xl.bg-light-200'],
+      // ['textarea.p-2.rounded-xl.bg-light-200', 'textarea.px-2.rounded-xl.bg-light-200'],
       ['p-4.flex.flex-col.items-center', 'p-2.flex.flex-col.items-center'],
     ],
   },
@@ -106,7 +101,7 @@ const customize = {
   },
   './src/gun-vue/user/UserGraph.vue': {
     replaces: [
-      ['w-full.max-w-90vw.max-h-90vh', 'w-full.max-h-96vh'],
+      ['w-full.max-w-90vw.max-h-90vh', 'w-full.max-h-99vh'],
     ],
   },
   './src/gun-vue/user/UserAuth.vue': {
@@ -134,7 +129,7 @@ const customize = {
   },
   './src/pages/space.vue': {
     replaces: [
-      [`space-plane.h-90vh`, `space-plane.h-96vh`],
+      [`space-plane.h-90vh`, `space-plane.h-99vh`],
       [':key="currentRoom.pub" @enter=', ':key="currentRoom.pub" :pad="20" @enter='],
     ],
   },
