@@ -1,5 +1,5 @@
 <template>
-  <main class="h-screen relative">
+  <main class="h-screen">
     <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
       <ReloadPrompt />
     </div>
@@ -16,12 +16,12 @@
     </div>
         <div class="bg-transparent font-bold text-left text-6xl text-green-700 text-opacity-10 text-stroke-sm text-stroke-blue-700">
     -->
-    <div class="absolute z-400" :class="home_classes">
+    <div class="fixed z-400" :class="home_classes">
       <RouterLink class="link" to="/">
         <div class="i-la-home text-6xl  text-green-700 text-opacity-90 text-stroke-sm text-stroke-blue-700"></div>
       </RouterLink>
     </div>
-    <div class="absolute z-400" :class="user_classes">
+    <div class="fixed z-400" :class="user_classes">
       <UserIcon
         :size="48"
         :showName="false"
