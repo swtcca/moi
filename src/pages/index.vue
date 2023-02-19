@@ -9,7 +9,7 @@ import { currentRoom, rootRoom } from '#composables';
       @browse="$router.push(`/${$event}/`)">
     </RoomPage>
   </div>
-  <div class="w-full mt-10">
+  <div class="w-full my-10">
     <Navier />
   </div>
 </template>
