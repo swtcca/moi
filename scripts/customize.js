@@ -99,6 +99,11 @@ const customize = {
       ['form-picture.absolute\\(', 'form-picture.absolute(\n    v-if="user.wallets?.jingtum?.activated"'],
     ],
   },
+  './src/pages/topics.vue': {
+    replaces: [
+      ['max-h-90vh.min-h-90vh', 'w-full.h-full'],
+    ],
+  },
   './src/gun-vue/user/UserGraph.vue': {
     replaces: [
       ['w-full.max-w-90vw.max-h-90vh', 'w-full.max-h-99vh'],
