@@ -2,8 +2,20 @@
 import { ref } from "vue"
 import { apiKey, openai_create_completion, openai_create_image } from "../composables/openai"
 import { useTextareaAutosize } from '@vueuse/core'
-import { currentRoom } from "#composables" // current room
+import { currentRoom, useUser, useGun, SEA } from "#composables" // current room
 
+const { user } = useUser()
+const { gun } = useGun()
+const api_in_gun = ref(false)
+try {
+  const pair = user.pair()
+  console.log(user.db)
+  user.db.get('vaults').get("apitokens").get("openai").once(async (encrypted) => {
+    const decrypted = await SEA.decrypt(encrypted, pair.epriv)
+    api_in_gun.value = true
+    apiKey.value = decrypted
+  })
+} catch (e) {}
 const { textarea: textarea_ask, input: ask } = useTextareaAutosize()
 const { textarea: textarea_answer, input: answer } = useTextareaAutosize()
 ask.value = 'tell me something about amoxicillian'
@@ -34,21 +46,23 @@ const openai_draw = async () => {
 </script>
 
 <template>
-  <div class="container mx-auto pt-10">
-    <div>
+  <div class="container mx-auto pt-12">
+    <div v-if="!api_in_gun">
+      <label>OPENAPI TOKEN</label>
       <input placeholder="openai token here, required" class="w-full ring-1" type="password" v-model="apiKey" />
     </div>
-    <div>
+    <div class="my-4">
+      <label>ASK OPENAI</label>
       <textarea ref="textarea_ask" class="w-full ring-1" v-model="ask"></textarea>
     </div>
-    <div class="flex items-between">
-      <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_chat">chat</button>
-      <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_draw">draw</button>
+    <div class="flex items-between my-4">
+      <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_chat">CHAT</button>
+      <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_draw">DRAW</button>
     </div>
     <div v-if="show_chat">
-      <textarea rows="10" class="w-full ring-1" v-model="answer"></textarea>
+      <textarea rows="6" class="w-full ring-1" v-model="answer"></textarea>
     </div>
-    <div v-if="show_draw">
+    <div v-if="show_draw" class="flex place-content-center">
       <img v-if="image" class="mx-auto ring-1 absolute z-200" :src="image" />
       <div v-else>openai images will show here</div>
     </div>

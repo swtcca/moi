@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
-import { useGun, currentRoom, rootRoom, useBackground } from "./gun-vue/composables";
+import { useGun, currentRoom, rootRoom, useBackground, useUser } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
 
 const router = useRouter()
@@ -12,6 +12,7 @@ globalThis.gun = useGun()
 onBeforeMount(() => {
   if (/localhost|127.0.0.1/.test(location_origin.value)) {
     const {vref, cref, gvideos, gchannels, pref, pvideos, tvideos, tref} = initChannels()
+    const { user } = useUser()
     globalThis.pvideos = pvideos
     globalThis.pref = pref
     globalThis.gvideos = gvideos
@@ -20,6 +21,7 @@ onBeforeMount(() => {
     globalThis.cref = cref
     globalThis.tvideos = tvideos
     globalThis.tref = tref
+    globalThis.user = user
   }
 })
 onMounted(() => {
