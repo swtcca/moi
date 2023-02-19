@@ -1,24 +1,11 @@
 
 <script setup lang="ts">
-import { toggleDark } from '../composables/dark'
 import { prefers } from "../stores"
-const { t, availableLocales, locale } = useI18n()
-const toggleLocales = () => {
-  const locales = availableLocales
-  locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-}
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="grid grid-col place-content-center p-8">
-
-    <nav class="flex justify-around text-center text-2xl py-2">
-      <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
-      </button>
-      <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
-      </button>
-    </nav>
-
     <div class="grid grid-cols-1 gap-6 text-gray-700 dark-text-gray-500">
       <label class="block">
         <input type="checkbox" v-model="prefers.youtubeAccess" class="mt-1 mr-4" />
