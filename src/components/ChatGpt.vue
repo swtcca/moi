@@ -5,17 +5,24 @@ import { useTextareaAutosize } from '@vueuse/core'
 import { currentRoom, useUser, useGun, SEA } from "#composables" // current room
 
 const { user } = useUser()
-const { gun } = useGun()
 const api_in_gun = ref(false)
+let pair
 try {
-  const pair = user.pair()
-  console.log(user.db)
-  user.db.get('vaults').get("apitokens").get("openai").once(async (encrypted) => {
-    const decrypted = await SEA.decrypt(encrypted, pair.epriv)
-    api_in_gun.value = true
-    apiKey.value = decrypted
-  })
+  pair = user.pair()
+  // console.log(user.db)
+  if (user.safe?.moiapp_tokens_openai) {
+    SEA.decrypt(user.safe.moiapp_tokens_openai, pair.epriv).then(decrypted => {
+      api_in_gun.value = true
+      apiKey.value = decrypted
+    })
+  } 
 } catch (e) {}
+const save_token = async () => {
+  if (user.initiated) {
+    const encrypted = await SEA.encrypt(apiKey.value, pair)
+    user.db.get('safe').get(["moiapp", "tokens", "openai"].join("_")).put(encrypted)
+  }
+}
 const { textarea: textarea_ask, input: ask } = useTextareaAutosize()
 const { textarea: textarea_answer, input: answer } = useTextareaAutosize()
 ask.value = 'tell me something about amoxicillian'
@@ -30,6 +37,7 @@ const openai_chat = async () => {
     answer.value = completion.data.choices[0].text
     show_chat.value = true
     show_draw.value = false
+    if (!api_in_gun.value) save_token()
   } catch (e) {}
 }
 const openai_draw = async () => {
@@ -38,6 +46,7 @@ const openai_draw = async () => {
     image.value = response.data.data[0].url
     show_chat.value = false
     show_draw.value = true
+    if (!api_in_gun.value) save_token()
   } catch (e) {}
 }
 //      <svg v-else width="500" height="210" class="absolute">
