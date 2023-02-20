@@ -1,30 +1,26 @@
 <script setup>
 import { ref } from "vue"
 import { apiKey, openai_create_completion, openai_create_image } from "../composables/openai"
+import { save_user_safe } from "../composables/userSafe"
 import { useTextareaAutosize } from '@vueuse/core'
 import { currentRoom, useUser, useGun, SEA } from "#composables" // current room
 
 const { user } = useUser()
 const api_in_gun = ref(false)
-let pair
-try {
-  pair = user.pair()
-  // console.log(user.db)
-  if (user.safe?.moiapp_tokens_openai) {
-    SEA.decrypt(user.safe.moiapp_tokens_openai, pair.epriv).then(decrypted => {
+const get_token = async () => {
+  const key = read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
+  if (key) {
+    if (!api_in_gun.value) {
+      apiKey.value = key 
       api_in_gun.value = true
-      apiKey.value = decrypted
-    })
-  } 
-} catch (e) {}
-const save_token = async () => {
-  if (user.initiated) {
-    const encrypted = await SEA.encrypt(apiKey.value, pair)
-    user.db.get('safe').get(["moiapp", "tokens", "openai"].join("_")).put(encrypted)
+    }
   }
 }
+const save_token = async () => {
+  save_user_safe(apiKey, ["moiapp", "tokens", "openai"], {encrypt: true})
+}
 const { textarea: textarea_ask, input: ask } = useTextareaAutosize()
-const { textarea: textarea_answer, input: answer } = useTextareaAutosize()
+const { input: answer } = useTextareaAutosize()
 ask.value = 'tell me something about amoxicillian'
 answer.value = 'openai answers will show here'
 const show_chat = ref(true)
@@ -32,6 +28,7 @@ const show_draw = ref(true)
 const image = ref('')
 // const image = ref('https://images.dog.ceo/breeds/ridgeback-rhodesian/n02087394_1722.jpg')
 const openai_chat = async () => {
+  get_token()
   try {
     const completion = await openai_create_completion(ask.value)
     answer.value = completion.data.choices[0].text
@@ -41,6 +38,7 @@ const openai_chat = async () => {
   } catch (e) {}
 }
 const openai_draw = async () => {
+  get_token()
   try {
     const response = await openai_create_image(ask.value)
     image.value = response.data.data[0].url
