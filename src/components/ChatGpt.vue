@@ -1,14 +1,13 @@
 <script setup>
 import { ref } from "vue"
 import { apiKey, openai_create_completion, openai_create_image } from "../composables/openai"
-import { save_user_safe } from "../composables/userSafe"
+import { read_user_safe, save_user_safe } from "../composables/userSafe"
 import { useTextareaAutosize } from '@vueuse/core'
-import { currentRoom, useUser, useGun, SEA } from "#composables" // current room
 
-const { user } = useUser()
 const api_in_gun = ref(false)
 const get_token = async () => {
   const key = read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
+  console.log(key)
   if (key) {
     if (!api_in_gun.value) {
       apiKey.value = key 
@@ -47,6 +46,7 @@ const openai_draw = async () => {
     if (!api_in_gun.value) save_token()
   } catch (e) {}
 }
+get_token()
 //      <svg v-else width="500" height="210" class="absolute">
 //        <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:red;stroke:red;stroke-width:5;fill-rule:nonzero;" />
 //      </svg>
