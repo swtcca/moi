@@ -6,17 +6,17 @@ import { useTextareaAutosize } from '@vueuse/core'
 
 const api_in_gun = ref(false)
 const get_token = async () => {
-  const key = read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
-  console.log(key)
+  const key = await read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
   if (key) {
     if (!api_in_gun.value) {
       apiKey.value = key 
-      api_in_gun.value = true
+      // api_in_gun.value = true
     }
   }
 }
 const save_token = async () => {
   save_user_safe(apiKey, ["moiapp", "tokens", "openai"], {encrypt: true})
+  api_in_gun.value = true
 }
 const { textarea: textarea_ask, input: ask } = useTextareaAutosize()
 const { input: answer } = useTextareaAutosize()

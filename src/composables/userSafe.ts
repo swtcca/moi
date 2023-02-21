@@ -10,14 +10,24 @@ export const save_user_safe = async (value, key: string[], options={encrypt: fal
           encrypted = await SEA.encrypt(encrypted, user.pair())
         }
       } catch (e) {}
-      user.db.get('safe').get(key.join("_")).put(encrypted)
+      key.push(encrypted)
+      encrypted = key.reduceRight((x,y) => ({[y]: x}))
+      console.log(encrypted)
+      user.db.get('safe').put(encrypted)
     }
   }
 export const read_user_safe = async (key: string[], options={encrypt: false}) => {
     let decrypted
     if (user.initiated) {
-      if (user.safe.hasOwnProperty(key.join("_"))) {
-        decrypted = user.safe[key.join("_")]
+      decrypted = user.safe
+      key.forEach(keyname => {
+        if (decrypted.hasOwnProperty(keyname)) {
+          decrypted = decrypted[keyname]
+        } else {
+          decrypted = undefined
+        }
+      })
+      if (decrypted){
         try {
           if (options.encrypt) {
             decrypted = await SEA.decrypt(decrypted, user.pair().epriv)
@@ -25,5 +35,6 @@ export const read_user_safe = async (key: string[], options={encrypt: false}) =>
         } catch (e) {}
       }
     }
+    console.log(decrypted)
     return decrypted
   }

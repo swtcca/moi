@@ -48,8 +48,8 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
       if (is_channel) {
         const response = await gapi.get('channels', makeParams({ key: prefers.youtubeAppKey, id: channel.id }))
         if (!key_saved) {
-          key_saved = true
           save_user_safe(prefers.youtubeAppKey, ["moiapp", "tokens", "youtube"], {encrypt: true})
+          key_saved = true
         }
         if (response.data.pageInfo.totalResults === 1 ) {
           const item = response.data.items[0]
@@ -67,8 +67,8 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
       }
       const resp = await gapi.get('playlistItems', makeParams({ key: prefers.youtubeAppKey, playlistId }))
       if (!key_saved) {
-        key_saved = true
         save_user_safe(prefers.youtubeAppKey, ["moiapp", "tokens", "youtube"], {encrypt: true})
+        key_saved = true
       }
       resp.data.items.forEach(async (item) => {
         if (!channel.hasOwnProperty("title")) {

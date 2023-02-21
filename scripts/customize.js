@@ -11,9 +11,8 @@ const customize = {
   },
   './src/gun-vue/user/useUser.ts': {
     replaces: [
-      ['gun.user\\(\\).leave\\(\\);', 'user.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n\tgun.user().leave();'],
-      ['pair\\(\\): ISEAPair {', 'wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\tpair(): ISEAPair {'],
-      ['user.pulser = setInterval', 'gun.user()\n\t\t.get("wallets")\n\t\t.get("defaults")\n\t\t.map()\n\t\t.on((d, k) => {\n\t\t\tif (d) {\n\t\t\t\tdelete d._\n\t\t\t\tdelete d["#"]\n\t\t\t\tdelete d[">"]\n\t\t\t\tuser.wallets[k] = d;\n\t\t\t}\n\t\t});\n\tuser.pulser = setInterval'],
+      ['gun.user\\(\\).leave\\(\\);', 'user.safe.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n\tgun.user().leave();'],
+      // ['pair\\(\\): ISEAPair {', 'wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\tpair(): ISEAPair {'],
     ],
   },
   './src/gun-vue/post/PostList.vue': {
