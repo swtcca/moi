@@ -25,8 +25,8 @@ const balances = computed(() => {
     console.log(chain)
     const balance = {sequence: 0, native: {} as any, tokens: {} as any} as any
     try {
-      const balance_raw = JSON.parse(user.wallets[chain]?.balance || "{}")
-        console.log(balance_raw)
+      const balance_raw = JSON.parse(user.safe.wallets[chain]?.balance || "{}")
+      console.log(balance_raw)
       balance.sequence = balance_raw.sequence || 0
       const natives = (balance_raw.balances || []).filter(t => t.issuer === "")
       if (natives.length === 1) {
@@ -102,7 +102,7 @@ h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark-text-gray-200 Wallets
         p {{ wallet.algorithm }}
       .mx-auto(v-if="balances[chain]?.native?.value") {{ t('wallets.balance') }} {{ balances[chain]?.native?.value }} {{ balances[chain]?.native?.token }}
       .font-mono.tracking-tight.px-1.mx-auto {{ wallet.address }}
-      .flex.flex-col.gap-2(v-if="user.wallets[chain]?.activated")
+      .flex.flex-col.gap-2(v-if="user.safe.wallets[chain]?.activated")
         .border-b
         div(v-if="Object.keys(balances[chain].tokens).length > 0")
           p {{ t('wallets.tokens') }}

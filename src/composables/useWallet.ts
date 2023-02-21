@@ -1,4 +1,4 @@
-import { useUser } from '../gun-vue/composables'
+import { useUser } from '../gun-vue/user/useUser'
 import { chains } from './chains'
 const { user } = useUser()
 const user_is = computed(() => user.is)
@@ -35,12 +35,12 @@ export function useWallets() {
         wallet.balances = {}
       }
     })
-    wallet.stop_watch_address = watch(user.wallets, () => {
-      if (!wallet.address && user.wallets?.[chain_name]?.address)
-        wallet.address = user.wallets[chain_name].address
+    wallet.stop_watch_address = watch(user.safe.wallets, () => {
+      if (!wallet.address && user.safe.wallets?.[chain_name]?.address)
+        wallet.address = user.safe.wallets[chain_name].address
 
-      if (!wallet.activated && user.wallets?.[chain_name]?.activated)
-        wallet.activated = user.wallets[chain_name].activated
+      if (!wallet.activated && user.safe.wallets?.[chain_name]?.activated)
+        wallet.activated = user.safe.wallets[chain_name].activated
     })
   })
   return {

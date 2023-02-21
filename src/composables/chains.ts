@@ -1,6 +1,7 @@
 import { getRandomElement } from "../api/utils"
-import { useUser } from "#composables"
+import { useUser } from "../gun-vue/user/useUser"
 const { user } = useUser()
+import { save_user_safe } from "./userSafe"
 
 export const chains = reactive({
   ethereum: {
@@ -23,7 +24,7 @@ export const chains = reactive({
         }
       }
       await wallet.chainobj.wallet_init(wallet)
-      if (user.is) wallet.balance_raw = JSON.parse(user.wallets[wallet.chain]?.balance || "{}")
+      if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
     wallet_init: async (wallet = {} as any) => {
       console.log(`wallet init`)
@@ -33,7 +34,7 @@ export const chains = reactive({
           if (!wallet.address) {
             console.log(`address`)
             wallet.address = wallet.api.eth.accounts.privateKeyToAccount(Buffer.from(user?.pair()?.priv, "base64").toString("hex"))?.address
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm })
+            await save_user_safe({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm }, ["wallets", wallet.chain])
           }
           wallet.chainobj.update_balance(wallet)
         } catch (e) {}
@@ -48,7 +49,7 @@ export const chains = reactive({
         wallet.activated = true
         wallet.querying = false
         if (user.is) {
-          user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) })
+          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r)}, ["wallets", wallet.chain])
         }
         wallet.balance_raw = r
       } catch (e) {
@@ -78,7 +79,7 @@ export const chains = reactive({
         }
       }
       // await wallet.chainobj.wallet_init(wallet)
-      if (user.is) wallet.balance_raw = JSON.parse(user.wallets[wallet.chain]?.balance || "{}")
+      if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
     wallet_init: async (wallet = {} as any) => {
       await wallet.chainobj.load_library(wallet)
@@ -89,7 +90,7 @@ export const chains = reactive({
           if (!wallet.address) {
             console.log(`address`)
             wallet.address = wallet.api.eth.accounts.privateKeyToAccount(Buffer.from(user?.pair()?.priv, "base64").toString("hex"))?.address
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm })
+            await save_user_safe({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm }, ["wallets", wallet.chain])
           }
           wallet.chainobj.update_balance(wallet)
         } catch (e) {}
@@ -104,7 +105,7 @@ export const chains = reactive({
         wallet.activated = true
         wallet.querying = false
         if (user.is) {
-          user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) })
+          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         }
         wallet.balance_raw = r
       } catch (e) {
@@ -134,7 +135,7 @@ export const chains = reactive({
         }
       }
       await wallet.chainobj.wallet_init(wallet)
-      if (user.is) wallet.balance_raw = JSON.parse(user.wallets[wallet.chain]?.balance || "{}")
+      if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
     wallet_init: async (wallet = {} as any) => {
       console.log(`wallet init`)
@@ -144,7 +145,7 @@ export const chains = reactive({
           if (!wallet.address) {
             console.log(`address`)
             wallet.address = wallet.api.eth.accounts.privateKeyToAccount(Buffer.from(user?.pair()?.priv, "base64").toString("hex"))?.address
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm })
+            await save_user_safe({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm }, ["wallets", wallet.chain])
           }
           wallet.chainobj.update_balance(wallet)
         } catch (e) {}
@@ -159,7 +160,7 @@ export const chains = reactive({
         wallet.activated = true
         wallet.querying = false
         if (user.is) {
-          user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) })
+          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         }
         wallet.balance_raw = r
       } catch (e) {
@@ -191,7 +192,7 @@ export const chains = reactive({
       wallet.Remote = (globalThis[lib_name]).Remote
       wallet.Wallet = wallet.Remote.Wallet
       await wallet.chainobj.wallet_init(wallet)
-      if (user.is) wallet.balance_raw = JSON.parse(user.wallets[wallet.chain]?.balance || "{}")
+      if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
     wallet_init: async (wallet = {} as any) => {
       if (!wallet.initiated) {
@@ -199,11 +200,11 @@ export const chains = reactive({
           wallet.api = new wallet.Remote({server: getRandomElement(wallet.chainobj.endpoints)})
           if (!wallet.address) {
             wallet.address = wallet.Wallet?.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm })
+            await save_user_safe({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm }, ["wallets", wallet.chain])
           }
           wallet.chainobj.update_balance(wallet)
           setTimeout(() => {
-            if (!wallet.activated && user.wallets?.jingtum?.activated) {
+            if (!wallet.activated && user.safe.wallets?.jingtum?.activated) {
               wallet.activated = true
             }
           }, 500)
@@ -225,7 +226,7 @@ export const chains = reactive({
         })
         wallet.querying = false
         if (user.is) {
-          user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) })
+          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         }
         wallet.balance_raw = r
       } catch (e) {
@@ -234,7 +235,7 @@ export const chains = reactive({
           wallet.activated = false
           wallet.balance_raw = {}
           if (user.is) {
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: false, sequence: 1, balance: JSON.stringify({}) })
+            await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: JSON.stringify("{}") }, ["wallets", wallet.chain])
           }
         } else {
           console.log(`error get account balances`)
@@ -265,7 +266,7 @@ export const chains = reactive({
       wallet.Remote = (globalThis[lib_name]).Factory("ripple")
       wallet.Wallet = wallet.Remote.Wallet
       await wallet.chainobj.wallet_init(wallet)
-      if (user.is) wallet.balance_raw = JSON.parse(user.wallets[wallet.chain]?.balance || "{}")
+      if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
     wallet_init: async (wallet = {} as any) => {
       if (!wallet.initiated) {
@@ -273,11 +274,11 @@ export const chains = reactive({
           wallet.api = new wallet.Remote({server: getRandomElement(wallet.chainobj.endpoints)})
           if (!wallet.address) {
             wallet.address = wallet.Wallet?.fromSecret(Buffer.from(user?.pair()?.priv, "base64").toString("hex"), wallet.algorithm)?.address
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm })
+            await save_user_safe({chain: wallet.chain, address: wallet.address, algorithm: wallet.chainobj.algorithm }, ["wallets", wallet.chain])
           }
           wallet.chainobj.update_balance(wallet)
           setTimeout(() => {
-            if (!wallet.activated && user.wallets?.ripple?.activated) {
+            if (!wallet.activated && user.safe.wallets?.ripple?.activated) {
               wallet.activated = true
             }
           }, 500)
@@ -309,7 +310,7 @@ export const chains = reactive({
         delete r.ledger_hash
         wallet.querying = false
         if (user.is) {
-          user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) })
+          await save_user_safe({address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         }
         wallet.balance_raw = r
       } catch (e) {
@@ -319,7 +320,7 @@ export const chains = reactive({
           wallet.activated = false
           wallet.balance_raw = {}
           if (user.is) {
-            user.db.get("wallets").get("defaults").get(wallet.chain).put({ address: wallet.address, activated: false, sequence: 1, balance: JSON.stringify({}) })
+            await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: "{}" }, ["wallets", wallet.chain])
           }
         } else {
           console.log(`error get account balances`)

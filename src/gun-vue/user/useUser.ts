@@ -57,6 +57,8 @@ export interface User {
 		password: string
 		enc: string
 		pass: string
+		moiapp: object
+		wallets: object
 		rooms: object
 	};
 	db?: IGunUserInstance
@@ -78,6 +80,8 @@ export const user: User = reactive({
 		password: '',
 		enc: '',
 		pass: '',
+		moiapp: {},
+	    wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
 		rooms: {}
 	},
 	db: undefined,
@@ -137,7 +141,7 @@ function init() {
 	gun.user()
 		.get("safe")
 		.open(d => {
-			user.safe = d;
+			Object.assign(user.safe, d)
 		});
 
 	gun

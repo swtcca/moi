@@ -2,7 +2,7 @@ import { SEA } from "../gun-vue/gun/useGun"
 import { useUser } from "../gun-vue/user/useUser"
 const { user } = useUser()
 
-export const save_user_safe = async (value, key: string[], options={encrypt: false}) => {
+export const save_user_safe = async (value, key: any[], options={encrypt: false}) => {
     if (user.initiated) {
       let encrypted = value.value || value
       try {
@@ -12,7 +12,7 @@ export const save_user_safe = async (value, key: string[], options={encrypt: fal
       } catch (e) {}
       key.push(encrypted)
       encrypted = key.reduceRight((x,y) => ({[y]: x}))
-      console.log(encrypted)
+      // console.log(encrypted)
       user.db.get('safe').put(encrypted)
     }
   }
@@ -35,6 +35,6 @@ export const read_user_safe = async (key: string[], options={encrypt: false}) =>
         } catch (e) {}
       }
     }
-    console.log(decrypted)
+    // console.log(decrypted)
     return decrypted
   }

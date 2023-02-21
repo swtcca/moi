@@ -23,7 +23,7 @@ const tref = gun.get('bcapps').get('moi').get('youtube').get('videos').get(`${ne
 let listening = false
 
 watch(tvideos, (value, old_value) => {
-  console.log(`watched test videos change ${Object.keys(value).length}`)
+  // console.log(`watched test videos change ${Object.keys(value).length}`)
   Object.values(value).forEach((gvideo: IVideo) => {
     if (gvideo.videoPublishedAt > `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`) {
       // only count the last two months
