@@ -216,7 +216,7 @@ function special(file, multiline = true) {
 				moiapp: {},
 				wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
 				rooms: {}
-			}, user.safe, d)`)
+			}, d)`)
   if (new_content !== content) {
     console.log(`... special replaced ${file}`)
     fs.writeFileSync(file, new_content, 'utf8')

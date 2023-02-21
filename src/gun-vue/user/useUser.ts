@@ -149,7 +149,7 @@ function init() {
 				moiapp: {},
 				wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
 				rooms: {}
-			}, user.safe, d)
+			}, d)
 		});
 
 	gun

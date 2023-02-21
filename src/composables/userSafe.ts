@@ -2,6 +2,16 @@ import { SEA } from "../gun-vue/gun/useGun"
 import { useUser } from "../gun-vue/user/useUser"
 const { user } = useUser()
 
+export const user_safe_initial = {
+  saved: false,
+  password: '',
+  enc: '',
+  pass: '',
+  moiapp: {},
+  wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
+  rooms: {}
+}
+
 export const save_user_safe = async (value, key: any[], options={encrypt: false}) => {
     if (user.initiated) {
       let encrypted = value.value || value

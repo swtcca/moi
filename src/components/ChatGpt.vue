@@ -1,10 +1,15 @@
 <script setup>
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import { apiKey, openai_create_completion, openai_create_image } from "../composables/openai"
 import { read_user_safe, save_user_safe } from "../composables/userSafe"
 import { useTextareaAutosize } from '@vueuse/core'
 
 const api_in_gun = ref(false)
+watch(apiKey, () => {
+  console.log(`openai token changed`)
+  api_in_gun.value = false
+})
+
 const get_token = async () => {
   const key = await read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
   if (key) {

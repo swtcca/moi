@@ -7,7 +7,11 @@ import { read_user_safe, save_user_safe } from '../composables/userSafe'
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 let inited = false
-let key_saved = false
+let key_saved = ref(false)
+watch(prefers.youtubeAppKey, () => {
+  console.log(`youtube token changed`)
+  key_saved.value = false
+})
 
 function makeParams(options = {}) {
   return {
@@ -47,9 +51,9 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
     try {
       if (is_channel) {
         const response = await gapi.get('channels', makeParams({ key: prefers.youtubeAppKey, id: channel.id }))
-        if (!key_saved) {
+        if (!key_saved.value) {
           save_user_safe(prefers.youtubeAppKey, ["moiapp", "tokens", "youtube"], {encrypt: true})
-          key_saved = true
+          key_saved.value = true
         }
         if (response.data.pageInfo.totalResults === 1 ) {
           const item = response.data.items[0]
@@ -66,9 +70,9 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
         }
       }
       const resp = await gapi.get('playlistItems', makeParams({ key: prefers.youtubeAppKey, playlistId }))
-      if (!key_saved) {
+      if (!key_saved.value) {
         save_user_safe(prefers.youtubeAppKey, ["moiapp", "tokens", "youtube"], {encrypt: true})
-        key_saved = true
+        key_saved.value = true
       }
       resp.data.items.forEach(async (item) => {
         if (!channel.hasOwnProperty("title")) {
