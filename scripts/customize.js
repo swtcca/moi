@@ -11,6 +11,8 @@ const customize = {
   },
   './src/gun-vue/user/useUser.ts': {
     replaces: [
+      ['rooms: object', 'moiapp: object\n\t\twallets: object\n\t\trooms: object'],
+      [`rooms: {}`, `moiapp: {},\n\t\twallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\t\trooms: {}`],
       ['gun.user\\(\\).leave\\(\\);', 'user.safe.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n\tgun.user().leave();'],
       // ['pair\\(\\): ISEAPair {', 'wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\tpair(): ISEAPair {'],
     ],
@@ -168,6 +170,7 @@ Promise.resolve().then(async () => {
   Object.keys(customize).forEach((file) => {
     replace(file, customize[file])
   })
+  special('./src/gun-vue/user/useUser.ts')
 })
 
 function log(message = '', color = 'green') {
@@ -199,4 +202,13 @@ function replace(file, config = []) {
 
 function i18n(file, i18n = false) {
 
+}
+
+function special(file, multiline = true) {
+  const content = fs.readFileSync(file, "utf8")
+  const new_content = content.replace(/get\("safe"\)[\s\S]+.map\(\)[\s\S]+.on\(\(d, k\) => {[\s\S]+user.safe\[k\] = d;/m, `get("safe")\n\t\t.open(d => {\n\t\t\tObject.assign(user.safe, d)`)
+  if (new_content !== content) {
+    console.log(`... special replaced ${file}`)
+    fs.writeFileSync(file, new_content, 'utf8')
+  }
 }

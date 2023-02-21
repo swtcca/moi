@@ -81,7 +81,7 @@ export const user: User = reactive({
 		enc: '',
 		pass: '',
 		moiapp: {},
-	    wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
+		wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
 		rooms: {}
 	},
 	db: undefined,
