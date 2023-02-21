@@ -141,7 +141,15 @@ function init() {
 	gun.user()
 		.get("safe")
 		.open(d => {
-			Object.assign(user.safe, d)
+			user.safe = Object.assign({
+				saved: false,
+				password: '',
+				enc: '',
+				pass: '',
+				moiapp: {},
+				wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
+				rooms: {}
+			}, user.safe, d)
 		});
 
 	gun

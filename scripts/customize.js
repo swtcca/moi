@@ -206,7 +206,17 @@ function i18n(file, i18n = false) {
 
 function special(file, multiline = true) {
   const content = fs.readFileSync(file, "utf8")
-  const new_content = content.replace(/get\("safe"\)[\s\S]+.map\(\)[\s\S]+.on\(\(d, k\) => {[\s\S]+user.safe\[k\] = d;/m, `get("safe")\n\t\t.open(d => {\n\t\t\tObject.assign(user.safe, d)`)
+  const new_content = content.replace(/get\("safe"\)[\s\S]+.map\(\)[\s\S]+.on\(\(d, k\) => {[\s\S]+user.safe\[k\] = d;/m, `get("safe")
+		.open(d => {
+			user.safe = Object.assign({
+				saved: false,
+				password: '',
+				enc: '',
+				pass: '',
+				moiapp: {},
+				wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
+				rooms: {}
+			}, user.safe, d)`)
   if (new_content !== content) {
     console.log(`... special replaced ${file}`)
     fs.writeFileSync(file, new_content, 'utf8')
