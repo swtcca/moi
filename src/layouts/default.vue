@@ -5,7 +5,7 @@
     </div>
     <div class="h-screen" :class="globalState.layout_classes">
       <router-view />
-      <div class="py-16" v-if="$route.path === '/'">
+      <div class="pb-16" v-if="$route.path === '/'">
         <Navier />
       </div>
     </div>
