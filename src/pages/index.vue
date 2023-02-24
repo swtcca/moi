@@ -8,7 +8,5 @@ import { currentRoom, rootRoom } from '#composables';
     :key="currentRoom.pub" 
     @browse="$router.push(`/${$event}/`)"
     )
-  .w-full.my-12
-    navier()
 
 </template>

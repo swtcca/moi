@@ -9,6 +9,7 @@ button:
   reload: 加载
   close: 关闭
   toggle_dark: 切换深色模式
+  toggle_fullscreen: 切换全屏
   toggle_langs: 切换语言
   playlist: 播放列表
   tools: 工具

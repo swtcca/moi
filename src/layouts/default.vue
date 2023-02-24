@@ -5,6 +5,9 @@
     </div>
     <div class="h-screen" :class="globalState.layout_classes">
       <router-view />
+      <div class="py-16" v-if="$route.path === '/'">
+        <Navier />
+      </div>
     </div>
     <!--
     <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">

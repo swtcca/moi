@@ -2,6 +2,8 @@
 import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
 import { toggleDark } from '../composables/dark'
+import { useFullscreen } from '@vueuse/core'
+const { toggle } = useFullscreen(document.body)
 const { t, availableLocales, locale } = useI18n()
 const toggleLocales = () => {
   const locales = availableLocales
@@ -40,6 +42,8 @@ watch(show, (value, old_value) => {
 <template>
   <nav class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
     <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
+    </button>
+    <button class="i-mdi-fullscreen" :title="t('button.toggle_fullscreen')" @click="() => toggle()">
     </button>
     <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
     </button>

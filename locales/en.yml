@@ -9,6 +9,7 @@ button:
   reload: Reload
   close: Close
   toggle_dark: Toggle dark mode
+  toggle_fullscreen: Toggle full screen
   toggle_langs: Change languages
   playlist: Play List
   tools: Tools
