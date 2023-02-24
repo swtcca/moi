@@ -9,16 +9,6 @@
         <Navier />
       </div>
     </div>
-    <!--
-    <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
-      <NavBottom v-if="globalState.show_top" />
-      <ReloadPrompt />
-    </div>
-    <div ref="navbar" class="fixed left-0 bottom-0 z-400 inset-x-0 opacity-90">
-      <NavBottom v-if="!globalState.show_top" />
-    </div>
-        <div class="bg-transparent font-bold text-left text-6xl text-green-700 text-opacity-10 text-stroke-sm text-stroke-blue-700">
-    -->
     <div ref="home_ref" class="fixed z-400 left-1" :style="home_classes">
       <RouterLink class="link" to="/">
         <div class="i-la-home text-6xl  text-green-700 text-opacity-90 text-stroke-sm text-stroke-blue-700"></div>
