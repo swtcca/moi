@@ -14,11 +14,11 @@ onBeforeMount(() => prefers.sync_from_gun())
       </label>
       <label v-show="prefers.youtubeAccess" class="block">
         <span>Youtube API Key</span>
-        <input type="text" v-model.lazy="prefers.youtubeAppKey" class="mt-1 block w-full" placeholder="google api key" />
+        <input type="password" v-model.lazy="prefers.youtubeAppKey" class="mt-1 block w-full" placeholder="google api key" />
       </label>
       <label class="block">
         <span>OpenAI API Key</span>
-        <input type="text" v-model.lazy="prefers.openaiApiKey" class="mt-1 block w-full" placeholder="openai api key" />
+        <input type="password" v-model.lazy="prefers.openaiApiKey" class="mt-1 block w-full" placeholder="openai api key" />
       </label>
       <label v-show="prefers.youtubeAccess" class="block">
         <span> {{ t('pages.youtube_per_query') }} </span>
