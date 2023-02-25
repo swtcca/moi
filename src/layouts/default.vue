@@ -9,12 +9,15 @@
         <Navier />
       </div>
     </div>
+    <div ref="move_ref" class="fixed z-401" :style="style">
+      <div class="i-carbon-router text-4xl  text-blue-700 text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
+    </div>
     <div ref="home_ref" class="fixed z-400 left-1" :style="home_classes">
       <RouterLink class="link" to="/">
-        <div class="i-la-home text-6xl  text-green-700 text-opacity-90 text-stroke-sm text-stroke-blue-700"></div>
+        <div class="i-la-home text-6xl  text-blue-700 text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
       </RouterLink>
     </div>
-    <div ref="user_ref" class="fixed z-400 right-2" :style="home_classes">
+    <div ref="user_ref" class="fixed z-400 right-2" :style="user_classes">
       <UserIcon
         :size="48"
         :showName="false"
@@ -30,13 +33,15 @@
 import { globalState } from '../stores/globalState'
 const { top } = useScreenSafeArea()
 const navier = ref(null)
+const move_ref = ref(null)
 const home_ref = ref(null)
 const user_ref = ref(null)
 const { height, width } = useWindowSize()
-const { x, y, style } = useDraggable(home_ref, {initialValue: {x: 10, y: (height.value || 640) - 54 }})
+const { x, y, style } = useDraggable(move_ref, {initialValue: {x: 0, y:0 }})
 console.log(`${width.value} x ${height.value}`)
 console.log(style.value)
 globalState.layout_classes = computed(() => `mt-${top.value}`)
-const home_classes = computed(() => `top:${y.value}px`)
+const home_classes = computed(() => `left:${x.value}px;bottom:${y.value}px`)
+const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
 // globalState.nav_classes = computed(() => globalState.show_top ? `mt-${Math.floor(heightNavTop.value || 0) + parseInt(top.value.replace(/px/,"") || "0")}px` : `mb-${Math.floor(heightNavBottom.value)}px`)
 </script>
