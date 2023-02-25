@@ -9,7 +9,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@coders-tm/vue-number-format": "^3.3.1",
+    "@coders-tm/vue-number-format": "3.5.0",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@types/recordrtc": "^5.6.10",
     "@unocss/reset": "0.49.0",

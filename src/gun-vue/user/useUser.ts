@@ -60,6 +60,7 @@ export interface User {
 		moiapp: object
 		wallets: object
 		rooms: object
+		[key: string]: any
 	};
 	db?: IGunUserInstance
 	pair(): ISEAPair;

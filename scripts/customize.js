@@ -11,7 +11,7 @@ const customize = {
   },
   './src/gun-vue/user/useUser.ts': {
     replaces: [
-      ['rooms: object', 'moiapp: object\n\t\twallets: object\n\t\trooms: object'],
+      ['rooms: object', 'moiapp: object\n\t\twallets: object\n\t\trooms: object\n\t\t[key: string]: any'],
       [`rooms: {}`, `moiapp: {},\n\t\twallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\t\trooms: {}`],
       ['gun.user\\(\\).leave\\(\\);', 'user.safe.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};\n\tgun.user().leave();'],
       // ['pair\\(\\): ISEAPair {', 'wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n\tpair(): ISEAPair {'],

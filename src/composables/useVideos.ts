@@ -10,10 +10,9 @@ const pvideos = reactive({})
 const gvideos = reactive({})
 const tvideos = reactive({})
 const gchannels = reactive({})
-// const vref = gun.user(globalState.sa.pub).get("youtube").get("videos")
-// const cref = gun.user(globalState.sa.pub).get("youtube").get("channels")
 const pref = gun.get('bcapps').get('moi').get('youtube').get('published')
 const vref = gun.get('bcapps').get('moi').get('youtube').get('videos')
+
 const cref = gun.get('bcapps').get('moi').get('youtube').get('channels')
 const tref = gun.get('bcapps').get('moi').get('youtube').get('videos').get(`${new Date().toJSON().substring(0, 7)}`)
 // structure tests
@@ -22,6 +21,9 @@ const tref = gun.get('bcapps').get('moi').get('youtube').get('videos').get(`${ne
 // /channels/channel/videos/video
 let listening = false
 
+watch(gchannels, (value, old_value) => {
+  console.log(`watched channels change ${Object.keys(value).length}`)
+})
 watch(tvideos, (value, old_value) => {
   // console.log(`watched test videos change ${Object.keys(value).length}`)
   Object.values(value).forEach((gvideo: IVideo) => {
@@ -48,9 +50,6 @@ watch(tvideos, (value, old_value) => {
 //     }
 //   })
 // })
-watch(gchannels, (value, old_value) => {
-  console.log(`watched channels change ${Object.keys(value).length}`)
-})
 
 export function initChannels() {
   console.log('init channels')
@@ -74,36 +73,6 @@ export function initChannels() {
 }
 
 export function initVideos() {
-  // vref.map().once((d,k) => {
-  //   if (d && d._) {
-  //     delete d._
-  //     if (gvideos.hasOwnProperty(k)) {
-  //       Object.assign(gvideos[k], d)
-  //     } else {
-  //       if (d.videoId) {
-  //         gvideos[k] = d
-  //       } else {
-  //         console.log(`incomplete video ${k}`)
-  //         console.log(d)
-  //       }
-  //     }
-  //   }
-  // })
-  // pref.map().once((d,k) => {
-  //   if (d && d._) {
-  //     delete d._
-  //     if (pvideos.hasOwnProperty(k)) {
-  //       Object.assign(pvideos[k], d)
-  //     } else {
-  //       if (d.videoId && d.videoPublishedAt) {
-  //         pvideos[k] = d
-  //       } else {
-  //         console.log(`incomplete video ${k}`)
-  //         console.log(d)
-  //       }
-  //     }
-  //   }
-  // })
   tref.map().map().once((d, k) => {
     if (d && d._) {
       delete d._
@@ -126,38 +95,6 @@ export function initVideos() {
 export function useVideos() {
   if (!listening) {
     listening = true
-    // vref.map().on((d, k) => {
-    //   if (d && d._) {
-    //     delete d._
-    //     if (gvideos.hasOwnProperty(k)) {
-    //       Object.assign(gvideos[k], d)
-    //     } else {
-    //       if (d.videoId) {
-    //         gvideos[k] = d
-    //       } else {
-    //         console.log(`video ${k} ${d.videoId}`)
-    //         console.log(d)
-    //       }
-    //     }
-    //   }
-    // // })
-    // }, true)  // delta value
-    // pref.map().on((d, k) => {
-    //   if (d && d._) {
-    //     delete d._
-    //     if (pvideos.hasOwnProperty(k)) {
-    //       Object.assign(pvideos[k], d)
-    //     } else {
-    //       if (d.videoId && d.videoPublishedAt) {
-    //         pvideos[k] = d
-    //       } else {
-    //         console.log(`video ${k} ${d.videoId}`)
-    //         console.log(d)
-    //       }
-    //     }
-    //   }
-    // // })
-    // }, true)  // delta value
     tref.map().map().on((d, k) => {
       if (d && d._) {
         delete d._
@@ -174,8 +111,8 @@ export function useVideos() {
           }
         }
       }
-    // })
     }, true) // delta value
+    // })
     cref.map().on((d, k) => {
       if (d && d._) {
         delete d._
