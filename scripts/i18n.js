@@ -28,7 +28,7 @@ const files = [
   'src/gun-vue/room/RoomActions.vue',
   'src/gun-vue/space/SpacePlane.vue',
   'src/gun-vue/util/UtilShare.vue',
-  'src/gun-vue/util/UtilRelay.vue',
+  'src/gun-vue/gun/GunRelay.vue',
   'src/gun-vue/post/PostForm.vue',
   'src/gun-vue/post/PostList.vue',
   'src/gun-vue/post/PostPage.vue',

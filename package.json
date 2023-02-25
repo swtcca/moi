@@ -6,7 +6,8 @@
     "tauri": "tauri",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "sync": "bash scripts/sync_gun.sh; node scripts/i18n.js; node scripts/customize.js"
   },
   "dependencies": {
     "@coders-tm/vue-number-format": "3.5.0",

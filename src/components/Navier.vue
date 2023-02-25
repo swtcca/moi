@@ -56,7 +56,7 @@ watch(show, (value, old_value) => {
     <button class="i-mdi-graph-outline" v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
     </button>
     <button v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.relays')">
-      <UtilRelay />
+      <GunRelay />
     </button>
     <router-link to="/upload/" class="i-simple-icons-ipfs">
     </router-link>
@@ -67,7 +67,7 @@ watch(show, (value, old_value) => {
     </router-link>
   </nav>
   <UiLayer :open="show.graph" @close="show.graph=false">
-    <UtilGraph />
+    <GunGraph />
   </UiLayer>
   <UiLayer :open="show.settings" @close="show.settings=false">
     <Settings />
