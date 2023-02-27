@@ -32,7 +32,7 @@ vupload:
 customize:
   chat_title: Private Chats
   room_space: 'space'
-  room_topics: 'topics'
+  room_chat: 'chat'
   room_posts: 'posts'
   room_projects: 'projects'
   room_gifts: 'gifts'

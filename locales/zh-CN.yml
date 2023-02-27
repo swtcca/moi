@@ -32,7 +32,7 @@ vupload:
 customize:
   chat_title: 私聊
   room_space: '空间'
-  room_topics: '聊天'
+  room_chat: '聊天'
   room_posts: '文章'
   room_projects: '项目'
   room_gifts: '礼物'

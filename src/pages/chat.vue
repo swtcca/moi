@@ -4,7 +4,7 @@
 
 <template lang="pug">
 .flex.relative.items-stretch.bg-dark-50.bg-opacity-40.w-full.h-full
-  chat-topics(@topic="$router.push(`/topics/${$event}`)")
+  chat-topics(@topic="$router.push(`/chat/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(
       name="fade" 

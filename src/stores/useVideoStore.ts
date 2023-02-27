@@ -32,5 +32,8 @@ export const useVideoStore = defineStore('videos', {
         this.videos.splice(index, 1)
       }
     },
+    empty() {
+      this.videos = []
+    },
   },
 })

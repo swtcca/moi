@@ -1,5 +1,14 @@
 {
   "relay": "https://peer.era.eco/gun",
+  "features": {
+    "rooms": "Rooms",
+    "space": "Space",
+    "posts": "Posts",
+    "chat": "Chat",
+    "dict": "Dictionary",
+    "projects": "Projects",
+    "gifts": "Gifts"
+  },
   "room": {
     "pub": "ESE_kchm5HkrbE-GGvjLrhtPgHayD7fcLjY0JN78m4I.N1xV8gPJI_lkkLhNXhO2_kSP1gHYeNsdHoax0D_0wLM",
     "hosts": {

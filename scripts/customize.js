@@ -100,7 +100,7 @@ const customize = {
       ['form-picture.absolute\\(', 'form-picture.absolute(\n    v-if="user.wallets?.jingtum?.activated"'],
     ],
   },
-  './src/pages/topics.vue': {
+  './src/pages/chat.vue': {
     replaces: [
       ['max-h-90vh.min-h-90vh', 'w-full.h-full'],
     ],

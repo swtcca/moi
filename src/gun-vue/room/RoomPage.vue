@@ -3,21 +3,13 @@
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
+import config from '../gun.config.json'
+
 const props = defineProps({
   pub: { type: String, default: '' },
   titles: {
     type: Object,
-    default: () => ({
-      space: 'Space',
-      topics: 'Topics',
-      posts: 'Posts',
-      projects: 'Projects',
-      gifts: 'Gifts',
-      dict: 'Dictionary',
-      users: 'Users',
-      rooms: 'Rooms',
-
-    })
+    default: () => (config.features)
   }
 })
 
@@ -88,7 +80,7 @@ const { t } = useI18n()
         :type="c"
         :title="t('customize.room_' + c)"
         :pub="pub || currentRoom.pub"
-        :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'topics' && room.features.chat)"
+        :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'chat' && room.features.chat)"
         @click="$emit('browse', c)" 
         )
 
