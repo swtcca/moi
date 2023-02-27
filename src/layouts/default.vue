@@ -9,10 +9,10 @@
         <Navier />
       </div>
     </div>
-    <div ref="move_ref" class="fixed z-401" :style="style">
+    <div ref="move_ref" v-if="$route.path !== '/'" class="fixed z-401" :style="style">
       <div class="i-carbon-router text-4xl  text-blue-700 text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
     </div>
-    <div ref="home_ref" class="fixed z-400" :style="home_classes">
+    <div ref="home_ref" v-if="$route.path !== '/'" class="fixed z-400" :style="home_classes">
       <RouterLink class="link" to="/">
         <div class="i-la-home text-6xl  text-blue-700 text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
       </RouterLink>

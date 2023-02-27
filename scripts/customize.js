@@ -171,6 +171,7 @@ Promise.resolve().then(async () => {
     replace(file, customize[file])
   })
   special('./src/gun-vue/user/useUser.ts')
+  special('./src/gun-vue/room/useRoom.ts')
 })
 
 function log(message = '', color = 'green') {
@@ -206,7 +207,7 @@ function i18n(file, i18n = false) {
 
 function special(file, multiline = true) {
   const content = fs.readFileSync(file, "utf8")
-  const new_content = content.replace(/get\("safe"\)[\s\S]+.map\(\)[\s\S]+.on\(\(d, k\) => {[\s\S]+user.safe\[k\] = d;/m, `get("safe")
+  let new_content = content.replace(/get\("safe"\)[\s\S]+.map\(\)[\s\S]+.on\(\(d, k\) => {[\s\S]+user.safe\[k\] = d;/m, `get("safe")
 		.open(d => {
 			user.safe = Object.assign({
 				saved: false,
@@ -217,6 +218,21 @@ function special(file, multiline = true) {
 				wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},
 				rooms: {}
 			}, d)`)
+  // new_content = new_content.replace(/gun\n    .user\(pub\)\n    .get\("profile"\)\n    .map\(\)\n    .on\(\(d, k\) => {\n      room.profile\[k\] = d;/m, `gun
+  //   .user(pub)
+  //   .get("profile")
+  //   .open(d => {
+  //     room.profile = d;`)
+  //  new_content = new_content.replace(/gun\n    .user\(pub\)\n    .get\("hosts"\)\n    .map\(\)\n    .once\(\(d, k\) => {\n      room.hosts\[k\] = d;/m, `gun
+  //   .user(pub)
+  //   .get("hosts")
+  //   .load(d => {
+  //     room.hosts = d;`)
+  //  new_content = new_content.replace(/gun\n    .user\(pub\)\n    .get\("features"\)\n    .map\(\)\n    .once\(\(d, k\) => {\n      room.features\[k\] = d;/m, `gun
+  //   .user(pub)
+  //   .get("features")
+  //   .load(d => {
+  //     room.features = d;`)
   if (new_content !== content) {
     console.log(`... special replaced ${file}`)
     fs.writeFileSync(file, new_content, 'utf8')

@@ -18,17 +18,14 @@ const location_origin = ref(location.origin)
 globalThis.gun = useGun()
 onBeforeMount(() => {
   if (/localhost|127.0.0.1/.test(location_origin.value)) {
-    const {vref, cref, gvideos, gchannels, pref, pvideos, tvideos, tref} = initChannels()
+    const {cref, gchannels, tvideos, tref} = initChannels()
     const { user } = useUser()
-    globalThis.pvideos = pvideos
-    globalThis.pref = pref
-    globalThis.gvideos = gvideos
-    globalThis.vref = vref
     globalThis.gchannels = gchannels
     globalThis.cref = cref
     globalThis.tvideos = tvideos
     globalThis.tref = tref
     globalThis.user = user
+    globalThis.room = currentRoom
   }
 })
 onMounted(() => {

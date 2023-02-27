@@ -42,9 +42,9 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-app.use(pinia)
-app.use(router)
 app.use(GunVuePlugin)
+app.use(router)
+app.use(pinia)
 // install all modules under `modules/`
 Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.({ app, router, routes }))
 
