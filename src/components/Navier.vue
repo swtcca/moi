@@ -55,10 +55,10 @@ watch(show, (value, old_value) => {
     <router-link to="/openai/" class="i-logos-openai-icon"></router-link>
     <button class="i-mdi-graph-outline" v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
     </button>
-    <button v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.relays')">
+    <button :title="t('button.relays')">
       <GunRelay />
     </button>
-    <router-link to="/upload/" class="i-simple-icons-ipfs">
+    <router-link to="/upload/" v-if="false" class="i-simple-icons-ipfs">
     </router-link>
     <router-link to="/wallets/" class="i-ph-wallet">
     </router-link>
