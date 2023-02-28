@@ -20,8 +20,6 @@ const prefers_initial = {
 db.data ||= { version: pkg.version, prefers: prefers_initial }
 // sync from initial
 if (!db.data.prefers.hasOwnProperty("ipfsGateway")) db.data.prefers.ipfsGateway = prefers_initial.ipfsGateway
-if (!db.data.prefers.hasOwnProperty("openaiApiKey")) db.data.prefers.openaiApiKey = prefers_initial.openaiApiKey
-if (!db.data.prefers.hasOwnProperty("youtubeAppKey")) db.data.prefers.youtubeAppKey = prefers_initial.youtubeAppKey
 if (!db.data.prefers.hasOwnProperty("youtubeAccess")) db.data.prefers.youtubeAccess = prefers_initial.youtubeAccess
 if (!db.data.prefers.hasOwnProperty("playbackRate")) db.data.prefers.playbackRate = prefers_initial.playbackRate
 if (!db.data.prefers.hasOwnProperty("maxResults")) db.data.prefers.maxResults = prefers_initial.maxResults
@@ -70,14 +68,6 @@ export const usePrefersStore = defineStore('prefers', {
     async sync_from_gun() {
       const token_openai = await read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
       const token_youtube = await read_user_safe(["moiapp", "tokens", "youtube"], {encrypt: true})
-      if (token_openai) {
-        this.openaiApiKey = token_openai
-        db.write()
-      }
-      if (token_youtube) {
-        this.youtubeAppKey = token_youtube
-        db.write()
-      }
     }
   }
 })
