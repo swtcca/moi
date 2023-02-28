@@ -66,8 +66,6 @@ export const usePrefersStore = defineStore('prefers', {
       db.write()
     },
     async sync_from_gun() {
-      const token_openai = await read_user_safe(["moiapp", "tokens", "openai"], {encrypt: true})
-      const token_youtube = await read_user_safe(["moiapp", "tokens", "youtube"], {encrypt: true})
     }
   }
 })
