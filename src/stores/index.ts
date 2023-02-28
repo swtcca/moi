@@ -4,7 +4,7 @@ setActivePinia(pinia)
 
 import { useIpfsStore } from "./useIpfsStore"
 import { useVideoStore } from "./useVideoStore"
-import { useVideoFeaturedStore } from "./useVideoFeaturedStore"
+import { useVideoFeaturedStore, FEATURED } from "./useVideoFeaturedStore"
 import { usePlayingStore } from "./usePlayingStore"
 import { usePlayingInListStore } from "./usePlayingInListStore"
 import { usePlaylistStore } from "./usePlaylistStore"
@@ -41,5 +41,6 @@ export {
   usePlayingInListStore,
   usePrefersStore,
   useFilteringStore,
-  usePlaylistStore
+  usePlaylistStore,
+  FEATURED
 }

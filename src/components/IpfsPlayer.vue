@@ -7,10 +7,10 @@ interface IVideoProp {
 import { globalState } from '../stores/globalState'
 import { getRandomElement } from "../api/utils"
 import Plyr from 'plyr'
-import { playing, playingInList, playlist, featured, prefers } from "../stores"
+import { playing, playingInList, playlist, featured, prefers, FEATURED } from "../stores"
 const props = withDefaults(
   defineProps<IVideoProp>(), {
-    video: getRandomElement(globalState.FEATURED),
+    video: getRandomElement(FEATURED),
   }
 )
 
