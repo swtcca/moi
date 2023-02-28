@@ -1,8 +1,8 @@
 import { getRandomElement } from "../api/utils"
 import { useUser } from "../gun-vue/user/useUser"
-const { user } = useUser()
 import { save_user_safe } from "./userSafe"
 
+const { user } = useUser()
 export const chains = reactive({
   ethereum: {
     chain: "ethereum",
