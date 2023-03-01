@@ -88,6 +88,8 @@
     "ultramatter": "^0.0.2",
     "underscore": "^1.13.6",
     "unocss": "^0.50.2",
+    "unocss-preset-chinese": "^0.0.5",
+    "unocss-preset-primitives": "^0.0.1-beta.5",
     "unplugin-auto-import": "^0.12.1",
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.2",

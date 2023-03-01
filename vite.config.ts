@@ -5,6 +5,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, presetAttributify, presetTagify, presetTypography, transformerDirectives, extractorSplit } from "unocss";
+import presetChinese from "unocss-preset-chinese"
+import { presetHeadlessUi } from 'unocss-preset-primitives'
 import { presetForms } from '@julr/unocss-preset-forms'
 import extractorPug from '@unocss/extractor-pug'
 
@@ -82,6 +84,7 @@ export default defineConfig({
     // Unocss(),
     Unocss({
       presets: [
+        // presetAttributify(),
         presetIcons({
           extraProperties: {
             'display': 'inline-block',
@@ -90,9 +93,10 @@ export default defineConfig({
         }),
         presetTagify(),
         presetUno(),
+        presetHeadlessUi(),
+        presetChinese(),
         presetTypography(),
         presetForms(),
-        // presetAttributify(),
       ],
       transformers: [
         transformerDirectives(),

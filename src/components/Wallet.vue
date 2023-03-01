@@ -9,10 +9,12 @@ import {
   ListboxOption,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import Dropdown from './DropDown.vue';
 const { user } = useUser()
 // const { wallet } = useWallet()
 const { wallets, chains } = useWallets()
 const noop = () => {console.log(`...debug doing nothing`)}
+const location_origin = ref(location.origin)
 
 const chain_names = []
 for (const chain in wallets) {
@@ -70,6 +72,7 @@ const { t } = useI18n()
 <template lang="pug">
 h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark-text-gray-200 Wallets
 .container.overflow-x-hidden
+  Dropdown(v-if="/localhost|127.0.0.1/.test(location_origin)")
   .grid.grid-col-1.place-content-around.gap-2.p-4.min-h-60vh
     .flex.flex-col.gap-2.max-w-full.sm-max-w-sm.bg-white.rounded-xl.shadow-lg
       Listbox(v-model="selectedChain")
