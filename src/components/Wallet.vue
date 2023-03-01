@@ -9,7 +9,7 @@ import {
   ListboxOption,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-import Dropdown from './DropDown.vue';
+import Dropdown from './Dropdown.vue';
 const { user } = useUser()
 // const { wallet } = useWallet()
 const { wallets, chains } = useWallets()
