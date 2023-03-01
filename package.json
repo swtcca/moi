@@ -10,7 +10,7 @@
     "sync": "bash scripts/sync_gun.sh; node scripts/i18n.js; node scripts/customize.js"
   },
   "dependencies": {
-    "@coders-tm/vue-number-format": "3.5.0",
+    "@coders-tm/vue-number-format": "^3.14.0",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@types/recordrtc": "^5.6.10",
     "@unocss/reset": "^0.50.2",
