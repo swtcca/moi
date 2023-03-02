@@ -4,17 +4,13 @@ const dirname = __dirname
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
-import { presetUno, presetIcons, presetAttributify, presetTagify, presetTypography, transformerDirectives, extractorSplit } from "unocss";
-import presetChinese from "unocss-preset-chinese"
-import { presetHeadlessUi } from 'unocss-preset-primitives'
-import { presetForms } from '@julr/unocss-preset-forms'
-import extractorPug from '@unocss/extractor-pug'
 
 import { VitePWA } from 'vite-plugin-pwa'
 import replace from '@rollup/plugin-replace'
 import Layouts from 'vite4-plugin-vue-layouts'
 
 import Components from 'unplugin-vue-components/vite'
+// import { AnuComponentResolver } from 'anu-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Pages from 'vite-plugin-pages'
@@ -80,6 +76,9 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       exclude: [/node_modules/, /\.git/],
       dts: 'src/components.d.ts',
+      // resolvers: [
+      //   AnuComponentResolver()
+      // ],
     }),
     Unocss(),
     AutoImport({

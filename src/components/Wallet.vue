@@ -9,8 +9,9 @@ import {
   ListboxOption,
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
-import Dropdown from './Dropdown.vue';
-import Switch from './Switch.vue';
+import Dropdown from './Dropdown.vue'
+import Switch from './Switch.vue'
+import { ASwitch } from 'anu-vue'
 const { user } = useUser()
 // const { wallet } = useWallet()
 const { wallets, chains } = useWallets()
@@ -52,6 +53,7 @@ const balances = computed(() => {
 const selectedChain = ref(chain_names.find(e => e.name === default_chain_name.value))
 const wallet = ref(useWallet())
 const chain = ref(default_chain_name.value)
+const value = ref(true)
 watch(selectedChain, () => {
   wallet.value = useWallet(selectedChain.value.name)
   chain.value = selectedChain.value.name
@@ -73,6 +75,12 @@ const { t } = useI18n()
 <template lang="pug">
 h1.pt-8.text-center.font-bold.text-2xl.text-gray-800.dark-text-gray-200 Wallets
 .container.overflow-x-hidden
+  ASwitch(
+    v-model="value"
+    on-icon="i-bx-check"
+    off-icon="i-bx-x"
+    color="success"
+  )
   Switch(v-if="/localhost|127.0.0.1/.test(location_origin)")
   Dropdown(v-if="/localhost|127.0.0.1/.test(location_origin)")
   .grid.grid-col-1.place-content-around.gap-2.p-4.min-h-60vh

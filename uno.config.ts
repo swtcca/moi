@@ -1,29 +1,30 @@
-import { defineConfig, presetUno, presetIcons, presetAttributify, presetTagify, presetTypography, transformerDirectives, extractorSplit } from "unocss";
+import { defineConfig, presetWind, presetIcons, presetAttributify, presetTagify, presetTypography, transformerDirectives, extractorSplit } from "unocss";
 import presetChinese from "unocss-preset-chinese"
 import { presetHeadlessUi } from 'unocss-preset-primitives'
 import { presetForms } from '@julr/unocss-preset-forms'
 import extractorPug from '@unocss/extractor-pug'
-import { presetAnu, presetIconExtraProperties } from 'anu-vue'
-import { presetThemeDefault } from '@anu-vue/preset-theme-default'
+// import { presetAnu, presetIconExtraProperties } from 'anu-vue'
+// import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 
 export default defineConfig({
   presets: [
     // presetAttributify(),
-    presetUno(),
+    presetWind(),
     presetTagify(),
     presetTypography(),
     presetIcons({
       extraProperties: {
-        ...presetIconExtraProperties,
-        // 'vertical-align': 'middle',
+        // ...presetIconExtraProperties,
+        'display': 'inline-block',
+        'vertical-align': 'middle',
       },
     }),
     // anu-vue preset
-    presetAnu(),
-    presetHeadlessUi(),
+    // presetAnu(),
+    // presetThemeDefault(),
+    // presetHeadlessUi(),
     presetChinese(),
     presetForms(),
-    presetThemeDefault(),
   ],
   transformers: [
     transformerDirectives(),
@@ -32,5 +33,6 @@ export default defineConfig({
     extractorPug(),
     extractorSplit,
   ],
+  // include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
   safelist: 'prose prose-sm m-auto text-left font-chinese font-helvetica font-italics font-song font-li'.split(' '),
 })

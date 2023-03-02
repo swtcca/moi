@@ -1,16 +1,15 @@
 import { createApp, ref } from "vue";
-import { anu } from 'anu-vue'
 import { pinia } from "./stores"
 import { globalState } from "./stores/globalState"
+// import { anu } from "anu-vue"
 
 import '@unocss/reset/tailwind.css'
-import '@unocss/reset/tailwind-compat.css'
-// import 'uno.css'
+import 'uno.css'
 // anu styles
-import 'anu-vue/dist/style.css'
+// import 'anu-vue/dist/style.css'
 // default theme styles
-import '@anu-vue/preset-theme-default/dist/style.css'
 // import "./styles/styles.scss";
+// import '@anu-vue/preset-theme-default/dist/style.css'
 import "./gun-vue/styles/index.css";
 
 import { createRouter, createWebHashHistory } from "vue-router"
@@ -48,7 +47,6 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-app.use(anu)
 app.use(GunVuePlugin)
 app.use(router)
 app.use(pinia)
