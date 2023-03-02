@@ -81,31 +81,7 @@ export default defineConfig({
       exclude: [/node_modules/, /\.git/],
       dts: 'src/components.d.ts',
     }),
-    // Unocss(),
-    Unocss({
-      presets: [
-        // presetAttributify(),
-        presetIcons({
-          extraProperties: {
-            'display': 'inline-block',
-            'vertical-align': 'middle',
-          },
-        }),
-        presetTagify(),
-        presetUno(),
-        presetHeadlessUi(),
-        presetChinese(),
-        presetTypography(),
-        presetForms(),
-      ],
-      transformers: [
-        transformerDirectives(),
-      ],
-      extractors: [
-        extractorPug(),
-        extractorSplit,
-      ],
-    }),
+    Unocss(),
     AutoImport({
       imports: [
         'vue',

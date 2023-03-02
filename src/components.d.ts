@@ -36,7 +36,6 @@ declare module '@vue/runtime-core' {
     DictWordList: typeof import('./gun-vue/dict/word/DictWordList.vue')['default']
     DictWordPage: typeof import('./gun-vue/dict/word/DictWordPage.vue')['default']
     Dropdown: typeof import('./components/Dropdown.vue')['default']
-    DropDown: typeof import('./components/Dropdown.vue')['default']
     EmbedIpfs: typeof import('./components/EmbedIpfs.vue')['default']
     EmbedYoutube: typeof import('./gun-vue/embed/EmbedYoutube.vue')['default']
     FormIpfs: typeof import('./components/FormIpfs.vue')['default']
