@@ -1,14 +1,30 @@
 
 <script setup lang="ts">
 import { prefers } from "../stores"
+import { SwitchGroup, SwitchLabel, Switch } from '@headlessui/vue'
 const { t } = useI18n()
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-6 text-gray-700 dark-text-gray-500">
     <label class="block">
-      <input type="checkbox" v-model="prefers.youtubeAccess" class="mt-1 mr-4" />
-      <span> {{ t('pages.youtube_access') }}? {{ prefers.youtubeAccess }}</span>
+      <SwitchGroup>
+        <div class="flex items-center">
+          <SwitchLabel class="mr-4">{{ t('pages.youtube_access') }}</SwitchLabel>
+          <Switch
+        v-model="prefers.youtubeAccess"
+        :class="prefers.youtubeAccess ? 'bg-teal-700' : 'bg-teal-200'"
+        class="relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+      >
+        <span class="sr-only">Use setting</span>
+        <span
+          aria-hidden="true"
+          :class="prefers.youtubeAccess ? 'translate-x-9' : 'translate-x-0'"
+          class="pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+        />
+      </Switch>
+        </div>
+      </SwitchGroup>
     </label>
     <label v-show="prefers.youtubeAccess" class="block">
       <span> {{ t('pages.youtube_per_query') }} </span>

@@ -14,7 +14,7 @@ const toggle_type = () => {
     input_type.value = "password"
   }
 }
-onBeforeMount(() => get_tokens())
+onBeforeMount(() => { if (user.is) { get_tokens() } })
 </script>
 
 <template>

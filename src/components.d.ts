@@ -114,6 +114,7 @@ declare module '@vue/runtime-core' {
     SpaceDraw: typeof import('./gun-vue/space/SpaceDraw.vue')['default']
     SpaceGuest: typeof import('./gun-vue/space/SpaceGuest.vue')['default']
     SpacePlane: typeof import('./gun-vue/space/SpacePlane.vue')['default']
+    Switch: typeof import('./components/Switch.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
     TokenManager: typeof import('./components/TokenManager.vue')['default']
     UiButton: typeof import('./gun-vue/ui/UiButton.vue')['default']

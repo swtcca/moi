@@ -4,7 +4,8 @@ import { pinia } from "./stores"
 import { globalState } from "./stores/globalState"
 
 import '@unocss/reset/tailwind.css'
-import 'uno.css'
+import '@unocss/reset/tailwind-compat.css'
+// import 'uno.css'
 // anu styles
 import 'anu-vue/dist/style.css'
 // default theme styles
