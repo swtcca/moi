@@ -1,5 +1,7 @@
 [build.environment]
   NODE_VERSION = "18"
+  CI = "False"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 [build]
   publish = "dist"
