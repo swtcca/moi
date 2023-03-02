@@ -32,4 +32,5 @@ export default defineConfig({
     extractorPug(),
     extractorSplit,
   ],
+  safelist: 'prose prose-sm m-auto text-left font-chinese font-helvetica font-italics font-song font-li'.split(' '),
 })

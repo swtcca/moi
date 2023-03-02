@@ -3,8 +3,7 @@ import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
 import { toggleDark } from '../composables/dark'
 import { useFullscreen } from '@vueuse/core'
-import { useFonts } from '../composables/useFont'
-const { class_font, toggleFonts } = useFonts()
+import { class_font, toggleFonts } from '../composables/useFont'
 // const { toggle } = useFullscreen(document.body)
 const navier = ref<HTMLElement | null>(null)
 const { toggle } = useFullscreen(navier.value?.parentNode)
@@ -32,6 +31,7 @@ watch(show, (value, old_value) => {
     console.log(`not settings`)
   }
 })
+watch(class_font, () => console.log(class_font.value))
 //    <button :title="t('button.info')" @click="show.info = !show.info">
 //      <ph-info />
 //    </button>
