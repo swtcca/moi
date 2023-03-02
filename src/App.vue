@@ -3,13 +3,6 @@ import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { useGun, currentRoom, rootRoom, useBackground, useUser } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
-// import { globalState } from './stores/globalState'
-// import { onLongPress } from '@vueuse/core'
-// onLongPress(
-//   document.body,
-//   () => { console.log(`on long press`); globalState.show_top = !globalState.show_top },
-//   { delay: 2000, modifiers: { prevent: true } }
-// )
 
 const router = useRouter()
 const route = useRoute();

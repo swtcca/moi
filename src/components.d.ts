@@ -7,7 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ABtn: typeof import('anu-vue')['ABtn']
     AccountAvatar: typeof import('./gun-vue/account/AccountAvatar.vue')['default']
     AccountBadge: typeof import('./gun-vue/account/AccountBadge.vue')['default']
     AccountHome: typeof import('./gun-vue/account/AccountHome.vue')['default']
@@ -16,7 +15,6 @@ declare module '@vue/runtime-core' {
     AccountReactions: typeof import('./gun-vue/account/AccountReactions.vue')['default']
     AccountSelect: typeof import('./gun-vue/account/AccountSelect.vue')['default']
     AccountStars: typeof import('./gun-vue/account/AccountStars.vue')['default']
-    ASwitch: typeof import('anu-vue')['ASwitch']
     ChatGpt: typeof import('./components/ChatGpt.vue')['default']
     ChatInput: typeof import('./gun-vue/chat/ChatInput.vue')['default']
     ChatMessage: typeof import('./gun-vue/chat/ChatMessage.vue')['default']
