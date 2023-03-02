@@ -11,6 +11,7 @@ button:
   toggle_dark: Toggle dark mode
   toggle_fullscreen: Toggle full screen
   toggle_langs: Change languages
+  toggle_fonts: Change fonts
   playlist: Play List
   tools: Tools
   social: Social

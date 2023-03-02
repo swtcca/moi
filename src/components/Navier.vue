@@ -3,6 +3,8 @@ import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
 import { toggleDark } from '../composables/dark'
 import { useFullscreen } from '@vueuse/core'
+import { useFonts } from '../composables/useFont'
+const { class_font, toggleFonts } = useFonts()
 // const { toggle } = useFullscreen(document.body)
 const navier = ref<HTMLElement | null>(null)
 const { toggle } = useFullscreen(navier.value?.parentNode)
@@ -48,6 +50,8 @@ watch(show, (value, old_value) => {
     <button class="i-mdi-fullscreen" :title="t('button.toggle_fullscreen')" @click="() => toggle()">
     </button>
     <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
+    </button>
+    <button ref="font" class="i-carbon-text-font" :title="t('button.toggle_fonts')" @click="toggleFonts">
     </button>
     <button class="i-ph-gear" :title="t('button.settings')" @click="show.settings = !show.settings">
     </button>
