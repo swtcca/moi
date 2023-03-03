@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { prefers } from "../stores"
 // import { SwitchGroup, SwitchLabel, Switch } from '@headlessui/vue'
-import { ASwitch, ARadio, AInput } from "anu-vue"
+import { ASwitch, AInput, ASelect } from "anu-vue"
 const playback_rates = [1, 1.25, 1.5, 1.75, 2]
 const { t } = useI18n()
 </script>
@@ -19,33 +19,13 @@ const { t } = useI18n()
         :label="t('pages.youtube_access')"
       />
     </label>
-    <label class="block">
-      <span class="i-ph-video-camera" /><span>{{ t('pages.youtube_playback_rate') }} {{ prefers.youtube_playback_rate }}</span>
-      <div class="flex justify-between">
-        <ARadio
-          v-model="prefers.youtube_playback_rate"
-          name="playrate"
-          value="1"
-        />
-        <ARadio
-          v-model="prefers.youtube_playback_rate"
-          name="playrate"
-          value="1.25"
-        />
-        <ARadio
-          v-model="prefers.youtube_playback_rate"
-          name="playrate"
-          value="1.5"
-        />
-        <ARadio
-          v-model="prefers.youtube_playback_rate"
-          name="playrate"
-          value="1.75"
-        />
-        <ARadio
-          v-model="prefers.youtube_playback_rate"
-          name="playrate"
-          value="2"
+    <label>
+      <span class="i-ph-video-camera" /><span>{{ t('pages.youtube_playback_rate') }} {{ prefers.playbackRate }}</span>
+      <div class="w-full">
+        <ASelect
+          v-model="prefers.playbackRate"
+          :options="playback_rates"
+          optionsWrapperClasses="z-500"
         />
       </div>
     </label>
