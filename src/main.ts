@@ -4,7 +4,7 @@ import { globalState } from "./stores/globalState"
 // import { anu } from "anu-vue"
 
 import '@unocss/reset/tailwind.css'
-// import 'uno.css'
+import 'uno.css'
 import 'anu-vue/dist/style.css'
 // default theme styles
 // import "./styles/styles.scss";

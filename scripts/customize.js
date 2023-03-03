@@ -4,6 +4,11 @@ const AsyncForEach = require('async-await-foreach')
 const chalk = require('chalk')
 
 const customize = {
+  'src/gun-vue/components.ts': {
+    replaces: [
+      [`^import ['"]`, `// import '`],
+    ],
+  },
   './src/gun-vue/gun/useGun.ts': {
     replaces: [
       ['import "gun/lib/webrtc"', 'import "gun/lib/open";\nimport "gun/lib/load";\nimport "gun/lib/webrtc"'],
