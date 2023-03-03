@@ -105,7 +105,7 @@ const customize = {
       ['form-picture.absolute\\(', 'form-picture.absolute(\n    v-if="user.wallets?.jingtum?.activated"'],
     ],
   },
-  './src/pages/chat.vue': {
+  './src/gun-vue/chat/chat.vue': {
     replaces: [
       ['max-h-90vh.min-h-90vh', 'w-full.h-full'],
     ],
@@ -138,7 +138,7 @@ const customize = {
       ['10vh', '5vh'],
     ],
   },
-  './src/pages/space.vue': {
+  './src/gun-vue/space/space.vue': {
     replaces: [
       [`space-plane.h-90vh`, `space-plane.h-99vh`],
       [':key="currentRoom.pub" @enter=', ':key="currentRoom.pub" :pad="20" @enter='],
@@ -150,7 +150,7 @@ const customize = {
       ['chat-private-list\\(@chat', 'chat-private-list(:title="t(\'customize.chat_title\')" @chat'],
     ],
   },
-  // "./src/pages/chats.vue": { i18n: true, replaces: [
+  // "./src/gun-vue/chat/chats.vue": { i18n: true, replaces: [
   //   [`chat-private-list\\(@chat`, `chat-private-list(:title="t('customize.chat_title')" @chat`],
   // ]},
   './src/gun-vue/styles/index.css': {
@@ -158,12 +158,12 @@ const customize = {
       ['10px', '0'],
     ],
   },
-  './src/pages/my.vue': {
+  './src/gun-vue/my/my.vue': {
     replaces: [
       [`import { useUser } from.*`, `import { useUser } from '#composables';`],
     ],
   },
-  './src/pages/my/chat/index.vue': {
+  './src/gun-vue/my/chat/index.vue': {
     i18n: true,
     replaces: [
       ['chat-private-list\\(@chat', 'chat-private-list(:title="t(\'customize.chat_title\')" @chat'],

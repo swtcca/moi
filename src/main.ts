@@ -14,6 +14,9 @@ import '@anu-vue/preset-theme-default/dist/style.css'
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
+import routes_gun_vue from './gun-vue/routes'
+// console.dir(generatedRoutes)
+// console.log(routes_gun_vue)
 
 // polyfill start
 import { Buffer } from 'buffer'
@@ -29,7 +32,7 @@ import { currentRoom } from '#composables';
 
 import App from "./App.vue"
 
-const routes = setupLayouts(generatedRoutes)
+const routes = setupLayouts([...generatedRoutes, ...routes_gun_vue])
 // import routes from "~pages"
 console.dir(routes)
 

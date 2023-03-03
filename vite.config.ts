@@ -68,13 +68,13 @@ export default defineConfig({
       // allow auto load markdown components under `./src/components/`
       dirs: ["src/components", "src/gun-vue"],
       // dirs: ["src/components"],
+      extensions: ["vue"],
       directoryAsNamespace: false,
       globalNamespaces: ["global"],
-      extensions: ['vue'],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      exclude: [/node_modules/, /\.git/, /index.vue/],
       // allow auto import and register components used in markdown
       // include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      include: [/\.vue$/, /\.vue\?vue/],
-      exclude: [/node_modules/, /\.git/],
       dts: 'src/components.d.ts',
       // resolvers: [
       //   AnuComponentResolver()
