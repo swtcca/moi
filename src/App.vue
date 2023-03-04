@@ -3,7 +3,7 @@ import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { useGun, currentRoom, rootRoom, useBackground, useUser } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
-
+import { useAnu } from 'anu-vue';
 const router = useRouter()
 const route = useRoute();
 const location_origin = ref(location.origin)
@@ -31,6 +31,20 @@ onMounted(() => {
   } else if (language.startsWith("ru")) {
   } else {}
   console.log(`app mounted`)
+  const { themes, activeThemeName, activeTheme } = useAnu()
+  console.log(activeThemeName.value)
+  // setInterval(() => {
+  //   if (activeThemeName.value === "light") {
+  //     activeThemeName.value = "dark"
+  //   } else {
+  //     activeThemeName.value = "light"
+  //   }
+  //   console.log(activeTheme.value.theme.colors)
+  //   for (const themeName in themes.value) {
+  //     const theme = themes.value[themeName]
+  //     theme.colors.primary = '235, 97.7%, 66.3%'
+  //   }
+  // }, 5000)
 })
 
 watchEffect(() => {
@@ -55,11 +69,8 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 
 <template lang="pug">
 router-view(v-slot="{ Component }")
-  transition(
-    name="fade"
-    mode="out-in")
-    keep-alive
-      component(:is="Component")
+  keep-alive
+    component(:is="Component")
 </template>
 
 <style lang="postcss">
@@ -68,7 +79,7 @@ html {
   hyphens: auto;
 }
 body {
-  @apply bg-light-600 dark-bg-dark-200;
+  @apply bg-light-600 dark-bg-dark-200 text-gray-800 dark-text-light-800;
   touch-action: pan-x pan-y;
 }
 #app {

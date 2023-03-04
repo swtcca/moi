@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { prefers } from "../stores"
 // import { SwitchGroup, SwitchLabel, Switch } from '@headlessui/vue'
-import { ASwitch, AInput, ASelect } from "anu-vue"
+// import { ASwitch, AInput, ASelect } from "anu-vue"
 const playback_rates = [1, 1.25, 1.5, 1.75, 2]
 const { t } = useI18n()
 </script>

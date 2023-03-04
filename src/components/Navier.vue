@@ -44,7 +44,7 @@ watch(class_font, () => console.log(class_font.value))
 </script>
 
 <template>
-  <nav ref="navier" class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 text-xl py-1 mx-auto">
+  <nav ref="navier" class="flex justify-around sm-px-8 md-px-16 lg-px-32 items-center text-center bg-cyan-300 dark-bg-cyan-600 text-xl py-1 mx-auto">
     <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
     </button>
     <button class="i-mdi-fullscreen" :title="t('button.toggle_fullscreen')" @click="() => toggle()">

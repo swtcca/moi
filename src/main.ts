@@ -1,7 +1,7 @@
 import { createApp, ref } from "vue";
 import { pinia } from "./stores"
 import { globalState } from "./stores/globalState"
-// import { anu } from "anu-vue"
+import { anu } from "anu-vue"
 
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
@@ -49,7 +49,7 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-// app.use(anu)
+app.use(anu)
 app.use(GunVuePlugin)
 app.use(router)
 app.use(pinia)
