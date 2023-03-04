@@ -11,6 +11,6 @@ const { t } = useI18n()
     @click="generate = true"
     ) {{ t('gunvue.create_account') }}
   .flex.justify-center.mt-4(v-if="!generate") {{ t('gunvue.or') }}
-  user-auth(v-if="!generate")
-  user-create(v-else)
+  auth-form(v-if="!generate")
+  auth-create(v-else)
 </template>

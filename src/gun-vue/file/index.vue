@@ -3,5 +3,5 @@
 </script>
 
 <template lang='pug'>
-UserProfile
+gun-torrent
 </template>

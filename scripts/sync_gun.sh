@@ -10,7 +10,7 @@ rm -frv src/gun-vue/*/*story.vu*
 
 cp -av /Users/xcliu/tests/gun-vue/app/src/components/*  src/components/
 rm -frv src/pages/*
-cp -av /Users/xcliu/tests/gun-vue/pages/*  src/pages/
+#cp -av /Users/xcliu/tests/gun-vue/pages/*  src/pages/
 # cp -av /Users/xcliu/tests/gun-vue/app/public/*  public/
 git checkout src/pages/about.md 2>/dev/null || true
 git checkout src/pages/videos.vue src/pages/wallets.vue src/pages/upload.vue src/pages/nft src/pages/nfts.vue src/pages/openai.vue

@@ -19,11 +19,11 @@ const { t } = useI18n()
     close-button 
     @close="isSafe()"
     )
-    user-credentials(v-if="!user.safe?.saved")
+    auth-credentials(v-if="!user.safe?.saved")
       button.button.mx-8.justify-center(@click="isSafe()")
         .i-la-check
         .ml-2 {{ t('gunvue.cred_saved') }}
-  user-login(v-if="!user.is")
+  auth-login(v-if="!user.is")
   .flex.flex-col(v-else)
     user-panel(
       @browse="$emit('browse', $event); $emit('close')"
@@ -36,5 +36,4 @@ const { t } = useI18n()
       @click="$emit('user', user.pub); $emit('close')"
       )
       slot  {{ t('gunvue.go_homepage') }}
-    
 </template>

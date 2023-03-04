@@ -115,7 +115,7 @@ const customize = {
       ['w-full.max-w-90vw.max-h-90vh', 'w-full.max-h-99vh'],
     ],
   },
-  './src/gun-vue/user/UserAuth.vue': {
+  './src/gun-vue/auth/AuthForm.vue': {
     replaces: [
       ['  console.log\\(p\\)', '// console.log(p)'],
     ],
