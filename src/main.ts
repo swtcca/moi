@@ -9,7 +9,7 @@ import 'anu-vue/dist/style.css'
 // default theme styles
 // import "./styles/styles.scss";
 import "./gun-vue/styles/index.css";
-import '@anu-vue/preset-theme-default/dist/style.css'
+import '@anu-vue/preset-theme-default/dist/style.scss'
 
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
+// import { useCssVar } from "@vueuse/core"
 import { useGun, currentRoom, rootRoom, useBackground, useUser } from "./gun-vue/composables";
 import { initChannels } from "./composables/useVideos"
-import { useAnu } from 'anu-vue';
+import { useAnu, defaultThemeColors } from 'anu-vue';
+console.log(defaultThemeColors)
 const router = useRouter()
 const route = useRoute();
 const location_origin = ref(location.origin)
@@ -79,7 +81,7 @@ html {
   hyphens: auto;
 }
 body {
-  @apply bg-light-600 dark-bg-dark-200 text-gray-800 dark-text-light-800;
+  @apply bg-light-600 dark-bg-dark-200;
   touch-action: pan-x pan-y;
 }
 #app {
