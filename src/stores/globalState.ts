@@ -22,8 +22,6 @@ export const globalState = reactive({
   platform,
   layout_classes: "mt-0",
   show_top: false,
-  // gunPeer: "https://etogun.glitch.me/gun",
-  gunPeer: "https://relay.129.153.59.37.nip.io/gun",
   show_tools: false,
   show_social: false,
   loaded_ipfs: false,

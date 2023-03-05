@@ -10,6 +10,10 @@
   line-height: 1.5;
   word-wrap: break-word;
 }
+.dark .markdown-body {
+  color: #24292f;
+  background-color: #666666;
+}
 
 .markdown-body .octicon {
   display: inline-block;

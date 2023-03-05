@@ -4,6 +4,11 @@ const AsyncForEach = require('async-await-foreach')
 const chalk = require('chalk')
 
 const customize = {
+  'src/gun-vue/styles/index.css': {
+    replaces: [
+      [`bg-light-600`, `bg-light-600 dark-bg-gray-600`],
+    ],
+  },
   'src/gun-vue/components.ts': {
     replaces: [
       [`^import ['"]`, `// import '`],
@@ -44,6 +49,7 @@ const customize = {
   './src/gun-vue/room/RoomPage.vue': {
     replaces: [
       ['pt-32.px-2', 'pt-12.px-2'],
+      [`.bg-light-300`, ``],
       [`:title="title"`, `:title="t('customize.room_' + c)"`]
     ],
   },
@@ -52,12 +58,12 @@ const customize = {
       ['icon.includes', 'icon.toLowerCase().includes'],
     ],
   },
-  // './src/gun-vue/room/RoomFeature.vue': {
-  //   i18n: true,
-  //   replaces: [
-  //     ['title }}', 't(\'customize.room_\' + title.toLowerCase()) }}'],
-  //   ],
-  // },
+  './src/gun-vue/room/RoomFeature.vue': {
+    // i18n: true,
+    replaces: [
+      [`.bg-light-700`, ``],
+    ],
+  },
   './src/gun-vue/chat/ChatInput.vue': {
     replaces: [
       // ['textarea.p-2.rounded-xl.bg-light-200', 'textarea.px-2.rounded-xl.bg-light-200'],

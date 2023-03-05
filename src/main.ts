@@ -1,6 +1,5 @@
 import { createApp, ref } from "vue";
 import { pinia } from "./stores"
-import { globalState } from "./stores/globalState"
 import { anu } from "anu-vue"
 
 import '@unocss/reset/tailwind.css'
@@ -25,9 +24,9 @@ if (!globalThis.hasOwnProperty("Buffer")) globalThis.Buffer = Buffer
 if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTimeout
 // polyfill end
 
+import gun_config from "./gun.config.json"
+gun_config.relay = "https://relay.129.153.59.37.nip.io/gun"
 import { GunVuePlugin } from '#components'
-import { peer } from "#composables"
-peer.value = globalState.gunPeer || "https://relay.bcapps.ca/gun"
 import { currentRoom } from '#composables';
 
 import App from "./App.vue"
