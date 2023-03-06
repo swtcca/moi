@@ -35,7 +35,7 @@ const openai_chat = async () => {
   get_token()
   try {
     const completion = await openai_create_completion(ask.value)
-    answer.value = completion.data.choices[0].text
+    answer.value = completion.data.choices[0].text.trim()
     show_chat.value = true
     show_draw.value = false
     if (!api_in_gun.value) save_token()
@@ -58,21 +58,21 @@ get_token()
 </script>
 
 <template>
-  <div class="container mx-auto pt-12">
+  <div class="container mx-auto pt-12 px-1 md:px-4 lg:px-12">
     <div v-if="!api_in_gun">
       <label>OPENAPI TOKEN</label>
-      <input placeholder="openai token here, required" class="w-full ring-1" type="password" v-model="apiKey" />
+      <AInput placeholder="openai token here, required" input-wrapper-classes="px-0" type="password" v-model="apiKey" />
     </div>
     <div class="my-4">
       <label>ASK OPENAI</label>
-      <textarea ref="textarea_ask" class="w-full ring-1" v-model="ask"></textarea>
+      <ATextarea ref="textarea_ask" v-model="ask"></ATextarea>
     </div>
-    <div class="flex items-between my-4">
-      <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_chat">CHAT</button>
-      <button class="mx-auto p-2 rounded ring-2 text-right" @click="openai_draw">DRAW</button>
+    <div class="flex justify-around my-4">
+      <ABtn @click="openai_chat">CHAT</ABtn>
+      <ABtn @click="openai_draw">DRAW</ABtn>
     </div>
     <div v-if="show_chat">
-      <textarea rows="6" class="w-full ring-1" v-model="answer"></textarea>
+      <ATextarea v-model="answer"></ATextarea>
     </div>
     <div v-if="show_draw" class="flex place-content-center">
       <img v-if="image" class="mx-auto ring-1 absolute z-200" :src="image" />
