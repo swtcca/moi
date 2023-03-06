@@ -27,7 +27,7 @@ declare module '@vue/runtime-core' {
     Add: typeof import('./gun-vue/gift/add.vue')['default']
     Auth: typeof import('./gun-vue/auth/auth.vue')['default']
     By: typeof import('./gun-vue/dict/by/index.vue')['default']
-    Chat: typeof import('./gun-vue/chat/chat.vue')['default']
+    Chat: typeof import('./gun-vue/user/[pub]/chat.vue')['default']
     ChatGpt: typeof import('./components/ChatGpt.vue')['default']
     ChatInput: typeof import('./gun-vue/chat/ChatInput.vue')['default']
     ChatMessage: typeof import('./gun-vue/chat/ChatMessage.vue')['default']

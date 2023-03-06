@@ -66,8 +66,8 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-vue-components
     Components({
       // allow auto load markdown components under `./src/components/`
-      // dirs: ["src/components", "src/gun-vue"],
-      dirs: ["src/components"],
+      dirs: ["src/components", "src/gun-vue/user"],
+      // dirs: ["src/components"],
       extensions: ["vue"],
       directoryAsNamespace: false,
       globalNamespaces: ["global"],
