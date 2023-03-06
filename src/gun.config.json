@@ -1,5 +1,18 @@
 {
-  "relay": "https://peer.era.eco/gun",
+  "relay": "https://relay.129.153.59.37.nip.io/gun",
+  "routes": {
+    "/": "Home",
+    "/my/": "User",
+    "/space/": "Space",
+    "/chat/": "Chat",
+    "/posts/": "Posts",
+    "/projects/": "Projects",
+    "/gifts/": "Gifts",
+    "/users/": "Users",
+    "/rooms/": "Rooms",
+    "/dict/": "Dictionary",
+    "/file/": "Files"
+  },
   "features": {
     "rooms": "Rooms",
     "space": "Space",

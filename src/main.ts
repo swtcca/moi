@@ -1,21 +1,17 @@
-import { createApp, ref } from "vue";
+import { createApp } from "vue";
 import { pinia } from "./stores"
 import { anu } from "anu-vue"
 
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import 'anu-vue/dist/style.css'
-// default theme styles
-// import "./styles/styles.scss";
-import "./gun-vue/styles/index.css";
 import '@anu-vue/preset-theme-default/dist/style.scss'
+import "./gun-vue/styles/index.css"
 
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import routes_gun_vue from './gun-vue/routes'
-// console.dir(generatedRoutes)
-// console.log(routes_gun_vue)
 
 // polyfill start
 import { Buffer } from 'buffer'
@@ -24,16 +20,13 @@ if (!globalThis.hasOwnProperty("Buffer")) globalThis.Buffer = Buffer
 if (!globalThis.hasOwnProperty("setImmediate")) globalThis.setImmediate = setTimeout
 // polyfill end
 
-import gun_config from "./gun.config.json"
-gun_config.relay = "https://relay.129.153.59.37.nip.io/gun"
-import { GunVuePlugin } from '#components'
-import { currentRoom } from '#composables';
+import { GunVuePlugin } from './gun-vue/components'
 
 import App from "./App.vue"
 
 const routes = setupLayouts([...generatedRoutes, ...routes_gun_vue])
 // import routes from "~pages"
-console.dir(routes)
+// console.dir(routes)
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -45,7 +38,7 @@ const router = createRouter({
       return { top: 0, behavior: "smooth" };
     }
   },
-});
+})
 
 const app = createApp(App);
 app.use(anu)
@@ -58,15 +51,3 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 router.isReady().then(async () => {
   app.mount("#app");
 })
-
-router.beforeEach((to, from, next) => {
-  if (!currentRoom.isRoot && !to.query?.room) {
-    next({ ...to, query: { room: currentRoom.pub } });
-  } else {
-    next();
-  }
-});
-
-// router.afterEach((to, from, failure) => {
-//   console.dir(from.query)
-// })

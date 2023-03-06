@@ -50,6 +50,7 @@ export function useGun(options: GunOptions = { localStorage: false }): IGunInsta
     if (typeof options === 'object') {
       Object.assign(opts, options)
     }
+    console.log(opts.peers)
     gun = Gun(opts);
     gunInstances.push(gun)
   }

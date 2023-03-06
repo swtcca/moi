@@ -86,6 +86,7 @@
     "platform-detect": "^3.0.1",
     "plyr": "^3.7.3",
     "postcss": "^8.4.6",
+    "pretty-bytes": "^6.1.0",
     "process": "^0.11.10",
     "pug": "^3.0.2",
     "sass": "^1.49.9",
