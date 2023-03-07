@@ -109,7 +109,7 @@ html {
   hyphens: auto;
 }
 body {
-  @apply bg-light-600 dark-bg-dark-200;
+  @apply bg-gray-200 dark:bg-gray-600;
   touch-action: pan-x pan-y;
 }
 #app {

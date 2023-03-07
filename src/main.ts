@@ -5,8 +5,9 @@ import { anu } from "anu-vue"
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import 'anu-vue/dist/style.css'
-import '@anu-vue/preset-theme-default/dist/style.scss'
+import '@anu-vue/preset-theme-default/dist/style.css'
 import "./gun-vue/styles/index.css"
+import './styles/styles.css'
 
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'

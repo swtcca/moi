@@ -1,6 +1,8 @@
 import { getRandomElement } from "../api/utils"
 import { useUser } from "../gun-vue/user/useUser"
 import { save_user_safe } from "./userSafe"
+import { useSwtc } from "./useSwtc"
+const {load: import_swtc } = useSwtc()
 
 const { user } = useUser()
 export const chains = reactive({
@@ -48,9 +50,7 @@ export const chains = reactive({
         const r = {sequence: 1, balances: [{currency: "ether", value: b, issuer: ""}]}
         wallet.activated = true
         wallet.querying = false
-        if (user.is) {
-          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r)}, ["wallets", wallet.chain])
-        }
+        await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r)}, ["wallets", wallet.chain])
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
@@ -104,9 +104,7 @@ export const chains = reactive({
         const r = {sequence: 1, balances: [{currency: "matic", value: b, issuer: ""}]}
         wallet.activated = true
         wallet.querying = false
-        if (user.is) {
-          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
-        }
+        await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
@@ -159,9 +157,7 @@ export const chains = reactive({
         const r = {sequence: 1, balances: [{currency: "moac", value: b, issuer: ""}]}
         wallet.activated = true
         wallet.querying = false
-        if (user.is) {
-          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
-        }
+        await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
@@ -175,20 +171,10 @@ export const chains = reactive({
     need_activation: true,
     algorithm: "ed25519",
     lib_name: "swtc_rpc",
-    lib_url: "https://unpkg.com/@swtc/rpc",
     endpoints: ['https://srje115qd43qw2.swtc.top', 'https://srje071qdew231.swtc.top'],
     load_library: async (wallet= {} as any) => {
       const lib_name = wallet.chainobj.lib_name
-      const { load } = useScriptTag(wallet.chainobj.lib_url, () => {}, { manual: true })
-      if (!globalThis.hasOwnProperty(lib_name)) {
-        console.log(`import library`)
-        try {
-          await load()
-          console.log(`loaded ${lib_name}`)
-        } catch (e) {
-          console.log(e)
-        }
-      }
+      await import_swtc()
       wallet.Remote = (globalThis[lib_name]).Remote
       wallet.Wallet = wallet.Remote.Wallet
       await wallet.chainobj.wallet_init(wallet)
@@ -225,20 +211,17 @@ export const chains = reactive({
           }
         })
         wallet.querying = false
-        if (user.is) {
-          await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
-        }
+        await save_user_safe({ address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
         if (e && e.error && e.error === "actNotFound") {
           wallet.activated = false
           wallet.balance_raw = {}
-          if (user.is) {
-            await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: JSON.stringify("{}") }, ["wallets", wallet.chain])
-          }
+          await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: JSON.stringify("{}") }, ["wallets", wallet.chain])
         } else {
           console.log(`error get account balances`)
+          console.log(e)
           wallet.api = new wallet.Remote({server: getRandomElement(wallet.chainobj.endpoints)})
         }
       }
@@ -249,20 +232,10 @@ export const chains = reactive({
     need_activation: true,
     algorithm: "ecdsa",
     lib_name: "swtc_rpc",
-    lib_url: "https://unpkg.com/@swtc/rpc",
     endpoints: ['https://xrplcluster.com'],
     load_library: async (wallet= {} as any) => {
       const lib_name = wallet.chainobj.lib_name
-      const { load } = useScriptTag(wallet.chainobj.lib_url, () => {}, { manual: true })
-      if (!globalThis.hasOwnProperty(lib_name)) {
-        console.log(`import library`)
-        try {
-          await load()
-          console.log(`loaded ${lib_name}`)
-        } catch (e) {
-          console.log(e)
-        }
-      }
+      await import_swtc()
       wallet.Remote = (globalThis[lib_name]).Factory("ripple")
       wallet.Wallet = wallet.Remote.Wallet
       await wallet.chainobj.wallet_init(wallet)
@@ -309,9 +282,7 @@ export const chains = reactive({
         delete r.ledger_index
         delete r.ledger_hash
         wallet.querying = false
-        if (user.is) {
-          await save_user_safe({address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
-        }
+        await save_user_safe({address: wallet.address, activated: true, sequence: r.sequence, balance: JSON.stringify(r) }, ["wallets", wallet.chain])
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
@@ -319,9 +290,7 @@ export const chains = reactive({
         if (e && e.error && e.error === "actNotFound") {
           wallet.activated = false
           wallet.balance_raw = {}
-          if (user.is) {
-            await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: "{}" }, ["wallets", wallet.chain])
-          }
+          await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: "{}" }, ["wallets", wallet.chain])
         } else {
           console.log(`error get account balances`)
           wallet.api = new wallet.Remote({server: getRandomElement(wallet.chainobj.endpoints)})
