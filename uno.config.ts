@@ -20,7 +20,7 @@ export default defineConfig({
       },
     }),
     // anu-vue preset
-    presetAnu(),
+    presetAnu({colors: ['secondary'],}),
     presetThemeDefault(),
     // presetHeadlessUi(),
     presetChinese(),

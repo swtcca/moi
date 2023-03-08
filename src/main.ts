@@ -42,7 +42,22 @@ const router = createRouter({
 })
 
 const app = createApp(App);
-app.use(anu)
+app.use(anu, {
+  themes: {
+    light: {
+      colors: {
+        primary: '235, 98%, 66%',
+        secondary: '0, 0%, 50%',
+      },
+    },
+    dark: {
+      colors: {
+        primary: '235, 98%, 66%',
+        secondary: '0, 0%, 25%',
+      },
+    },
+  }
+})
 app.use(GunVuePlugin)
 app.use(router)
 app.use(pinia)
