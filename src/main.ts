@@ -13,6 +13,7 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import routes_gun_vue from './gun-vue/routes'
+import { isDark } from "./composables/dark"
 
 // polyfill start
 import { Buffer } from 'buffer'
@@ -43,6 +44,7 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(anu, {
+  initialTheme: isDark.value ? "dark" : "light",
   themes: {
     light: {
       colors: {

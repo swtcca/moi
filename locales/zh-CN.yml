@@ -40,6 +40,7 @@ customize:
   room_dict: '字典'
   room_users: '用户'
   room_rooms: '地盘'
+  room_videos: '视频'
 wallets:
   not_activated: 未激活
   balance: 余额

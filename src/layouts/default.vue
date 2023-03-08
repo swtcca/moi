@@ -26,7 +26,7 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
     </div>
     <div class="h-screen" :class="globalState.layout_classes">
       <router-view />
-      <div class="pb-16" v-show="$route.path === '/'">
+      <div class="pb-20" v-show="$route.path === '/'">
         <Navier />
       </div>
     </div>
