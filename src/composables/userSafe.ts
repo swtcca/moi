@@ -1,5 +1,6 @@
 import { SEA } from "../gun-vue/gun/useGun"
 import { useUser } from "../gun-vue/user/useUser"
+import { sleep } from '../api/utils'
 const { user } = useUser()
 
 export const user_safe_initial = {
@@ -13,6 +14,7 @@ export const user_safe_initial = {
 }
 
 export const save_user_safe = async (value, key: any[], options={encrypt: false}) => {
+    await sleep(50)
     if (user.initiated) {
       let encrypted = value.value || value
       try {
@@ -27,6 +29,7 @@ export const save_user_safe = async (value, key: any[], options={encrypt: false}
     }
   }
 export const read_user_safe = async (key: string[], options={encrypt: false}) => {
+    await sleep(10)
     let decrypted
     if (user.initiated) {
       decrypted = user.safe

@@ -5,30 +5,30 @@ const loaded = ref(false)
 const loading = ref(false)
 const tries = ref(0)
 const message = ref('')
-const url = ref("https://unpkg.com/@swtc/rpc@1.1.3/dist/swtc-rpc.js")
+const url = ref("https://unpkg.com/web3@latest/dist/web3.min.js")
 
 
-export function useSwtc(lib_url = url.value, manual: true) {
+export function useWeb3(lib_url = url.value, manual: true) {
   const { load: load_lib } = useScriptTag(url.value, () => {}, {manual})
   async function load() {
     if (!loaded.value && !loading.value) {
       loading.value = true
       try {
         await load_lib()
-        console.log(`... swtc loaded`)
+        console.log(`... web3 loaded`)
         loaded.value = true
         loading.value = false
       } catch (e) {
-        console.log(`... swtc failed to load`)
+        console.log(`... web3 failed to load`)
         console.log(e)
         loading.value = false
         loaded.value = false
-        message.value = `... swtc failed to load ${e}`
+        message.value = `... web3 failed to load ${e}`
         tries.value += 1
       }
-    }
+    } 
     while (!loaded.value && loading.value) {
-      console.log(`... waiting swtc lib`)
+      console.log(`... waiting web3 lib`)
       await sleep(200)
     }
   }

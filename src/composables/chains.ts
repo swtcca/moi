@@ -2,7 +2,9 @@ import { getRandomElement } from "../api/utils"
 import { useUser } from "../gun-vue/user/useUser"
 import { save_user_safe } from "./userSafe"
 import { useSwtc } from "./useSwtc"
+import { useWeb3 } from "./useWeb3"
 const {load: import_swtc } = useSwtc()
+const {load: import_web3 } = useWeb3()
 
 const { user } = useUser()
 export const chains = reactive({
@@ -10,21 +12,9 @@ export const chains = reactive({
     chain: "ethereum",
     algorithm: "ecdsa",
     need_activation: false,
-    lib_name: "Web3",
-    lib_url: "https://unpkg.com/web3@latest/dist/web3.min.js",
     endpoints: ['https://cloudflare-eth.com',],
     load_library: async (wallet = {} as any) => {
-      const lib_name = wallet.chainobj.lib_name
-      const { load } = useScriptTag(wallet.chainobj.lib_url, () => {}, { manual: true })
-      if (!globalThis.hasOwnProperty(lib_name)) {
-        console.log(`import library`)
-        try {
-          await load()
-          console.log(`loaded ${lib_name}`)
-        } catch (e) {
-          console.log(e)
-        }
-      }
+      await import_web3()
       await wallet.chainobj.wallet_init(wallet)
       if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
@@ -54,7 +44,7 @@ export const chains = reactive({
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
-        console.log(`error get account balances`)
+        console.log(`error get account ether balances`)
         wallet.api = new globalThis.Web3(getRandomElement(wallet.chainobj.endpoints))
       }
     } 
@@ -63,21 +53,9 @@ export const chains = reactive({
     chain: "polygon",
     algorithm: "ecdsa",
     need_activation: false,
-    lib_name: "Web3",
-    lib_url: "https://unpkg.com/web3@latest/dist/web3.min.js",
     endpoints: ['https://polygon-rpc.com',],
     load_library: async (wallet = {} as any) => {
-      const lib_name = wallet.chainobj.lib_name
-      const { load } = useScriptTag(wallet.chainobj.lib_url, () => {}, { manual: true })
-      if (!globalThis.hasOwnProperty(lib_name)) {
-        console.log(`import library`)
-        try {
-          await load()
-          console.log(`loaded ${lib_name}`)
-        } catch (e) {
-          console.log(e)
-        }
-      }
+      await import_web3()
       // await wallet.chainobj.wallet_init(wallet)
       if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
@@ -108,7 +86,7 @@ export const chains = reactive({
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
-        console.log(`error get account balances`)
+        console.log(`error get account pylygon balances`)
         wallet.api = new globalThis.Web3(getRandomElement(wallet.chainobj.endpoints))
       }
     } 
@@ -117,21 +95,9 @@ export const chains = reactive({
     chain: "moac",
     algorithm: "ecdsa",
     need_activation: false,
-    lib_name: "Web3",
-    lib_url: "https://unpkg.com/web3@latest/dist/web3.min.js",
     endpoints: ['https://gateway.moac.io/mainnet',],
     load_library: async (wallet = {} as any) => {
-      const lib_name = wallet.chainobj.lib_name
-      const { load } = useScriptTag(wallet.chainobj.lib_url, () => {}, { manual: true })
-      if (!globalThis.hasOwnProperty(lib_name)) {
-        console.log(`import library`)
-        try {
-          await load()
-          console.log(`loaded ${lib_name}`)
-        } catch (e) {
-          console.log(e)
-        }
-      }
+      await import_web3()
       await wallet.chainobj.wallet_init(wallet)
       if (user.is) wallet.balance_raw = JSON.parse(user.safe.wallets[wallet.chain]?.balance || "{}")
     },
@@ -161,7 +127,7 @@ export const chains = reactive({
         wallet.balance_raw = r
       } catch (e) {
         wallet.querying = false
-        console.log(`error get account balances`)
+        console.log(`error get account moac balances`)
         wallet.api = new globalThis.Web3(getRandomElement(wallet.chainobj.endpoints))
       }
     } 
@@ -220,7 +186,7 @@ export const chains = reactive({
           wallet.balance_raw = {}
           await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: JSON.stringify("{}") }, ["wallets", wallet.chain])
         } else {
-          console.log(`error get account balances`)
+          console.log(`error get account jingtum balances`)
           console.log(e)
           wallet.api = new wallet.Remote({server: getRandomElement(wallet.chainobj.endpoints)})
         }
@@ -292,7 +258,7 @@ export const chains = reactive({
           wallet.balance_raw = {}
           await save_user_safe({ address: wallet.address, activated: false, sequence: 1, balance: "{}" }, ["wallets", wallet.chain])
         } else {
-          console.log(`error get account balances`)
+          console.log(`error get account ripple balances`)
           wallet.api = new wallet.Remote({server: getRandomElement(wallet.chainobj.endpoints)})
         }
       }

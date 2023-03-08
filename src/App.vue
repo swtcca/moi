@@ -88,9 +88,9 @@ router.beforeEach((to, from) => {
   return true
 })
 
-router.afterEach((to, from, failure) => {
-  console.dir(from.query)
-})
+// router.afterEach((to, from, failure) => {
+//   console.dir(from.query)
+// })
 
 //  nav-bar
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
