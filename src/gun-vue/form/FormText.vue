@@ -53,7 +53,7 @@ const { t } = useI18n()
 <template lang="pug">
 .flex.flex-col
   .flex.flex-col.text-left
-    textarea#myMD(
+    textarea#myMD.dark-bg-dark-200.p-2(
       ref="md"  
       v-model="text"
       :placeholder="t('gunvue.form_text_hint')"
@@ -65,7 +65,7 @@ const { t } = useI18n()
     label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
       .i-la-markdown
       .ml-2 {{ t('gunvue.load') }}
-    input#import-post.hidden(
+    input#import-post.hidden.dark-bg-dark-200(
       ref="file"
       tabindex="-1",
       type="file",

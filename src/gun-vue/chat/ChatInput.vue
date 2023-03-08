@@ -18,7 +18,7 @@ const { t } = useI18n()
 
 <template lang="pug">
 .flex.gap-2(v-if="user.pub")
-  textarea.p-2.rounded-xl.bg-light-200.flex-1(
+  textarea.p-2.rounded-xl.bg-light-200.flex-1.dark-bg-dark-200(
     v-model="message" 
     :placeholder="t('gunvue.your_message')" 
     @keydown.enter.prevent.stop="send()"

@@ -4,11 +4,6 @@ const AsyncForEach = require('async-await-foreach')
 const chalk = require('chalk')
 
 const customize = {
-  'src/gun-vue/styles/index.css': {
-    replaces: [
-      [`bg-light-600`, `bg-light-600 dark-bg-gray-600`],
-    ],
-  },
   'src/gun-vue/components.ts': {
     replaces: [
       [`^import ['"]`, `// import '`],
@@ -78,7 +73,7 @@ const customize = {
   './src/gun-vue/chat/ChatRoom.vue': {
     replaces: [
       ['flex.flex-col.overflow-y-scroll.*', 'flex.flex-col.w-full.h-full('],
-      ['p-4.bg-dark-50.bg-opacity-80', 'p-1.bg-dark-50.bg-opacity-80'],
+      // ['p-4.bg-dark-50.bg-opacity-80', 'p-1.bg-dark-50.bg-opacity-80'],
     ],
   },
   './src/gun-vue/post/PostForm.vue': {

@@ -35,8 +35,7 @@ const { t } = useI18n()
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is")
-
+.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto.dark-bg-dark-200(v-if="user.is")
   .mt-4.mx-6 {{ t('gunvue.save_keys') }}
   auth-pass
   .flex.p-4.items-center.bg-dark-100.bg-opacity-20.mt-2.shadow-inset(v-if="encPair")

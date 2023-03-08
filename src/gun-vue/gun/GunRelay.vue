@@ -31,7 +31,7 @@ const { t } = useI18n()
         )
       .flex.flex-col.items-start
         .p-0.flex.items-center.flex-wrap.w-full  {{ t('gunvue.relay_host') }}: 
-          input.mx-1.p-2.rounded-lg.flex-auto(v-model="relay.peer")
+          input.mx-1.p-2.rounded-lg.flex-auto.dark-bg-dark-800(v-model="relay.peer")
           button.button.m-1(@click="setPeer(relay.peer)") {{ t('gunvue.relay_set') }}
           button.button.m-1(@click="resetPeer()") {{ t('gunvue.relay_reset') }}
 

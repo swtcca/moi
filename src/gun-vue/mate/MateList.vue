@@ -17,12 +17,12 @@ const { t } = useI18n()
 
 <template lang="pug">
 .flex.flex-col
-  .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover-shadow-md.transition
+  .flex.p-4.bg-light-900.dark-bg-dark-200.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover-shadow-md.transition
     .text-lg.font-bold {{ pub == user.pub ? t('gunvue.my_mates') : t('gunvue.mates') }}
     .flex-1
     .mr-2.font-bold {{ Object.keys(mates).length }}
 
-  .flex.flex-wrap.bg-light-500.rounded-xl.p-2
+  .flex.flex-wrap.bg-light-500.dark-bg-dark-200.rounded-xl.p-2
     transition-group(name="fade")
       mate-link(
         v-for="(link, linkPub) in mates" 

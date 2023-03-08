@@ -46,7 +46,7 @@ const { t } = useI18n()
 <template lang="pug">
 .flex.flex-col.items-stretch
   .pt-12.px-2.md-px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }") 
-    .max-w-full.flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md-p-12.shadow-xl.backdrop-blur-md.backdrop-filter.rounded-t-xl
+    .max-w-full.flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.dark-bg-dark-800.dark-bg-opacity-40.p-4.md-p-12.shadow-xl.backdrop-blur-md.backdrop-filter.rounded-t-xl
       .flex.flex-wrap.items-center.gap-8
         room-logo.flex-1.rounded-2xl.overflow-hidden.min-w-20(:pub="pub")
         .flex.flex-col.flex-auto(style="flex: 100")
@@ -70,7 +70,7 @@ const { t } = useI18n()
           room-actions(:pub="roomPub")
 
   slot
-  .flex.flex-col.items-center
+  .flex.flex-col.items-center.dark-bg-dark-400
 
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
@@ -84,9 +84,9 @@ const { t } = useI18n()
         @click="$emit('browse', c)" 
         )
 
-    .max-w-200.relative
+    .relative
       .flex.items-center(v-if="edit.text === false" ) 
-        .p-8.markdown-body.text-base.prose.prose-truegray(v-html="md.render(room.profile?.text || '')")
+        .p-8.markdown-body.prose(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(
           v-if="room.hosts?.[user.pub]" 
           @click="edit.text = room.profile?.text || ''"

@@ -29,7 +29,7 @@ const { t } = useI18n()
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-center.flex-1.p-2.bg-light-700.rounded-3xl.shadow-lg.text-center.p-4.transition.duration-300ms.ease-in(
+.flex.flex-col.items-center.flex-1.p-2.bg-light-700.dark-bg-dark-200.rounded-3xl.shadow-lg.text-center.p-4.transition.duration-300ms.ease-in(
   v-if="!user.is" 
   :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }"
   )
@@ -51,13 +51,12 @@ const { t } = useI18n()
         .i-la-undo.text-2xl
       button.m-2.button.items-center(@click="generatePair()")
         .i-fad-random-1dice.text-3xl
-    input.p-4.rounded-2xl.my-2(
+    input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
       v-model="name" 
       :placeholder="t('gunvue.enter_alias')"
       )
     button.button.w-full.flex.justify-center.items-center(
       v-if="newPair && !user.is && name" 
-      :style="{ backgroundColor: colorLight.hex(newPair.pub) }" 
       @click="createUser()"
       )
       | {{ t('gunvue.authenticate') }}

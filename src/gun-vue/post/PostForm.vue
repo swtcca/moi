@@ -72,7 +72,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
     :placeholder="t('gunvue.post_title')"
     autofocus
     )
-  textarea.text-1rem.leading-relaxed(
+  textarea.text-1rem.leading-relaxed.dark-bg-dark-200(
     v-model="postData.statement" 
     :placeholder="t('gunvue.post_statement')"
     @keyup.enter.ctrl="submit()"

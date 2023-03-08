@@ -72,6 +72,6 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
   .px-4.py-6.flex.flex-wrap.items-center.text-center
     .flex-1.ml-2.font-bold {{ currentChat }}
   chat-messages(:messages="sorted")
-  .p-1.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
+  .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
     chat-input.flex-auto(@submit="send($event)")
 </template>

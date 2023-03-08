@@ -4,5 +4,5 @@ const { t } = useI18n()
 </script>
 
 <template lang="pug">
-.text-xl Select a usre to start a chat
+.text-xl Select a user to start a private e2e encrypted chat
 </template>

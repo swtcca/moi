@@ -46,7 +46,7 @@ const { t } = useI18n()
 </script>
 
 <template lang="pug">
-.flex.flex-col.my-4.flex-1.items-center.bg-light-700.rounded-3xl.p-4.shadow-lg
+.flex.flex-col.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg
   .font-bold.text-xl {{ t('gunvue.already_account') }}
   .text-md {{ t('gunvue.login_saved_key') }}
   .flex
@@ -82,7 +82,7 @@ const { t } = useI18n()
       )
   .flex.flex-wrap
     transition(name="fade")
-      textarea.p-2.text-sm.flex-1.w-full(
+      textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
         v-if="current == 'key'" 
         key="text" 
         v-model="pair" 
