@@ -28,7 +28,7 @@ import App from "./App.vue"
 
 const routes = setupLayouts([...generatedRoutes, ...routes_gun_vue])
 // import routes from "~pages"
-// console.dir(routes)
+console.dir(routes)
 
 const router = createRouter({
   history: createWebHashHistory(),
