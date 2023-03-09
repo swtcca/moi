@@ -40,7 +40,7 @@ customize:
   room_dict: 'dictionary'
   room_users: 'users'
   room_rooms: 'rooms'
-  room_videos: 'videos'
+  room_apps: 'apps'
 wallets:
   not_activated: Not Activated
   balance: Balance

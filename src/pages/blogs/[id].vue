@@ -5,7 +5,7 @@ const props = defineProps({
   id: { type: String, default: "1" },
 })
 
-const blog = computed(() => Number(props.id))
+const blog = computed(() =>props.id.trim())
 </script>
 
 <template>

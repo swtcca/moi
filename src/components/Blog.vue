@@ -2,10 +2,10 @@
 import { blogs } from "../composables/useBlog"
 
 const props = defineProps({
-  id: { type: Number, default: 1 },
+  id: { type: String, default: "1" },
 })
 
-const blog = computed(() => blogs.find(post => post.id === props.id))
+const blog = computed(() => blogs.value.find(post => post.id === props.id))
 </script>
 <template>
   <div>
