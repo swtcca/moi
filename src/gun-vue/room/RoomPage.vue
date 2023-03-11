@@ -3,13 +3,13 @@
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
-import { features } from '../../gun.config.json'
+import { config } from '../../room.config'
 
 const props = defineProps({
   pub: { type: String, default: '' },
   titles: {
     type: Object,
-    default: () => features
+    default: () => config.features
   }
 })
 
@@ -75,6 +75,7 @@ const { t } = useI18n()
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
         v-for="(title, c) in titles" 
+        v-show="config.features?.[c]?.enabled"
         :key="c"
         :cert="room.features[c]"
         :type="c"
