@@ -3,13 +3,13 @@
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
-import { config } from '../../room.config'
+import { features } from '../../room.config'
 
 const props = defineProps({
   pub: { type: String, default: '' },
   titles: {
     type: Object,
-    default: () => config.features
+    default: () => features.value
   }
 })
 
@@ -70,12 +70,12 @@ const { t } = useI18n()
           room-actions(:pub="roomPub")
 
   slot
-  .flex.flex-col.items-center.dark-bg-dark-400
+  .flex.flex-col.items-center.bg-light-300.dark-bg-dark-400
 
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
         v-for="(title, c) in titles" 
-        v-show="config.features?.[c]?.enabled"
+        v-show="features?.[c]?.enabled"
         :key="c"
         :cert="room.features[c]"
         :type="c"

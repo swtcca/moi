@@ -44,7 +44,9 @@ const customize = {
   './src/gun-vue/room/RoomPage.vue': {
     replaces: [
       ['pt-32.px-2', 'pt-12.px-2'],
-      [`.bg-light-300`, ``],
+      ['gun.config.json', 'room.config'],
+      [`:key="c"`, `v-show="features?.[c]?.enabled"\n        :key="c"`],
+      [`\\(\\) => features`, '() => features.value'],
       [`:title="title"`, `:title="t('customize.room_' + c)"`]
     ],
   },
