@@ -37,6 +37,7 @@ const files = [
   'src/gun-vue/form/FormYoutube.vue',
   'src/gun-vue/form/FormLink.vue',
   'src/gun-vue/gift/GiftWallets.vue',
+  'src/gun-vue/my/wallets.vue',
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
   user_users_list: [false, false, 'Users list', '用户列表', 'ml-1 '],

@@ -162,14 +162,21 @@ const customize = {
     ],
   },
   './src/gun-vue/my/my.vue': {
+    i18n: true,
     replaces: [
       [`import { useUser } from.*`, `import { useUser } from '#composables';`],
+      ['Home', '{{ t(\'customize.my_home\') }}'],
+      ['Profile', '{{ t(\'customize.my_profile\') }}'],
+      ['Chat', '{{ t(\'customize.my_chat\') }}'],
+      ['Mates', '{{ t(\'customize.my_mates\') }}'],
+      ['Wallets', '{{ t(\'customize.my_wallets\') }}'],
     ],
   },
   './src/gun-vue/my/chat/index.vue': {
     i18n: true,
     replaces: [
       ['chat-private-list\\(@chat', 'chat-private-list(:title="t(\'customize.chat_title\')" @chat'],
+      ['Select a user to start a private e2e encrypted chat', '{{ t(\'customize.my_startchat\') }}'],
     ],
   },
 }

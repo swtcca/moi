@@ -2,16 +2,17 @@
 import { useUser } from '#composables';
 
 const { user } = useUser()
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .flex.items-center.relative.flex-col.w-full
   .flex.flex-wrap.bg-light-800.w-full.dark-bg-dark-500
-    router-link.link(to="/my/") Home
-    router-link.link(to="/my/profile/") Profile
-    router-link.link(to="/my/chat/") Chat
-    router-link.link(to="/my/mates/") Mates
-    router-link.link(to="/my/wallets/") Wallets
+    router-link.link(to="/my/") {{ t('customize.my_home') }}
+    router-link.link(to="/my/profile/") {{ t('customize.my_profile') }}
+    router-link.link(to="/my/chat/") {{ t('customize.my_chat') }}
+    router-link.link(to="/my/mates/") {{ t('customize.my_mates') }}
+    router-link.link(to="/my/wallets/") {{ t('customize.my_wallets') }}
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       keep-alive
