@@ -41,6 +41,12 @@ const customize = {
       ['svg.max-h-78vh.w-98vw', 'svg.h-99vh.w-99vw'],
     ],
   },
+  './src/gun-vue/room/RoomForm.vue': {
+    replaces: [
+      [`const create = reactive`, `const enabled = computed(() => Object.keys(user.safe?.rooms).length < 1 || user.safe?.wallets?.jingtum?.activated && Object.keys(user.safe?.rooms).length < 5)\n\nconst create = reactive`],
+      [`click="genPair\\(\\)"`, `click="genPair()", :disabled="!enabled"`],
+    ],
+  },
   './src/gun-vue/room/RoomPage.vue': {
     replaces: [
       ['pt-32.px-2', 'pt-12.px-2'],

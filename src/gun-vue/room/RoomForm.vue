@@ -6,6 +6,8 @@ const emit = defineEmits(['room'])
 
 const { user } = useUser()
 
+const enabled = computed(() => Object.keys(user.safe?.rooms).length < 1 || user.safe?.wallets?.jingtum?.activated && Object.keys(user.safe?.rooms).length < 5)
+
 const create = reactive({
   pair: null,
   name: ''
@@ -39,7 +41,7 @@ const { t } = useI18n()
   :style="{ ...bg }"
   )
   .flex
-    button.button.m-2.flex-1(@click="genPair()" ) {{ t('gunvue.room_generate') }}
+    button.button.m-2.flex-1(@click="genPair()", :disabled="!enabled" ) {{ t('gunvue.room_generate') }}
     button.button.m-2(
       v-if="create.pair" 
       @click="reset()" 
