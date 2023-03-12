@@ -32,6 +32,7 @@ vupload:
   prompt: Drop files here or click to select files
 customize:
   chat_title: Private Chats
+  chat_topics: Topics
   room_space: space
   room_chat: chat
   room_posts: posts

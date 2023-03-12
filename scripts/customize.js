@@ -43,7 +43,7 @@ const customize = {
   },
   './src/gun-vue/room/RoomForm.vue': {
     replaces: [
-      [`const create = reactive`, `const enabled = computed(() => Object.keys(user.safe?.rooms).length < 1 || user.safe?.wallets?.jingtum?.activated && Object.keys(user.safe?.rooms).length < 5)\n\nconst create = reactive`],
+      [`const create = reactive`, `const enabled = computed(() => Object.keys(user.safe?.rooms).length < 2 || user.safe?.wallets?.jingtum?.activated && Object.keys(user.safe?.rooms).length < 5)\n\nconst create = reactive`],
       [`click="genPair\\(\\)"`, `click="genPair()", :disabled="!enabled"`],
     ],
   },
@@ -65,6 +65,12 @@ const customize = {
     // i18n: true,
     replaces: [
       [`.bg-light-700`, ``],
+    ],
+  },
+  './src/gun-vue/chat/ChatTopics.vue': {
+    i18n: true,
+    replaces: [
+      ['{{ title }}', `{{ t('customize.chat_' + title.toLowerCase())}}`],
     ],
   },
   './src/gun-vue/chat/ChatInput.vue': {

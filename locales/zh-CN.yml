@@ -32,6 +32,7 @@ vupload:
   prompt: 拖拽文件或者点击选择文件
 customize:
   chat_title: 私聊
+  chat_topics: 主题
   room_space: 空间
   room_chat: 聊天
   room_posts: 文章

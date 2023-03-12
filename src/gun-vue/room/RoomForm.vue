@@ -6,7 +6,7 @@ const emit = defineEmits(['room'])
 
 const { user } = useUser()
 
-const enabled = computed(() => Object.keys(user.safe?.rooms).length < 1 || user.safe?.wallets?.jingtum?.activated && Object.keys(user.safe?.rooms).length < 5)
+const enabled = computed(() => Object.keys(user.safe?.rooms).length < 2 || user.safe?.wallets?.jingtum?.activated && Object.keys(user.safe?.rooms).length < 5)
 
 const create = reactive({
   pair: null,

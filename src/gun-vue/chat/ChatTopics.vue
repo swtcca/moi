@@ -19,15 +19,16 @@ const panelOpen = ref(true)
 const isLarge = useMediaQuery('(min-width: 640px)')
 
 onClickOutside(chatsPanel, () => !isLarge.value ? panelOpen.value = false : null)
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 button.button.absolute.z-200.top-4.left-4(v-if="(!panelOpen && !isLarge)" @click="panelOpen = true")
-  | {{ title }}
+  | {{ t('customize.chat_' + title.toLowerCase())}}
 transition(name="fade")
   .px-1.py-2.flex.flex-col.bg-dark-50.dark-bg-dark-400.bg-opacity-95.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm-static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel" style="flex: 0 1 320px")
     .flex.flex-wrap
-      .text-xl.font-bold.p-2 {{ title }}
+      .text-xl.font-bold.p-2 {{ t('customize.chat_' + title.toLowerCase())}}
       .flex-1
       .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
         transition(name="fade" mode="out-in")
