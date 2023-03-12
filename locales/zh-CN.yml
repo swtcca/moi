@@ -48,6 +48,8 @@ customize:
   my_mates: 朋友
   my_wallets: 钱包
   my_startchat: 选择用户私聊
+  torrent_copied: 已复制
+  torrent_copy: 复制
 wallets:
   not_activated: 未激活
   balance: 余额
@@ -76,6 +78,9 @@ pages:
   topics: 主题
 not-found: 未找到页面
 gunvue:
+  torrent_upload: 上传文件
+  torrent_share: 分享文件
+  torrent_downloadurl: 下载地址
   user_users_list: 用户列表
   user_room_join: 加入
   relay_host: 主机

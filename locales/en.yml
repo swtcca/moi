@@ -48,6 +48,8 @@ customize:
   my_mates: Friends
   my_wallets: Wallets
   my_startchat: select user for private chat
+  torrent_copied: Copied!
+  torrent_copy: Copy
 wallets:
   not_activated: Not Activated
   balance: Balance
@@ -76,6 +78,9 @@ pages:
   topics: Topics
 not-found: Not found
 gunvue:
+  torrent_upload: Upload a file
+  torrent_share: Share the torrent
+  torrent_downloadurl: Download URL
   user_users_list: Users list
   user_room_join: Join
   relay_host: Host

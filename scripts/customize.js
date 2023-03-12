@@ -67,6 +67,13 @@ const customize = {
       [`.bg-light-700`, ``],
     ],
   },
+  './src/gun-vue/file/TorrentUpload.vue': {
+    i18n: true,
+    replaces: [
+      [`'Copied!'`, `t('customize.torrent_copied')`],
+      [`'Copy'`, `t('customize.torrent_copy')`],
+    ],
+  },
   './src/gun-vue/chat/ChatTopics.vue': {
     i18n: true,
     replaces: [

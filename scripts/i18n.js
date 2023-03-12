@@ -38,8 +38,14 @@ const files = [
   'src/gun-vue/form/FormLink.vue',
   'src/gun-vue/gift/GiftWallets.vue',
   'src/gun-vue/my/wallets.vue',
+  'src/gun-vue/file/TorrentUpload.vue',
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  torrent_upload: [false, false, 'Upload a file', '上传文件'],
+  torrent_share: [false, false, 'Share the torrent', '分享文件'],
+  torrent_downloadurl: [false, false, 'Download URL', '下载地址'],
+  // torrent_copied: [true, false, '\'Copied!\'', '已复制', ],
+  // torrent_copy: [true, false, 'Copy', '复制', ': '],
   user_users_list: [false, false, 'Users list', '用户列表', 'ml-1 '],
   user_room_join: [false, false, 'Join', '加入', 'ml-2 '],
   relay_host: [false, false, 'Host', '主机', '', '', ':', ''],
