@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { asyncComputed, useClipboard, useObjectUrl, useShare } from '@vueuse/core';
+import { asyncComputed, useClipboard, useObjectUrl, uset('customize.torrent_share') } from '@vueuse/core';
 import { ref, watch, computed } from 'vue';
 import { uploadTorrent, downloadTorrent } from './useTorrent';
 
@@ -24,7 +24,7 @@ const downloadUrl = computed(() => {
 
 const clip = useClipboard({ source: downloadUrl })
 
-const { share, isSupported: shareSupported } = useShare()
+const { share, isSupported: shareSupported } = uset('customize.torrent_share')()
 const { t } = useI18n()
 </script>
 
@@ -56,7 +56,7 @@ const { t } = useI18n()
         @click="share({ title: upload?.name, url: downloadUrl })"
         )
         .i-la-share
-        .p-0  Share
+        .p-0  t('customize.torrent_share')
     qr-show(v-if="downloadUrl" :data="downloadUrl")
   file-card(v-for="file in upload?.files" :key="file?.name" :file="file")
 </template>

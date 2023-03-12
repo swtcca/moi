@@ -70,6 +70,7 @@ const customize = {
   './src/gun-vue/file/TorrentUpload.vue': {
     i18n: true,
     replaces: [
+      [`Share`, `t('customize.torrent_share')`],
       [`'Copied!'`, `t('customize.torrent_copied')`],
       [`'Copy'`, `t('customize.torrent_copy')`],
     ],

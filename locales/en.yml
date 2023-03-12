@@ -50,6 +50,7 @@ customize:
   my_startchat: select user for private chat
   torrent_copied: Copied!
   torrent_copy: Copy
+  torrent_share: Share
 wallets:
   not_activated: Not Activated
   balance: Balance

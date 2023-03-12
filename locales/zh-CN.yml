@@ -50,6 +50,7 @@ customize:
   my_startchat: 选择用户私聊
   torrent_copied: 已复制
   torrent_copy: 复制
+  torrent_share: 分享
 wallets:
   not_activated: 未激活
   balance: 余额
