@@ -7,18 +7,13 @@ import { read_user_safe, save_user_safe } from '../composables/userSafe'
 const gapi = axios.create({ baseURL: 'https://youtube.googleapis.com/youtube/v3/' })
 gapi.defaults.headers.common.Accept = 'application/json'
 let inited = false
-let key_saved = ref(false)
-watch(prefers.youtubeAppKey, () => {
-  console.log(`youtube token changed`)
-  key_saved.value = false
-})
 
 function makeParams(options = {}) {
   return {
     params: Object.assign({}, {
       part: 'snippet,contentDetails',
-      // maxResults: Math.min(50, prefers.maxResults),
       maxResults: Math.min(50, prefers.maxResults),
+      // maxResults: Math.min(2, prefers.maxResults),
     }, options),
   }
 }
@@ -27,34 +22,28 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
   if (!inited) {
     initChannels()
     console.log('... init channels')
-    inited = true
     initVideos()
     console.log('... init videos')
     useVideos()
     console.log('... use videos')
+    inited = true
   }
-  if (!prefers.youtubeAccess || !prefers.youtubeAppKey) {
-    console.log(`... no api key in pinia, try gun`)
-    const youtubeKey = await read_user_safe(["moiapp", "tokens", "youtube"],{encrypt: true})
-    if (youtubeKey) {
-      prefers.youtubeAppKey = youtubeKey
-    } else {
-      console.log(`... bypass fetching videos no api key`)
-      return videos.videos
-    }
+  const youtubeKey = await read_user_safe(["moiapp", "tokens", "youtube"],{encrypt: true})
+  if (!youtubeKey) {
+    console.log(`... bypass fetching videos no api key`)
+    return videos.videos
   }
-  setTimeout(async () => await AsyncForEach(channels, async (channel) => {
+  if (!prefers.youtubeAccess) {
+    return videos.videos
+  }
+  setTimeout(async () => await AsyncForEach(channels.filter(channel => channel.id.length > 20), async (channel) => {
     console.log(`... handle channel playlist`)
     const is_channel = channel.id.startsWith('UC')
     let playlistId = channel.id
     const leagal = channel?.leagal
     try {
       if (is_channel) {
-        const response = await gapi.get('channels', makeParams({ key: prefers.youtubeAppKey, id: channel.id }))
-        if (!key_saved.value) {
-          save_user_safe(prefers.youtubeAppKey, ["moiapp", "tokens", "youtube"], {encrypt: true})
-          key_saved.value = true
-        }
+        const response = await gapi.get('channels', makeParams({ key: youtubeKey, id: channel.id }))
         if (response.data.pageInfo.totalResults === 1 ) {
           const item = response.data.items[0]
           if (item.kind === "youtube#channel") {
@@ -69,11 +58,7 @@ export async function fetchYoutubeVideos (channels: IChannel[] = []) {
           }
         }
       }
-      const resp = await gapi.get('playlistItems', makeParams({ key: prefers.youtubeAppKey, playlistId }))
-      if (!key_saved.value) {
-        save_user_safe(prefers.youtubeAppKey, ["moiapp", "tokens", "youtube"], {encrypt: true})
-        key_saved.value = true
-      }
+      const resp = await gapi.get('playlistItems', makeParams({ key: youtubeKey, playlistId }))
       resp.data.items.forEach(async (item) => {
         if (!channel.hasOwnProperty("title")) {
           channel.title = item.snippet.channelTitle
