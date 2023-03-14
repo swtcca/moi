@@ -31,4 +31,5 @@ export const PLAYLISTS = [
     { id: 'UUnyPxKrdrXDjlBBucRAIuuA', name: '圆脸波士顿', title: '波士顿自干五-圆脸传媒', leagal: true },
     { id: 'UUgo_-fjJxnLwwwq5dSY72rg', name: '自话总裁', title: '自说自话的总裁', leagal: true },
     { id: 'UULF0Fshntq8GBl7ZtiAoOGuEA', name: '雷倩', title: '雷倩', leagal: true },
+    { id: 'UULFjEqklvNFQYeqUPEmLY30jg', name: '白呀白', title: '白呀白Talk', leagal: true}
   ] as IChannel[]

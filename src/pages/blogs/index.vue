@@ -22,17 +22,14 @@ setTimeout(() => blogs.value.unshift(
 <template>
   <div class="grid gap-12 place-items-center text-2xl">
     <h1 class="text-6xl">My Blog</h1>
-    <ACard>
-      <AList
-        v-model="selected"
-        :items="blogs"
-        variant="light"
-        class="a-list-items-pill"
+    <div v-for="blog of blogs" :key="blog.id">
+      <ACard
+        :title="blog.title"
+        :subtitle="blog.author + ' ' + blog.date"
+        class="w-100vw rounded-0"
+        @click="$router.push(`/blogs/${blog.id}`)"
       >
-        <template #after>
-           {{ selected }} 
-        </template>
-      </AList>
-    </Acard>
+      </ACard>
+    </div>
   </div>
 </template>
