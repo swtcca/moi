@@ -88,6 +88,8 @@ pages:
   topics: Topics
 not-found: Not found
 gunvue:
+  auth_authed: Youve successfully logged in as
+  auth_goprofile: Go to your profile
   torrent_upload: Upload a file
   torrent_share: Share the torrent
   torrent_downloadurl: Download URL

@@ -29,15 +29,16 @@ const goto = async () => {
   }
   open.value = true
 }
+//  <div class="relative cursor-pointer border-b-2 border-light-200 dark-border-dark-200 hover-opacity-90 hover-border-teal-700" @click="goto()">
 </script>
 
 <template>
-  <div class="relative cursor-pointer border-b-2 border-light-200 dark-border-dark-200 hover-opacity-90 hover-border-teal-700" @click="goto()">
+  <div class="relative cursor-pointer border-b-2 hover-opacity-90" @click="goto()">
     <img :src="token.image" />
-    <p class="absolute text-center top-1 font-semibold text-xl text-teal-700 hover-scale-125 hover-text-teal-400">{{ token.name }} @ {{ contract.chain }}</p>
+    <p class="absolute text-center top-1 font-semibold text-xl hover-scale-110">{{ token.name }} @ {{ contract.chain }}</p>
   </div>
   <UiLayer :open="open" @close="open = false">
-    <div class="max-w-md p-2 bg-dark-200 text-light-700 flex flex-col place-content-center" v-html="layer">
+    <div class="max-w-md p-2 flex flex-col place-content-center" v-html="layer">
     </div>
   </UiLayer>
 </template>

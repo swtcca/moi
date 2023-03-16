@@ -39,8 +39,11 @@ const files = [
   'src/gun-vue/gift/GiftWallets.vue',
   'src/gun-vue/my/wallets.vue',
   'src/gun-vue/file/TorrentUpload.vue',
+  'src/gun-vue/auth/index.vue',
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  auth_authed: [false, false, `You've successfully logged in as`, `登录成功`],
+  auth_goprofile: [false, false, 'Go to your profile', '前往个人页面'],
   torrent_upload: [false, false, 'Upload a file', '上传文件'],
   torrent_share: [false, false, 'Share the torrent', '分享文件'],
   torrent_downloadurl: [false, false, 'Download URL', '下载地址'],

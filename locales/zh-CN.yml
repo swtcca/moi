@@ -88,6 +88,8 @@ pages:
   topics: 主题
 not-found: 未找到页面
 gunvue:
+  auth_authed: 登录成功
+  auth_goprofile: 前往个人页面
   torrent_upload: 上传文件
   torrent_share: 分享文件
   torrent_downloadurl: 下载地址
