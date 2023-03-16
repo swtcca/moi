@@ -25,8 +25,6 @@ const save_token = async () => {
 }
 const { textarea: textarea_ask, input: ask } = useTextareaAutosize()
 const { input: answer } = useTextareaAutosize()
-ask.value = 'tell me something about amoxicillian'
-answer.value = 'openai answers will show here'
 const show_chat = ref(true)
 const show_draw = ref(true)
 const image = ref('')
@@ -52,6 +50,7 @@ const openai_draw = async () => {
   } catch (e) {}
 }
 get_token()
+const { t } = useI18n()
 //      <svg v-else width="500" height="210" class="absolute">
 //        <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:red;stroke:red;stroke-width:5;fill-rule:nonzero;" />
 //      </svg>
@@ -60,23 +59,22 @@ get_token()
 <template>
   <div class="container mx-auto pt-12 px-1 md:px-4 lg:px-12">
     <div v-if="!api_in_gun">
-      <label>OPENAPI TOKEN</label>
-      <AInput placeholder="openai token here, required" input-wrapper-classes="px-0" type="password" v-model="apiKey" />
+      <label>OPENAI {{ t('token') }}</label>
+      <AInput placeholder="t('placeholder.openai_token')" input-wrapper-classes="px-0" type="password" v-model="apiKey" />
     </div>
     <div class="my-4">
-      <label>ASK OPENAI</label>
-      <ATextarea ref="textarea_ask" v-model="ask"></ATextarea>
+      <label>{{ t('ask') }} OPENAI</label>
+      <ATextarea ref="textarea_ask" v-model="ask" :placeholder="t('placeholder.openai_input')"></ATextarea>
     </div>
     <div class="flex justify-around my-4">
-      <ABtn @click="openai_chat">CHAT</ABtn>
-      <ABtn @click="openai_draw">DRAW</ABtn>
+      <ABtn @click="openai_chat">{{ t('button.openai_chat') }}</ABtn>
+      <ABtn @click="openai_draw">{{ t('button.openai_draw') }}</ABtn>
     </div>
     <div v-if="show_chat">
-      <ATextarea v-model="answer"></ATextarea>
+      <ATextarea v-model="answer" :placeholder="t('placeholder.openai_output')"></ATextarea>
     </div>
     <div v-if="show_draw" class="flex place-content-center">
       <img v-if="image" class="mx-auto ring-1 absolute z-200" :src="image" />
-      <div v-else>openai images will show here</div>
     </div>
   </div>
 </template>

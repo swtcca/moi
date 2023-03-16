@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '#composables';
 import { default_chain_name, useWallet, useWallets } from '../composables/useWallet'
-import {
-  Listbox,
-  ListboxLabel,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 const { user } = useUser()
 // const { wallet } = useWallet()
 const { wallets, chains } = useWallets()
@@ -16,7 +8,7 @@ const noop = () => {console.log(`...debug doing nothing`)}
 
 const chain_names = []
 for (const chain in wallets) {
-  chain_names.push({name: chain})
+  chain_names.push({name: chain, text: chain})
 }
 
 const balances = computed(() => {
@@ -49,7 +41,6 @@ const balances = computed(() => {
 const selectedChain = ref(chain_names.find(e => e.name === default_chain_name.value))
 const wallet = ref(useWallet())
 const chain = ref(default_chain_name.value)
-const value = ref(true)
 watch(selectedChain, () => {
   wallet.value = useWallet(selectedChain.value.name)
   chain.value = selectedChain.value.name
@@ -70,7 +61,7 @@ const { t } = useI18n()
 
 <template lang="pug">
 .container.h-100vh
-  h1.pt-8.text-center.font-bold.text-2xl Wallets
+  h1.pt-8.text-center.font-bold.text-2xl {{ t('wallets.wallets') }}
   .container.overflow-x-hidden
     .grid.grid-col-1.place-content-around.gap-2.p-4.min-h-85vh
       .flex.flex-col.gap-2.max-w-full.sm-max-w-sm.rounded-xl.shadow-lg(v-if="user.is")
@@ -98,27 +89,9 @@ const { t } = useI18n()
               .i-carbon-update-now(v-else @click="wallet.chainobj.update_balance(wallet)")
       .flex.flex-col.gap-2.max-w-full.sm-max-w-sm.p-2.rounded-xl.shadow-lg(v-else)
         p {{ t('wallets.login_first') }}
-      .flex.flex-col.gap-2.max-w-full.sm-max-w-sm.rounded-xl.shadow-lg
-        Listbox(v-model="selectedChain")
-          .relative.mt-1
-            ListboxButton(class="relative w-full py-2 pl-12 pr-10 text-left rounded-lg shadow-md cursor-default focus-outline-none focus-visible-ring-2 focus-visible-ring-opacity-75 focus-visible-ring-white focus-visible-ring-offset-orange-300 focus-visible-ring-offset-2 focus-visible-border-indigo-500 sm-text-sm")
-              span.block.truncate {{ selectedChain.name }}
-              span.absolute.inset-y-0.right-0.flex.items-center.pr-2.pointer-events-none
-                ChevronUpDownIcon.w-5.h-5(aria-hidden="true")
-    
-            ListboxOptions(class="absolute w-full py-1 mt-1 overflow-auto text-base rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus-outline-none sm-text-sm")
-              ListboxOption(
-                v-slot="{ active, selected }"
-                v-for="chain in chain_names"
-                :key="chain.name"
-                :value="chain"
-                as="template"
-              )
-                li.cursor-default.select-none.relative.py-2.pl-10.pr-4(
-                )
-                  span.block.truncate(
-                    :class="{ 'font-medium' : selected, 'font-normal': !selected }"
-                  ) {{ chain.name }}
-                  span.absolute.inset-y-0.left-0.flex.items-center.pl-3(v-if="selected")
-                    CheckIcon.w-5.h-5(aria-hidden="true")
+      .grid-row.justify-items-stretch
+        ASelect(
+          v-model="selectedChain"
+          :options="chain_names"
+          )
 </template>

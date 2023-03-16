@@ -1,4 +1,10 @@
 moi: Mine
+token: Token
+ask: Ask
+placeholder:
+  openai_token: openai token here, required
+  openai_input: your input for openai here
+  openai_output: openai output will show here
 button:
   about: About
   back: Back
@@ -17,6 +23,8 @@ button:
   social: Social
   relays: Relay
   graph: Graph
+  openai_chat: Chat
+  openai_draw: Draw
 tags:
   posts: Posts
 intro:
@@ -52,6 +60,7 @@ customize:
   torrent_copy: Copy
   torrent_share: Share
 wallets:
+  wallets: Wallets
   not_activated: Not Activated
   balance: Balance
   tokens: Tokens

@@ -26,10 +26,12 @@ export function useWeb3(lib_url = url.value, manual: true) {
         message.value = `... web3 failed to load ${e}`
         tries.value += 1
       }
-    } 
-    while (!loaded.value && loading.value) {
-      console.log(`... waiting web3 lib`)
-      await sleep(200)
+    } else {
+      while (!loaded.value && loading.value) {
+        console.log(`... waiting web3 lib`)
+        await sleep(500)
+    }
+
     }
   }
 

@@ -1,4 +1,10 @@
 moi: 我的
+token: 令牌
+ask: 提问
+placeholder:
+  openai_token: openai 令牌, 必需
+  openai_input: 输入提问openai的问题
+  openai_output: openai 给你的回答
 button:
   about: 关于
   back: 返回
@@ -17,6 +23,8 @@ button:
   social: 社交
   relays: 转发
   graph: 数据
+  openai_chat: 聊天
+  openai_draw: 画画
 tags:
   posts: 发布
 intro:
@@ -52,6 +60,7 @@ customize:
   torrent_copy: 复制
   torrent_share: 分享
 wallets:
+  wallets: 钱包
   not_activated: 未激活
   balance: 余额
   tokens: 通证

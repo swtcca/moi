@@ -26,10 +26,11 @@ export function useSwtc(lib_url = url.value, manual: true) {
         message.value = `... swtc failed to load ${e}`
         tries.value += 1
       }
-    }
-    while (!loaded.value && loading.value) {
-      console.log(`... waiting swtc lib`)
-      await sleep(200)
+    } else {
+      while (!loaded.value && loading.value) {
+        console.log(`... waiting swtc lib`)
+        await sleep(500)
+      }
     }
   }
 
