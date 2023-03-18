@@ -4,7 +4,7 @@ import { globalState } from '../stores/globalState'
 import type { IVideo } from '../types'
 import { IChannel } from '../types'
 import { prefers, videos } from '../stores'
-const NOW = useNow({interval: 1000 * 60})
+const NOW = useNow({interval: 1000 * 60 * 60 * 24})
 const gun = useGun()
 const { user } = useUser()
 const pvideos = reactive({})
