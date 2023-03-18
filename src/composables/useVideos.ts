@@ -4,7 +4,7 @@ import { globalState } from '../stores/globalState'
 import type { IVideo } from '../types'
 import { IChannel } from '../types'
 import { prefers, videos } from '../stores'
-const NOW = useNow({interval: 1000 * 60 * 60 * 24})
+const NOW = useNow({interval: 1000 * 60})
 const gun = useGun()
 const { user } = useUser()
 const pvideos = reactive({})
@@ -15,7 +15,7 @@ const pref = gun.get('bcapps').get('moi').get('youtube').get('published')
 const vref = gun.get('bcapps').get('moi').get('youtube').get('videos')
 
 const cref = gun.get('moi').get('videos').get('youtube').get('channels')
-const tref = gun.get('moi').get('videos').get('youtube').get(`${NOW.value.toJSON().substring(0, 7)}`)
+const tref = gun.get('moi').get('videos').get('youtube').get(`${new Date.toJSON().substring(0, 7)}`)
 // .get("by_video_id")
 // structure tests
 // /channels
