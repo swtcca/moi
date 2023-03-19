@@ -18,13 +18,13 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
 //    <div ref="user_ref" v-show="$route.path === '/' || !user.is " class="fixed z-400" :style="user_classes">
 // globalState.nav_classes = computed(() => globalState.show_top ? `mt-${Math.floor(heightNavTop.value || 0) + parseInt(top.value.replace(/px/,"") || "0")}px` : `mb-${Math.floor(heightNavBottom.value)}px`)
 //      <div class="pb-16" v-if="$route.path === '/'">
+//    <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
+//      <ReloadPrompt />
+//    </div>
 </script>
 
 <template>
   <main class="h-screen" :class="class_font">
-    <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
-      <ReloadPrompt />
-    </div>
     <div class="h-screen" :class="globalState.layout_classes">
       <router-view />
       <div class="pb-20" v-show="$route.path === '/'">
@@ -32,11 +32,11 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
       </div>
     </div>
     <div ref="move_ref" v-show="$route.path !== '/'" class="fixed z-401" :style="style">
-      <div class="i-carbon-router text-4xl  text-blue-700 text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
+      <div class="i-carbon-router text-4xl text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
     </div>
     <div ref="home_ref" v-show="$route.path !== '/'" class="fixed z-400" :style="home_classes">
       <RouterLink class="link" to="/">
-        <div class="i-la-home text-6xl  text-blue-700 text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
+        <div class="i-la-home text-6xl text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
       </RouterLink>
     </div>
     <div ref="user_ref" v-show="!user.is " class="fixed z-400" :style="user_classes">
