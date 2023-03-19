@@ -12,7 +12,7 @@ import './styles/styles.css'
 import { createRouter, createWebHashHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
-import routes_gun_vue from './gun-vue/routes'
+import routes_static from './routes'
 import { isDark } from "./composables/dark"
 
 // polyfill start
@@ -26,7 +26,7 @@ import { GunVuePlugin } from './gun-vue/components'
 
 import App from "./App.vue"
 
-const routes = setupLayouts([...generatedRoutes, ...routes_gun_vue])
+const routes = setupLayouts([...generatedRoutes, ...routes_static])
 // import routes from "~pages"
 console.dir(routes)
 

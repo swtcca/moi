@@ -40,33 +40,6 @@ watch(class_font, () => console.log(class_font.value))
 //  </UiLayer>
 //    <button class="i-ph-playlist" v-if="route_videos" :title="t('button.playlist')" @click="() => togglePlayList()">
 //    </button>
-
-//  <nav ref="navier" class="grid-row grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 text-4xl place-items-center bg-light-300 dark-bg-dark-400">
-//    <button class="i-ph-sun dark:i-ph-moon" :title="t('button.toggle_dark')" @click="() => toggleDark()">
-//    </button>
-//    <button class="i-mdi-fullscreen" :title="t('button.toggle_fullscreen')" @click="() => toggle()">
-//    </button>
-//    <button ref="language" class="i-ph-translate" :title="t('button.toggle_langs')" @click="toggleLocales">
-//    </button>
-//    <button ref="font" class="i-carbon-text-font" :title="t('button.toggle_fonts')" @click="toggleFonts">
-//    </button>
-//    <button class="i-ph-gear" :title="t('button.settings')" @click="show.settings = !show.settings">
-//    </button>
-//    <router-link to="/videos/" class="i-ph-video-camera"></router-link>
-//    <router-link to="/openai/" class="i-logos-openai-icon"></router-link>
-//    <button class="i-mdi-graph-outline" v-if="/localhost|127.0.0.1/.test(location_origin)" :title="t('button.graph')" @click="show.graph = !show.graph">
-//    </button>
-//    <button :title="t('button.relays')">
-//      <GunRelay />
-//    </button>
-//    <router-link to="/upload/" v-if="false" class="i-simple-icons-ipfs">
-//    </router-link>
-//    <router-link to="/wallets/" class="i-ph-wallet">
-//    </router-link>
-//    <router-link to="/nfts/">
-//      NFT
-//    </router-link>
-//  </nav>
 </script>
 
 <template>
@@ -112,12 +85,12 @@ watch(class_font, () => console.log(class_font.value))
           <div class="i-ph-users"></div>
         </div>
       </router-link>
-      <router-link to="/videos/" class="cursor-pointer flex-1 flex flex-col items-center p-4 relative dark-bg-dark-200 rounded-lg shadow-sm transition hover-shadow-lg" >
+      <router-link to="/youtube/" class="cursor-pointer flex-1 flex flex-col items-center p-4 relative dark-bg-dark-200 rounded-lg shadow-sm transition hover-shadow-lg" >
         <div class="text-2xl">
-          <div class="i-ph-video-camera"></div>
+          <div class="i-logos-youtube-icon"></div>
         </div>
       </router-link>
-      <router-link to="/openai/" class="cursor-pointer flex-1 flex flex-col items-center p-4 relative dark-bg-dark-200 rounded-lg shadow-sm transition hover-shadow-lg" >
+      <router-link to="/chatgpt/" class="cursor-pointer flex-1 flex flex-col items-center p-4 relative dark-bg-dark-200 rounded-lg shadow-sm transition hover-shadow-lg" >
         <div class="text-2xl">
           <div class="i-logos-openai-icon"></div>
         </div>
