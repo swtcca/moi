@@ -2,17 +2,19 @@ import routes_gun_vue from './gun-vue/routes'
 
 export default [
     {
-        path: "/youtube",
+        path: "/youtube/",
         name: "youtube",
         component: () => import('./components/YoutubeVideos.vue')
     },
     {
-        path: "/wallets",
+        path: "/wallets/",
+        // meta: { requiresAuth: true },
         name: "cryptowallets",
         component: () => import('./components/Wallet.vue')
     },
     {
-        path: "/chatgpt",
+        path: "/chatgpt/",
+        // meta: { requiresAuth: true },
         name: "chatgpt",
         component: () => import('./components/ChatGpt.vue')
     },

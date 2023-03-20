@@ -60,7 +60,7 @@ const { t } = useI18n()
   <div class="container mx-auto pt-12 px-1 md:px-4 lg:px-12">
     <div v-if="!api_in_gun">
       <label>OPENAI {{ t('token') }}</label>
-      <AInput placeholder="t('placeholder.openai_token')" input-wrapper-classes="px-0" type="password" v-model="apiKey" />
+      <AInput :placeholder="t('placeholder.openai_token')" input-wrapper-classes="px-0" type="password" v-model="apiKey" />
     </div>
     <div class="my-4">
       <label>{{ t('ask') }} OPENAI</label>
