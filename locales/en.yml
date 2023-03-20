@@ -125,6 +125,7 @@ gunvue:
   load: Load
   reset: Reset
   reset2: Reset
+  post_authenticate: Authorize to post here
   post_title: Title
   post_title_add: Add a heading
   post_statement: Short text statement

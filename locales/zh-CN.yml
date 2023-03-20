@@ -125,6 +125,7 @@ gunvue:
   load: 导入
   reset: 重置
   reset2: 重置
+  post_authenticate: 登录发表文章
   post_title: 题目
   post_title_add: 添加标题
   post_statement: 声明

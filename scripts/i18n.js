@@ -81,6 +81,7 @@ const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_
   load: [false, false, 'Load', '导入', 'ml-2 '],
   reset: [false, false, 'Reset', '重置', '\\) ', ') '],
   reset2: [false, false, 'Reset', '重置', 'ml-2 '],
+  post_authenticate: [false, false, 'Authorize to post here', '登录发表文章'],
   post_title: [false, true, 'Title', '题目', 'placeholder="'],
   post_title_add: [false, true, 'Add a heading', '添加标题', 'title="'],
   post_statement: [false, true, 'Short text statement', '声明', 'placeholder="'],

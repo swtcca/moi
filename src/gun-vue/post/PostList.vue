@@ -116,7 +116,7 @@ const { t } = useI18n()
       v-if="!user.pub" 
       style="order:-2147483647; flex: 1000 100%"
       )
-        button.button(@click="user.auth = true") Authorize to post here
+        button.button(@click="user.auth = true") {{ t('gunvue.post_authenticate') }}
         slot
 
     transition-group(name="list")
