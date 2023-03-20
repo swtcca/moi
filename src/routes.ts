@@ -14,7 +14,7 @@ export default [
     },
     {
         path: "/chatgpt/",
-        meta: { requiresAuth: true },
+        // meta: { requiresAuth: true },
         name: "chatgpt",
         component: () => import('./components/ChatGpt.vue')
     },

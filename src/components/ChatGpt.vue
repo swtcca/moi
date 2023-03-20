@@ -3,6 +3,8 @@ import { ref, watch } from "vue"
 import { apiKey, openai_create_completion, openai_create_image } from "../composables/openai"
 import { read_user_safe, save_user_safe } from "../composables/userSafe"
 import { useTextareaAutosize } from '@vueuse/core'
+import { useUser } from '#composables';
+const { user } = useUser()
 
 const api_in_gun = ref(false)
 watch(apiKey, () => {
@@ -51,6 +53,11 @@ const openai_draw = async () => {
 }
 get_token()
 const { t } = useI18n()
+onBeforeMount(() => {
+  if (!user.is) {
+    user.auth = true
+  }
+})
 //      <svg v-else width="500" height="210" class="absolute">
 //        <polygon points="100,10 40,198 190,78 10,78 160,198" style="fill:red;stroke:red;stroke-width:5;fill-rule:nonzero;" />
 //      </svg>
