@@ -44,7 +44,6 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(anu, {
-  initialTheme: isDark.value ? "dark" : "light",
   themes: {
     light: {
       colors: {
