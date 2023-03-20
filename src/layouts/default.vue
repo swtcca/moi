@@ -25,6 +25,9 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
 
 <template>
   <main class="h-screen" :class="class_font">
+    <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
+      <ReloadPrompt />
+    </div>
     <div class="h-screen" :class="globalState.layout_classes">
       <router-view />
       <div class="pb-20" v-show="$route.path === '/'">

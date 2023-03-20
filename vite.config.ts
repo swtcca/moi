@@ -96,7 +96,8 @@ export default defineConfig({
       compositionOnly: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
-    VitePWA({immediate: true}),
+    VitePWA(),
+    // VitePWA({immediate: true}),
     // VitePWA({
     //   workbox: {
     //     maximumFileSizeToCacheInBytes: 9000000
