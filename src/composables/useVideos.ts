@@ -14,8 +14,8 @@ const gchannels = ref({})
 const pref = gun.get('bcapps').get('moi').get('youtube').get('published')
 const vref = gun.get('bcapps').get('moi').get('youtube').get('videos')
 
-const cref = gun.get('moi').get('videos').get('youtube').get('channels')
-const tref = gun.get('moi').get('videos').get('youtube').get(`${new Date().toJSON().substring(0, 7)}`)
+const cref = gun.get('moi2').get('videos').get('youtube').get('channels')
+const tref = gun.get('moi2').get('videos').get('youtube').get(`${new Date().toJSON().substring(0, 7)}`)
 // .get("by_video_id")
 // structure tests
 // /channels
