@@ -7,10 +7,9 @@ const { t } = useI18n()
 
 <template lang="pug">
 .flex.items-center.relative.flex-col.w-full
-  .flex.flex-wrap.bg-light-800.w-full.dark-bg-dark-500
+  .flex.flex-wrap.justify-around.bg-light-800.w-full.dark-bg-dark-500
     router-link.link(to="/my/") {{ t('customize.my_home') }}
     router-link.link(to="/my/profile/") {{ t('customize.my_profile') }}
-    router-link.link(to="/my/chat/") {{ t('customize.my_chat') }}
     router-link.link(to="/my/mates/") {{ t('customize.my_mates') }}
     router-link.link(to="/my/wallets/") {{ t('customize.my_wallets') }}
   router-view(v-slot="{ Component }")

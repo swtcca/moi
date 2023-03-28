@@ -75,6 +75,11 @@ watch(class_font, () => console.log(class_font.value))
           <div class="i-ph-file"></div>
         </div>
       </router-link>
+      <router-link to="/private/" class="cursor-pointer flex-1 flex flex-col items-center p-4 relative dark-bg-dark-200 rounded-lg shadow-sm transition hover-shadow-lg">
+        <div class="text-2xl">
+          <div class="i-ph-chats-light"></div>
+        </div>
+      </router-link>
       <router-link to="/my/" class="cursor-pointer flex-1 flex flex-col items-center p-4 relative dark-bg-dark-200 rounded-lg shadow-sm transition hover-shadow-lg">
         <div class="text-2xl">
           <div class="i-ph-user"></div>

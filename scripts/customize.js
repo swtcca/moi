@@ -190,9 +190,10 @@ const customize = {
       ['Chat', '{{ t(\'customize.my_chat\') }}'],
       ['Mates', '{{ t(\'customize.my_mates\') }}'],
       ['Wallets', '{{ t(\'customize.my_wallets\') }}'],
+      ['flex.flex-wrap.bg', 'flex.flex-wrap.justify-around.bg']
     ],
   },
-  './src/gun-vue/my/chat/index.vue': {
+  './src/gun-vue/private/empty.vue': {
     i18n: true,
     replaces: [
       ['chat-private-list\\(@chat', 'chat-private-list(:title="t(\'customize.chat_title\')" @chat'],

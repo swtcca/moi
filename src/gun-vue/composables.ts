@@ -6,7 +6,7 @@ export * from "./dict/composables"
 export * from "./file/composables"
 export * from "./gift/composables"
 export * from "./gun/composables"
-export * from "./log/composables"
+export * from './private/composables'
 export * from "./post/composables"
 export * from "./project/composables"
 export * from "./room/composables"
@@ -16,6 +16,7 @@ export * from "./user/composables"
 export * from "./mate/composables"
 
 import config from "../gun.config.json"
+
 export const rootRoom = config.room
 
 export { default as config } from "../gun.config.json"
