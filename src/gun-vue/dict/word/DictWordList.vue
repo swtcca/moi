@@ -8,13 +8,14 @@ defineEmits(['word', 'root', 'def'])
 
 const { input, found, linked, addWord } = useWords()
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .flex.flex-col.gap-2 
   .font-bold.text-xl.mb-2.cursor-pointer(
     @click="$emit('root', 'words')"
-    ) Words
+    ) {{ t('customize.dict_words') }}
   transition(
     name="fade" 
     mode="out-in"
@@ -29,7 +30,7 @@ const { input, found, linked, addWord } = useWords()
       v-model="input" 
       placeholder="Enter a word"
       )
-    button.button(@click="user.is ? addWord() : user.auth = true") Add
+    button.button(@click="user.is ? addWord() : user.auth = true") {{ t('button.add') }}
 
   .flex.flex-wrap.gap-2
     transition-group(name="list")

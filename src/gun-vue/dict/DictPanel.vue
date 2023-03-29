@@ -4,11 +4,12 @@ import { dictLang, languages, useDictLangs } from '#composables'
 const langs = useDictLangs()
 
 defineEmits(['home', 'my', 'authors'])
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .flex.flex-wrap.w-full.items-center.bg-light-900.dark-bg-dark-600.gap-1
-  .p-2.cursor-pointer.font-bold(@click="$emit('home')") Dictionary
+  .p-2.cursor-pointer.font-bold(@click="$emit('home')") {{ t('customize.dict_dictionary') }}
   slot
   .flex-1
   .flex.flex-wrap.gap-2.m-1

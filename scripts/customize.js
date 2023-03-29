@@ -67,6 +67,47 @@ const customize = {
       [`.bg-light-700`, ``],
     ],
   },
+  './src/gun-vue/dict/dict.vue': {
+    i18n: true,
+    replaces: [
+      [` My`, ` {{ t('customize.dict_my') }}`],
+      [` Authors`, ` {{ t('customize.dict_authors') }}`],
+    ],
+  },
+  './src/gun-vue/dict/DictPanel.vue': {
+    i18n: true,
+    replaces: [
+      [` Dictionary`, ` {{ t('customize.dict_dictionary') }}`],
+    ],
+  },
+  './src/gun-vue/dict/DictAuthors.vue': {
+    i18n: true,
+    replaces: [
+      [`Dictionary authors`, ` {{ t('customize.dict_authors') }}`],
+    ],
+  },
+  './src/gun-vue/dict/word/DictWordList.vue': {
+    i18n: true,
+    replaces: [
+      [` Words`, ` {{ t('customize.dict_words') }}`],
+      [` Add`, ` {{ t('button.add') }}`],
+    ],
+  },
+  './src/gun-vue/dict/def/DictDefList.vue': {
+    i18n: true,
+    replaces: [
+      [` Definitions`, ` {{ t('customize.dict_definitions') }}`],
+      [` Add`, ` {{ t('button.add') }}`],
+    ],
+  },
+  './src/gun-vue/dict/langs.ts': {
+    replaces: [
+      [`en: 'noun',`, `en: 'noun',\n    zh: '名词',`],
+      [`en: 'adjective',`, `en: 'adjective',\n    zh: '形容词',`],
+      [`en: 'verb',`, `en: 'verb',\n    zh: '动词',`],
+      [`en: 'adverb',`, `en: 'adverb',\n    zh: '副词',`],
+    ],
+  },
   './src/gun-vue/file/TorrentUpload.vue': {
     i18n: true,
     replaces: [
@@ -193,7 +234,7 @@ const customize = {
       ['flex.flex-wrap.bg', 'flex.flex-wrap.justify-around.bg']
     ],
   },
-  './src/gun-vue/private/empty.vue': {
+  './src/gun-vue/private/chat/empty.vue': {
     i18n: true,
     replaces: [
       ['chat-private-list\\(@chat', 'chat-private-list(:title="t(\'customize.chat_title\')" @chat'],

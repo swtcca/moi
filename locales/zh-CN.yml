@@ -25,6 +25,7 @@ button:
   graph: 数据
   openai_chat: 聊天
   openai_draw: 画画
+  add: 新增
 tags:
   posts: 发布
 intro:
@@ -41,6 +42,11 @@ vupload:
 customize:
   chat_title: 私聊
   chat_topics: 主题
+  dict_dictionary: 词典
+  dict_my: 我的
+  dict_authors: 编者
+  dict_words: 词条 
+  dict_definitions: 定义
   room_space: 空间
   room_chat: 聊天
   room_posts: 文章

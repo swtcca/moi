@@ -2,6 +2,7 @@
 import { safeHash } from '#composables';
 import { dictLang, languages, useDictLangs } from '#composables'
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
@@ -10,8 +11,8 @@ import { dictLang, languages, useDictLangs } from '#composables'
     @home="$router.push('/dict/')"
     @my="$router.push('/dict/by/me/')"
     )
-    button.button(@click="$router.push('/dict/by/me/')") My
-    button.button(@click="$router.push('/dict/by/')") Authors
+    button.button(@click="$router.push('/dict/by/me/')") {{ t('customize.dict_my') }}
+    button.button(@click="$router.push('/dict/by/')") {{ t('customize.dict_authors') }}
   router-view(v-slot="{ Component }")
     transition(
       name="fade" 

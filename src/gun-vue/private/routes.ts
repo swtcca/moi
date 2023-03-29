@@ -7,12 +7,12 @@ export default [
       {
         path: '',
         name: "private",
-        component: () => import('./empty.vue')
+        component: () => import('./chat/empty.vue')
       },
       {
         path: ':pub',
         props: true,
-        component: () => import('./chat.vue')
+        component: () => import('./chat/[pub].vue')
       },
     ]
   }

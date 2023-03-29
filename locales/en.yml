@@ -25,6 +25,7 @@ button:
   graph: Graph
   openai_chat: Chat
   openai_draw: Draw
+  add: Add
 tags:
   posts: Posts
 intro:
@@ -41,6 +42,11 @@ vupload:
 customize:
   chat_title: Private Chats
   chat_topics: Topics
+  dict_dictionary: Dictionary
+  dict_my: My
+  dict_authors: Authors
+  dict_words: Words
+  dict_definitions: Definitions
   room_space: space
   room_chat: chat
   room_posts: posts

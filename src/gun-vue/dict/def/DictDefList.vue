@@ -7,11 +7,12 @@ const { user } = useUser()
 defineEmits(['def', 'root'])
 
 const { def, addDef, found, linked } = useDefs()
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .flex.flex-col.gap-2
-  .font-bold.text-xl.mb-2.cursor-pointer(@click="$emit('root', 'defs')") Definitions
+  .font-bold.text-xl.mb-2.cursor-pointer(@click="$emit('root', 'defs')") {{ t('customize.dict_definitions') }}
   transition(
     name="fade" 
     mode="out-in"
@@ -35,7 +36,7 @@ const { def, addDef, found, linked } = useDefs()
         v-model="def.text" 
         placeholder="Enter a definition"
         )
-      button.button(@click="user.is ? addDef() : user.auth = true") Add
+      button.button(@click="user.is ? addDef() : user.auth = true") {{ t('button.add') }}
   .flex.flex-wrap.gap-2
     transition-group(name="list")
       template(v-if="!def.text")

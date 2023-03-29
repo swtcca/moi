@@ -3,11 +3,12 @@ import { useDictAuthors } from '#composables'
 const authors = useDictAuthors()
 
 defineEmits(['author'])
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
 .p-4
-  .text-xl Dictionary authors
+  .text-xl  {{ t('customize.dict_authors') }}
   .flex.flex-wrap 
     .p-2(
       v-for="(words, author) in authors"

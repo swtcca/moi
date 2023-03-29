@@ -7,21 +7,25 @@
 export const langParts = {
   noun: {
     en: 'noun',
+    zh: '名词',
     ru: 'сущ',
     underline: 'solid',
   },
   adj: {
     en: 'adjective',
+    zh: '形容词',
     ru: 'прил',
     underline: 'wavy',
   },
   verb: {
     en: 'verb',
+    zh: '动词',
     ru: 'глаг',
     underline: 'double',
   },
   adv: {
     en: 'adverb',
+    zh: '副词',
     ru: 'нареч',
     underline: 'dotted',
   },
