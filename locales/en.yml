@@ -47,6 +47,10 @@ customize:
   dict_authors: Authors
   dict_words: Words
   dict_definitions: Definitions
+  dict_adj: adj
+  dict_adv: adv
+  dict_verb: verb
+  dict_noun: noun
   room_space: space
   room_chat: chat
   room_posts: posts
@@ -94,6 +98,8 @@ pages:
   topics: Topics
 not-found: Not found
 gunvue:
+  prompt_enter_definition: Enter a definition
+  prompt_enter_word: Enter a word
   auth_authed: Youve successfully logged in as
   auth_goprofile: Go to your profile
   torrent_upload: Upload a file

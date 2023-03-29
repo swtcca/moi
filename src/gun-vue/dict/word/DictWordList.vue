@@ -28,7 +28,7 @@ const { t } = useI18n()
   .flex.gap-2
     input.p-2.rounded-lg.flex-1.dark-bg-dark-400(
       v-model="input" 
-      placeholder="Enter a word"
+      :placeholder="t('gunvue.prompt_enter_word')"
       )
     button.button(@click="user.is ? addWord() : user.auth = true") {{ t('button.add') }}
 

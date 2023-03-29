@@ -11,7 +11,7 @@ watch(selected, (value, old_value) => {
 </script>
 <template>
   <div class="grid gap-12 place-items-center text-2xl">
-    <h1 class="text-6xl">My Blog</h1>
+    <h1 class="text-6xl">Blog|博客</h1>
     <div v-for="blog of blogs" :key="blog.id">
       <ACard
         :title="blog.title"

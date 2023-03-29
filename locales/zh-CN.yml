@@ -45,8 +45,12 @@ customize:
   dict_dictionary: 词典
   dict_my: 我的
   dict_authors: 编者
-  dict_words: 词条 
+  dict_words: 词条
   dict_definitions: 定义
+  dict_adj: 形容词
+  dict_adv: 副词
+  dict_verb: 动词
+  dict_noun: 名词
   room_space: 空间
   room_chat: 聊天
   room_posts: 文章
@@ -94,6 +98,8 @@ pages:
   topics: 主题
 not-found: 未找到页面
 gunvue:
+  prompt_enter_definition: 输入定义
+  prompt_enter_word: 输入词条
   auth_authed: 登录成功
   auth_goprofile: 前往个人页面
   torrent_upload: 上传文件

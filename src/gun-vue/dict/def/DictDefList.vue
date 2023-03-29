@@ -30,11 +30,11 @@ const { t } = useI18n()
         :key="part"
         :class="{ active: def.part == p }"
         @click="def.part = p"
-      ) {{ p }}
+      ) {{ t('customize.dict_' + p) }}
     .flex.gap-2.flex-1
       textarea.p-2.rounded-lg.flex-auto.dark-bg-dark-400(
         v-model="def.text" 
-        placeholder="Enter a definition"
+        :placeholder="t('gunvue.prompt_enter_definition')"
         )
       button.button(@click="user.is ? addDef() : user.auth = true") {{ t('button.add') }}
   .flex.flex-wrap.gap-2

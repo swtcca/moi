@@ -40,8 +40,12 @@ const files = [
   'src/gun-vue/my/wallets.vue',
   'src/gun-vue/file/TorrentUpload.vue',
   'src/gun-vue/auth/index.vue',
+  'src/gun-vue/dict/def/DictDefList.vue',
+  'src/gun-vue/dict/word/DictWordList.vue',
 ]
 const REPLACES = { // key: [flag_context, flag_binding,  en, zh, pre_regex, pre_replace, post_regex, post_replace]
+  prompt_enter_definition: [false, true, 'Enter a definition', '输入定义', 'placeholder="'],
+  prompt_enter_word: [false, true, 'Enter a word', '输入词条', 'placeholder="'],
   auth_authed: [false, false, `You've successfully logged in as`, `登录成功`],
   auth_goprofile: [false, false, 'Go to your profile', '前往个人页面'],
   torrent_upload: [false, false, 'Upload a file', '上传文件'],

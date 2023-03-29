@@ -98,14 +98,7 @@ const customize = {
     replaces: [
       [` Definitions`, ` {{ t('customize.dict_definitions') }}`],
       [` Add`, ` {{ t('button.add') }}`],
-    ],
-  },
-  './src/gun-vue/dict/langs.ts': {
-    replaces: [
-      [`en: 'noun',`, `en: 'noun',\n    zh: '名词',`],
-      [`en: 'adjective',`, `en: 'adjective',\n    zh: '形容词',`],
-      [`en: 'verb',`, `en: 'verb',\n    zh: '动词',`],
-      [`en: 'adverb',`, `en: 'adverb',\n    zh: '副词',`],
+      [`{{ p }}`, `{{ t('customize.dict_' + p) }}`],
     ],
   },
   './src/gun-vue/file/TorrentUpload.vue': {
