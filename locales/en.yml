@@ -56,7 +56,7 @@ customize:
   room_posts: posts
   room_projects: projects
   room_gifts: gifts
-  room_dict: dictionary
+  room_dict: dicts
   room_users: users
   room_rooms: rooms
   room_apps: apps

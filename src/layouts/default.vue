@@ -9,18 +9,12 @@ const move_ref = ref(null)
 const home_ref = ref(null)
 const user_ref = ref(null)
 const { height, width } = useWindowSize()
-const { x, y, style } = useDraggable(move_ref, {initialValue: {x: 0, y:0 }})
+const { x, y, style } = useDraggable(move_ref, {initialValue: {x: -35, y: 0 }})
 console.log(`${width.value} x ${height.value}`)
 console.log(style.value)
 globalState.layout_classes = computed(() => `mt-${top.value}`)
-const home_classes = computed(() => `left:${x.value}px;bottom:${y.value}px`)
+const home_classes = computed(() => `left:0px;bottom:${y.value}px`)
 const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
-//    <div ref="user_ref" v-show="$route.path === '/' || !user.is " class="fixed z-400" :style="user_classes">
-// globalState.nav_classes = computed(() => globalState.show_top ? `mt-${Math.floor(heightNavTop.value || 0) + parseInt(top.value.replace(/px/,"") || "0")}px` : `mb-${Math.floor(heightNavBottom.value)}px`)
-//      <div class="pb-16" v-if="$route.path === '/'">
-//    <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
-//      <ReloadPrompt />
-//    </div>
 </script>
 
 <template>
@@ -34,15 +28,11 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
         <Navier />
       </div>
     </div>
-    <div ref="move_ref" v-show="$route.path !== '/'" class="fixed z-401" :style="style">
-      <div class="i-carbon-router text-4xl text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
+    <div ref="move_ref" class="fixed z-401" :style="style">
+      <div v-if="$route.path !== '/'" class="i-bx-move-vertical text-6xl text-opacity-90 text-stroke-sm"></div>
     </div>
-    <div ref="home_ref" v-show="$route.path !== '/'" class="fixed z-400" :style="home_classes">
-      <RouterLink class="link" to="/">
-        <div class="i-la-home text-6xl text-opacity-90 text-stroke-sm text-stroke-green-700"></div>
-      </RouterLink>
-    </div>
-    <div ref="user_ref" v-show="!user.is " class="fixed z-400" :style="user_classes">
+    <div ref="home_ref" class="fixed z-400" :style="home_classes">
+      <div v-show="!user.is" >
       <UserIcon
         :size="48"
         :showName="false"
@@ -50,6 +40,12 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
         @post="$router.push(`/posts/${$event}`)"
         @chat="$router.push(`/my/chat/${$event}`)">
       </UserIcon>
+      </div>
+      <div v-if="$route.path !== '/'"  class="text-6xl text-opacity-90 text-stroke-sm">
+        <RouterLink class="link" to="/">
+          <div class="i-la-home"></div>
+        </RouterLink>
+      </div>
     </div>
   </main>
 </template>
