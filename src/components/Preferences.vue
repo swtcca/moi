@@ -9,7 +9,6 @@ const { t } = useI18n()
 
 <template>
   <div class="grid grid-cols-1 gap-6 text-gray-700 dark-text-gray-500">
-    <label>
       <ASwitch
         v-model="prefers.youtubeAccess"
         on-icon="i-bx-check"
@@ -18,7 +17,6 @@ const { t } = useI18n()
         class="rounded-full"
         :label="t('pages.youtube_access')"
       />
-    </label>
     <label>
       <span class="i-ph-video-camera" /><span>{{ t('pages.youtube_playback_rate') }} {{ prefers.playbackRate }}</span>
       <div class="w-full">
