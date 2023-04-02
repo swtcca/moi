@@ -8,7 +8,7 @@ import { class_font, toggleFonts } from '../composables/useFont'
 const navier = ref<HTMLElement | null>(null)
 const parentEl = useParentElement(navier)
 const pparentEl = useParentElement(parentEl)
-const { toggle } = useFullscreen(pparentEl)
+const { toggle } = useFullscreen(navier.value?.parentNode)
 const { t, availableLocales, locale } = useI18n()
 const toggleLocales = () => {
   const locales = availableLocales
