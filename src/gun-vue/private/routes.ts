@@ -2,17 +2,18 @@ export default [
   {
     path: "/private/",
     meta: { requiresAuth: true },
+    props: true,
     component: () => import("./index.vue"),
     children: [
       {
         path: '',
         name: "private",
-        component: () => import('./chat/empty.vue')
+        component: () => import('./empty.vue')
       },
       {
         path: ':pub',
         props: true,
-        component: () => import('./chat/[pub].vue')
+        component: () => import('./[pub].vue')
       },
     ]
   }
