@@ -2,11 +2,12 @@
 import { prefers, playlist } from "../stores"
 import { useRoute } from 'vue-router'
 import { toggleDark } from '../composables/dark'
-import { useFullscreen } from '@vueuse/core'
+import { useFullscreen, useParentElement } from '@vueuse/core'
 import { class_font, toggleFonts } from '../composables/useFont'
 // const { toggle } = useFullscreen(document.body)
 const navier = ref<HTMLElement | null>(null)
-const { toggle } = useFullscreen(navier.value?.parentNode)
+const parentEl = useParentElement(navier)
+const { toggle } = useFullscreen(parentEl)
 const { t, availableLocales, locale } = useI18n()
 const toggleLocales = () => {
   const locales = availableLocales

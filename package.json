@@ -10,7 +10,7 @@
     "sync": "bash scripts/sync_gun.sh; node scripts/i18n.js; node scripts/customize.js"
   },
   "dependencies": {
-    "@anu-vue/preset-theme-default": "^0.13.0",
+    "@anu-vue/preset-theme-default": "^0.13.1",
     "@coders-tm/vue-number-format": "^3.14.0",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@types/recordrtc": "^5.6.10",
@@ -18,7 +18,7 @@
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/math": "^10.0.0-beta.2",
     "@vueuse/sound": "^2.0.1",
-    "anu-vue": "^0.13.0",
+    "anu-vue": "^0.13.1",
     "base32": "^0.0.7",
     "buffer": "^6.0.3",
     "color-hash": "^2.0.1",
