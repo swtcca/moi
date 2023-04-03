@@ -48,13 +48,19 @@ app.use(anu, {
     light: {
       colors: {
         primary: '235, 98%, 66%',
-        secondary: '0, 0%, 50%',
+      },
+      cssVars: {
+        'body-bg-c': '0,4.8%,95.9%',
+        'surface-c': '0, 0%, 100%',
       },
     },
     dark: {
       colors: {
         primary: '235, 98%, 66%',
-        secondary: '0, 0%, 25%',
+      },
+      cssVars: {
+        'body-bg-c': 'var(--a-primary-hue), 15%, 5%',
+        'surface-c': 'var(--a-primary-hue), 7%, 10%',
       },
     },
   }
@@ -68,3 +74,11 @@ Object.values(import.meta.globEager('./modules/*.ts')).forEach(i => i.install?.(
 router.isReady().then(async () => {
   app.mount("#app");
 })
+
+// const primary = useCssVar("--a-primary-vue")
+// primary.value = 1
+// watch(primary, () => {
+//     console.log(primary.value)
+//   }
+// )
+// setInterval(() => { primary.value += 1 }, 300)
