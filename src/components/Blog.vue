@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { blogs } from "../composables/useBlog"
-import { useMd } from '../gun-vue/file/useMd';
-const md = useMd()
+import { useMd } from '../gun-vue/composables'
+// import { useMd } from '../composables/file/markdown'
 const edit = ref(false)
 
 const props = defineProps({
@@ -9,9 +9,10 @@ const props = defineProps({
 })
 
 const blog = computed(() => blogs.value.find(post => post.id === props.id))
+const md = useMd()
 </script>
 <template>
-  <div class="sm:p-4 md:p-8 lg:p-16 xl:p32 bg-light-200 dark:bg-dark-500">
+  <div class="sm:p-4 md:p-8 lg:p-16 xl:p-32 bg-light-200 dark:bg-dark-500">
     <h1>{{ blog.title }}</h1>
     <div v-if="!edit" class="markdown-body prose dark:prose-invert" v-html="md.render(blog.content)"></div>
     <div v-if="edit"  class="bg-light-200 dark:bg-dark-500">

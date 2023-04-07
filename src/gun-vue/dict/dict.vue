@@ -2,6 +2,7 @@
 import { safeHash } from '#composables';
 import { dictLang, languages, useDictLangs } from '#composables'
 
+import { DictPanel, DictWordList, DictDefList } from '../components'
 const { t } = useI18n()
 </script>
 

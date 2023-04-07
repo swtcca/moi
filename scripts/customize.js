@@ -4,9 +4,14 @@ const AsyncForEach = require('async-await-foreach')
 const chalk = require('chalk')
 
 const customize = {
-  'src/gun-vue/components.ts': {
+  './src/gun-vue/components.ts': {
     replaces: [
       [`^import ['"]`, `// import '`],
+    ],
+  },
+  './src/components/NavBar.vue': {
+    replaces: [
+      [`../components`, `#components`]
     ],
   },
   './src/gun-vue/gun/useGun.ts': {
@@ -38,7 +43,7 @@ const customize = {
   },
   './src/gun-vue/space/SpacePlane.vue': {
     replaces: [
-      ['svg.max-h-78vh.w-98vw', 'svg.h-99vh.w-99vw'],
+      ['fedropshadow', 'feDropShadow']
     ],
   },
   './src/gun-vue/room/RoomForm.vue': {
