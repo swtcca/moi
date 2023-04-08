@@ -9,6 +9,11 @@ import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
 import { parse } from 'ultramatter'
 
+import hljs from "highlight.js"
+import highlightPlugin from "markdown-it-highlightjs"
+import 'highlight.js/styles/github.css'
+// import 'highlight.js/styles/dark.css'
+
 
 export interface MdContent {
   frontmatter?: {
@@ -63,6 +68,7 @@ export function useMd() {
     md.use(externalLinks, {
       externalTarget: "_blank",
     });
+    md.use(highlightPlugin, {auto: true, inline: true, hljs})
   }
   return md;
 }

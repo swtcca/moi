@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { blogs } from "../composables/useBlog"
 import { useMd } from '../gun-vue/composables'
-// import { useMd } from '../composables/file/markdown'
 const edit = ref(false)
 
 const props = defineProps({

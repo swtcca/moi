@@ -10,6 +10,10 @@ import anchorPlugin from 'markdown-it-anchor'
 import attrsPlugin from 'markdown-it-attrs'
 import emojiPlugin from 'markdown-it-emoji'
 import tocDonePlugin from 'markdown-it-toc-done-right'
+import hljs from "highlight.js"
+import highlightPlugin from "markdown-it-highlightjs"
+import 'highlight.js/styles/github.css'
+// import 'highlight.js/styles/dark.css'
 
 import { tocPlugin, type TocPluginOptions } from '@mdit-vue/plugin-toc'
 import { titlePlugin } from '@mdit-vue/plugin-title';
@@ -21,8 +25,6 @@ import { slugify } from '@mdit-vue/shared'
 import type { Logger } from 'vite'
 
 import { containerPlugin } from './plugins/containers'
-import { highlight } from './plugins/highlight'
-import { highlightLinePlugin } from './plugins/highlightLines'
 import { imagePlugin } from './plugins/image'
 import { lineNumberPlugin } from './plugins/lineNumbers'
 import { preWrapperPlugin } from './plugins/preWrapper'
@@ -78,7 +80,6 @@ export function useMd(options: MarkdownOptions = {}, logger: Pick<Logger, 'warn'
     md.linkify.set({ fuzzyLink: false })
     // custom plugins
     md.use(componentPlugin)
-      .use(highlightLinePlugin)
       .use(preWrapperPlugin)
       .use(containerPlugin)
       .use(imagePlugin)
@@ -93,6 +94,7 @@ export function useMd(options: MarkdownOptions = {}, logger: Pick<Logger, 'warn'
     md.use(externalLinks, {externalTarget: "_blank", rel: "noreferrer"})
     md.use(attrsPlugin)
       .use(emojiPlugin)
+      .use(highlightPlugin, {auto: true, inline: true, hljs})
 
     // mdit-vue plugins
     md.use(anchorPlugin, {
