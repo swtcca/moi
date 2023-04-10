@@ -1,9 +1,25 @@
 :root {
-  --a-base-c: 0, 100%, 0%;
+  --a-base-c: var(--a-primary-hue), 10%, 0%;
 }
 
 :root.dark {
-  --a-base-c: 0, 0%, 100%;
+  --a-base-c: var(--a-primary-hue), 0%, 100%;
+}
+
+/* markdown body pre background color */
+.dark .markdown-body .highlight pre,
+.dark .markdown-body pre {
+  background-color: #888;
+}
+
+/* markdown body table background */
+.dark .markdown-body table tr {
+  background-color: #333333;
+  border-top: 1px solid hsla(210, 18%, 87%, 1);
+}
+
+.dark .markdown-body table tr:nth-child(2n) {
+  background-color: #999999;
 }
 
 /* Styles adjusting VitePress according to theme */
@@ -33,6 +49,8 @@
 /* --vp-z-index-nav: 52; */
 
 --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 40%);
+
+--vp-custom-block-danger-bg: #c00;
 }
 
 :root.dark {
@@ -45,6 +63,8 @@
 --vp-c-brand-darker: hsl(var(--a-primary-hue), 73%, 55%);
 
 --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 25%);
+
+--vp-custom-block-danger-bg: #600;
 }
 
 /* ==========================
