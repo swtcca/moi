@@ -9,10 +9,11 @@ import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
 import { parse } from 'ultramatter'
 
+import { preWrapperPlugin } from '../../composables/file/plugins/preWrapper'
+import { containerPlugin } from '../../composables/file/plugins/containers'
 import hljs from "highlight.js"
 import highlightPlugin from "markdown-it-highlightjs"
 import 'highlight.js/styles/github.css'
-// import 'highlight.js/styles/dark.css'
 
 
 export interface MdContent {
@@ -61,14 +62,17 @@ let md: markdown
 export function useMd() {
   if (!md) {
     md = new markdown({
+      html: true,
       linkify: true,
       typographer: true,
     });
 
+    md.use(preWrapperPlugin)
+      .use(containerPlugin)
+      .use(highlightPlugin, {auto: true, inline: true, hljs})
     md.use(externalLinks, {
       externalTarget: "_blank",
     });
-    md.use(highlightPlugin, {auto: true, inline: true, hljs})
   }
   return md;
 }

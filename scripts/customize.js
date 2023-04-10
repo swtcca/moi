@@ -4,6 +4,14 @@ const AsyncForEach = require('async-await-foreach')
 const chalk = require('chalk')
 
 const customize = {
+  './src/gun-vue/file/useMd.ts': {
+    replaces: [
+      [`linkify: true`, `html: true,\n      linkify: true`],
+      [`import . parse . from 'ultramatter'`,
+       `import { parse } from 'ultramatter'\n\nimport { preWrapperPlugin } from '../../composables/file/plugins/preWrapper'\nimport { containerPlugin } from '../../composables/file/plugins/containers'\nimport hljs from "highlight.js"\nimport highlightPlugin from "markdown-it-highlightjs"\nimport 'highlight.js/styles/github.css'`],
+      [`md.use\\(externalLinks`, `md.use(preWrapperPlugin)\n      .use(containerPlugin)\n      .use(highlightPlugin, {auto: true, inline: true, hljs})\n    md.use(externalLinks`]
+    ],
+  },
   './src/gun-vue/components.ts': {
     replaces: [
       [`^import ['"]`, `// import '`],
