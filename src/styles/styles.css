@@ -6,6 +6,13 @@
   --a-base-c: var(--a-primary-hue), 0%, 100%;
 }
 
+.markdown-body ul {
+  list-style: disc;
+}
+
+.markdown ol {
+  list-style: decimal;
+}
 /* markdown body pre background color */
 .dark .markdown-body .highlight pre,
 .dark .markdown-body pre {
@@ -14,12 +21,12 @@
 
 /* markdown body table background */
 .dark .markdown-body table tr {
-  background-color: #333333;
+  background-color: #333;
   border-top: 1px solid hsla(210, 18%, 87%, 1);
 }
 
 .dark .markdown-body table tr:nth-child(2n) {
-  background-color: #999999;
+  background-color: #999;
 }
 
 /* Styles adjusting VitePress according to theme */
@@ -34,10 +41,6 @@
 /* Text color */
 --vp-c-text-1: hsla(var(--a-base-c), var(--a-text-emphasis-medium-opacity));
 
-/* Font family */
---vp-font-family-base: 'Inter', sans-serif;
---vp-font-family-mono: 'JetBrains Mono', monospace;
-
 /* Branding */
 --vp-c-brand-lighter: hsl(var(--a-primary-hue), 97%, 75%);
 --vp-c-brand-light: hsl(var(--a-primary-hue), 97%, 70%);
@@ -51,6 +54,9 @@
 --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 40%);
 
 --vp-custom-block-danger-bg: #c00;
+--vp-custom-block-warning-bg: #cc0;
+--vp-custom-block-info-bg: #0c0;
+--vp-custom-block-tip-bg: #ccf;
 }
 
 :root.dark {
@@ -65,6 +71,19 @@
 --vp-code-scrollbar-thumb-bg: hsl(0, 0%, 25%);
 
 --vp-custom-block-danger-bg: #600;
+}
+:root.dark {
+  --vp-c-bg-alt: var(--vp-background);
+  --vp-code-line-highlight-color: hsl(0, 0%, 12%);
+}
+/* code blocks */
+.vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
+  border: 1px solid transparent;
+}
+.dark .vp-doc div[class*='language-']:not(:where(.vp-raw *)) {
+  border: 1px solid hsla(var(--a-base-c), var(--a-border-opacity));
+  opacity: 0.85;
+  font-weight: 500;
 }
 
 /* ==========================
@@ -608,14 +627,14 @@
   transition: border-color 0.5s, color 0.5s;
 }
 
-.vp-doc [class*='language-'] > button.copy {
+.markdown-body [class*='language-'] > button.copy {
   /*rtl:ignore*/
   direction: ltr;
   position: absolute;
   top: 12px;
   /*rtl:ignore*/
   right: 12px;
-  z-index: 3;
+  z-index: 503;
   border: 1px solid var(--vp-code-copy-code-border-color);
   border-radius: 4px;
   width: 40px;
@@ -630,27 +649,27 @@
   transition: border-color 0.25s, background-color 0.25s, opacity 0.25s;
 }
 
-.vp-doc [class*='language-']:hover > button.copy,
-.vp-doc [class*='language-'] > button.copy:focus {
+.markdown-body [class*='language-']:hover > button.copy,
+.markdown-body [class*='language-'] > button.copy:focus {
   opacity: 1;
 }
 
-.vp-doc [class*='language-'] > button.copy:hover,
-.vp-doc [class*='language-'] > button.copy.copied {
+.markdown-body [class*='language-'] > button.copy:hover,
+.markdown-body [class*='language-'] > button.copy.copied {
   border-color: var(--vp-code-copy-code-hover-border-color);
   background-color: var(--vp-code-copy-code-hover-bg);
 }
 
-.vp-doc [class*='language-'] > button.copy.copied,
-.vp-doc [class*='language-'] > button.copy:hover.copied {
+.markdown-body [class*='language-'] > button.copy.copied,
+.markdown-body [class*='language-'] > button.copy:hover.copied {
   /*rtl:ignore*/
   border-radius: 0 4px 4px 0;
   background-color: var(--vp-code-copy-code-hover-bg);
   background-image: var(--vp-icon-copied);
 }
 
-.vp-doc [class*='language-'] > button.copy.copied::before,
-.vp-doc [class*='language-'] > button.copy:hover.copied::before {
+.markdown-body [class*='language-'] > button.copy.copied::before,
+.markdown-body [class*='language-'] > button.copy:hover.copied::before {
   position: relative;
   top: -1px;
   /*rtl:ignore*/
@@ -673,20 +692,20 @@
   content: 'Copied';
 }
 
-.vp-doc [class*='language-'] > span.lang {
+.markdown-body [class*='language-'] > span.lang {
   position: absolute;
   top: 2px;
   /*rtl:ignore*/
   right: 8px;
-  z-index: 2;
+  z-index: 502;
   font-size: 12px;
   font-weight: 500;
   color: var(--vp-c-text-dark-3);
   transition: color 0.4s, opacity 0.4s;
 }
 
-.vp-doc [class*='language-']:hover > button.copy + span.lang,
-.vp-doc [class*='language-'] > button.copy:focus + span.lang {
+.markdown-body [class*='language-']:hover > button.copy + span.lang,
+.markdown-body [class*='language-'] > button.copy:focus + span.lang {
   opacity: 0;
 }
 

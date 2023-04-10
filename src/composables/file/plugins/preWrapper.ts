@@ -10,7 +10,7 @@ export function preWrapperPlugin(md: MarkdownIt) {
 
     const lang = extractLang(token.info)
     const rawCode = fence(...args)
-    return `<div class="language-${lang}${
+    return `<div class="relative language-${lang}${
       / active( |$)/.test(token.info) ? ' active' : ''
     }"><button title="Copy Code" class="copy"></button><span class="lang">${lang}</span>${rawCode}</div>`
   }
