@@ -71,6 +71,7 @@ export function useMd() {
       .use(containerPlugin)
       .use(highlightPlugin, {auto: true, inline: true, hljs})
     md.use(externalLinks, {
+      externalRel: 'noreferrer',
       externalTarget: "_blank",
     });
   }

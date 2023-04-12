@@ -9,7 +9,7 @@ const customize = {
       [`linkify: true`, `html: true,\n      linkify: true`],
       [`import . parse . from 'ultramatter'`,
        `import { parse } from 'ultramatter'\n\nimport { preWrapperPlugin } from '../../composables/file/plugins/preWrapper'\nimport { containerPlugin } from '../../composables/file/plugins/containers'\nimport hljs from "highlight.js"\nimport highlightPlugin from "markdown-it-highlightjs"\nimport 'highlight.js/styles/github.css'`],
-      [`md.use\\(externalLinks`, `md.use(preWrapperPlugin)\n      .use(containerPlugin)\n      .use(highlightPlugin, {auto: true, inline: true, hljs})\n    md.use(externalLinks`]
+      [`md.use\\(externalLinks, {`, `md.use(preWrapperPlugin)\n      .use(containerPlugin)\n      .use(highlightPlugin, {auto: true, inline: true, hljs})\n    md.use(externalLinks, {\n      externalRel: 'noreferrer',`]
     ],
   },
   './src/gun-vue/components.ts': {
