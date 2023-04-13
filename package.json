@@ -1,6 +1,6 @@
 {
   "name": "moi",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "scripts": {
     "postinstall": "sed -e 's/axe/sea/' node_modules/gun/lib/server.js > /tmp/server.js; diff node_modules/gun/lib/server.js /tmp/server.js; echo cp /tmp/server.js node_modules/gun/lib/",
     "tauri": "tauri",

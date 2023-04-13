@@ -9,7 +9,7 @@ export const CHANNELS = [
     { id: 'UCd6umYVQpBZ9CIyCwe8Kg7w', name: '诚阅', title: '诚阅 ChengYue', leagal: true },
     { id: 'UCXRoo1Gp89SCbhdR_xEIp0w', name: '北美崔哥', title: 'BrotherSway北美崔哥', leagal: true },
     { id: 'UCnrxxRlv2ZSSW4ApuEy8C0w', name: '谦秋论', title: '谦秋论官方', leagal: true },
-    { id: 'UCnUprfZhHRzfcLHdLS-f6aw', name: '司马南', title: '司马南频道', leagal: true },
+    // { id: 'UCnUprfZhHRzfcLHdLS-f6aw', name: '司马南', title: '司马南频道', leagal: true },
     // { id: 'UCEjqTrvJdLG7Eo0KP1AzYJw', name: '大佬时空', title: '大佬时空', leagal: true },
     { id: 'UCSgGqt-30oXBq0-n0K-t4Nw', name: '科技袁人', title: "Yuan's Multiverse科技袁人", leagal: true },
     { id: 'UCUBhobCkTLhgfUNRAgHSYmw', name: '科学声音', title: '科学声音', leagal: true },
