@@ -8,8 +8,8 @@ const customize = {
     replaces: [
       [`linkify: true`, `html: true,\n      linkify: true`],
       [`import . parse . from 'ultramatter'`,
-       `import { parse } from 'ultramatter'\n\nimport { preWrapperPlugin } from '../../composables/file/plugins/preWrapper'\nimport { containerPlugin } from '../../composables/file/plugins/containers'\nimport hljs from "highlight.js"\nimport highlightPlugin from "markdown-it-highlightjs"\nimport 'highlight.js/styles/github.css'`],
-      [`md.use\\(externalLinks, {`, `md.use(preWrapperPlugin)\n      .use(containerPlugin)\n      .use(highlightPlugin, {auto: true, inline: true, hljs})\n    md.use(externalLinks, {\n      externalRel: 'noreferrer',`]
+       `import { parse } from 'ultramatter'\n\nimport { preWrapperPlugin } from '../../composables/file/plugins/preWrapper'\nimport { containerPlugin } from '../../composables/file/plugins/containers'\nimport anchorPlugin from 'markdown-it-anchor'\nimport emojiPlugin from 'markdown-it-emoji'\nimport { slugify } from '@mdit-vue/shared'\nimport { tocPlugin } from '@mdit-vue/plugin-toc'\nimport hljs from "highlight.js"\nimport highlightPlugin from "markdown-it-highlightjs"\nimport 'highlight.js/styles/github.css'`],
+      [`md.use\\(externalLinks, {`, `md.use(preWrapperPlugin)\n      .use(containerPlugin)\n      .use(anchorPlugin, { slugify })\n      .use(tocPlugin)\n      .use(emojiPlugin)\n      .use(highlightPlugin, {auto: true, inline: true, hljs})\n    md.use(externalLinks, {\n      externalRel: 'noreferrer',`]
     ],
   },
   './src/gun-vue/components.ts': {
@@ -190,15 +190,15 @@ const customize = {
       ['  console.log\\(p\\)', '// console.log(p)'],
     ],
   },
-  // './src/gun-vue/user/usePass.ts': {
-  //   replaces: [
-  //     [' "#\\/auth\\/" ', ' auth_url '], // history mode
-  //     ['indexOf\\("#\\/auth\\/"', 'indexOf(auth_url'], // history mode
-  //     ['link.substr\\(index \\+ 7\\)', 'link.substr(index + auth_url.length)'], // paramize
-  //     ['function genLink\\(text = ""\\)', 'function genLink(text = "", auth_url = "#/auth/")'], // params
-  //     ['function parseLink\\(link: string\\)', 'function parseLink(link: string, auth_url = "#/auth/")'], // params
-  //   ],
-  // },
+  './src/gun-vue/user/usePass.ts': {
+    replaces: [
+      ['auth_url = "#\\/auth\\/"', 'auth_url = "/auth/"'], // history mode
+      // ['indexOf\\("#\\/auth\\/"', 'indexOf(auth_url'], // history mode
+      // ['link.substr\\(index \\+ 7\\)', 'link.substr(index + auth_url.length)'], // paramize
+      // ['function genLink\\(text = ""\\)', 'function genLink(text = "", auth_url = "#/auth/")'], // params
+      // ['function parseLink\\(link: string\\)', 'function parseLink(link: string, auth_url = "#/auth/")'], // params
+    ],
+  },
   // "./src/gun-vue/composables/src/user/useAccount.ts": { replaces: [
   //   [`db: gun.user`, `wallets: {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}},\n      db: gun.user`],
   //   [`return obj;`, `gun.user(pub.value)\n      .get("wallets")\n      .get("defaults")\n      .map()\n      .on((d, k) => {\n        delete d._\n        delete d["#"]\n        delete d[">"]\n        obj.wallets[k] = d;\n      });\n    return obj;`]

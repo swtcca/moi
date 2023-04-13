@@ -9,7 +9,7 @@ import '@anu-vue/preset-theme-default/dist/style.scss'
 import "./gun-vue/styles/index.css"
 import './styles/styles.css'
 
-import { createRouter, createWebHashHistory } from "vue-router"
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router"
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import routes_static from './routes'
@@ -28,10 +28,11 @@ import App from "./App.vue"
 
 const routes = setupLayouts([...generatedRoutes, ...routes_static])
 // import routes from "~pages"
-console.dir(routes)
+// console.dir(routes)
+// const HISTORY_MODE = "html5" // hash or html5, from scripts/customize
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [...routes],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

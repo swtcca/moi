@@ -11,6 +11,10 @@ import { parse } from 'ultramatter'
 
 import { preWrapperPlugin } from '../../composables/file/plugins/preWrapper'
 import { containerPlugin } from '../../composables/file/plugins/containers'
+import anchorPlugin from 'markdown-it-anchor'
+import emojiPlugin from 'markdown-it-emoji'
+import { slugify } from '@mdit-vue/shared'
+import { tocPlugin } from '@mdit-vue/plugin-toc'
 import hljs from "highlight.js"
 import highlightPlugin from "markdown-it-highlightjs"
 import 'highlight.js/styles/github.css'
@@ -69,6 +73,9 @@ export function useMd() {
 
     md.use(preWrapperPlugin)
       .use(containerPlugin)
+      .use(anchorPlugin, { slugify })
+      .use(tocPlugin)
+      .use(emojiPlugin)
       .use(highlightPlugin, {auto: true, inline: true, hljs})
     md.use(externalLinks, {
       externalRel: 'noreferrer',
