@@ -138,7 +138,7 @@ export default defineConfig({
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
     sourcemap: !!process.env.TAURI_DEBUG,
     assetsInlineLimit: 1000000,
-    chunkSizeWarningLimit: 3000,
+    chunkSizeWarningLimit: 4000,
     cssCodeSplit: false,
     external: ["vue"],
     rollupOptions: {
