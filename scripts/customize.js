@@ -190,7 +190,7 @@ const customize = {
       ['  console.log\\(p\\)', '// console.log(p)'],
     ],
   },
-  './src/gun-vue/user/usePass.ts': {
+  './src/gun-vue/auth/useAuth.ts': {
     replaces: [
       ['auth_url = "#\\/auth\\/"', 'auth_url = "/auth/"'], // history mode
       // ['indexOf\\("#\\/auth\\/"', 'indexOf(auth_url'], // history mode

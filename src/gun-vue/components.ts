@@ -7,7 +7,6 @@
 import { createApp } from "vue";
 
 import * as Vue from 'vue'
-import { gun } from './composables'
 
 import * as components from './all-components'
 
@@ -36,8 +35,7 @@ export function createGunVueApp(
   App.use(GunVuePlugin)
   init(App)
   App.mount(tag)
-
-  return { Gun: gun, Vue, App }
+  return { Vue, App }
 }
 
 

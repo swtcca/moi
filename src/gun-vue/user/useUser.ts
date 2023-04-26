@@ -7,7 +7,7 @@
  * @group Users
  */
 
-import { gun, useGun } from "../composables";
+import { SEA, useGun } from "../composables";
 import { useColor } from "../ui/composables";
 import { computed, reactive } from "vue";
 import type { ComputedRef } from 'vue'
@@ -67,7 +67,10 @@ export interface User {
 		[key: string]: any
 	};
 	db?: IGunUserInstance
-	pair(): ISEAPair;
+	pair(): ISEAPair
+	encrypt(data: string): Promise<string>
+	decrypt(data: string): Promise<string>
+	secret(data: string): Promise<string>
 }
 
 export const user: User = reactive({
@@ -90,13 +93,29 @@ export const user: User = reactive({
 		rooms: {}
 	},
 	db: undefined,
-	pair(): ISEAPair {
-		//@ts-ignore
-		return gun?.user?.()?._?.sea;
+	pair() {
+		console.warn('User pair read externally')
+		return pair()
 	},
+	async encrypt(data) {
+		return await SEA.encrypt(data, pair())
+	},
+	async decrypt(data) {
+		return await SEA.decrypt(data, pair())
+	},
+	async secret(data) {
+		return await SEA.secret(data, pair())
+	},
+
 });
 
+let pairReads = 0
 
+function pair(): ISEAPair {
+	console.log('User pair read', ++pairReads)
+	//@ts-ignore
+	return gun.user()?._?.sea;
+}
 
 /**
  * Get access to current logged in user
@@ -125,6 +144,7 @@ export function useUser() {
 }
 
 function init() {
+	const gun = useGun();
 	user.is = gun.user().is;
 	if (user.pulser) {
 		clearInterval(user.pulser);
@@ -178,6 +198,7 @@ function init() {
  */
 
 export async function auth(pair: ISEAPair, cb = (pair: ISEAPair) => { }) {
+	const gun = useGun();
 	if (!isPair(pair)) {
 		console.log("incorrect pair", pair);
 		return;
@@ -197,13 +218,14 @@ export async function auth(pair: ISEAPair, cb = (pair: ISEAPair) => { }) {
  **/
 
 export function leave() {
+	const gun = useGun();
 	let is = !!user.is?.pub;
 	user.initiated = false;
 	clearInterval(user.pulser);
 	user.safe.wallets = {jingtum: {chain: "jingtum"}, moac: {chain: "moac"}, ethereum: {chain: "ethereum"}};
 	gun.user().leave();
 	setTimeout(() => {
-		if (is && !user.pair()) {
+		if (is && !pair()) {
 			user.is = null;
 			console.info("User logged out");
 		}
@@ -223,6 +245,7 @@ export function isMine(soul: string) {
 addProfileField( 'city' )
  */
 export function addProfileField(title: string) {
+	const gun = useGun();
 	gun.user().get("profile").get(title).put("");
 }
 
@@ -236,7 +259,8 @@ export function addProfileField(title: string) {
 
 export function updateProfile(field: string, data: string) {
 	if (field && data !== undefined) {
-		gun.user().get("profile").get(field).put(data);
+		const gun = useGun()
+		gun.user().get("profile").get(field).put(data)
 	}
 }
 
