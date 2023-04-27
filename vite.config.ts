@@ -133,12 +133,13 @@ export default defineConfig({
     }),
   ],
   base: './',
+  // maximumFileSizeToCacheInBytes: 5000000,
   build: {
     target: "esnext",
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
     sourcemap: !!process.env.TAURI_DEBUG,
     assetsInlineLimit: 1000000,
-    chunkSizeWarningLimit: 4000,
+    chunkSizeWarningLimit: 5000,
     cssCodeSplit: false,
     external: ["vue"],
     rollupOptions: {
