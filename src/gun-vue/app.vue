@@ -81,27 +81,13 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   .grid.Main.max-h-full
     router-view(v-slot="{ Component }")
       transition(name="fade", mode="out-in")
-        keep-alive
+        keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
   nav-footer.Footer(v-if="$route.path == '/'")
 </template>
+
+
 <style lang="postcss">
-html {
-  scroll-behavior: smooth;
-  hyphens: auto;
-  overscroll-behavior-y: none;
-}
-
-body {
-  @apply bg-light-500 dark-bg-dark-200 dark-text-light-200;
-  overscroll-behavior-y: none;
-  touch-action: pan-x pan-y;
-}
-
-#app {
-  @apply min-h-100vh max-h-100vh flex;
-}
-
 .app-container {
   display: grid;
   width: 100%;

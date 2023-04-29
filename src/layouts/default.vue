@@ -18,7 +18,7 @@ const user_classes = computed(() => `right:${x.value}px;bottom:${y.value}px`)
 </script>
 
 <template>
-  <main class="h-screen" :class="class_font">
+  <main class="h-screen w-screen" :class="class_font">
     <div ref="navier" class="fixed left-0 top-0 z-400 inset-x-0 opacity-90">
       <ReloadPrompt />
     </div>
