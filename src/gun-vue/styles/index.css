@@ -6,6 +6,15 @@ html {
   hyphens: auto;
 }
 
+body {
+  @apply bg-light-500 dark-bg-dark-200 dark-text-light-200;
+  touch-action: pan-x pan-y;
+}
+
+#app {
+  @apply min-h-100vh max-h-100vh flex;
+}
+
 input, select, textarea {
   @apply dark-bg-dark-100 p-2 rounded-lg
 }
