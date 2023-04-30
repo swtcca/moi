@@ -104,10 +104,6 @@ router-view(v-slot="{ Component }")
 </template>
 
 <style lang="postcss">
-html {
-  scroll-behavior: smooth;
-  hyphens: auto;
-}
 body {
   @apply bg-gray-200 dark:bg-gray-600;
   touch-action: pan-x pan-y;
