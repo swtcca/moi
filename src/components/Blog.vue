@@ -17,7 +17,7 @@ const md = useMd()
     <div v-if="edit"  class="bg-light-200 dark:bg-dark-500">
       <textarea class="w-full h-75vh  bg-light-200 dark:bg-dark-500" v-model="blog.content" />
     </div>
-    <p>By {{ blog.author }} on {{ blog.date }}</p>
+    <p>By {{ blog?.author }} on {{ blog?.date }}</p>
     <button v-if="edit" class="i-ph-floppy-disk text-4xl" @click.prevent="edit=!edit"></button>
     <button v-if="!edit" class="i-ph-pencil-circle text-4xl" @click.prevent="edit=!edit"></button>
   </div>

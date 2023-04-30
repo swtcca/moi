@@ -6,7 +6,7 @@ const blog = computed(() =>props.id.trim())
 </script>
 
 <template>
-    <div class="flex items-center h-100vh">
+    <div class="flex h-100vh">
       <Blog class="w-full" :id="blog" />
     </div>
 </template>

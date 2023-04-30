@@ -1,4 +1,4 @@
-import { watch } from "vue"
+import { watch, ref } from "vue"
 import { useUser } from "../gun-vue/user/useUser"
 const { user } = useUser()
 
