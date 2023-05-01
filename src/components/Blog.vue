@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { blogs } from "../composables/useBlog"
+import { useUser } from "../gun-vue/user/useUser"
 import { useMd } from '../gun-vue/composables'
+
+const { user } = useUser()
 const edit = ref(false)
 
 const props = defineProps({
-  id: { type: String, default: "1" },
+  id: { type: String, default: "markdown" },
 })
 
-const blog = computed(() => blogs.value.find(post => post.id === props.id))
+const blog = computed(() => blogs.value.find(post => post.id === props.id) || user.safe.moiapp?.blogs[props.id] )
 const md = useMd()
 </script>
 <template>

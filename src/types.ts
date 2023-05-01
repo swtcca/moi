@@ -35,3 +35,11 @@ export interface AppContext<HasRouter extends boolean = true> {
 }
 
 export type UserModule = (ctx: AppContext) => void
+
+export interface IBlog {
+  id?: string
+  title?: string
+  content?: string
+  author?: string
+  date?: string
+}

@@ -1,9 +1,12 @@
 import { watch, ref } from "vue"
 import { useUser } from "../gun-vue/user/useUser"
+import { genUUID } from "../gun-vue/gun/useGun"
+import { save_user_safe } from "./userSafe"
+import { IBlog } from "../types"
 const { user } = useUser()
 
-const BLOG = {
-  id: "1",
+const BLOG:IBlog = {
+  id: "markdown",
   title: "My Blog | 我的博客",
   content: `
 # title | 标题
@@ -79,17 +82,28 @@ This is a details block.
 | l3c1 | l3c2 | l3c3 |
 `,
   author: "Moi",
-  date: "2022-02-22"
+  date: (new Date()).toJSON().replace(/T.*/,"")
   }
 export const blogs = ref([ BLOG ])
 
-watch(user, () => {
-  if (!user.initiated) {
-    console.log(`use blog: user not auth or switch user`)
-    blogs.value = [BLOG]
+
+export const newBlog = () => {
+  const new_blog = {
+    id: genUUID(8),
+    title: "new blog title",
+    content: "new blog content",
+    author: user.name,
+    date: (new Date()).toJSON().replace(/T.*/,"")
   }
-  //else {
-  //  // console.log(`use blog: user logged in but updates`)
-  //  // blogs.value.unshift(Object.assign({}, BLOG, {id: `${Math.ceil(Math.random() * 10000)}`}))
-  //}
-})
+  save_user_safe(new_blog, ["moiapp", "blogs", new_blog.id])
+  // blogs.value.unshift(new_blog)
+}
+
+
+// watch(user.safe.moiapp, () => {
+//     console.log(`use blog updates`)
+//     if (user.safe.moiapp.hasOwnProperty("blogs")) {
+//       blogs.value = [ ...Object.values(user.safe.moiapp["blogs"]).filter(e => e.hasOwnProperty("id")), BLOG ]
+//     }
+//   }
+// )
