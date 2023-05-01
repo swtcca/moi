@@ -99,6 +99,10 @@ export const newBlog = () => {
   // blogs.value.unshift(new_blog)
 }
 
+export const saveBlog = (new_blog) => {
+  save_user_safe(new_blog, ["moiapp", "blogs", new_blog.id])
+  // blogs.value.unshift(new_blog)
+}
 
 // watch(user.safe.moiapp, () => {
 //     console.log(`use blog updates`)

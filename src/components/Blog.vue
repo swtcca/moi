@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { blogs } from "../composables/useBlog"
+import { blogs, saveBlog } from "../composables/useBlog"
 import { useUser } from "../gun-vue/user/useUser"
 import { useMd } from '../gun-vue/composables'
 
@@ -10,7 +10,12 @@ const props = defineProps({
   id: { type: String, default: "markdown" },
 })
 
+function saveEdit(blog) {
+  edit.value = !edit.value
+  saveBlog(blog)
+}
 const blog = computed(() => blogs.value.find(post => post.id === props.id) || user.safe.moiapp?.blogs[props.id] )
+
 const md = useMd()
 </script>
 <template>
@@ -21,7 +26,7 @@ const md = useMd()
       <textarea class="w-full h-75vh  bg-light-200 dark:bg-dark-500" v-model="blog.content" />
     </div>
     <p>By {{ blog?.author }} on {{ blog?.date }}</p>
-    <button v-if="edit" class="i-ph-floppy-disk text-4xl" @click.prevent="edit=!edit"></button>
+    <button v-if="edit" class="i-ph-floppy-disk text-4xl" @click.prevent="saveEdit(blog)"></button>
     <button v-if="!edit" class="i-ph-pencil-circle text-4xl" @click.prevent="edit=!edit"></button>
   </div>
 </template>
