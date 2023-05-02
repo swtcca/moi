@@ -58,7 +58,7 @@ const { t } = useI18n()
       ) # {{ tag }} 
     .flex-1
     .p-2.font-bold.mx-2 {{ countPosts }}
-  .flex.flex-col.items-center.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full.gap-8
+  .flex.flex-col.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full.gap-8
     .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.dark-bg-dark-500.rounded-2xl.m-2.flex-1(
       v-if="user.pub"
       style="order:-2147483647; flex: 1000 100%"
@@ -114,9 +114,9 @@ const { t } = useI18n()
       )
         button.button(@click="user.auth = true") {{ t('gunvue.post_authenticate') }}
         slot
-
+  .flex.flex-wrap.gap-4
     transition-group(name="list")
-      post-card.max-w-3xl.w-full.shadow-xl(
+      post-card.max-w-xl.flex-1.shadow-xl(
         v-for="(authors, hash) in filteredPosts"
         v-show="tag != hash"
         :key="hash" 

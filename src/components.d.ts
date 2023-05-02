@@ -50,6 +50,7 @@ declare module '@vue/runtime-core' {
     UserHome: typeof import('./gun-vue/user/UserHome.vue')['default']
     UserIcon: typeof import('./gun-vue/user/UserIcon.vue')['default']
     UserList: typeof import('./gun-vue/user/UserList.vue')['default']
+    UserListOverlay: typeof import('./gun-vue/user/UserListOverlay.vue')['default']
     UserPanel: typeof import('./gun-vue/user/UserPanel.vue')['default']
     UserProfile: typeof import('./gun-vue/user/UserProfile.vue')['default']
     UserProfileField: typeof import('./gun-vue/user/UserProfileField.vue')['default']

@@ -94,7 +94,11 @@ export default defineConfig({
       compositionOnly: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
-    VitePWA(),
+    VitePWA({
+      workbox: {
+        maximumFileSizeToCacheInBytes: 5000000
+      }
+    }),
     // VitePWA({immediate: true}),
     // VitePWA({
     //   workbox: {
@@ -133,7 +137,6 @@ export default defineConfig({
     }),
   ],
   base: './',
-  // maximumFileSizeToCacheInBytes: 5000000,
   build: {
     target: "esnext",
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
