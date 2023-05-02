@@ -164,6 +164,7 @@ const customize = {
   },
   './src/gun-vue/post/PostPage.vue': {
     replaces: [
+      ['rounded-lg.max-w-65ch.flex', 'rounded-lg.max-w-65ch.mx-auto.flex'],
       ['button.button.flex.items-center\\(@click', 'button.button.flex.items-center(v-if="false" @click'],
       ['v-if="post\\?.cover \\|\\| post\\?.youtube', 'v-if="post?.cover || post?.youtube || post?.ipfs'],
       ['embed-youtube.mb-6', 'embed-ipfs.mb-6.shadow-xl.flex-1(\n        v-if="post?.ipfs"\n        :video="post?.ipfs"\n        )\n      embed-youtube.mb-6'],

@@ -16,7 +16,6 @@ const guests = useGuests()
 
 const isInRoom = computed(() => guests.guests[user.pub])
 
-const { t } = useI18n()
 </script>
 
 <template lang="pug">
@@ -35,5 +34,5 @@ const { t } = useI18n()
     @click.stop.prevent="joinRoom()"
     )
     .i-la-plus
-    .ml-2 {{ t('gunvue.user_room_join') }}
+    .ml-2 Join
 </template> 

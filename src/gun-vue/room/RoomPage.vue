@@ -2,7 +2,7 @@
 <script setup>
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
-import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText, UserList } from '../components'
+import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText, GuestList } from '../components'
 import { features } from '../../room.config'
 
 const props = defineProps({
@@ -13,7 +13,7 @@ const props = defineProps({
   }
 })
 
-defineEmits(['rooms', 'browse'])
+defineEmits(['rooms', 'browse', 'user'])
 
 const { user } = useUser()
 
@@ -71,7 +71,7 @@ const { t } = useI18n()
 
   slot
   .flex.flex-col.items-center.bg-light-300.dark-bg-dark-400
-    user-list
+
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
         v-for="(title, c) in titles" 
@@ -98,5 +98,6 @@ const { t } = useI18n()
         v-model:text="edit.text" 
         @close="updateRoomProfile('text', edit.text); edit.text = false"
         )
-    
+    guest-list(@user="$emit('user',$event)")
+    guest-list(state="offline" @user="$emit('user',$event)")
 </template>
