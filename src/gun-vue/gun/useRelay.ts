@@ -58,6 +58,8 @@ export const relay: Relay = reactive({
   blink: false,
 })
 
+relay.peer = defaultPeer
+
 watch(
   () => relay.pulse,
   (next, prev) => {

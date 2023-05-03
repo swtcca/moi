@@ -1,5 +1,5 @@
 {
-  "relay": "https://relay.129.153.59.37.nip.io/gun",
+  "relay": "https://relay.63e3e2e3.nip.io/gun",
   "routes": {
     "/": "Home",
     "/my/": "User",
