@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { currentRoom, rootRoom } from './composables';
 
-import { RoomPage } from './components'
+import { RoomPage, UiComponents } from './components'
 </script>
 
 <template lang="pug">
@@ -10,7 +10,6 @@ import { RoomPage } from './components'
     :key="currentRoom.pub" 
     @browse="$router.push(`/${$event}/`)"
     )
-
 </template>
 
 //TODO - ECOCOIN
