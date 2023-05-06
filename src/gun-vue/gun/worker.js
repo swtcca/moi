@@ -2,6 +2,11 @@ console.log('Worker initiated')
 
 // import { Gun, SEA } from "../../gun-es/dist/gun-es.js";
 import Gun from 'gun';
+import "gun/lib/then";
+import "gun/lib/radix";
+import "gun/lib/radisk";
+import "gun/lib/rindexed";
+import "gun/lib/webrtc";
 
 const window = {
   crypto: self.crypto,
