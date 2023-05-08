@@ -194,10 +194,6 @@ const customize = {
   './src/gun-vue/auth/useAuth.ts': {
     replaces: [
       ['auth_url = "#\\/auth\\/"', 'auth_url = "/auth/"'], // history mode
-      // ['indexOf\\("#\\/auth\\/"', 'indexOf(auth_url'], // history mode
-      // ['link.substr\\(index \\+ 7\\)', 'link.substr(index + auth_url.length)'], // paramize
-      // ['function genLink\\(text = ""\\)', 'function genLink(text = "", auth_url = "#/auth/")'], // params
-      // ['function parseLink\\(link: string\\)', 'function parseLink(link: string, auth_url = "#/auth/")'], // params
     ],
   },
   // "./src/gun-vue/composables/src/user/useAccount.ts": { replaces: [

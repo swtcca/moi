@@ -64,7 +64,7 @@ export interface User {
 		wallets: object
 		rooms: object
 		[key: string]: any
-	};
+	}
 	db?: IGunUserInstance
 	pair(): ISEAPair
 	encrypt(data: string): Promise<string>
