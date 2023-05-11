@@ -16,6 +16,7 @@ import "gun/lib/rindexed";
 import "gun/lib/open";
 import "gun/lib/load";
 import "gun/lib/webrtc";
+import "gun/lib/yson";
 
 import GunWorker from './useGunWorker'
 

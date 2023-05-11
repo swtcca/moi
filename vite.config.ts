@@ -181,6 +181,7 @@ export default defineConfig({
       'gun/lib/radisk',
       'gun/lib/store',
       'gun/lib/rindexed',
+      'gun/lib/yson',
       // 'interactjs',
     ]
   },
