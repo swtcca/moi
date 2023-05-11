@@ -153,7 +153,13 @@ export default defineConfig({
           vue: "Vue",
         },
       }
-    }
+    },
+    commonjsOptions: {
+      dynamicRequireTargets: [
+        path.resolve(dirname, './node_modules/gun/gun.js'),
+      ],
+      dynamicRequireRoot: path.resolve(dirname, './node_modules/gun/'),
+    },
   },
   optimizeDeps: {
     include: [
