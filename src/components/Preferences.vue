@@ -23,7 +23,6 @@ const { t } = useI18n()
         <ASelect
           v-model="prefers.playbackRate"
           :options="playback_rates"
-          optionsWrapperClasses="z-500"
         />
       </div>
     </label>

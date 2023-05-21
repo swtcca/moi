@@ -21,7 +21,10 @@ export default defineConfig({
     // anu-vue preset
     // presetAnu({colors: ['secondary'],}),
     presetAnu(),
-    presetThemeDefault(),
+    presetThemeDefault({ shortcutOverrides: {
+        'a-select-floating': 'z-500'
+      }
+    }),
     // presetHeadlessUi(),
     presetChinese(),
     presetForms(),
