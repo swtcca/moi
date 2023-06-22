@@ -2,9 +2,7 @@
 import { useGun, useUser, currentRoom } from '../gun-vue/composables'
 import { globalState } from '../stores/globalState'
 import type { IVideo } from '../types'
-import { IChannel } from '../types'
 import { prefers, videos } from '../stores'
-const NOW = useNow({interval: 1000 * 60})
 const gun = useGun()
 const { user } = useUser()
 const pvideos = reactive({})
@@ -23,10 +21,10 @@ const tref = gun.get('moi2').get('videos').get('youtube').get(`${new Date().toJS
 // /channels/channel/videos/video
 let listening = false
 
-watch(gchannels, (value, old_value) => {
+watchDebounced(gchannels, (value, old_value) => {
   console.log(`watched channels change ${Object.keys(value).length}`)
-})
-watch(tvideos, (value, old_value) => {
+}, {debounce: 10, maxWait: 50})
+watchDebounced(tvideos, (value, old_value) => {
   // console.log(`watched test videos change ${Object.keys(value).length}`)
   Object.values(value).forEach((gvideo: IVideo) => {
     // if (gvideo.videoPublishedAt > `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}`) {
@@ -38,7 +36,7 @@ watch(tvideos, (value, old_value) => {
       }
     // }
   })
-})
+}, {debounce: 50, maxWait: 100})
 // watch(pvideos, (value, old_value) => {
 //   console.log(`watched videos change ${Object.keys(value).length}`)
 //   Object.values(value).forEach((gvideo: IVideo) => {

@@ -22,7 +22,8 @@ export default defineConfig({
     // presetAnu({colors: ['secondary'],}),
     presetAnu(),
     presetThemeDefault({ shortcutOverrides: {
-        'a-select-floating': 'z-500'
+        'a-select-floating': '[--slide-y-translateY:6px] z-500',
+        'a-select-options-container': 'z-510'
       }
     }),
     // presetHeadlessUi(),
