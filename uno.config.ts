@@ -6,6 +6,17 @@ import { presetAnu, presetIconExtraProperties } from 'anu-vue'
 import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 
 export default defineConfig({
+  content: {
+    pipeline: {
+      include: [
+        // the default
+        /.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md',
+        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        // include js/ts files
+        'src/**/*.{js,ts}',
+      ],
+    }
+  },
   presets: [
     // presetAttributify(),
     presetWind(),
@@ -37,6 +48,6 @@ export default defineConfig({
     extractorPug(),
     extractorSplit,
   ],
-  include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
+  // include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
   safelist: 'prose prose-sm m-auto text-left font-chinese font-helvetica font-italics font-song font-li'.split(' '),
 })
