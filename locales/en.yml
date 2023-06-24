@@ -60,6 +60,7 @@ customize:
   room_users: users
   room_rooms: rooms
   room_apps: apps
+  room_files: files
   my_home: Home
   my_profile: Profile
   my_chat: Chat

@@ -4,7 +4,7 @@ const AsyncForEach = require('async-await-foreach')
 const chalk = require('chalk')
 
 const customize = {
-  './src/gun-vue/file/useMd.ts': {
+  './src/gun-vue/files/useMd.ts': {
     replaces: [
       [`linkify: true`, `html: true,\n      linkify: true`],
       [`import . parse . from 'ultramatter'`,
@@ -114,7 +114,7 @@ const customize = {
       [`{{ p }}`, `{{ t('customize.dict_' + p) }}`],
     ],
   },
-  './src/gun-vue/file/TorrentUpload.vue': {
+  './src/gun-vue/files/TorrentUpload.vue': {
     i18n: true,
     replaces: [
       [` Share`, ` {{ t('customize.torrent_share') }}`],
@@ -189,6 +189,7 @@ const customize = {
   './src/gun-vue/auth/AuthForm.vue': {
     replaces: [
       ['  console.log\\(p\\)', '// console.log(p)'],
+      ["includes\\('#/auth/'\\)", "includes('/auth/')"],
     ],
   },
   './src/gun-vue/auth/useAuth.ts': {

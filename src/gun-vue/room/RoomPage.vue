@@ -98,6 +98,7 @@ const { t } = useI18n()
         v-model:text="edit.text" 
         @close="updateRoomProfile('text', edit.text); edit.text = false"
         )
-    guest-list(@user="$emit('user',$event)")
-    guest-list(state="offline" @user="$emit('user',$event)")
+    .p-2.flex.flex-col.gap-2
+      guest-list(@user="$emit('user',$event)")
+      guest-list(state="offline" @user="$emit('user',$event)")
 </template>

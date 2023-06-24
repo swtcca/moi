@@ -24,6 +24,7 @@ onClickOutside(panel, () => {
 const isInRoom = computed(() => guests.guests[user.pub])
 
 
+const { t } = useI18n()
 </script>
 
 <template lang="pug">
@@ -41,7 +42,7 @@ button.button.absolute.flex.items-center.m-4.p-2.right-0.top-0.z-200(
   @click.stop.prevent="joinRoom()"
   )
   .i-la-plus
-  .ml-2 Join
+  .ml-2 {{ t('gunvue.user_room_join') }}
 transition(name="fade")
   .absolute.left-0.bottom-0.w-60.bg-light-200.dark-bg-dark-800.dark-bg-opacity-80.bg-opacity-70.z-100.overflow-y-scroll.px-2.max-h-full.flex.flex-col.gap-2.p-2.rounded-tr-xl(
     v-if="isLarge || (open && !isLarge)" 

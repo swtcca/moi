@@ -60,6 +60,7 @@ customize:
   room_users: 用户
   room_rooms: 地盘
   room_apps: 应用
+  room_files: 文件
   my_home: 主页
   my_profile: 名片
   my_chat: 私聊

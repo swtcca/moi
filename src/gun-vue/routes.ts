@@ -14,16 +14,16 @@ export default [
 
 export const rootRoutes = {
   "/": "Home",
-  "/my/": "User",
-  "/private/": "Messages",
   "/space/": "Space",
   "/chat/": "Chat",
   "/posts/": "Posts",
+  "/users/": "Users",
+  "/my/": "User",
+  "/private/": "Messages",
+  "/rooms/": "Rooms",
   "/projects/": "Projects",
   "/gifts/": "Gifts",
-  "/users/": "Users",
-  "/rooms/": "Rooms",
   "/dict/": "Dictionary",
-  "/file/": "Files",
+  "/files/": "Files",
   "/qr/": "QR Lab",
 }

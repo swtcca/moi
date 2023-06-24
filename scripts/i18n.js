@@ -5,7 +5,7 @@ const chalk = require('chalk')
 const yaml = require('js-yaml')
 
 const files = [
-  'src/gun-vue/user/UserList.vue',
+  'src/gun-vue/user/UserListOverlay.vue',
   'src/gun-vue/user/UserIcon.vue',
   'src/gun-vue/auth/AuthLogin.vue',
   'src/gun-vue/auth/AuthForm.vue',
@@ -38,7 +38,7 @@ const files = [
   'src/gun-vue/form/FormLink.vue',
   'src/gun-vue/gift/GiftWallets.vue',
   'src/gun-vue/my/wallets.vue',
-  'src/gun-vue/file/TorrentUpload.vue',
+  'src/gun-vue/files/TorrentUpload.vue',
   'src/gun-vue/auth/index.vue',
   'src/gun-vue/dict/def/DictDefList.vue',
   'src/gun-vue/dict/word/DictWordList.vue',

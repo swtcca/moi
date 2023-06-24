@@ -16,7 +16,6 @@ import "gun/lib/rindexed";
 import "gun/lib/open";
 import "gun/lib/load";
 import "gun/lib/webrtc";
-import "gun/lib/yson";
 
 import GunWorker from './useGunWorker'
 
@@ -52,11 +51,24 @@ export function useGun(options: GunOptions = { localStorage: false }): IGunInsta
   return gun;
 }
 
+export function useGunPath(...args: string[]) {
+  const gun = useGun()
+  let g
+  for (let arg of args) {
+    g = gun.get(arg)
+  }
+  return g || gun
+}
+
+export function useGunMap(...args: string[]) {
+
+}
+
 /**
  * get a secondary Gun instance for certificate management
  */
 
-export function useGun2(options: object = { localStorage: false }): IGunInstance {
+export function useGunSecondary(options: object = { localStorage: false }): IGunInstance {
 
   const gun2 = Gun({ peers: [relay.peer], ...options });
 

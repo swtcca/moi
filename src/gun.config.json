@@ -12,7 +12,7 @@
     "/rooms/": "Rooms",
     "/private/": "Messages",
     "/dict/": "Dictionary",
-    "/file/": "Files"
+    "/files/": "Files"
   },
   "features": {
     "rooms": "Rooms",
