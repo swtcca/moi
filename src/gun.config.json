@@ -1,5 +1,5 @@
 {
-  "relay": "https://relay.63e3e2e3.nip.io/gun",
+  "relay": "https://ca.relay.wode.ca/gun",
   "routes": {
     "/": "Home",
     "/my/": "User",
