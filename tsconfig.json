@@ -14,7 +14,8 @@
     "baseUrl": "./",
     "lib": ["esnext", "dom", "dom.iterable"],
     "paths": {
-      "#composables": ["./src/gun-vue/composables"]
+      "#composables": ["./src/gun-vue/composables"],
+      "#components": ["./src/gun-vue/components"]
     }
   },
   "vueCompilerOptions": {
